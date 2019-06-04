@@ -1,0 +1,68 @@
+/*
+    The contents of this file are provided under the terms described in the accompanying License.txt file. Use of this file in any way acknowledges acceptance of these terms.
+    Copyright(c) 2010 - 2017, Imagination Technologies Limited and / or its affiliated group companies. All rights reserved.
+*/
+
+uniform sampler2D  PositionsTex;
+uniform int PassIdx;
+uniform int SamplesPerPass;
+uniform int SamplesSoFar;
+uniform int TotalSampleCount;
+
+void setup()
+{
+    rl_OutputRayCount = SamplesPerPass;
+}
+
+void ProbeSampling(vec3 pos, int rayCount, int totalRayCount, float rayOffset)
+{
+    int pixOffset = totalRayCount; // No need to use GetScreenCoordHashMod (as we do for lightmap texels) as probes converge very quickly and one can never tell that they use same directions.
+
+    float weight = 4.0/float(TotalSampleCount);
+    int scramble = GetScreenCoordHash(rl_FrameCoord.xy);
+
+    for(int i = 0; i < rayCount; ++i)
+    {
+        int index = (pixOffset + i) % TotalSampleCount;
+        vec3 direction = GetSphereSample(index, scramble);
+
+        // We don't want the full sphere, we only want the upper hemisphere.
+        if (direction.y < 0.0)
+            direction = vec3(direction.x, -direction.y, direction.z);
+
+        float randOffset = 0.1 * rayOffset + 0.9 * rayOffset * SobolSample(index, 2, scramble);
+
+        createRay();
+        rl_OutRay.origin           = pos + direction * randOffset;
+        rl_OutRay.direction        = direction;
+        rl_OutRay.color            = vec4(1.0); // multiplied by transmission in the Standard shader
+        rl_OutRay.probeDir         = normalize(direction);
+        rl_OutRay.defaultPrimitive = GetEnvPrimitive();
+        rl_OutRay.renderTarget     = CUSTOM_BAKE_BUFFER;
+        rl_OutRay.isOutgoing       = true;
+        rl_OutRay.sampleIndex      = index;
+        rl_OutRay.rayClass         = GI_RAY_CLASS;
+        rl_OutRay.depth            = 0;
+        rl_OutRay.weight           = weight;
+        // Needs to be false, otherwise rl_FrontFacing is never set/never false.
+        rl_OutRay.occlusionTest    = false;
+        rl_OutRay.albedo           = vec3(1.0);
+        rl_OutRay.sameOriginCount  = 0;
+        rl_OutRay.lightmapMode     = LIGHTMAPMODE_NONDIRECTIONAL; // Not used with probe sampling.
+        rl_OutRay.ignoreDirectEnvironment = false;
+        emitRayWithoutDifferentials();
+    }
+}
+
+void main()
+{
+    vec2  frameCoord  = rl_FrameCoord.xy / rl_FrameSize.xy;
+
+    vec4 posTex = texture2D(PositionsTex, frameCoord);
+
+    // Unused texels
+    if(posTex.w <= 0.0)
+        return;
+
+    ProbeSampling(posTex.xyz, SamplesPerPass, SamplesSoFar, posTex.w);
+}

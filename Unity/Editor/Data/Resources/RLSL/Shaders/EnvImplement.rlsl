@@ -1,0 +1,77 @@
+/*
+    The contents of this file are provided under the terms described in the accompanying License.txt file. Use of this file in any way acknowledges acceptance of these terms.
+    Copyright(c) 2010 - 2017, Imagination Technologies Limited and / or its affiliated group companies. All rights reserved.
+*/
+
+uniformblock SkyboxTextures
+{
+    sampler2D FrontTex;
+    sampler2D BackTex;
+    sampler2D LeftTex;
+    sampler2D RightTex;
+    sampler2D UpTex;
+    sampler2D DownTex;
+};
+
+vec3 DecodeRGBM( vec4 color )
+{
+    return (8.0 * color.a) * (color.rgb);
+}
+
+vec3 GetSkyBoxColor(vec3 direction)
+{
+    vec2 skyTexCoord;
+
+    vec3 tempDir = normalize( direction );
+    direction = tempDir;
+
+    vec3 absDir = abs(direction);
+
+    vec4 texColor = vec4(1.0);
+
+    //See if the X axis is dominant in the direction vector
+    if (absDir.x > absDir.y && absDir.x > absDir.z) {
+        if (direction.x > 0.0) {
+            skyTexCoord = vec2(-direction.z/absDir.x, -direction.y/absDir.x) / vec2(2.0) + vec2(0.5);
+            texColor = texture2D(SkyboxTextures.LeftTex, skyTexCoord);
+        } else {
+            skyTexCoord = vec2(direction.z/absDir.x, -direction.y/absDir.x) / vec2(2.0) + vec2(0.5);
+            texColor = texture2D(SkyboxTextures.RightTex, skyTexCoord);
+        }
+    } else {
+        if (absDir.y > absDir.z) {
+            if (direction.y > 0.0) {
+                skyTexCoord = vec2(direction.x/absDir.y, direction.z/absDir.y) / vec2(2.0) + vec2(0.5);
+                 texColor = texture2D(SkyboxTextures.UpTex, skyTexCoord);
+            } else {
+                skyTexCoord = vec2(direction.x/absDir.y, -direction.z/absDir.y) / vec2(2.0) + vec2(0.5);
+                texColor = texture2D(SkyboxTextures.DownTex, skyTexCoord);
+            }
+        } else {
+            if (direction.z > 0.0) {
+                skyTexCoord = vec2(direction.x/absDir.z, -direction.y/absDir.z) / vec2(2.0) + vec2(0.5);
+                texColor = texture2D(SkyboxTextures.FrontTex, skyTexCoord);
+            } else {
+                skyTexCoord = vec2(-direction.x/absDir.z, -direction.y/absDir.z) / vec2(2.0) + vec2(0.5);
+                texColor = texture2D(SkyboxTextures.BackTex, skyTexCoord);
+            }
+        }
+    }
+
+    return texColor.xyz;
+}
+
+void main()
+{
+    if(rl_InRay.depth == 0 && (rl_InRay.renderTarget != PROBE_BUFFER))
+        accumulate(AO_BUFFER, vec3(1.0,1.0,1.0));
+
+    if (IntegratorSamples.maxBounces <= 0)
+        return;
+
+    if((rl_InRay.renderTarget == PROBE_BUFFER) && rl_InRay.ignoreDirectEnvironment && rl_InRay.depth == 0)
+        return;
+
+    vec3 skyColor = GetSkyBoxColor(rl_InRay.direction);
+    Accumulate(rl_InRay.renderTarget, vec4(skyColor * rl_InRay.weight * rl_InRay.albedo, 0.0), rl_InRay.probeDir, rl_InRay.lightmapMode);
+}

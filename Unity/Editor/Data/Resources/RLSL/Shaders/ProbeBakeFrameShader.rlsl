@@ -1,0 +1,92 @@
+/*
+    The contents of this file are provided under the terms described in the accompanying License.txt file. Use of this file in any way acknowledges acceptance of these terms.
+    Copyright(c) 2010 - 2017, Imagination Technologies Limited and / or its affiliated group companies. All rights reserved.
+*/
+
+uniform sampler2D PositionsTex;
+uniform sampler2D ProbeLightIndicesTexture;
+uniform int OutputRayCount;
+uniform int PassIdx;
+uniform int GIMaxSamples;
+uniform int GISamplesPerPass;
+uniform int GISamplesSoFar;
+uniform int DirectMaxSamples;
+uniform int DirectSamplesPerPass;
+uniform int DirectSamplesSoFar;
+uniform int IgnoreDirectEnvironment;
+
+void setup()
+{
+    rl_OutputRayCount = OutputRayCount;
+}
+
+void ProbeSampling(vec3 pos, int samplesForPass, int samplesSoFar)
+{
+    int pixOffset = samplesSoFar;
+    float weight = 4.0/float(GIMaxSamples);
+    int scramble = GetScreenCoordHash(rl_FrameCoord.xy);
+
+    for(int i = 0; i < samplesForPass; ++i)
+    {
+        int index = (pixOffset + i) % GIMaxSamples;
+        vec3 direction = GetSphereSample(index, scramble);
+
+        createRay();
+        rl_OutRay.origin           = pos;
+        rl_OutRay.direction        = direction;
+        rl_OutRay.color            = vec4(0.0); // unused, because we're not shooting against lights
+        rl_OutRay.probeDir         = normalize(direction);
+        rl_OutRay.defaultPrimitive = GetEnvPrimitive();
+        rl_OutRay.renderTarget     = PROBE_BUFFER;
+        rl_OutRay.isOutgoing       = true;
+        rl_OutRay.sampleIndex      = index;
+        rl_OutRay.rayClass         = GI_RAY_CLASS;
+        rl_OutRay.depth            = 0;
+        rl_OutRay.weight           = weight;
+        rl_OutRay.occlusionTest    = false;
+        rl_OutRay.albedo           = vec3(1.0);
+        rl_OutRay.sameOriginCount  = 0;
+        rl_OutRay.transmissionDepth= 0;
+        rl_OutRay.lightmapMode     = LIGHTMAPMODE_NONDIRECTIONAL; // Not used with probe sampling.
+        rl_OutRay.ignoreDirectEnvironment = (IgnoreDirectEnvironment==1);
+        emitRayWithoutDifferentials();
+    }
+}
+
+void main()
+{
+    vec2  frameCoord  = rl_FrameCoord.xy / rl_FrameSize.xy;
+
+    vec4 posTex = texture2D(PositionsTex, frameCoord);
+
+    if(posTex.w <= 0.0)
+        return;
+
+    if (GISamplesSoFar < GIMaxSamples)
+    {
+        int clampedGIsamplesPerPass = min (max(0, GIMaxSamples - GISamplesSoFar), GISamplesPerPass);
+        ProbeSampling(posTex.xyz, clampedGIsamplesPerPass, GISamplesSoFar);
+    }
+
+    // Direct and probe occlusion are done in the first interation.
+    if (DirectSamplesSoFar < DirectMaxSamples)
+    {
+        int clampedDirectsamplesPerPass = min (max(0, DirectMaxSamples - DirectSamplesSoFar), DirectSamplesPerPass);
+
+        int pixOffset = DirectSamplesSoFar + GetScreenCoordHashMod(rl_FrameCoord.xy, IntegratorSamples.numGoldenSamples);
+
+        for (int i = 0; i < DirectSamplesPerPass; ++i)
+        {
+            int index = (pixOffset + i) % IntegratorSamples.numGoldenSamples;
+
+            float weight = 1.0/float(DirectMaxSamples);
+
+            // Direct
+            DoShadows(posTex.xyz, vec3(0.0), vec3(1.0), PROBE_BUFFER, index, vec3(0.0), LIGHTMAPMODE_NOTUSED, false, OCCLUSIONMODE_DIRECT, vec4(-1.0), weight, true);
+
+            // Probe Occlusion
+            vec4 lightIndices = texture2D(ProbeLightIndicesTexture, frameCoord);
+            DoShadows(posTex.xyz, vec3(0.0), vec3(1.0), PROBE_OCCLUSION_BUFFER, index, vec3(0.0), LIGHTMAPMODE_NOTUSED, false, OCCLUSIONMODE_PROBEOCCLUSION, lightIndices, weight, true);
+        }
+    }
+}

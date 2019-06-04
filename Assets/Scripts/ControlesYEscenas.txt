@@ -1,0 +1,41 @@
+Usar los nuevos controles en los scripts (importante)
+
+- Si os metéis en MyPlayerActions vereis unas variables con distintos nombres, esto podemos modificarlo cuando nos reunamos.
+- Para poder usar un control en los scripts, en vez de "device.Action1.IsPressed" hay que usar la variable myPlayerActions.Gas.IsPressed porque Action1 está asignado a la variable Gas en MyPlayerActions
+- En vez de declarar una variable de InputDevice, declarais una de MyPlayerActions. En MyCarController podéis ver como lo he usado.
+
+
+El control se ha modificado para que pueda ser usado por teclado y mando.
+
+- Los controles de los mandos los he mantenido a como estaban antes.
+
+- Los controles del teclado apenas los he pensado. Cuando nos reunamos miramos bien que teclas asignar.
+
+Por lo pronto: "A" y "D" para girar, "W" para turbo y "P" para acelerar.
+
+Los controle se pueden consultar de todas formas en el archivo MyPlayerActions.cs de la carpeta MandosYHabilidades
+
+En prefabs hay un coche con todo lo necesario para que se pueda conducir. 
+
+Instrucciones para añadir un coche y una cámara:
+
+1) Usa el prefab del coche de la carpeta prefabs.
+
+2) Ese coche, en su componente de CarController posee un booleano "ActiveDevice" que si dejamos pulsado, cogerá el primer mando que detecte. (No usar para más de un jugador)
+
+3) A una cámara cualquiera, asígnale como componente el script "CameraController" y le arrastras como target el coche. Deja pulsado también el "ActiveDevice" del componente.
+
+
+Hay 3 escenas
+
+Circuit: Escena con un circuito y un coche preparados simplemente para que pueda ser conducido (recomendado para trastear con las físicas o la cámara ya sea a nivel de código o inspector)
+
+City: Más de lo mismo que el de arriba pero con una ciudad
+
+PlayerSelection: Solo usarlo para probar más de un jugador a la vez. No probar físicas ni cámara en esta escena. Para añadir un jugador, debes pulsar en la "A" de xbox, o "X" de play station
+o en la W del teclado para añadir un jugador. Tienes 10 segundos para añadirlos.
+
+Otros:
+
+Para que los controles funcionen tiene que tener el coche al meenos el componente script Player además de activar "ActiveDevice" en su componente script "MyCarController"
+

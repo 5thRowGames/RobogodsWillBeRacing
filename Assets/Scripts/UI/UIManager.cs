@@ -10,11 +10,14 @@ public class UIManager : MonoBehaviour
     public GameObject characters;
     public GameObject apocalipsisMode;
 
-    private GameObject previous = null;
-
-    private void Start()
+    public FireBallSkill fireBallSkill;
+    
+    private void Update()
     {
-        previous = mainMenu;
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            //fireBallSkill.Effect();
+        }
     }
 
     public void Pruebas()

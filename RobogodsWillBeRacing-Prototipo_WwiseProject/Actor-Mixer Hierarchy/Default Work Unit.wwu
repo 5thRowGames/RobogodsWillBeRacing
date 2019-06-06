@@ -222,6 +222,39 @@
 						<RandomSequenceContainer Name="Motor_Layers_2" ID="{037615B5-5AD1-406C-BF40-31EC6D8406FD}" ShortID="293841855">
 							<PropertyList>
 								<Property Name="GlobalOrPerObject" Type="int16" Value="0"/>
+								<Property Name="Pitch" Type="int32">
+									<RTPCList>
+										<RTPC Name="" ID="{FC4D4E13-BA15-41C0-9C8F-6885DE6FBDBE}" ShortID="977619149">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<ObjectRef Name="Player_Velocidad" ID="{E08C3774-7EB1-4D85-98DD-59215F2E9293}" WorkUnitID="{90A236A2-9029-4BFD-8983-FBFF09638A74}"/>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{396198C2-82D0-4E8E-B08B-4A82C9D4394B}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="65537"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>0</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>49.857</XPos>
+														<YPos>1791</YPos>
+														<Flags>0</Flags>
+													</Point>
+													<Point>
+														<XPos>100</XPos>
+														<YPos>1791</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
 								<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
 								<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
 								<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="4"/>
@@ -230,6 +263,42 @@
 									<ValueList>
 										<Value>-9</Value>
 									</ValueList>
+									<RTPCList>
+										<RTPC Name="" ID="{D576A359-D1DE-4F16-AF89-9F73A7AABC9F}" ShortID="961019714">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<ObjectRef Name="Player_Velocidad" ID="{E08C3774-7EB1-4D85-98DD-59215F2E9293}" WorkUnitID="{90A236A2-9029-4BFD-8983-FBFF09638A74}"/>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{A906F894-0F48-45A4-87F8-A5953DACE1E7}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="3"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>0</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>30.44719</XPos>
+														<YPos>0</YPos>
+														<Flags>0</Flags>
+													</Point>
+													<Point>
+														<XPos>49.85828</XPos>
+														<YPos>-200</YPos>
+														<Flags>0</Flags>
+													</Point>
+													<Point>
+														<XPos>100</XPos>
+														<YPos>-181.87971</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
 								</Property>
 							</PropertyList>
 							<ReferenceList>
@@ -242,41 +311,6 @@
 							</ReferenceList>
 							<ChildrenList>
 								<Sound Name="Robo_Gods_Motor_LOOP_SFX_Layer_2_Car_1 - Copy" ID="{3880FDF1-D7F1-4B8B-9607-A1FF09102BD1}" ShortID="731231198">
-									<PropertyList>
-										<Property Name="Pitch" Type="int32">
-											<RTPCList>
-												<RTPC Name="" ID="{A0E33F4E-477C-4CF8-A036-4A71B3661B56}" ShortID="127975351">
-													<ReferenceList>
-														<Reference Name="ControlInput">
-															<ObjectRef Name="Player_Velocidad" ID="{E08C3774-7EB1-4D85-98DD-59215F2E9293}" WorkUnitID="{90A236A2-9029-4BFD-8983-FBFF09638A74}"/>
-														</Reference>
-													</ReferenceList>
-													<Curve Name="" ID="{992CAB7A-F90B-4C8A-9A89-80F876C99A84}">
-														<PropertyList>
-															<Property Name="Flags" Type="int32" Value="65537"/>
-														</PropertyList>
-														<PointList>
-															<Point>
-																<XPos>0</XPos>
-																<YPos>0</YPos>
-																<Flags>5</Flags>
-															</Point>
-															<Point>
-																<XPos>49.857</XPos>
-																<YPos>1791</YPos>
-																<Flags>0</Flags>
-															</Point>
-															<Point>
-																<XPos>100</XPos>
-																<YPos>0</YPos>
-																<Flags>37</Flags>
-															</Point>
-														</PointList>
-													</Curve>
-												</RTPC>
-											</RTPCList>
-										</Property>
-									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
@@ -296,41 +330,6 @@
 									</ActiveSourceList>
 								</Sound>
 								<Sound Name="Robo_Gods_Motor_LOOP_SFX_Layer_2_Car_1" ID="{F7305413-54F0-439A-8091-4A8B3B1E4058}" ShortID="214503753">
-									<PropertyList>
-										<Property Name="Pitch" Type="int32">
-											<RTPCList>
-												<RTPC Name="" ID="{62AD5B3B-79C1-4D43-9ACA-8C519817E66B}" ShortID="36345253">
-													<ReferenceList>
-														<Reference Name="ControlInput">
-															<ObjectRef Name="Player_Velocidad" ID="{E08C3774-7EB1-4D85-98DD-59215F2E9293}" WorkUnitID="{90A236A2-9029-4BFD-8983-FBFF09638A74}"/>
-														</Reference>
-													</ReferenceList>
-													<Curve Name="" ID="{882E1AD5-1D71-4559-9C4C-782142CC8AC5}">
-														<PropertyList>
-															<Property Name="Flags" Type="int32" Value="65537"/>
-														</PropertyList>
-														<PointList>
-															<Point>
-																<XPos>0</XPos>
-																<YPos>0</YPos>
-																<Flags>5</Flags>
-															</Point>
-															<Point>
-																<XPos>49.85728</XPos>
-																<YPos>1791</YPos>
-																<Flags>0</Flags>
-															</Point>
-															<Point>
-																<XPos>100</XPos>
-																<YPos>0</YPos>
-																<Flags>37</Flags>
-															</Point>
-														</PointList>
-													</Curve>
-												</RTPC>
-											</RTPCList>
-										</Property>
-									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
@@ -546,6 +545,115 @@
 								</RandomSequenceContainer>
 							</ChildrenList>
 						</BlendContainer>
+						<RandomSequenceContainer Name="Motor_Layers_2_Tono" ID="{C12DE579-AF8A-43BD-BEEF-FE98BD286C61}" ShortID="76745249">
+							<PropertyList>
+								<Property Name="GlobalOrPerObject" Type="int16" Value="0"/>
+								<Property Name="Pitch" Type="int32">
+									<ValueList>
+										<Value>1791</Value>
+									</ValueList>
+								</Property>
+								<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+								<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
+								<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="4"/>
+								<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-9</Value>
+									</ValueList>
+									<RTPCList>
+										<RTPC Name="" ID="{D4EAF11E-440C-4785-81CB-14C2FA45D745}" ShortID="543647149">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<ObjectRef Name="Player_Velocidad" ID="{E08C3774-7EB1-4D85-98DD-59215F2E9293}" WorkUnitID="{90A236A2-9029-4BFD-8983-FBFF09638A74}"/>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{2FBFD822-5152-49F8-8744-C8D6B7EA7449}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="3"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>-200</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>39.86679</XPos>
+														<YPos>-200</YPos>
+														<Flags>0</Flags>
+													</Point>
+													<Point>
+														<XPos>50.14372</XPos>
+														<YPos>0</YPos>
+														<Flags>0</Flags>
+													</Point>
+													<Point>
+														<XPos>100</XPos>
+														<YPos>0</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="Robo_Gods_Motor_LOOP_SFX_Layer_2_Car_1 - Copy" ID="{06623C93-AECE-45B2-8A4B-FA827AAC260C}" ShortID="494737357">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Robo_Gods_Motor_LOOP_SFX_Layer_2_Car_1 - Copy" ID="{986AABB8-CD6D-4954-AE7B-85ECD2BA6700}" ShortID="841721392">
+											<Language>SFX</Language>
+											<AudioFile>Robo_Gods_Motor_LOOP_SFX_Layer_2_Car_1 - Copy.wav</AudioFile>
+											<ConvertedFileIDList>
+												<File ID="958619891"/>
+											</ConvertedFileIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Robo_Gods_Motor_LOOP_SFX_Layer_2_Car_1 - Copy" ID="{986AABB8-CD6D-4954-AE7B-85ECD2BA6700}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Robo_Gods_Motor_LOOP_SFX_Layer_2_Car_1" ID="{36C526FD-74D3-40DD-9C4B-7F93D0F874BC}" ShortID="127081811">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Robo_Gods_Motor_LOOP_SFX_Layer_2_Car_1" ID="{97797C93-7C59-4713-8595-98824CE6385E}" ShortID="310959659">
+											<Language>SFX</Language>
+											<AudioFile>Robo_Gods_Motor_LOOP_SFX_Layer_2_Car_1.wav</AudioFile>
+											<ConvertedFileIDList>
+												<File ID="397881016"/>
+											</ConvertedFileIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Robo_Gods_Motor_LOOP_SFX_Layer_2_Car_1" ID="{97797C93-7C59-4713-8595-98824CE6385E}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</RandomSequenceContainer>
 					</ChildrenList>
 				</Folder>
 			</ChildrenList>

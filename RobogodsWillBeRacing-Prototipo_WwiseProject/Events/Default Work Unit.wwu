@@ -7,36 +7,6 @@
 					<ChildrenList>
 						<Event Name="Coche_1_Motor_Start_Loop" ID="{4B031EEE-09AF-4B45-931B-AA4FA3B82F78}">
 							<ChildrenList>
-								<Action Name="" ID="{7C9295A2-28AB-40CA-A278-788B4AF636F4}" ShortID="248193750">
-									<PropertyList>
-										<Property Name="FadeTime" Type="Real64" Value="3"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="Motor_Layers_1" ID="{5CEEDADD-E76E-42EE-A9A2-1B2CB415FFF1}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-								<Action Name="" ID="{2480E585-6313-46BB-BC5F-7A1B0E0F42AF}" ShortID="203286718">
-									<PropertyList>
-										<Property Name="FadeTime" Type="Real64" Value="3"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="Motor_Layers_2" ID="{037615B5-5AD1-406C-BF40-31EC6D8406FD}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-								<Action Name="" ID="{D0150424-AB57-4547-8C3F-068E49BBC905}" ShortID="555242664">
-									<PropertyList>
-										<Property Name="FadeTime" Type="Real64" Value="3"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="Motor_Layers_3" ID="{2543941C-168E-4E18-9913-DD16F7E0D195}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
 								<Action Name="" ID="{FF9BD9BD-C1BA-4E30-BB42-56B75BF4D9A7}" ShortID="900443540">
 									<ReferenceList>
 										<Reference Name="Target">
@@ -44,10 +14,13 @@
 										</Reference>
 									</ReferenceList>
 								</Action>
-								<Action Name="" ID="{9A7779A6-6B17-4384-9430-5F7726009267}" ShortID="653394798">
+								<Action Name="" ID="{FDF1A1FB-1AB7-4E17-8E45-3037D382C7BD}" ShortID="323686637">
+									<PropertyList>
+										<Property Name="FadeTime" Type="Real64" Value="3"/>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Target">
-											<ObjectRef Name="Motor_Layers_2_Tono" ID="{C12DE579-AF8A-43BD-BEEF-FE98BD286C61}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+											<ObjectRef Name="Motor" ID="{A50BA935-8D5D-41E7-B951-41E5C6FB1C71}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
@@ -108,6 +81,36 @@
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="Bascula_Compresor" ID="{D9B58D62-0098-4C2F-8D66-E4B276A373C5}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Coche_1_turbo_Out" ID="{65A70348-BE3B-427F-8DA0-C817EB333C35}">
+							<ChildrenList>
+								<Action Name="" ID="{95C7EA4B-31E0-4286-8C08-D52C97308208}" ShortID="726227895">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="FadeTime" Type="Real64" Value="1.5"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Coche_1_Turbo" ID="{8178D648-1415-4BAC-B883-CDFE93CEB7BE}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Coche_1_Freno_Out" ID="{98628690-809A-4E05-8744-72BA38CE55F6}">
+							<ChildrenList>
+								<Action Name="" ID="{B93E9D99-AA9E-43D1-9C3F-C158522D6D22}" ShortID="427368541">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="FadeTime" Type="Real64" Value="1.5"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Coche_1_Freno" ID="{F3732206-578F-494A-8826-118F8490BE1B}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>

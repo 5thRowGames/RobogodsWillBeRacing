@@ -80,6 +80,7 @@ public class MyCarController : MonoBehaviour, IControllable
     //Para sonidos
     private bool isBoosting;
     private bool isBraking;
+    private bool isHorizontal;
 
     private void Start()
     {
@@ -113,31 +114,53 @@ public class MyCarController : MonoBehaviour, IControllable
 
         if (alwaysAccelerate && accelerationInput < minAcceleration) accelerationInput = minAcceleration;
         
+        if(boostInput)
+            accelerationInput *= boostMultiplier;
+        
+        //Yo esto lo quitaría si vamos a usar el turbo para impulsarnos
+        //if (rb.velocity.magnitude < speedThreshold) accelerationInput *= instantSpeedForce;
+        
+        #region Sonido
+        
         if (boostInput && !isBoosting)
         {
             isBoosting = true;
             AkSoundEngine.PostEvent("Coche_1_turbo", gameObject);
         }
-
-        if (!boostInput)
+        else if (!boostInput && isBoosting)
+        {
             isBoosting = false;
-        else
-            accelerationInput *= boostMultiplier;
-        
-        if (brakeInput > 0.9f && !isBraking)
+            AkSoundEngine.PostEvent("Coche_1_turbo_Out", gameObject);
+        }
+
+        if (brakeInput > 0.8f && !isBraking)
         {
             isBraking = true;
             AkSoundEngine.PostEvent("Coche_1_Freno", gameObject);
         }
-
-        if (brakeInput < 0.9f)
+        else if(isBraking && brakeInput < 0.6f)
+        {
             isBraking = false;
+            AkSoundEngine.PostEvent("Coche_1_Freno_Out", gameObject);
+        }
 
-        if (rb.velocity.magnitude < speedThreshold) accelerationInput *= instantSpeedForce;
+        if (!isHorizontal && (steeringInput > 0.5f || steeringInput < -0.5f))
+        {
+            isHorizontal = true;
+            AkSoundEngine.PostEvent("Bascula_Compresor_In", gameObject);
+        }
+        else if (isHorizontal && steeringInput < 0.2 && steeringInput > -0.2f)
+        {
+            isHorizontal = false;
+            AkSoundEngine.PostEvent("Bascula_Compresor_Out", gameObject);
+        }
 
         AkSoundEngine.SetRTPCValue("Player_Velocidad", rb.velocity.magnitude);
+        
+        #endregion
 
-        ShaderPruebas.blurAmount = rb.velocity.magnitude / 500; //Borrar, solo era para pruebas
+        //Borrar, solo era para pruebas
+        ShaderPruebas.blurAmount = rb.velocity.magnitude / 500; 
     }
 
     private void FixedUpdate()

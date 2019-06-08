@@ -64,7 +64,7 @@
 								<Action Name="" ID="{E5343F8C-3287-475B-A368-2262725B7285}" ShortID="509315935">
 									<PropertyList>
 										<Property Name="ActionType" Type="int16" Value="2"/>
-										<Property Name="FadeTime" Type="Real64" Value="1.5">
+										<Property Name="FadeTime" Type="Real64">
 											<ModifierList>
 												<ModifierInfo>
 													<Modifier Name="" ID="{A8E4D7A4-3CCA-4566-92B1-DC79C0EE2647}">
@@ -111,6 +111,17 @@
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="Coche_1_Freno" ID="{F3732206-578F-494A-8826-118F8490BE1B}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Coche_1_Arranque" ID="{8B8264D4-3832-44C3-A863-17C1497BA022}">
+							<ChildrenList>
+								<Action Name="" ID="{2515EA28-4C27-4AAD-85A0-452BFADFCEB5}" ShortID="479711931">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Coche_1_Arranque" ID="{597EF449-FC26-492F-A765-7CBA06BEF7CB}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>

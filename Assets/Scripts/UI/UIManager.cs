@@ -11,12 +11,18 @@ public class UIManager : MonoBehaviour
     public GameObject apocalipsisMode;
 
     public FireBallSkill fireBallSkill;
+    public DaggerSkill daggerSkill;
+    public HidroCannonSkill hidroCannon;
+    public SpartanDefenseSkill spartanDefenseSkill;
     
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             //fireBallSkill.Effect();
+            //daggerSkill.Effect();
+            //hidroCannon.Effect();
+            spartanDefenseSkill.Effect();
         }
     }
 

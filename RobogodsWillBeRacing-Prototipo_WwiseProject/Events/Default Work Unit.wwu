@@ -5,22 +5,12 @@
 			<ChildrenList>
 				<Folder Name="Coches" ID="{5DEB9E88-24FA-4E92-B43A-A3FF36229F6C}" ShortID="99658067">
 					<ChildrenList>
-						<Event Name="Coche_1_Motor_Start_Loop" ID="{4B031EEE-09AF-4B45-931B-AA4FA3B82F78}">
+						<Event Name="Coche_1_Arranque" ID="{4B031EEE-09AF-4B45-931B-AA4FA3B82F78}">
 							<ChildrenList>
-								<Action Name="" ID="{FF9BD9BD-C1BA-4E30-BB42-56B75BF4D9A7}" ShortID="900443540">
+								<Action Name="" ID="{E31E111C-EC5E-490F-9A2F-9563C703ECFA}" ShortID="371506401">
 									<ReferenceList>
 										<Reference Name="Target">
-											<ObjectRef Name="Robo_Gods_Motor_Start_SFX_Car_1" ID="{D571F9E4-1AB9-468F-97EE-CF4008E0159F}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-								<Action Name="" ID="{FDF1A1FB-1AB7-4E17-8E45-3037D382C7BD}" ShortID="323686637">
-									<PropertyList>
-										<Property Name="FadeTime" Type="Real64" Value="3"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="Motor" ID="{A50BA935-8D5D-41E7-B951-41E5C6FB1C71}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+											<ObjectRef Name="Coche_1_Arranque" ID="{9E02B558-2436-434D-AB7C-65C109C61655}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
@@ -29,6 +19,16 @@
 						<Event Name="Coche_1_turbo" ID="{B6E35EEA-BE94-48FC-B26C-FA8EE2A9728B}">
 							<ChildrenList>
 								<Action Name="" ID="{86981292-6AAE-4693-ADE2-3420FD441B9A}" ShortID="655607111">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="16"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Coche_1_Turbo" ID="{8178D648-1415-4BAC-B883-CDFE93CEB7BE}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{DEF611D9-B040-4586-8350-C529A6E70189}" ShortID="842103765">
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="Coche_1_Turbo" ID="{8178D648-1415-4BAC-B883-CDFE93CEB7BE}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
@@ -90,8 +90,9 @@
 							<ChildrenList>
 								<Action Name="" ID="{95C7EA4B-31E0-4286-8C08-D52C97308208}" ShortID="726227895">
 									<PropertyList>
-										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="ActionType" Type="int16" Value="12"/>
 										<Property Name="FadeTime" Type="Real64" Value="1.5"/>
+										<Property Name="Volume" Type="Real64" Value="-96"/>
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Target">
@@ -116,12 +117,96 @@
 								</Action>
 							</ChildrenList>
 						</Event>
-						<Event Name="Coche_1_Arranque" ID="{8B8264D4-3832-44C3-A863-17C1497BA022}">
+						<Event Name="Coche_1_Acelerar_In" ID="{8B8264D4-3832-44C3-A863-17C1497BA022}">
 							<ChildrenList>
 								<Action Name="" ID="{2515EA28-4C27-4AAD-85A0-452BFADFCEB5}" ShortID="479711931">
 									<ReferenceList>
 										<Reference Name="Target">
-											<ObjectRef Name="Coche_1_Arranque" ID="{597EF449-FC26-492F-A765-7CBA06BEF7CB}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+											<ObjectRef Name="Coche_1_Acelerar_Shoots" ID="{597EF449-FC26-492F-A765-7CBA06BEF7CB}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{D6C21CBE-7C31-404D-9A6C-D3B1D0765950}" ShortID="502641473">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Coche_1_Acelerar_Loop" ID="{64211896-62F1-49A5-9AE0-F11BAEABBD98}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{61E2F617-485B-4AF9-8814-C7162DED4946}" ShortID="1041131103">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Motor_Stop_Loop" ID="{F7D9C84A-0DAC-438C-9335-1831DE2CEA84}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{80411350-1E35-4354-AC99-41099664312A}" ShortID="17368992">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Viento_SFX_Loop" ID="{C57E5393-275B-4A71-9D61-2335DFE908E0}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{54D03CF1-0CB6-49DE-9BB4-0E94509C265F}" ShortID="1062471138">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="18"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Coche_1_Acelerar_Loop" ID="{64211896-62F1-49A5-9AE0-F11BAEABBD98}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Coche_1_Acelerar_Out" ID="{96E13455-22A9-4AA0-86AA-9D31CAB1DE0C}">
+							<ChildrenList>
+								<Action Name="" ID="{D2641308-2F1A-4E50-A1CB-CAD184B572A2}" ShortID="482507652">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="FadeTime" Type="Real64" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Coche_1_Acelerar_Loop" ID="{64211896-62F1-49A5-9AE0-F11BAEABBD98}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{244150FB-615E-46C7-8D63-08CCEB03C9C1}" ShortID="958621598">
+									<PropertyList>
+										<Property Name="FadeTime" Type="Real64" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Motor_Stop_Loop" ID="{F7D9C84A-0DAC-438C-9335-1831DE2CEA84}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{F2683AB1-EFA9-4D0F-8D86-728A59FE0AC2}" ShortID="1019903032">
+									<PropertyList>
+										<Property Name="FadeTime" Type="Real64" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Viento_SFX_Loop" ID="{C57E5393-275B-4A71-9D61-2335DFE908E0}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{3EA763B0-14C4-47D3-A6C0-E6C05E4AB70B}" ShortID="856011682">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="13"/>
+										<Property Name="FadeTime" Type="Real64" Value="2"/>
+										<Property Name="Pitch" Type="int32" Value="-400"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Coche_1_Acelerar_Loop" ID="{64211896-62F1-49A5-9AE0-F11BAEABBD98}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>

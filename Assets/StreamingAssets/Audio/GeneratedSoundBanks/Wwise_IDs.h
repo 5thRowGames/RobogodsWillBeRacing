@@ -15,10 +15,11 @@ namespace AK
     {
         static const AkUniqueID BASCULA_COMPRESOR_IN = 3763551383U;
         static const AkUniqueID BASCULA_COMPRESOR_OUT = 3004065450U;
+        static const AkUniqueID COCHE_1_ACELERAR_IN = 2898692601U;
+        static const AkUniqueID COCHE_1_ACELERAR_OUT = 3666147384U;
         static const AkUniqueID COCHE_1_ARRANQUE = 487895197U;
         static const AkUniqueID COCHE_1_FRENO = 2168487682U;
         static const AkUniqueID COCHE_1_FRENO_OUT = 2410551647U;
-        static const AkUniqueID COCHE_1_MOTOR_START_LOOP = 1441341373U;
         static const AkUniqueID COCHE_1_TURBO = 3520136878U;
         static const AkUniqueID COCHE_1_TURBO_OUT = 3650669019U;
     } // namespace EVENTS

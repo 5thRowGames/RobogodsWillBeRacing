@@ -97,7 +97,7 @@ public class MyCarController : MonoBehaviour, IControllable
         Core.Input.AssignControllable(GetComponent<IncontrolProvider>(),this);
         
         //Sonidos
-        AkSoundEngine.PostEvent("Coche_1_Motor_Start_Loop", gameObject);
+        AkSoundEngine.PostEvent("Coche_1_Arranque", gameObject);
 
     }
 
@@ -155,7 +155,17 @@ public class MyCarController : MonoBehaviour, IControllable
             AkSoundEngine.PostEvent("Bascula_Compresor_Out", gameObject);
         }
 
-        AkSoundEngine.SetRTPCValue("Player_Velocidad", rb.velocity.magnitude);
+        if (device.State.RightTrigger.IsPressed)
+        {
+            AkSoundEngine.PostEvent("Coche_1_Acelerar_In", gameObject);
+        }
+
+        if (device.State.RightTrigger.IsReleased)
+        {
+            AkSoundEngine.PostEvent("Coche_1_Acelerar_Out", gameObject);
+        }
+
+            AkSoundEngine.SetRTPCValue("Player_Velocidad", rb.velocity.magnitude);
         
         #endregion
 

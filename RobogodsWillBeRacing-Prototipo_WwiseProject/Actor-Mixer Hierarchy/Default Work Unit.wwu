@@ -72,9 +72,10 @@
 						</RandomSequenceContainer>
 						<BlendContainer Name="Bascula_Compresor" ID="{D9B58D62-0098-4C2F-8D66-E4B276A373C5}" ShortID="683971993">
 							<PropertyList>
+								<Property Name="BlendBehavior" Type="int16" Value="1"/>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-5</Value>
+										<Value>-8</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -119,6 +120,41 @@
 											<ValueList>
 												<Value>-2</Value>
 											</ValueList>
+											<RTPCList>
+												<RTPC Name="" ID="{45FFC267-63F7-4729-97A7-372A79015977}" ShortID="361408690">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<Custom>
+																<ModulatorEnvelope Name="Modulator Envelope (Custom)" ID="{A7FB97C2-3800-4AA3-864E-BB6F5680750B}" ShortID="763671986">
+																	<PropertyList>
+																		<Property Name="EnvelopeAutoRelease" Type="bool" Value="True"/>
+																		<Property Name="EnvelopeDecayTime" Type="Real64" Value="0.684"/>
+																		<Property Name="EnvelopeReleaseTime" Type="Real64" Value="0.732"/>
+																		<Property Name="EnvelopeSustainTime" Type="Real64" Value="0.553"/>
+																	</PropertyList>
+																</ModulatorEnvelope>
+															</Custom>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{8F1541F3-4A5C-46DC-AFB7-E2A58A2ADA17}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="3"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>0</YPos>
+																<Flags>21</Flags>
+															</Point>
+															<Point>
+																<XPos>1</XPos>
+																<YPos>-200</YPos>
+																<Flags>53</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
 										</Property>
 									</PropertyList>
 									<ReferenceList>
@@ -257,9 +293,6 @@
 							</ChildrenList>
 						</RandomSequenceContainer>
 						<BlendContainer Name="Coche_1_Arranque" ID="{9E02B558-2436-434D-AB7C-65C109C61655}" ShortID="795011391">
-							<PropertyList>
-								<Property Name="BlendBehavior" Type="int16" Value="1"/>
-							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
@@ -273,7 +306,7 @@
 									<PropertyList>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>-5</Value>
+												<Value>-12</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -301,6 +334,40 @@
 										<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
 										<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="4"/>
 										<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+										<Property Name="Volume" Type="Real64">
+											<RTPCList>
+												<RTPC Name="" ID="{56A304B9-8226-4720-B642-363036DD76FF}" ShortID="127259891">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<Custom>
+																<ModulatorEnvelope Name="Modulator Envelope (Custom)" ID="{1461EF45-B781-421B-A37C-30DDDF99A45E}" ShortID="930520162">
+																	<PropertyList>
+																		<Property Name="EnvelopeAttackTime" Type="Real64" Value="0.611"/>
+																	</PropertyList>
+																</ModulatorEnvelope>
+															</Custom>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{47B78C44-035A-4AB1-B416-1D5818CAEFE6}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="3"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>-200</YPos>
+																<Flags>21</Flags>
+															</Point>
+															<Point>
+																<XPos>1</XPos>
+																<YPos>0</YPos>
+																<Flags>53</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
@@ -343,6 +410,11 @@
 						</BlendContainer>
 						<RandomSequenceContainer Name="Coche_1_Acelerar_Loop" ID="{64211896-62F1-49A5-9AE0-F11BAEABBD98}" ShortID="1043617360">
 							<PropertyList>
+								<Property Name="Pitch" Type="int32">
+									<ValueList>
+										<Value>200</Value>
+									</ValueList>
+								</Property>
 								<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
 								<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
 								<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="4"/>
@@ -391,8 +463,34 @@
 								<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-4</Value>
+										<Value>-8</Value>
 									</ValueList>
+									<RTPCList>
+										<RTPC Name="" ID="{D8AB1F3E-A845-45A0-B178-0B0BAFD8FB37}" ShortID="148191195">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<ObjectRef Name="Player_Velocidad" ID="{E08C3774-7EB1-4D85-98DD-59215F2E9293}" WorkUnitID="{90A236A2-9029-4BFD-8983-FBFF09638A74}"/>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{4B095E34-B99E-487B-B589-780F62BDDFA4}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="3"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>-200</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>100</XPos>
+														<YPos>0</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
 								</Property>
 							</PropertyList>
 							<ReferenceList>

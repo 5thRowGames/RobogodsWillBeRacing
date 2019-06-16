@@ -14,6 +14,8 @@ public class MyCarController : MonoBehaviour, IControllable
     [SerializeField] [Tooltip("¿Siempre aplicar la aceleración mínima?")] private bool alwaysAccelerate = true;
     [SerializeField] [Tooltip("Aceleración mínima aplicada en cada momento")] [Range(0f, 1f)] private float minAcceleration = 0.2f;
     [SerializeField] [Tooltip("Incremento de la fuerza de aceleración cuando se usa el turbo")] private float boostMultiplier = 3f;
+    [SerializeField] [Tooltip("Tiempo desde que se suelta el acelerador hasta que deja de acelerar el coche")] private float deaccelerationTime = 2f;
+    [Tooltip("Contador del tiempo desde que se suelta el acelerador")] private float deaccelerationTimer;
     [SerializeField] [Tooltip("Velocidad de giro")] private float turnSpeed = 10f;
     [SerializeField] [Tooltip("Velocidad umbral. Si la velocidad del coche es menor se aplica el impulso de instantSpeedForce")] private float speedThreshold = 10f;
     //[SerializeField] [Tooltip("Fuerza impulso para girar")] private float turnImpulse = 2f;
@@ -22,6 +24,9 @@ public class MyCarController : MonoBehaviour, IControllable
     [SerializeField] [Tooltip("Reducción de velocidad angular constante")] private float angularVelocityReductionFactor = 0.95f;
     [SerializeField] [Tooltip("Velocidad angular máxima")] private float maxAngularSpeed = 20f;
     [SerializeField] [Tooltip("Fuerza del freno")] private float brakeForce = 20f;
+    [SerializeField] [Tooltip("Tiempo necesario para pasar de frenar a ir marcha atrás")]private float brakeToReverseTime = 0.5f;
+    [Tooltip("Cronómero para pasar de frenar a ir marcha atrás")] private float brakeToReverseTimer;
+    [SerializeField][Tooltip("Indica si la velocidad del coche está por debajo del umbral")]private bool speedUnderThreshold;
     [SerializeField] [Tooltip("Fuerza en sentido opuesto al giro cuando se usa el freno de mano")] private float handBrakeForce = 30f;
     //[SerializeField] [Tooltip("Factor de reducción de la velocidad en cada FixedUpdate cuando se usa el freno de mano. Actualmente no en uso.")] [Range(0f, 1f)] private float handBrakeBrakeFactor = 0.95f;
     [SerializeField] [Tooltip("Segundos que hay que mantener el freno de mano pulsado para recibir un turbo tras soltarlo")] private float handBrakeTurboTime = 4f;
@@ -98,6 +103,8 @@ public class MyCarController : MonoBehaviour, IControllable
         //Sonidos
         AkSoundEngine.PostEvent("Coche_1_Motor_Start_Loop", gameObject);
 
+        brakeToReverseTimer = brakeToReverseTime;
+        deaccelerationTimer = deaccelerationTime;
     }
 
     public void Control(IDevice device)
@@ -138,6 +145,8 @@ public class MyCarController : MonoBehaviour, IControllable
         AkSoundEngine.SetRTPCValue("Player_Velocidad", rb.velocity.magnitude);
 
         ShaderPruebas.blurAmount = rb.velocity.magnitude / 500; //Borrar, solo era para pruebas
+
+        speedUnderThreshold = rb.velocity.magnitude < speedThreshold ? true : false;
     }
 
     private void FixedUpdate()
@@ -253,7 +262,22 @@ public class MyCarController : MonoBehaviour, IControllable
             groundForward = transform.forward;
         }
 
-        rb.AddForceAtPosition(groundForward * accelerationInput * speedForce, accelPoint.position, ForceMode.Acceleration);
+        if(accelerationInput > 0f)
+        {
+            rb.AddForceAtPosition(groundForward * accelerationInput * speedForce, accelPoint.position, ForceMode.Acceleration);
+            deaccelerationTimer = deaccelerationTime;
+        }
+        else
+        {
+            deaccelerationTimer -= Time.deltaTime;
+            if(deaccelerationTimer > 0f)
+            {
+                
+                float accelerationInertia = Mathf.Lerp(0f, 1f, deaccelerationTimer/deaccelerationTime);
+                rb.AddForceAtPosition(groundForward * accelerationInertia * speedForce, accelPoint.position, ForceMode.Acceleration);
+            }
+        }
+
     }
 
     private void Brake()
@@ -261,10 +285,25 @@ public class MyCarController : MonoBehaviour, IControllable
         if (brakeInput > 0f)
         {
             if (rb.velocity.magnitude < speedThreshold)
-                rb.AddForceAtPosition(-transform.forward * brakeInput * brakeForce * instantSpeedForce, accelPoint.position, ForceMode.Acceleration);
+            {
+                brakeToReverseTimer -= Time.deltaTime;
+                if (speedUnderThreshold && brakeToReverseTimer <= 0f)
+                {
+                    rb.AddForceAtPosition(-transform.forward * brakeInput * brakeForce * instantSpeedForce, accelPoint.position, ForceMode.Acceleration);
+                }
+                else
+                {
+                    rb.velocity *= 0.8f;
+                }
+            }
             else
+            {
+
                 rb.AddForceAtPosition(-transform.forward * brakeInput * brakeForce, accelPoint.position, ForceMode.Acceleration);
+            }
         }
+        else
+            brakeToReverseTimer = brakeToReverseTime;
     }
 
     private void HandBrake()

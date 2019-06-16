@@ -114,7 +114,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2283931395282270279}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.4, z: -0.3}
+  m_LocalPosition: {x: 0, y: -0.5, z: -0.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2283931395983625059}
@@ -144,7 +144,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2283931395819097141}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.4, z: 0.3}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2283931395983625059}
@@ -343,11 +343,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeDevice: 1
-  speedForce: 100
+  speedForce: 120
   instantSpeedForce: 10
-  alwaysAccelerate: 1
+  alwaysAccelerate: 0
   minAcceleration: 0.2
   boostMultiplier: 2
+  deaccelerationTime: 2
   turnSpeed: 40
   speedThreshold: 15
   steeringThreshold: 0.2
@@ -355,6 +356,8 @@ MonoBehaviour:
   angularVelocityReductionFactor: 1
   maxAngularSpeed: 20
   brakeForce: 40
+  brakeToReverseTime: 0.5
+  speedUnderThreshold: 0
   handBrakeForce: 25
   handBrakeTurboTime: 3
   handBrakeTimer: 0

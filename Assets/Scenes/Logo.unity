@@ -148,8 +148,9 @@ MonoBehaviour:
   - {fileID: 1800763366}
   - {fileID: 597537511}
   logo: {fileID: 263700605}
+  camera: {fileID: 2114841774}
   timeBetweenScrews: 0.5
-  timeBetweenScrewsAndLogo: 0.1
+  timeBetweenScrewsAndLogo: 0.25
 --- !u!4 &155249765
 Transform:
   m_ObjectHideFlags: 0
@@ -248,6 +249,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &263700606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 263700604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c842c9212a551747998bbaba07023a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 2114841769}
+  shakeDuration: 0.1
+  shakeStrength: 0.1
 --- !u!1 &280132194 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3798540300316435046, guid: 1624658fefa306d4b9aa47517b13c615,
@@ -664,6 +680,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TornilloArribaIzq
       objectReference: {fileID: 0}
+    - target: {fileID: 3798540300316435046, guid: 1624658fefa306d4b9aa47517b13c615,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3798540300316212806, guid: 1624658fefa306d4b9aa47517b13c615,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -801,17 +822,17 @@ PrefabInstance:
     - target: {fileID: 1401031976802623895, guid: 00d3cc3d8d0779949b3605cd2f403841,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0009999275
+      value: -0.43
       objectReference: {fileID: 0}
     - target: {fileID: 1401031976802623895, guid: 00d3cc3d8d0779949b3605cd2f403841,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.285
+      value: 10.01
       objectReference: {fileID: 0}
     - target: {fileID: 1401031976802623895, guid: 00d3cc3d8d0779949b3605cd2f403841,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.0039999485
+      value: -1.51
       objectReference: {fileID: 0}
     - target: {fileID: 1401031976802623895, guid: 00d3cc3d8d0779949b3605cd2f403841,
         type: 3}
@@ -964,6 +985,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2114841772}
   - component: {fileID: 2114841771}
+  - component: {fileID: 2114841774}
   - component: {fileID: 2114841773}
   - component: {fileID: 2114841770}
   m_Layer: 0
@@ -1065,6 +1087,25 @@ MonoBehaviour:
     positionOffset: {x: 0, y: 0, z: 0}
   m_posOffsetData: {fileID: 0}
   listenerMask: 1
+--- !u!95 &2114841774
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114841769}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d7058054cbc9d9348898a7e018a65b4d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &2130505852
 PrefabInstance:
   m_ObjectHideFlags: 0

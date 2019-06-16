@@ -6,6 +6,7 @@ public class LogoAnimation : MonoBehaviour
 {
     public List<Animator> screws;
     public Animator logo;
+    public Animator camera;
     public float timeBetweenScrews;
     public float timeBetweenScrewsAndLogo;
 
@@ -24,7 +25,9 @@ public class LogoAnimation : MonoBehaviour
         }
         
         yield return new WaitForSeconds(timeBetweenScrewsAndLogo);
+        //camera.SetBool("activate", true);
         logo.SetBool("activate", true);
-
     }
+
+
 }

@@ -1,39 +1,22 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-//Clase temporal para la división de las cámaras y la asignación de los targets a cada una de estas
-public class Lobby : MonoBehaviour
+public class CameraDivision : MonoBehaviour
 {
-    public float timer = 10f;
-
+    public int players;
+    
     public GameObject mainCamera;
     public List<GameObject> cameras;
+    public List<GameObject> cars;
 
-    public Text timerText;
-
-    private float timerAmount = 0;
-
-    void Start()
+    private void Start()
     {
-        Invoke(nameof(AssignCamera), timer);
-        Invoke(nameof(SplitScreen), timer + 1);
-
-        timerText.text = "0";
+        SplitScreen();
+        AssignCamera();
     }
 
-    private void Update()
-    {
-        timerAmount += Time.deltaTime;
-
-        timerText.text = string.Format("{0:00}", timerAmount);
-
-        if (timerAmount > timer)
-            timerText.enabled = false;
-    }
-
-    //Divide la pantalla según el número de jugadores que vayan a jugar la partida
     private void SplitScreen()
     {
         cameras[0].SetActive(false);
@@ -41,7 +24,7 @@ public class Lobby : MonoBehaviour
         cameras[2].SetActive(false);
         cameras[3].SetActive(false);
 
-        switch (PlayerSelection.players.Count)
+        switch (players)
         {
             case 1:
 
@@ -98,10 +81,9 @@ public class Lobby : MonoBehaviour
 
     private void AssignCamera()
     {
-        for(int i = 0; i < PlayerSelection.players.Count; i++)
+        for(int i = 0; i < players; i++)
         {
-            cameras[i].GetComponent<CameraController>().target = PlayerSelection.players[i];
+            cameras[i].GetComponent<CameraController>().target = cars[i];
         }
     }
-
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using InControl;
 
-public class MyCarController : MonoBehaviour, IControllable
+public class MyCarControllerRed : MonoBehaviour, IControllable
 {
     public bool activeDevice; //Para prueba solo
 
@@ -91,14 +91,25 @@ public class MyCarController : MonoBehaviour, IControllable
 
         rb.maxAngularVelocity = maxAngularSpeed;
 
-        if (activeDevice)
-            GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindBoth();
+        /*if (activeDevice)
+            GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo1();
 
-        Core.Input.AssignControllable(GetComponent<IncontrolProvider>(),this);
+        Core.Input.AssignControllable(GetComponent<IncontrolProvider>(),this);*/
+
+        StartCoroutine(Cosa());
         
         //Sonidos
         AkSoundEngine.PostEvent("Coche_1_Arranque", gameObject);
 
+    }
+
+    IEnumerator Cosa()
+    {
+        yield return new WaitForSeconds(1f);
+        
+        GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo1();
+
+        Core.Input.AssignControllable(GetComponent<IncontrolProvider>(),this);
     }
 
     public void Control(IDevice device)
@@ -144,7 +155,7 @@ public class MyCarController : MonoBehaviour, IControllable
             AkSoundEngine.PostEvent("Coche_1_Freno_Out", gameObject);
         }
 
-       if (!isHorizontal && (steeringInput > 0.5f || steeringInput < -0.5f))
+        if (!isHorizontal && (steeringInput > 0.5f || steeringInput < -0.5f))
         {
             isHorizontal = true;
             //AkSoundEngine.PostEvent("Bascula_Compresor_In", gameObject);
@@ -164,8 +175,8 @@ public class MyCarController : MonoBehaviour, IControllable
         {
             AkSoundEngine.PostEvent("Coche_1_Acelerar_Out", gameObject);
         }
-        
-        AkSoundEngine.SetRTPCValue("Player_Velocidad", rb.velocity.magnitude);
+
+            AkSoundEngine.SetRTPCValue("Player_Velocidad", rb.velocity.magnitude);
         
         #endregion
 

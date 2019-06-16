@@ -59,7 +59,7 @@ public class CameraController : MonoBehaviour, IControllable
     private void OnDisable()
     {
         //Eliminamos la referencia
-        Core.Input.UnassignControllable(target.GetComponent<IncontrolProvider>(),this);
+        //Core.Input.UnassignControllable(target.GetComponent<IncontrolProvider>(),this);
     }
 
     public void Control(IDevice device)

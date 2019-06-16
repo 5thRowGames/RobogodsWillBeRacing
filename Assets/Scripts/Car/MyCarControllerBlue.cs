@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using InControl;
 
-public class MyCarController : MonoBehaviour, IControllable
+public class MyCarControllerBlue : MonoBehaviour, IControllable
 {
     public bool activeDevice; //Para prueba solo
 
@@ -92,12 +92,12 @@ public class MyCarController : MonoBehaviour, IControllable
         rb.maxAngularVelocity = maxAngularSpeed;
 
         if (activeDevice)
-            GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindBoth();
+            GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo2();
 
         Core.Input.AssignControllable(GetComponent<IncontrolProvider>(),this);
         
         //Sonidos
-        AkSoundEngine.PostEvent("Coche_1_Arranque", gameObject);
+        AkSoundEngine.PostEvent("Nave_2_Arranque", gameObject);
 
     }
 
@@ -144,7 +144,7 @@ public class MyCarController : MonoBehaviour, IControllable
             AkSoundEngine.PostEvent("Coche_1_Freno_Out", gameObject);
         }
 
-       if (!isHorizontal && (steeringInput > 0.5f || steeringInput < -0.5f))
+        if (!isHorizontal && (steeringInput > 0.5f || steeringInput < -0.5f))
         {
             isHorizontal = true;
             //AkSoundEngine.PostEvent("Bascula_Compresor_In", gameObject);
@@ -157,15 +157,15 @@ public class MyCarController : MonoBehaviour, IControllable
 
         if (device.State.RightTrigger.IsPressed)
         {
-            AkSoundEngine.PostEvent("Coche_1_Acelerar_In", gameObject);
+            AkSoundEngine.PostEvent("Nave_2_Acelerar_In", gameObject);
         }
 
         if (device.State.RightTrigger.IsReleased)
         {
-            AkSoundEngine.PostEvent("Coche_1_Acelerar_Out", gameObject);
+            AkSoundEngine.PostEvent("Nave_2_Acelerar_Out", gameObject);
         }
-        
-        AkSoundEngine.SetRTPCValue("Player_Velocidad", rb.velocity.magnitude);
+
+            AkSoundEngine.SetRTPCValue("Player_Velocidad", rb.velocity.magnitude);
         
         #endregion
 

@@ -63,6 +63,11 @@ public class MyPlayerActions : PlayerActionSet
         myPlayerActions.Right.AddDefaultBinding(InputControlType.LeftStickRight);
         myPlayerActions.Down.AddDefaultBinding(InputControlType.LeftStickDown);
         myPlayerActions.Left.AddDefaultBinding(InputControlType.LeftStickLeft);
+        
+        myPlayerActions.Up.AddDefaultBinding(InputControlType.DPadUp);
+        myPlayerActions.Right.AddDefaultBinding(InputControlType.DPadRight);
+        myPlayerActions.Down.AddDefaultBinding(InputControlType.DPadDown);
+        myPlayerActions.Left.AddDefaultBinding(InputControlType.DPadLeft);
 
         myPlayerActions.Gas.AddDefaultBinding(InputControlType.Action1);
         myPlayerActions.Fire.AddDefaultBinding(InputControlType.Action3);

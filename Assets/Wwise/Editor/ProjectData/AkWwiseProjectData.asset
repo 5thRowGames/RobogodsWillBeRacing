@@ -31,7 +31,7 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 9308f3abeeab67499e2534c5754eb3f1
     GuidInternal: 
-    m_lastTime: -8586416294183944371
+    m_lastTime: -8586409175622575108
     List:
     - name: ROBO_SoundBank
       guid: 01a568c6c2417c4d84fd535530885604
@@ -47,7 +47,7 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 39c4588d66fa55449a80276710841c5b
     GuidInternal: 
-    m_lastTime: -8586416294183784334
+    m_lastTime: -8586409175622054944
     List:
     - name: Bascula_Compresor_In
       guid: 82e970a5a6baf84db0eb38c739b4b8f8
@@ -55,95 +55,125 @@ MonoBehaviour:
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
-      - ElementName: Coches
+      - ElementName: Naves
+        ObjectType: 4
+      - ElementName: Eventos_Compartdos
         ObjectType: 4
       - ElementName: Bascula_Compresor_In
         ObjectType: 3
-      Path: Default Work Unit\Coches\Bascula_Compresor_In
+      Path: Default Work Unit\Naves\Eventos_Compartdos\Bascula_Compresor_In
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0
+      minDuration: 0
     - name: Bascula_Compresor_Out
       guid: edd53eff1596264eaae30105a41f5066
       id: 3004065450
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
-      - ElementName: Coches
+      - ElementName: Naves
+        ObjectType: 4
+      - ElementName: Eventos_Compartdos
         ObjectType: 4
       - ElementName: Bascula_Compresor_Out
         ObjectType: 3
-      Path: Default Work Unit\Coches\Bascula_Compresor_Out
+      Path: Default Work Unit\Naves\Eventos_Compartdos\Bascula_Compresor_Out
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
-    - name: Coche_1_Arranque
+    - name: Coche_1_Acelerar_In
       guid: d464828b3238c344a86317c1497ba022
+      id: 2898692601
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Naves
+        ObjectType: 4
+      - ElementName: Nave_1
+        ObjectType: 4
+      - ElementName: Coche_1_Acelerar_In
+        ObjectType: 3
+      Path: Default Work Unit\Naves\Nave_1\Coche_1_Acelerar_In
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Coche_1_Acelerar_Out
+      guid: 5534e196a922a04a86aa9d31cab1de0c
+      id: 3666147384
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Naves
+        ObjectType: 4
+      - ElementName: Nave_1
+        ObjectType: 4
+      - ElementName: Coche_1_Acelerar_Out
+        ObjectType: 3
+      Path: Default Work Unit\Naves\Nave_1\Coche_1_Acelerar_Out
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Coche_1_Arranque
+      guid: ee1e034baf09454b931baa4fa3b82f78
       id: 487895197
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
-      - ElementName: Coches
+      - ElementName: Naves
+        ObjectType: 4
+      - ElementName: Nave_1
         ObjectType: 4
       - ElementName: Coche_1_Arranque
         ObjectType: 3
-      Path: Default Work Unit\Coches\Coche_1_Arranque
+      Path: Default Work Unit\Naves\Nave_1\Coche_1_Arranque
       maxAttenuation: 0
-      maxDuration: 5624989
-      minDuration: 5624989
+      maxDuration: -1
+      minDuration: -1
     - name: Coche_1_Freno
       guid: 3afcc16bce0bf740bebaca1f4f783e44
       id: 2168487682
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
-      - ElementName: Coches
+      - ElementName: Naves
+        ObjectType: 4
+      - ElementName: Eventos_Compartdos
         ObjectType: 4
       - ElementName: Coche_1_Freno
         ObjectType: 3
-      Path: Default Work Unit\Coches\Coche_1_Freno
+      Path: Default Work Unit\Naves\Eventos_Compartdos\Coche_1_Freno
       maxAttenuation: 0
-      maxDuration: 3966939
-      minDuration: 3966939
+      maxDuration: 3593741
+      minDuration: 3593741
     - name: Coche_1_Freno_Out
       guid: 908662989a80054e874472ba38ce55f6
       id: 2410551647
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
-      - ElementName: Coches
+      - ElementName: Naves
+        ObjectType: 4
+      - ElementName: Eventos_Compartdos
         ObjectType: 4
       - ElementName: Coche_1_Freno_Out
         ObjectType: 3
-      Path: Default Work Unit\Coches\Coche_1_Freno_Out
+      Path: Default Work Unit\Naves\Eventos_Compartdos\Coche_1_Freno_Out
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
-    - name: Coche_1_Motor_Start_Loop
-      guid: ee1e034baf09454b931baa4fa3b82f78
-      id: 1441341373
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Coches
-        ObjectType: 4
-      - ElementName: Coche_1_Motor_Start_Loop
-        ObjectType: 3
-      Path: Default Work Unit\Coches\Coche_1_Motor_Start_Loop
-      maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
     - name: Coche_1_turbo
       guid: ea5ee3b694befc48b26cfa8ee2a9728b
       id: 3520136878
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
-      - ElementName: Coches
+      - ElementName: Naves
+        ObjectType: 4
+      - ElementName: Eventos_Compartdos
         ObjectType: 4
       - ElementName: Coche_1_turbo
         ObjectType: 3
-      Path: Default Work Unit\Coches\Coche_1_turbo
+      Path: Default Work Unit\Naves\Eventos_Compartdos\Coche_1_turbo
       maxAttenuation: 0
       maxDuration: 8859183
       minDuration: 8859183
@@ -153,14 +183,64 @@ MonoBehaviour:
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
-      - ElementName: Coches
+      - ElementName: Naves
+        ObjectType: 4
+      - ElementName: Eventos_Compartdos
         ObjectType: 4
       - ElementName: Coche_1_turbo_Out
         ObjectType: 3
-      Path: Default Work Unit\Coches\Coche_1_turbo_Out
+      Path: Default Work Unit\Naves\Eventos_Compartdos\Coche_1_turbo_Out
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
+    - name: Nave_2_Acelerar_In
+      guid: 7974105201cbc545ae27823f0739a717
+      id: 4135892272
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Naves
+        ObjectType: 4
+      - ElementName: Nave_2
+        ObjectType: 4
+      - ElementName: Nave_2_Acelerar_In
+        ObjectType: 3
+      Path: Default Work Unit\Naves\Nave_2\Nave_2_Acelerar_In
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Nave_2_Acelerar_Out
+      guid: b7b35fab7b11ee4b8ccc3709255c4290
+      id: 703537943
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Naves
+        ObjectType: 4
+      - ElementName: Nave_2
+        ObjectType: 4
+      - ElementName: Nave_2_Acelerar_Out
+        ObjectType: 3
+      Path: Default Work Unit\Naves\Nave_2\Nave_2_Acelerar_Out
+      maxAttenuation: 0
+      maxDuration: 20000000
+      minDuration: 20000000
+    - name: Nave_2_Arranque
+      guid: e68fc7749437644ab3d0b85365888eef
+      id: 3067386190
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Naves
+        ObjectType: 4
+      - ElementName: Nave_2
+        ObjectType: 4
+      - ElementName: Nave_2_Arranque
+        ObjectType: 3
+      Path: Default Work Unit\Naves\Nave_2\Nave_2_Arranque
+      maxAttenuation: 0
+      maxDuration: 20000000
+      minDuration: 20000000
   RtpcWwu:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
     ParentPhysicalPath: 
@@ -202,8 +282,6 @@ MonoBehaviour:
   - /RobogodsWillBeRacing-Prototipo_WwiseProject
   - /RobogodsWillBeRacing-Prototipo_WwiseProject/Events
   - /RobogodsWillBeRacing-Prototipo_WwiseProject/Events/Default Work Unit
-  - /RobogodsWillBeRacing-Prototipo_WwiseProject/Events/Default Work Unit/Coches
-  - /RobogodsWillBeRacing-Prototipo_WwiseProject/SoundBanks
-  - /RobogodsWillBeRacing-Prototipo_WwiseProject/SoundBanks/Default Work Unit
+  - /RobogodsWillBeRacing-Prototipo_WwiseProject/Events/Default Work Unit/Naves
   autoPopulateEnabled: 1
   CurrentPluginConfig: 

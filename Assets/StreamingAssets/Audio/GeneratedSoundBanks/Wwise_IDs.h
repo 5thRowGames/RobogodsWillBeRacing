@@ -22,6 +22,9 @@ namespace AK
         static const AkUniqueID COCHE_1_FRENO_OUT = 2410551647U;
         static const AkUniqueID COCHE_1_TURBO = 3520136878U;
         static const AkUniqueID COCHE_1_TURBO_OUT = 3650669019U;
+        static const AkUniqueID NAVE_2_ACELERAR_IN = 4135892272U;
+        static const AkUniqueID NAVE_2_ACELERAR_OUT = 703537943U;
+        static const AkUniqueID NAVE_2_ARRANQUE = 3067386190U;
     } // namespace EVENTS
 
     namespace GAME_PARAMETERS

@@ -1,87 +1,211 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour
+public class UIManager : Singleton<UIManager>
 {
-    public GameObject mainMenu;
-    public GameObject gameModes;
-    public GameObject characterSelection;
-    public GameObject characters;
-    public GameObject apocalipsisMode;
+    public GameObject raceButton;
+    public List<GameObject> players;
+    public List<GameObject> lapsButtons;
+    public GameObject poseidonButton;
+    public GameObject kaliButton;
+    public GameObject anubisButton;
+    public GameObject thorButton;
+    public GameObject characterSelectionManager;
 
-    public FireBallSkill fireBallSkill;
-    public DaggerSkill daggerSkill;
-    public HidroCannonSkill hidroCannon;
-    public SpartanDefenseSkill spartanDefenseSkill;
+    public Text playersConfirmedText;
+
+    public bool poseidonChosen;
+    public bool kaliChosen;
+    public bool thorChosen;
+    public bool anubisChosen;
+
+    public int playersWithGodPicked;
+    public int playersConfirmed;
     
-    private void Update()
+
+    private void Awake()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        poseidonChosen = false;
+        kaliChosen = false;
+        thorChosen = false;
+        anubisChosen = false;
+    }
+
+    private void ResetMainMenu()
+    {
+        raceButton.SetActive(false);
+
+        foreach (var player in players)
         {
-            //fireBallSkill.Effect();
-            //daggerSkill.Effect();
-            //hidroCannon.Effect();
-            spartanDefenseSkill.Effect();
+            player.SetActive(false);
+        }
+
+        poseidonButton.SetActive(false);
+        kaliButton.SetActive(false);
+        anubisButton.SetActive(false);
+        thorButton.SetActive(false);
+
+        playersWithGodPicked = 0;
+        playersConfirmed = 0;
+
+        foreach (var laps in lapsButtons)
+        {
+            laps.SetActive(false);
+        }
+
+        playersConfirmedText.text = "";
+        playersConfirmedText.gameObject.SetActive(false);
+        characterSelectionManager.SetActive(false);
+    }
+
+
+    public void RacePressed()
+    {
+        raceButton.SetActive(false);
+
+        foreach (var lap in lapsButtons)
+        {
+            lap.SetActive(true);
         }
     }
 
-    public void Pruebas()
+    public void CharacterSelectionPressed(int num)
     {
-        Debug.Log("Entro en pruebas");
+        foreach (var lap in lapsButtons)
+        {
+            lap.SetActive(false);
+        }
+
+        poseidonButton.SetActive(true);
+        kaliButton.SetActive(true);
+        anubisButton.SetActive(true);
+        thorButton.SetActive(true);
+
+        foreach (var player in players)
+        {
+            player.SetActive(true);
+        }
+
+        characterSelectionManager.SetActive(true);
     }
 
-    public void GoToCredits()
+    public void ReturnRace()
     {
-        Debug.Log("No hay créditos aún");
+        raceButton.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(raceButton);
     }
 
-    public void GoToSettings()
+    public void ChooseCharacter(GodType.RobogodType robogod)
     {
-        Debug.Log("No hay opciones aún");
+        switch (robogod)
+        {
+            case GodType.RobogodType.Anubis:
+
+                //Corutina
+                anubisChosen = true;
+                break;
+            
+            case GodType.RobogodType.Kali:
+
+                //Corutina
+                kaliChosen = true;
+                break;
+            
+            case GodType.RobogodType.Poseidon:
+
+                //Corutina
+                poseidonChosen = true;
+                break;
+            
+            case GodType.RobogodType.Thor:
+
+                //Corutina
+                thorChosen = true;
+                break;
+        }
+        EveryoneHasGod(1);
     }
 
-    public void ExitGame()
+    public void DeselectCharacter(GodType.RobogodType robogod)
     {
-        Application.Quit();
+        switch (robogod)
+        {
+            case GodType.RobogodType.Anubis:
+                //Corutina
+                anubisChosen = false;
+
+                break;
+            
+            case GodType.RobogodType.Kali:
+                //Corutina
+                kaliChosen = false;
+
+                break;
+            
+            case GodType.RobogodType.Poseidon:
+                //Corutina
+                poseidonChosen = false;
+
+                break;
+            
+            case GodType.RobogodType.Thor:
+                //Corutina
+                thorChosen = false;
+                
+                break;
+        }
+        EveryoneHasGod(-1);
     }
 
-    public void GoToChooseMode()
+    public void EveryoneHasGod(int confirm)
     {
-        mainMenu.SetActive(false);
-        gameModes.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(apocalipsisMode);
-        
+        playersWithGodPicked += confirm;
+
+        Debug.Log(playersWithGodPicked + "    " + RaceManager.Instance.players);
+
+        if (playersWithGodPicked == RaceManager.Instance.players) 
+        {
+            playersConfirmed = 0;
+
+            foreach (var player in players)
+            {
+                if (player.gameObject.activeInHierarchy)
+                {
+                    player.GetComponent<CharacterSelectionController>().Confirm();
+                    playersConfirmedText.text = "Players confirmed: " + playersConfirmed + " / " + RaceManager.Instance.players;
+                }
+            }
+        }
     }
 
-    public void GoToClassicMode()
+    public void ConfirmConfirmation()
     {
-        gameModes.SetActive(false);
-        characterSelection.SetActive(true);
-        characters.SetActive(true);
+        playersConfirmed++;
+
+        playersConfirmedText.text = "Players confirmed: " + playersConfirmed + " / " + (RaceManager.Instance.players);
+
+        if (playersConfirmed == RaceManager.Instance.players)
+        {
+            //Ir a la carrera y resetear valores
+            ResetMainMenu();
+            Debug.Log("Acaba de empezar la carrera");
+        }
     }
 
-    public void GoToApocalipsisMode()
+    public void DenyConfirmation()
     {
-        gameModes.SetActive(false);
-        characterSelection.SetActive(true);
-        characters.SetActive(true);
+        playersConfirmedText.text = "";
+        playersConfirmed = 0;
+
+        foreach (var player in players)
+        {
+            player.GetComponent<CharacterSelectionController>().Disconfirm();
+        }
     }
 
-    public void CharacterSelection()
-    {
-        
-    }
 
-    public void ReturnMainMenu()
-    {
-        gameModes.SetActive(false);
-        mainMenu.SetActive(true);
-    }
-
-    public void ReturnGameModes()
-    {
-        gameModes.SetActive(true);
-        characterSelection.SetActive(false);
-    }
 }

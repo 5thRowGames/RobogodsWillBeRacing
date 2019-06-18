@@ -35,8 +35,8 @@ public class PlayerSelectionManager : MonoBehaviour
             if (FindPlayerUsingDevice(inputDevice) == null && RaceManager.Instance.players < 4)
             {
                 RaceManager.Instance.players++;
+                players[playerOrder].myPlayerActions = MyPlayerActions.BindControls();
                 players[playerOrder].InputDevice = inputDevice;
-                players[playerOrder].myPlayerActions = joystickListener;
                 Core.Input.AssignControllable(players[playerOrder],playerSelectionController[playerOrder]);
                 Core.Input.ConnectDevice(players[playerOrder]);
                 playerSelectionController[playerOrder].JoinGamePressed();

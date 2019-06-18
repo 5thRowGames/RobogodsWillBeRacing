@@ -15,7 +15,7 @@ public class IncontrolProvider : MonoBehaviour, IDevice
         get => meta;
         set => meta = value;
     }
-    
+
     Guid guid = new Guid();
     public Guid Id { get { return guid; } }
 
@@ -24,7 +24,11 @@ public class IncontrolProvider : MonoBehaviour, IDevice
     public InputDevice InputDevice
     {
         get => inputDevice;
-        set => inputDevice = value;
+        set
+        {
+            myPlayerActions.Device = value;
+            inputDevice = value;
+        }
     }
     
     private IPlayer iPlayer;

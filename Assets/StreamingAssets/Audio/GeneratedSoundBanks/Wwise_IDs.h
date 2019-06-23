@@ -22,6 +22,8 @@ namespace AK
         static const AkUniqueID COCHE_1_FRENO_OUT = 2410551647U;
         static const AkUniqueID COCHE_1_TURBO = 3520136878U;
         static const AkUniqueID COCHE_1_TURBO_OUT = 3650669019U;
+        static const AkUniqueID IMPACTOS_IN = 2345257581U;
+        static const AkUniqueID MUSICA_LIMBO = 4092793509U;
         static const AkUniqueID NAVE_2_ACELERAR_IN = 4135892272U;
         static const AkUniqueID NAVE_2_ACELERAR_OUT = 703537943U;
         static const AkUniqueID NAVE_2_ARRANQUE = 3067386190U;
@@ -41,6 +43,7 @@ namespace AK
     namespace BUSSES
     {
         static const AkUniqueID MASTER_AUDIO_BUS = 3803692087U;
+        static const AkUniqueID MOTOR_BUS = 252481087U;
     } // namespace BUSSES
 
     namespace AUDIO_DEVICES

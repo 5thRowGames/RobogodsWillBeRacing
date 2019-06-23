@@ -30,14 +30,24 @@
 				<Event Id="2410551647" Name="Coche_1_Freno_Out" ObjectPath="\Events\Default Work Unit\Naves\Eventos_Compartdos\Coche_1_Freno_Out" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 				<Event Id="3520136878" Name="Coche_1_turbo" ObjectPath="\Events\Default Work Unit\Naves\Eventos_Compartdos\Coche_1_turbo" DurationType="OneShot" DurationMin="8.859183" DurationMax="8.859183"/>
 				<Event Id="3650669019" Name="Coche_1_turbo_Out" ObjectPath="\Events\Default Work Unit\Naves\Eventos_Compartdos\Coche_1_turbo_Out" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
+				<Event Id="2345257581" Name="Impactos_In" ObjectPath="\Events\Default Work Unit\IG_SFX\Impactos_In" DurationType="OneShot" DurationMin="0.862233" DurationMax="1.949277"/>
+				<Event Id="4092793509" Name="Musica_Limbo" ObjectPath="\Events\Default Work Unit\Musica\Musica_Limbo" DurationType="Infinite"/>
 				<Event Id="4135892272" Name="Nave_2_Acelerar_In" ObjectPath="\Events\Default Work Unit\Naves\Nave_2\Nave_2_Acelerar_In" DurationType="Infinite"/>
-				<Event Id="703537943" Name="Nave_2_Acelerar_Out" ObjectPath="\Events\Default Work Unit\Naves\Nave_2\Nave_2_Acelerar_Out" DurationType="OneShot" DurationMin="20.000000" DurationMax="20.000000"/>
-				<Event Id="3067386190" Name="Nave_2_Arranque" ObjectPath="\Events\Default Work Unit\Naves\Nave_2\Nave_2_Arranque" DurationType="OneShot" DurationMin="20.000000" DurationMax="20.000000"/>
+				<Event Id="703537943" Name="Nave_2_Acelerar_Out" ObjectPath="\Events\Default Work Unit\Naves\Nave_2\Nave_2_Acelerar_Out" MaxAttenuation="100.000000" DurationType="Infinite"/>
+				<Event Id="3067386190" Name="Nave_2_Arranque" ObjectPath="\Events\Default Work Unit\Naves\Nave_2\Nave_2_Arranque" MaxAttenuation="100.000000" DurationType="Infinite"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
 				<File Id="5208582" Language="SFX">
 					<ShortName>Robo_Gods_Viento_SFX_Loop_2.wav</ShortName>
 					<Path>SFX\Robo_Gods_Viento_SFX_Loop_2_10C4C929.wem</Path>
+				</File>
+				<File Id="55409328" Language="SFX">
+					<ShortName>Robo_Gods_Nave_Impact_SFX_Start_4.wav</ShortName>
+					<Path>SFX\Robo_Gods_Nave_Impact_SFX_Start_4_10C4C929.wem</Path>
+				</File>
+				<File Id="95090160" Language="SFX">
+					<ShortName>Robo_Gods_Musica_Central_Deadline_1_BRUTO.wav</ShortName>
+					<Path>SFX\Robo_Gods_Musica_Central_Deadline_1_BRUTO_D79FB2B7.wem</Path>
 				</File>
 				<File Id="135047683" Language="SFX">
 					<ShortName>Robo_Gods_Coche_1_Freno_Start_SFX.wav</ShortName>
@@ -46,6 +56,14 @@
 				<File Id="213490839" Language="SFX">
 					<ShortName>Robo_Gods_Motor_Turbo_SFX_Car_1.wav</ShortName>
 					<Path>SFX\Robo_Gods_Motor_Turbo_SFX_Car_1_10C4C929.wem</Path>
+				</File>
+				<File Id="258279634" Language="SFX">
+					<ShortName>Robo_Gods_Musica_Central_Deadline_1_Intro_BRUTO.wav</ShortName>
+					<Path>SFX\Robo_Gods_Musica_Central_Deadline_1_Intro_BRUTO_10C4C929.wem</Path>
+				</File>
+				<File Id="341508047" Language="SFX">
+					<ShortName>Robo_Gods_Nave_Impact_SFX_Start_1.wav</ShortName>
+					<Path>SFX\Robo_Gods_Nave_Impact_SFX_Start_1_10C4C929.wem</Path>
 				</File>
 				<File Id="561325424" Language="SFX">
 					<ShortName>Robo_Gods_Coche_2_Aceleracion_SFX_Start_1.wav</ShortName>
@@ -58,6 +76,10 @@
 				<File Id="582402073" Language="SFX">
 					<ShortName>Robo_Gods_Viento_SFX_Loop.wav</ShortName>
 					<Path>SFX\Robo_Gods_Viento_SFX_Loop_10C4C929.wem</Path>
+				</File>
+				<File Id="646319717" Language="SFX">
+					<ShortName>Robo_Gods_Nave_Impact_SFX_Start_2.wav</ShortName>
+					<Path>SFX\Robo_Gods_Nave_Impact_SFX_Start_2_10C4C929.wem</Path>
 				</File>
 				<File Id="724286840" Language="SFX">
 					<ShortName>Robo_Gods_Coche_1_Motor_Stop_SFX_Loop.wav</ShortName>
@@ -82,6 +104,10 @@
 				<File Id="984928614" Language="SFX">
 					<ShortName>Robo_Gods_Coche_2_Aceleracion_SFX_Start_2.wav</ShortName>
 					<Path>SFX\Robo_Gods_Coche_2_Aceleracion_SFX_Start_2_10C4C929.wem</Path>
+				</File>
+				<File Id="998259136" Language="SFX">
+					<ShortName>Robo_Gods_Nave_Impact_SFX_Start_3.wav</ShortName>
+					<Path>SFX\Robo_Gods_Nave_Impact_SFX_Start_3_10C4C929.wem</Path>
 				</File>
 				<File Id="1015394262" Language="SFX">
 					<ShortName>Robo_Gods_Coche_2_Motor_Stop_SFX_Loop.wav</ShortName>

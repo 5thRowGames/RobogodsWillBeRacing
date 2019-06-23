@@ -2,6 +2,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	487895197	Coche_1_Arranque			\Default Work Unit\Naves\Nave_1\Coche_1_Arranque	
 	703537943	Nave_2_Acelerar_Out			\Default Work Unit\Naves\Nave_2\Nave_2_Acelerar_Out	
 	2168487682	Coche_1_Freno			\Default Work Unit\Naves\Eventos_Compartdos\Coche_1_Freno	
+	2345257581	Impactos_In			\Default Work Unit\IG_SFX\Impactos_In	
 	2410551647	Coche_1_Freno_Out			\Default Work Unit\Naves\Eventos_Compartdos\Coche_1_Freno_Out	
 	2898692601	Coche_1_Acelerar_In			\Default Work Unit\Naves\Nave_1\Coche_1_Acelerar_In	
 	3004065450	Bascula_Compresor_Out			\Default Work Unit\Naves\Eventos_Compartdos\Bascula_Compresor_Out	
@@ -10,6 +11,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	3650669019	Coche_1_turbo_Out			\Default Work Unit\Naves\Eventos_Compartdos\Coche_1_turbo_Out	
 	3666147384	Coche_1_Acelerar_Out			\Default Work Unit\Naves\Nave_1\Coche_1_Acelerar_Out	
 	3763551383	Bascula_Compresor_In			\Default Work Unit\Naves\Eventos_Compartdos\Bascula_Compresor_In	
+	4092793509	Musica_Limbo			\Default Work Unit\Musica\Musica_Limbo	
 	4135892272	Nave_2_Acelerar_In			\Default Work Unit\Naves\Nave_2\Nave_2_Acelerar_In	
 
 Game Parameter	ID	Name			Wwise Object Path	Notes
@@ -18,19 +20,29 @@ Game Parameter	ID	Name			Wwise Object Path	Notes
 Modulator Envelope	ID	Name			Wwise Object Path	Notes
 	930520162	Modulator Envelope (Custom)				
 
+Audio Bus	ID	Name			Wwise Object Path	Notes
+	252481087	MOTOR_BUS			\Default Work Unit\Master Audio Bus\MOTOR_BUS	
+	3803692087	Master Audio Bus			\Default Work Unit\Master Audio Bus	
+
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	5208582	Robo_Gods_Viento_SFX_Loop_2	C:\Users\eduar\Documents\RobogodsWillBeRacing\RobogodsWillBeRacing-Prototipo_WwiseProject\.cache\Windows\SFX\Robo_Gods_Viento_SFX_Loop_2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Naves\Sonidos_compartidos\Viento_SFX_Loop\Robo_Gods_Viento_SFX_Loop_2		5733144
+	5208582	Robo_Gods_Viento_SFX_Loop_2	C:\Users\eduar\Documents\RobogodsWillBeRacing\RobogodsWillBeRacing-Prototipo_WwiseProject\.cache\Windows\SFX\Robo_Gods_Viento_SFX_Loop_2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Naves\Sonidos_compartidos\Viento_Motor_Loop\Viento_SFX_Loop\Robo_Gods_Viento_SFX_Loop_2		5733144
+	55409328	Robo_Gods_Nave_Impact_SFX_Start_4	C:\Users\eduar\Documents\RobogodsWillBeRacing\RobogodsWillBeRacing-Prototipo_WwiseProject\.cache\Windows\SFX\Robo_Gods_Nave_Impact_SFX_Start_4_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\IG_SFX\Impactos\Robo_Gods_Nave_Impact_SFX_Start_4		306128
+	95090160	Robo_Gods_Musica_Central_Deadline_1_BRUTO	C:\Users\eduar\Documents\RobogodsWillBeRacing\RobogodsWillBeRacing-Prototipo_WwiseProject\.cache\Windows\SFX\Robo_Gods_Musica_Central_Deadline_1_BRUTO_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Musica\Musica_Limbo\Robo_Gods_Musica_Central_Deadline_1_BRUTO		27313100
 	135047683	Robo_Gods_Coche_1_Freno_Start_SFX	C:\Users\eduar\Documents\RobogodsWillBeRacing\RobogodsWillBeRacing-Prototipo_WwiseProject\.cache\Windows\SFX\Robo_Gods_Coche_1_Freno_Start_SFX_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Naves\Sonidos_compartidos\Coche_1_Freno\Robo_Gods_Coche_1_Freno_Start_SFX		634080
 	213490839	Robo_Gods_Motor_Turbo_SFX_Car_1	C:\Users\eduar\Documents\RobogodsWillBeRacing\RobogodsWillBeRacing-Prototipo_WwiseProject\.cache\Windows\SFX\Robo_Gods_Motor_Turbo_SFX_Car_1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Naves\Sonidos_compartidos\Coche_1_Turbo\Robo_Gods_Motor_Turbo_SFX_Car_1		1562824
+	258279634	Robo_Gods_Musica_Central_Deadline_1_Intro_BRUTO	C:\Users\eduar\Documents\RobogodsWillBeRacing\RobogodsWillBeRacing-Prototipo_WwiseProject\.cache\Windows\SFX\Robo_Gods_Musica_Central_Deadline_1_Intro_BRUTO_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Musica\Musica_Limbo\Robo_Gods_Musica_Central_Deadline_1_Intro_BRUTO		1365536
+	341508047	Robo_Gods_Nave_Impact_SFX_Start_1	C:\Users\eduar\Documents\RobogodsWillBeRacing\RobogodsWillBeRacing-Prototipo_WwiseProject\.cache\Windows\SFX\Robo_Gods_Nave_Impact_SFX_Start_1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\IG_SFX\Impactos\Robo_Gods_Nave_Impact_SFX_Start_1		178736
 	561325424	Robo_Gods_Coche_2_Aceleracion_SFX_Start_1	C:\Users\eduar\Documents\RobogodsWillBeRacing\RobogodsWillBeRacing-Prototipo_WwiseProject\.cache\Windows\SFX\Robo_Gods_Coche_2_Aceleracion_SFX_Start_1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Naves\Nave_2\Nave_2_Acelerar_shoots\Robo_Gods_Coche_2_Aceleracion_SFX_Start_1		1433392
 	568231466	Robo_Gods_Coche_1_Aceleracion_SFX_Start_1	C:\Users\eduar\Documents\RobogodsWillBeRacing\RobogodsWillBeRacing-Prototipo_WwiseProject\.cache\Windows\SFX\Robo_Gods_Coche_1_Aceleracion_SFX_Start_1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Naves\Nave_1\Coche_1_Acelerar_Shoots\Robo_Gods_Coche_1_Aceleracion_SFX_Start_1		1874392
-	582402073	Robo_Gods_Viento_SFX_Loop	C:\Users\eduar\Documents\RobogodsWillBeRacing\RobogodsWillBeRacing-Prototipo_WwiseProject\.cache\Windows\SFX\Robo_Gods_Viento_SFX_Loop_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Naves\Sonidos_compartidos\Viento_SFX_Loop\Robo_Gods_Viento_SFX_Loop	Sonido compartdio por todas las naves 	3528144
+	582402073	Robo_Gods_Viento_SFX_Loop	C:\Users\eduar\Documents\RobogodsWillBeRacing\RobogodsWillBeRacing-Prototipo_WwiseProject\.cache\Windows\SFX\Robo_Gods_Viento_SFX_Loop_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Naves\Sonidos_compartidos\Viento_Motor_Loop\Viento_SFX_Loop\Robo_Gods_Viento_SFX_Loop	Sonido compartdio por todas las naves 	3528144
+	646319717	Robo_Gods_Nave_Impact_SFX_Start_2	C:\Users\eduar\Documents\RobogodsWillBeRacing\RobogodsWillBeRacing-Prototipo_WwiseProject\.cache\Windows\SFX\Robo_Gods_Nave_Impact_SFX_Start_2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\IG_SFX\Impactos\Robo_Gods_Nave_Impact_SFX_Start_2		215556
 	724286840	Robo_Gods_Coche_1_Motor_Stop_SFX_Loop	C:\Users\eduar\Documents\RobogodsWillBeRacing\RobogodsWillBeRacing-Prototipo_WwiseProject\.cache\Windows\SFX\Robo_Gods_Coche_1_Motor_Stop_SFX_Loop_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Naves\Nave_1\Coche_1_Arranque\Motor_Stop_Loop\Robo_Gods_Coche_1_Motor_Stop_SFX_Loop		3528144
 	773369396	Robo_Gods_Coche_2_Motor_Move_SFX_Loop	C:\Users\eduar\Documents\RobogodsWillBeRacing\RobogodsWillBeRacing-Prototipo_WwiseProject\.cache\Windows\SFX\Robo_Gods_Coche_2_Motor_Move_SFX_Loop_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Naves\Nave_2\Nave_2_Acelerar_Loop\Robo_Gods_Coche_2_Motor_Move_SFX_Loop		3528144
 	789879506	Robo_Gods_Coche_1_Aceleracion_SFX_Start_2	C:\Users\eduar\Documents\RobogodsWillBeRacing\RobogodsWillBeRacing-Prototipo_WwiseProject\.cache\Windows\SFX\Robo_Gods_Coche_1_Aceleracion_SFX_Start_2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Naves\Nave_1\Coche_1_Acelerar_Shoots\Robo_Gods_Coche_1_Aceleracion_SFX_Start_2		1874392
 	926041093	Robo_Gods_Coche_1_Motor_Move_SFX_Loop	C:\Users\eduar\Documents\RobogodsWillBeRacing\RobogodsWillBeRacing-Prototipo_WwiseProject\.cache\Windows\SFX\Robo_Gods_Coche_1_Motor_Move_SFX_Loop_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Naves\Nave_1\Coche_1_Acelerar_Loop\Robo_Gods_Coche_1_Motor_Move_SFX_Loop		3528144
 	975519489	Robo_Gods_Coche_1_Aceleracion_SFX_Start_3	C:\Users\eduar\Documents\RobogodsWillBeRacing\RobogodsWillBeRacing-Prototipo_WwiseProject\.cache\Windows\SFX\Robo_Gods_Coche_1_Aceleracion_SFX_Start_3_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Naves\Nave_1\Coche_1_Acelerar_Shoots\Robo_Gods_Coche_1_Aceleracion_SFX_Start_3		1874392
 	984928614	Robo_Gods_Coche_2_Aceleracion_SFX_Start_2	C:\Users\eduar\Documents\RobogodsWillBeRacing\RobogodsWillBeRacing-Prototipo_WwiseProject\.cache\Windows\SFX\Robo_Gods_Coche_2_Aceleracion_SFX_Start_2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Naves\Nave_2\Nave_2_Acelerar_shoots\Robo_Gods_Coche_2_Aceleracion_SFX_Start_2		1378268
+	998259136	Robo_Gods_Nave_Impact_SFX_Start_3	C:\Users\eduar\Documents\RobogodsWillBeRacing\RobogodsWillBeRacing-Prototipo_WwiseProject\.cache\Windows\SFX\Robo_Gods_Nave_Impact_SFX_Start_3_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\IG_SFX\Impactos\Robo_Gods_Nave_Impact_SFX_Start_3		189428
 	1015394262	Robo_Gods_Coche_2_Motor_Stop_SFX_Loop	C:\Users\eduar\Documents\RobogodsWillBeRacing\RobogodsWillBeRacing-Prototipo_WwiseProject\.cache\Windows\SFX\Robo_Gods_Coche_2_Motor_Stop_SFX_Loop_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Naves\Nave_2\Nave_2_Arranque\Robo_Gods_Coche_2_Motor_Stop_SFX_Loop		3528144
 	1048187987	Robo_Gods_Coche_2_Aceleracion_SFX_Start_3	C:\Users\eduar\Documents\RobogodsWillBeRacing\RobogodsWillBeRacing-Prototipo_WwiseProject\.cache\Windows\SFX\Robo_Gods_Coche_2_Aceleracion_SFX_Start_3_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Naves\Nave_2\Nave_2_Acelerar_shoots\Robo_Gods_Coche_2_Aceleracion_SFX_Start_3		1378268
 	1072197821	Robo_Gods_Coche_1_Motor_Arranque_SFX_Start	C:\Users\eduar\Documents\RobogodsWillBeRacing\RobogodsWillBeRacing-Prototipo_WwiseProject\.cache\Windows\SFX\Robo_Gods_Motor_Start_SFX_Car_1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Naves\Nave_1\Coche_1_Arranque\Robo_Gods_Coche_1_Motor_Arranque_SFX_Start		449536

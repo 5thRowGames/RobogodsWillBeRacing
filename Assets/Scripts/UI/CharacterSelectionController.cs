@@ -10,6 +10,8 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
     public RectTransform rectTransform;
     public Image mark;
 
+    public List<RectTransform> positions;
+
     private int position;
     private bool confirm;
     private bool confirmed;
@@ -17,7 +19,7 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
 
     public GodType.RobogodType robogodPicked;
 
-    private void OnEnable()
+    private void Awake()
     {
         robogodPicked = GodType.RobogodType.None;
         position = 0;
@@ -25,6 +27,19 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
         confirmed = false;
         mark.enabled = false;
         canChooseGod = false;
+        rectTransform.anchoredPosition = positions[position].position;
+    }
+
+    private void OnEnable()
+    {
+        ConnectDisconnectManager.ConnectCharacterSelectionControllerDelegate += ConnectCharacterSelection;
+        ConnectDisconnectManager.DisconnectCarControllerDelegate += DisconnectCharacterSelection;
+    }
+
+    private void OnDisable()
+    {
+        ConnectDisconnectManager.ConnectCharacterSelectionControllerDelegate -= ConnectCharacterSelection;
+        ConnectDisconnectManager.DisconnectCarControllerDelegate -= DisconnectCharacterSelection;
     }
 
     public void Control(IDevice controller)
@@ -82,13 +97,11 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
             {
                 position = 0;
                 
-                //Todo cambiar por sizeDelta o mirar de Ricardo
-                rectTransform.anchoredPosition = new Vector3(rectTransform.anchoredPosition.x - space * 3, rectTransform.anchoredPosition.y);
+                rectTransform.anchoredPosition = positions[position].position;
             }
             else
             {
-                //Todo cambiar por sizeDelta o mirar de Ricardo
-                rectTransform.anchoredPosition = new Vector3(rectTransform.anchoredPosition.x + space, rectTransform.anchoredPosition.y);
+                rectTransform.anchoredPosition = positions[position].position;
             }
         }
         else
@@ -99,12 +112,11 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
             {
                 position = 3;
                 
-                rectTransform.anchoredPosition = new Vector3(rectTransform.anchoredPosition.x + space * 3, rectTransform.anchoredPosition.y);
+                rectTransform.anchoredPosition = rectTransform.anchoredPosition = positions[position].position;
             }
             else
             {
-                //Todo cambiar por sizeDelta o mirar de Ricardo
-                rectTransform.anchoredPosition = new Vector3(rectTransform.anchoredPosition.x - space, rectTransform.anchoredPosition.y);
+                rectTransform.anchoredPosition = rectTransform.anchoredPosition = positions[position].position;
             }
         }
     }
@@ -206,6 +218,16 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
     {
         yield return new WaitForSeconds(0.2f);
         canChooseGod = true;
+    }
+
+    public void ConnectCharacterSelection()
+    {
+        Core.Input.AssignControllable(GetComponent<IncontrolProvider>(),this);
+    }
+
+    public void DisconnectCharacterSelection()
+    {
+        Core.Input.AssignControllable(GetComponent<IncontrolProvider>(),this);
     }
     
 }

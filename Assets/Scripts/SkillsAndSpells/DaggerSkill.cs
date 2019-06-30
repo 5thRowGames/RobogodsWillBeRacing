@@ -59,6 +59,11 @@ public class DaggerSkill : SkillBase
             midBehaviour.DoEffect();
     }
 
+    public override void FinishEffect()
+    {
+        throw new NotImplementedException();
+    }
+
     private void StopDaggers()
     {
         DOTween.Kill(leftDagger.transform);

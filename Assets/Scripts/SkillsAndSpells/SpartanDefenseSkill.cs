@@ -19,6 +19,11 @@ public class SpartanDefenseSkill : SkillBase
         //pushSequence.Play();
     }
 
+    public override void FinishEffect()
+    {
+        throw new NotImplementedException();
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.K))

@@ -159,6 +159,8 @@ MonoBehaviour:
   isColdown: 0
   coldown: 0
   mana: 0
+  isFinished: 0
+  instantSkill: 0
   target: {fileID: 618975057}
   leftDagger: {fileID: 272744338}
   rightDagger: {fileID: 354989287}
@@ -411,15 +413,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 136ad78ce37be5644aab036190f3f8b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainMenu: {fileID: 0}
-  gameModes: {fileID: 0}
-  characterSelection: {fileID: 0}
-  characters: {fileID: 0}
-  apocalipsisMode: {fileID: 0}
-  fireBallSkill: {fileID: 1719244587880941862}
-  daggerSkill: {fileID: 111669178}
-  hidroCannon: {fileID: 1558275503}
-  spartanDefenseSkill: {fileID: 1526419072}
+  raceButton: {fileID: 0}
+  players: []
+  lapsButtons: []
+  poseidonButton: {fileID: 0}
+  kaliButton: {fileID: 0}
+  anubisButton: {fileID: 0}
+  thorButton: {fileID: 0}
+  characterSelectionManager: {fileID: 0}
+  inControlProviders: []
+  playersConfirmedText: {fileID: 0}
+  poseidonChosen: 0
+  kaliChosen: 0
+  thorChosen: 0
+  anubisChosen: 0
+  playersWithGodPicked: 0
+  playersConfirmed: 0
 --- !u!4 &269650666
 Transform:
   m_ObjectHideFlags: 0
@@ -1197,9 +1206,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 641ff59b1b91216438c5e0a405345a17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layer:
-    serializedVersion: 2
-    m_Bits: 0
   rotatePoint: {fileID: 3332325610624519360}
   rotation: 150
   speed: 15
@@ -1729,6 +1735,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kart
       objectReference: {fileID: 0}
+    - target: {fileID: 2283931395983625067, guid: 7b943a6cf8e676544ba051287c9a6ba1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2283931395983625059, guid: 7b943a6cf8e676544ba051287c9a6ba1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1784,7 +1795,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2283931395983625068, guid: 7b943a6cf8e676544ba051287c9a6ba1,
+    - target: {fileID: 2283931395983625070, guid: 7b943a6cf8e676544ba051287c9a6ba1,
         type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -1794,7 +1805,7 @@ PrefabInstance:
       propertyPath: m_UseGravity
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2283931395983625070, guid: 7b943a6cf8e676544ba051287c9a6ba1,
+    - target: {fileID: 2283931395983625068, guid: 7b943a6cf8e676544ba051287c9a6ba1,
         type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -1847,9 +1858,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 641ff59b1b91216438c5e0a405345a17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layer:
-    serializedVersion: 2
-    m_Bits: 0
   rotatePoint: {fileID: 3332325610624519360}
   rotation: 150
   speed: 15
@@ -2312,6 +2320,8 @@ MonoBehaviour:
   isColdown: 0
   coldown: 0
   mana: 0
+  isFinished: 0
+  instantSkill: 0
   spartanDefenseObject: {fileID: 1526419070}
   pruebaLayer:
     serializedVersion: 2
@@ -2377,8 +2387,53 @@ MonoBehaviour:
   isColdown: 0
   coldown: 0
   mana: 0
+  isFinished: 0
+  instantSkill: 0
   size: 8
   timeToScale: 8
+--- !u!1 &1639371564
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1639371566}
+  - component: {fileID: 1639371565}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1639371565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639371564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c590c49cfbda21642a7281db835e6672, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1639371566
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639371564}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 468.99115, y: 250.70535, z: 245.16211}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1652936779
 GameObject:
   m_ObjectHideFlags: 0
@@ -2581,9 +2636,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 641ff59b1b91216438c5e0a405345a17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layer:
-    serializedVersion: 2
-    m_Bits: 0
   rotatePoint: {fileID: 3332325610624519360}
   rotation: 150
   speed: 15
@@ -2692,9 +2744,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 641ff59b1b91216438c5e0a405345a17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layer:
-    serializedVersion: 2
-    m_Bits: 0
   rotatePoint: {fileID: 3332325610624519360}
   rotation: 150
   speed: 15
@@ -2772,7 +2821,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1784246726
 Transform:
   m_ObjectHideFlags: 0
@@ -3721,9 +3770,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 641ff59b1b91216438c5e0a405345a17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layer:
-    serializedVersion: 2
-    m_Bits: 0
   rotatePoint: {fileID: 3332325610624519360}
   rotation: 150
   speed: 15
@@ -3804,9 +3850,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 641ff59b1b91216438c5e0a405345a17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layer:
-    serializedVersion: 2
-    m_Bits: 0
   rotatePoint: {fileID: 3332325610624519360}
   rotation: 150
   speed: 15
@@ -3826,7 +3869,7 @@ PrefabInstance:
     - target: {fileID: 1719244587880941861, guid: 5e30fc6b5e4d3d44dba5b5cd9b65b2fb,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3332325610624519360, guid: 5e30fc6b5e4d3d44dba5b5cd9b65b2fb,
         type: 3}
@@ -3896,6 +3939,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438610269518169958, guid: fa92baa79eef04f42898500092524333,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1438610269518169959, guid: fa92baa79eef04f42898500092524333,
         type: 3}
@@ -3972,9 +4020,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 641ff59b1b91216438c5e0a405345a17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layer:
-    serializedVersion: 2
-    m_Bits: 0
   rotatePoint: {fileID: 3332325610624519360}
   rotation: 150
   speed: 15
@@ -4001,6 +4046,8 @@ MonoBehaviour:
   isColdown: 1
   coldown: 100
   mana: 100
+  isFinished: 0
+  instantSkill: 0
   spawnPosition: {fileID: 111669177}
   ballPool:
   - {fileID: 1736751849}
@@ -4008,6 +4055,8 @@ MonoBehaviour:
   - {fileID: 1053455958}
   - {fileID: 1745244534}
   - {fileID: 2141648846}
+  deviceController: {fileID: 0}
+  parent: {fileID: 0}
 --- !u!4 &3332325610624519360 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3332325610624519360, guid: 5e30fc6b5e4d3d44dba5b5cd9b65b2fb,
@@ -4032,9 +4081,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 641ff59b1b91216438c5e0a405345a17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layer:
-    serializedVersion: 2
-    m_Bits: 0
   rotatePoint: {fileID: 3332325610624519360}
   rotation: 150
   speed: 15
@@ -4057,9 +4103,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 641ff59b1b91216438c5e0a405345a17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layer:
-    serializedVersion: 2
-    m_Bits: 0
   rotatePoint: {fileID: 3332325610624519360}
   rotation: 150
   speed: 15

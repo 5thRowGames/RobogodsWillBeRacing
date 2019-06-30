@@ -95,13 +95,13 @@ public class MyPlayerActions : PlayerActionSet
         myPlayerActions.Left.AddDefaultBinding(Key.A);
 
         myPlayerActions.Gas.AddDefaultBinding(Key.Space);
-        myPlayerActions.Fire.AddDefaultBinding(Key.S);
-        myPlayerActions.Action.AddDefaultBinding(Key.F);
-        myPlayerActions.Special.AddDefaultBinding(Key.G);
+        myPlayerActions.Fire.AddDefaultBinding(Key.Key1);
+        myPlayerActions.Action.AddDefaultBinding(Key.Key3);
+        myPlayerActions.Special.AddDefaultBinding(Key.Key2);
 
-        myPlayerActions.LeftBumper.AddDefaultBinding(Key.Key1);
-        myPlayerActions.RightBumper.AddDefaultBinding(Key.Key2);
-        myPlayerActions.LeftTrigger.AddDefaultBinding(Key.Key3);
+        myPlayerActions.LeftBumper.AddDefaultBinding(Key.S);
+        myPlayerActions.RightBumper.AddDefaultBinding(Key.F);
+        myPlayerActions.LeftTrigger.AddDefaultBinding(Key.G);
         myPlayerActions.RightTrigger.AddDefaultBinding(Key.W);
 
         myPlayerActions.Submit.AddDefaultBinding(Key.Return);
@@ -121,13 +121,13 @@ public class MyPlayerActions : PlayerActionSet
         myPlayerActions.Left.AddDefaultBinding(Key.A);
 
         myPlayerActions.Gas.AddDefaultBinding(Key.Space);
-        myPlayerActions.Fire.AddDefaultBinding(Key.S);
-        myPlayerActions.Action.AddDefaultBinding(Key.F);
-        myPlayerActions.Special.AddDefaultBinding(Key.G);
+        myPlayerActions.Fire.AddDefaultBinding(Key.Key1);
+        myPlayerActions.Action.AddDefaultBinding(Key.Key3);
+        myPlayerActions.Special.AddDefaultBinding(Key.Key2);
 
-        myPlayerActions.LeftBumper.AddDefaultBinding(Key.Key1);
-        myPlayerActions.RightBumper.AddDefaultBinding(Key.Key2);
-        myPlayerActions.LeftTrigger.AddDefaultBinding(Key.Key3);
+        myPlayerActions.LeftBumper.AddDefaultBinding(Key.S);
+        myPlayerActions.RightBumper.AddDefaultBinding(Key.F);
+        myPlayerActions.LeftTrigger.AddDefaultBinding(Key.G);
         myPlayerActions.RightTrigger.AddDefaultBinding(Key.W);
 
         myPlayerActions.Submit.AddDefaultBinding(Key.Return);

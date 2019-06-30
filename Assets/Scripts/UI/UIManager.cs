@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>
@@ -165,8 +166,6 @@ public class UIManager : Singleton<UIManager>
     {
         playersWithGodPicked += confirm;
 
-        Debug.Log(playersWithGodPicked + "    " + RaceManager.Instance.players);
-
         if (playersWithGodPicked == RaceManager.Instance.players) 
         {
             playersConfirmed = 0;
@@ -174,10 +173,7 @@ public class UIManager : Singleton<UIManager>
             foreach (var player in players)
             {
                 if (player.gameObject.activeInHierarchy)
-                {
                     player.GetComponent<CharacterSelectionController>().Confirm();
-                    playersConfirmedText.text = "Players confirmed: " + playersConfirmed + " / " + RaceManager.Instance.players;
-                }
             }
         }
     }
@@ -186,13 +182,24 @@ public class UIManager : Singleton<UIManager>
     {
         playersConfirmed++;
 
-        playersConfirmedText.text = "Players confirmed: " + playersConfirmed + " / " + (RaceManager.Instance.players);
-
         if (playersConfirmed == RaceManager.Instance.players)
         {
-            //Ir a la carrera y resetear valores
+
+            foreach (var player in players)
+            {
+                if (player.GetComponent<Image>().enabled)
+                {
+                    PlayerInfo playerInfo = new PlayerInfo();
+                    playerInfo.inputDevice = player.GetComponent<IncontrolProvider>().InputDevice;
+                    playerInfo.myPlayerActions = player.GetComponent<IncontrolProvider>().myPlayerActions;
+                    playerInfo.godType = player.GetComponent<CharacterSelectionController>().robogodPicked;
+                    RaceManager.Instance.playerInfo.Add(playerInfo);
+                }
+            }
+
             ResetMainMenu();
-            Debug.Log("Acaba de empezar la carrera");
+            SceneManager.LoadScene("CarreteraBuena");
+
         }
     }
 

@@ -7,8 +7,17 @@ using UnityEngine;
 
 public class IncontrolProvider : MonoBehaviour, IDevice
 {
-    public MyPlayerActions myPlayerActions = new MyPlayerActions();
+    public MyPlayerActions myPlayerActions;
 
+    public enum ControlType
+    {
+        None,
+        Gamepad,
+        Keyboard
+    };
+
+    public ControlType controlType;
+    
     private string meta;
     public string Meta
     {
@@ -43,8 +52,14 @@ public class IncontrolProvider : MonoBehaviour, IDevice
     private DeviceState state;
     public DeviceState State { get => state; private set => state = value; }
     DeviceState previousState;
-	
-	void Update ()
+
+    private void Awake()
+    {
+        myPlayerActions = new MyPlayerActions();
+        controlType = ControlType.None;
+    }
+
+    void Update ()
     {
         UpdateState();
         ControlSlaves();
@@ -89,6 +104,11 @@ public class IncontrolProvider : MonoBehaviour, IDevice
         {
             slave.Control(this);
         }
+    }
+
+    public void AddSlave(IControllable controllable)
+    {
+        Slaves.Add(controllable);
     }
 
     float OneKeyCodedAxis(KeyCode positive)

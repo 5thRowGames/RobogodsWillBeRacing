@@ -3,64 +3,588 @@
 	<AudioObjects>
 		<WorkUnit Name="Default Work Unit" ID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}" PersistMode="Standalone">
 			<ChildrenList>
-				<Folder Name="Coches" ID="{3C03A530-EFB3-47D6-8836-FAD6E3FBBB58}" ShortID="1036459425">
+				<Folder Name="Naves" ID="{3C03A530-EFB3-47D6-8836-FAD6E3FBBB58}" ShortID="1036459425">
 					<ChildrenList>
-						<RandomSequenceContainer Name="Coche_1_Motor_Start_Loop" ID="{4BA916AE-F0D9-4BE8-B901-34D8C0515C07}" ShortID="768318430">
-							<PropertyList>
-								<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
-								<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="4"/>
-								<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
-								<Property Name="RandomOrSequence" Type="int16" Value="0"/>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
-								</Reference>
-							</ReferenceList>
+						<Folder Name="Nave_2" ID="{EFFC4C87-D147-401C-A6C0-60F11B3601BC}" ShortID="345522852">
 							<ChildrenList>
-								<Sound Name="Robo_Gods_Motor_LOOP_SFX_Car_1" ID="{F37EA5BE-25D9-4F52-8B42-8BA64AAC4DBA}" ShortID="124645372">
+								<RandomSequenceContainer Name="Nave_2_Acelerar_Loop" ID="{1E494403-7AB2-4AA3-B246-74CA2AA8D22C}" ShortID="662135926">
 									<PropertyList>
-										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
-										<Property Name="Pitch" Type="int32">
-											<RTPCList>
-												<RTPC Name="" ID="{0DE973D8-5A07-478A-B36F-C79D71A704D6}" ShortID="4722147">
+										<Property Name="HoldEmitterPositionOrientation" Type="bool" Value="True"/>
+										<Property Name="HoldListenerOrientation" Type="bool" Value="True"/>
+										<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+										<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
+										<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="4"/>
+										<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+										<Property Name="SpeakerPanning" Type="int16" Value="1"/>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-14</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="MOTOR_2_4_BUS" ID="{E9AC9E29-EE0A-4D0C-919A-F41E20AF4276}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="Robo_Gods_Coche_2_Motor_Move_SFX_Loop" ID="{815ED15C-1CE6-4FF1-AB4B-DA8866416DF3}" ShortID="71913276">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Robo_Gods_Coche_2_Motor_Move_SFX_Loop" ID="{241DCDEB-499D-4F6F-88D8-E1231A487119}" ShortID="773369396">
+													<Language>SFX</Language>
+													<AudioFile>Robo_Gods_Coche_2_Motor_Move_SFX_Loop.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Robo_Gods_Coche_2_Motor_Move_SFX_Loop" ID="{241DCDEB-499D-4F6F-88D8-E1231A487119}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+									<PositioningInfo>
+										<Panner Name="" ID="{54438B3D-5AF9-4C58-86DF-9ABE4D8237A3}">
+											<PropertyList>
+												<Property Name="PanX" Type="Real64" Value="33.489"/>
+											</PropertyList>
+										</Panner>
+										<Position Name="" ID="{2EF31069-EA74-474E-AABE-AE3A3D5F8474}"/>
+									</PositioningInfo>
+								</RandomSequenceContainer>
+								<RandomSequenceContainer Name="Nave_2_Acelerar_shoots" ID="{D526F91C-8610-484B-AFCE-D16B3DAA68F5}" ShortID="459760130">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-4</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX_BUS" ID="{06504896-303E-4D3A-BC83-BAE0A55A7391}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="Robo_Gods_Coche_2_Aceleracion_SFX_Start_1" ID="{3F454213-0246-45D6-805E-1BCE1C2DC2C8}" ShortID="1032869043">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Robo_Gods_Coche_2_Aceleracion_SFX_Start_1" ID="{17DF60EA-B3F0-40FB-B148-972AAABA33FE}" ShortID="561325424">
+													<Language>SFX</Language>
+													<AudioFile>Robo_Gods_Coche_2_Aceleracion_SFX_Start_1.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Robo_Gods_Coche_2_Aceleracion_SFX_Start_1" ID="{17DF60EA-B3F0-40FB-B148-972AAABA33FE}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Robo_Gods_Coche_2_Aceleracion_SFX_Start_2" ID="{69F0C01D-146A-44ED-A8CA-50A533F6AC45}" ShortID="97425221">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Robo_Gods_Coche_2_Aceleracion_SFX_Start_2" ID="{74141234-47F4-48D5-9524-69E1822E29A6}" ShortID="984928614">
+													<Language>SFX</Language>
+													<AudioFile>Robo_Gods_Coche_2_Aceleracion_SFX_Start_2.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Robo_Gods_Coche_2_Aceleracion_SFX_Start_2" ID="{74141234-47F4-48D5-9524-69E1822E29A6}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Robo_Gods_Coche_2_Aceleracion_SFX_Start_3" ID="{B4D88700-A401-430B-8E99-4599B6F19D6E}" ShortID="873751594">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Robo_Gods_Coche_2_Aceleracion_SFX_Start_3" ID="{66937ADD-6F67-4C6F-A212-9CD9E82EBE96}" ShortID="1048187987">
+													<Language>SFX</Language>
+													<AudioFile>Robo_Gods_Coche_2_Aceleracion_SFX_Start_3.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Robo_Gods_Coche_2_Aceleracion_SFX_Start_3" ID="{66937ADD-6F67-4C6F-A212-9CD9E82EBE96}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</RandomSequenceContainer>
+								<RandomSequenceContainer Name="Nave_2_Arranque" ID="{8FE1D255-9A45-44D0-84BE-9690A4233C43}" ShortID="107313477">
+									<PropertyList>
+										<Property Name="3DSpatialization" Type="int16" Value="1"/>
+										<Property Name="HoldEmitterPositionOrientation" Type="bool" Value="True"/>
+										<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+										<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+										<Property Name="SpeakerPanning" Type="int16" Value="1"/>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-15</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Attenuation">
+											<Custom>
+												<Attenuation Name="Attenuation (Custom)" ID="{FAF0C650-75AB-4F2C-B2A3-F3FE9328D314}" ShortID="450242838">
+													<PropertyList>
+														<Property Name="ConeInnerAngle" Type="int32" Value="60"/>
+														<Property Name="ConeUse" Type="bool">
+															<ValueList>
+																<Value>True</Value>
+															</ValueList>
+														</Property>
+													</PropertyList>
+													<CurveUsageInfoList>
+														<VolumeDryUsage>
+															<CurveUsageInfo Platform="Linked" CurveToUse="Custom">
+																<Curve Name="VolumeDry" ID="{0BD5769E-31AC-4D37-8647-B55866170664}">
+																	<PropertyList>
+																		<Property Name="Flags" Type="int32" Value="3"/>
+																	</PropertyList>
+																	<PointList>
+																		<Point>
+																			<XPos>0</XPos>
+																			<YPos>0</YPos>
+																			<Flags>5</Flags>
+																		</Point>
+																		<Point>
+																			<XPos>100</XPos>
+																			<YPos>-200</YPos>
+																			<Flags>37</Flags>
+																		</Point>
+																	</PointList>
+																</Curve>
+															</CurveUsageInfo>
+														</VolumeDryUsage>
+														<VolumeWetGameUsage>
+															<CurveUsageInfo Platform="Linked" CurveToUse="UseVolumeDry"/>
+														</VolumeWetGameUsage>
+														<VolumeWetUserUsage>
+															<CurveUsageInfo Platform="Linked" CurveToUse="UseVolumeDry"/>
+														</VolumeWetUserUsage>
+														<LowPassFilterUsage>
+															<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
+														</LowPassFilterUsage>
+														<HighPassFilterUsage>
+															<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
+														</HighPassFilterUsage>
+														<SpreadUsage>
+															<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
+														</SpreadUsage>
+														<FocusUsage>
+															<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
+														</FocusUsage>
+													</CurveUsageInfoList>
+												</Attenuation>
+											</Custom>
+										</Reference>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="MOTOR_2_4_BUS" ID="{E9AC9E29-EE0A-4D0C-919A-F41E20AF4276}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="Robo_Gods_Coche_2_Motor_Stop_SFX_Loop" ID="{9C234EAA-24EF-4A5A-8222-0896F5BD81F7}" ShortID="345404409">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Robo_Gods_Coche_2_Motor_Stop_SFX_Loop" ID="{EC360271-7460-48AF-A757-31F01ECBD649}" ShortID="1015394262">
+													<Language>SFX</Language>
+													<AudioFile>Robo_Gods_Coche_2_Motor_Stop_SFX_Loop.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Robo_Gods_Coche_2_Motor_Stop_SFX_Loop" ID="{EC360271-7460-48AF-A757-31F01ECBD649}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+									<PositioningInfo>
+										<Panner Name="" ID="{361358E8-82EC-41BC-98C5-9C3A6514E3F6}"/>
+									</PositioningInfo>
+								</RandomSequenceContainer>
+							</ChildrenList>
+						</Folder>
+						<Folder Name="Nave_1" ID="{1ED2A866-798A-455A-BB5A-1EEFE84CE7F0}" ShortID="253979102">
+							<ChildrenList>
+								<RandomSequenceContainer Name="Coche_1_Acelerar_Loop" ID="{64211896-62F1-49A5-9AE0-F11BAEABBD98}" ShortID="1043617360">
+									<PropertyList>
+										<Property Name="HoldEmitterPositionOrientation" Type="bool" Value="True"/>
+										<Property Name="HoldListenerOrientation" Type="bool" Value="True"/>
+										<Property Name="Lowpass" Type="int16">
+											<ValueList>
+												<Value>58</Value>
+											</ValueList>
+										</Property>
+										<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+										<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
+										<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="4"/>
+										<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+										<Property Name="SpeakerPanning" Type="int16" Value="1"/>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-10</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="MOTOR_1_3_BUS" ID="{9FF035E0-4086-4A9F-BA0A-49D983130EFC}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="Robo_Gods_Coche_1_Motor_Move_SFX_Loop" ID="{721FD546-A77A-42CB-9FB8-471592B24F3A}" ShortID="81189593">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Robo_Gods_Coche_1_Motor_Move_SFX_Loop" ID="{A32A39B4-04E3-4DDC-AA34-0A02BAA5545B}" ShortID="926041093">
+													<Language>SFX</Language>
+													<AudioFile>Robo_Gods_Coche_1_Motor_Move_SFX_Loop.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Robo_Gods_Coche_1_Motor_Move_SFX_Loop" ID="{A32A39B4-04E3-4DDC-AA34-0A02BAA5545B}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+									<PositioningInfo>
+										<Panner Name="" ID="{49746D58-0687-4254-AB5C-9AAB2368DD6C}">
+											<PropertyList>
+												<Property Name="PanX" Type="Real64" Value="-31.3609467455621"/>
+												<Property Name="PanY" Type="Real64" Value="1.11022302462516E-16"/>
+											</PropertyList>
+										</Panner>
+										<Position Name="" ID="{2AE7C850-2510-4E5C-84BD-3F52CDDA60F5}"/>
+									</PositioningInfo>
+								</RandomSequenceContainer>
+								<RandomSequenceContainer Name="Coche_1_Acelerar_Shoots" ID="{597EF449-FC26-492F-A765-7CBA06BEF7CB}" ShortID="595253146">
+									<PropertyList>
+										<Property Name="GlobalOrPerObject" Type="int16" Value="0"/>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-6</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX_BUS" ID="{06504896-303E-4D3A-BC83-BAE0A55A7391}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="Robo_Gods_Coche_1_Aceleracion_SFX_Start_1" ID="{4657265D-6E8B-4D2A-8DFB-C277DA161470}" ShortID="594934300">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Robo_Gods_Coche_1_Aceleracion_SFX_Start_1" ID="{31A5EF26-E668-41F6-A29A-2D7BA5BAE5C6}" ShortID="568231466">
+													<Language>SFX</Language>
+													<AudioFile>Robo_Gods_Coche_1_Aceleracion_SFX_Start_1.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Robo_Gods_Coche_1_Aceleracion_SFX_Start_1" ID="{31A5EF26-E668-41F6-A29A-2D7BA5BAE5C6}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Robo_Gods_Coche_1_Aceleracion_SFX_Start_2" ID="{62862AB6-935B-4D5F-8157-A7DE115E9798}" ShortID="119573240">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Robo_Gods_Coche_1_Aceleracion_SFX_Start_2" ID="{C4DD76DB-DD66-4E40-9785-445A2A288D87}" ShortID="789879506">
+													<Language>SFX</Language>
+													<AudioFile>Robo_Gods_Coche_1_Aceleracion_SFX_Start_2.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Robo_Gods_Coche_1_Aceleracion_SFX_Start_2" ID="{C4DD76DB-DD66-4E40-9785-445A2A288D87}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Robo_Gods_Coche_1_Aceleracion_SFX_Start_3" ID="{4E3A41AE-9496-4A6E-A7C6-10DF2EF62819}" ShortID="132628716">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Robo_Gods_Coche_1_Aceleracion_SFX_Start_3" ID="{0B948A70-6484-4D17-A02C-F24C2FF26BCD}" ShortID="975519489">
+													<Language>SFX</Language>
+													<AudioFile>Robo_Gods_Coche_1_Aceleracion_SFX_Start_3.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Robo_Gods_Coche_1_Aceleracion_SFX_Start_3" ID="{0B948A70-6484-4D17-A02C-F24C2FF26BCD}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</RandomSequenceContainer>
+								<BlendContainer Name="Coche_1_Arranque" ID="{9E02B558-2436-434D-AB7C-65C109C61655}" ShortID="795011391">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-5</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="MOTOR_1_3_BUS" ID="{9FF035E0-4086-4A9F-BA0A-49D983130EFC}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="Robo_Gods_Coche_1_Motor_Arranque_SFX_Start" ID="{D571F9E4-1AB9-468F-97EE-CF4008E0159F}" ShortID="246570033">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-12</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Robo_Gods_Motor_Start_SFX_Car_1" ID="{2914E819-6495-4D5C-9C90-1E24C6322981}" ShortID="1072197821">
+													<Language>SFX</Language>
+													<AudioFile>Robo_Gods_Motor_Start_SFX_Car_1.wav</AudioFile>
+												</AudioFileSource>
+												<AudioFileSource Name="Robo_Gods_Coche_1_Motor_Arranque_SFX_Start" ID="{ED02F2E6-1A11-4535-A26D-80643581CE3C}" ShortID="621507636">
+													<Language>SFX</Language>
+													<AudioFile>Robo_Gods_Coche_1_Motor_Arranque_SFX_Start.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Robo_Gods_Motor_Start_SFX_Car_1" ID="{2914E819-6495-4D5C-9C90-1E24C6322981}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<RandomSequenceContainer Name="Motor_Stop_Loop" ID="{F7D9C84A-0DAC-438C-9335-1831DE2CEA84}" ShortID="840465735">
+											<PropertyList>
+												<Property Name="3DPosition" Type="int16" Value="1"/>
+												<Property Name="3DSpatialization" Type="int16" Value="1"/>
+												<Property Name="HoldEmitterPositionOrientation" Type="bool" Value="True"/>
+												<Property Name="OverridePositioning" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="4"/>
+												<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-4</Value>
+													</ValueList>
+													<RTPCList>
+														<RTPC Name="" ID="{56A304B9-8226-4720-B642-363036DD76FF}" ShortID="127259891">
+															<ReferenceList>
+																<Reference Name="ControlInput">
+																	<Custom>
+																		<ModulatorEnvelope Name="Modulator Envelope (Custom)" ID="{1461EF45-B781-421B-A37C-30DDDF99A45E}" ShortID="930520162">
+																			<PropertyList>
+																				<Property Name="EnvelopeAttackTime" Type="Real64" Value="0.611"/>
+																			</PropertyList>
+																		</ModulatorEnvelope>
+																	</Custom>
+																</Reference>
+															</ReferenceList>
+															<Curve Name="" ID="{47B78C44-035A-4AB1-B416-1D5818CAEFE6}">
+																<PropertyList>
+																	<Property Name="Flags" Type="int32" Value="3"/>
+																</PropertyList>
+																<PointList>
+																	<Point>
+																		<XPos>0</XPos>
+																		<YPos>-200</YPos>
+																		<Flags>21</Flags>
+																	</Point>
+																	<Point>
+																		<XPos>1</XPos>
+																		<YPos>0</YPos>
+																		<Flags>53</Flags>
+																	</Point>
+																</PointList>
+															</Curve>
+														</RTPC>
+													</RTPCList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Attenuation">
+													<Custom>
+														<Attenuation Name="Attenuation (Custom)" ID="{BE12DF0E-2319-4352-992A-BDEC1F43B6C0}" ShortID="790108705">
+															<PropertyList>
+																<Property Name="ConeInnerAngle" Type="int32" Value="60"/>
+																<Property Name="ConeUse" Type="bool">
+																	<ValueList>
+																		<Value>True</Value>
+																	</ValueList>
+																</Property>
+															</PropertyList>
+															<CurveUsageInfoList>
+																<VolumeDryUsage>
+																	<CurveUsageInfo Platform="Linked" CurveToUse="Custom">
+																		<Curve Name="VolumeDry" ID="{B2ED1DFB-055F-4F1A-A55D-9D241F4837CF}">
+																			<PropertyList>
+																				<Property Name="Flags" Type="int32" Value="3"/>
+																			</PropertyList>
+																			<PointList>
+																				<Point>
+																					<XPos>0</XPos>
+																					<YPos>0</YPos>
+																					<Flags>5</Flags>
+																				</Point>
+																				<Point>
+																					<XPos>100</XPos>
+																					<YPos>-200</YPos>
+																					<Flags>37</Flags>
+																				</Point>
+																			</PointList>
+																		</Curve>
+																	</CurveUsageInfo>
+																</VolumeDryUsage>
+																<VolumeWetGameUsage>
+																	<CurveUsageInfo Platform="Linked" CurveToUse="UseVolumeDry"/>
+																</VolumeWetGameUsage>
+																<VolumeWetUserUsage>
+																	<CurveUsageInfo Platform="Linked" CurveToUse="UseVolumeDry"/>
+																</VolumeWetUserUsage>
+																<LowPassFilterUsage>
+																	<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
+																</LowPassFilterUsage>
+																<HighPassFilterUsage>
+																	<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
+																</HighPassFilterUsage>
+																<SpreadUsage>
+																	<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
+																</SpreadUsage>
+																<FocusUsage>
+																	<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
+																</FocusUsage>
+															</CurveUsageInfoList>
+														</Attenuation>
+													</Custom>
+												</Reference>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="Robo_Gods_Coche_1_Motor_Stop_SFX_Loop" ID="{3723DBA1-3F70-4B33-888D-498BD7C7036F}" ShortID="872729847">
+													<PropertyList>
+														<Property Name="Volume" Type="Real64">
+															<ValueList>
+																<Value>-8</Value>
+															</ValueList>
+														</Property>
+													</PropertyList>
 													<ReferenceList>
-														<Reference Name="ControlInput">
-															<ObjectRef Name="Player_Velocidad" ID="{E08C3774-7EB1-4D85-98DD-59215F2E9293}" WorkUnitID="{90A236A2-9029-4BFD-8983-FBFF09638A74}"/>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
 														</Reference>
 													</ReferenceList>
-													<Curve Name="" ID="{C119FE6A-108C-4245-AFFE-B46D62B34526}">
-														<PropertyList>
-															<Property Name="Flags" Type="int32" Value="65537"/>
-														</PropertyList>
-														<PointList>
-															<Point>
-																<XPos>0</XPos>
-																<YPos>0</YPos>
-																<Flags>5</Flags>
-															</Point>
-															<Point>
-																<XPos>49.66698</XPos>
-																<YPos>596</YPos>
-																<Flags>0</Flags>
-															</Point>
-															<Point>
-																<XPos>59.94292</XPos>
-																<YPos>3088</YPos>
-																<Flags>0</Flags>
-															</Point>
-															<Point>
-																<XPos>100</XPos>
-																<YPos>3151</YPos>
-																<Flags>37</Flags>
-															</Point>
-														</PointList>
-													</Curve>
-												</RTPC>
-											</RTPCList>
+													<ChildrenList>
+														<AudioFileSource Name="Robo_Gods_Coche_1_Motor_Stop_SFX_Loop" ID="{52F6D668-4E1A-495B-BEED-545C4BD7D59B}" ShortID="724286840">
+															<Language>SFX</Language>
+															<AudioFile>Robo_Gods_Coche_1_Motor_Stop_SFX_Loop.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="Robo_Gods_Coche_1_Motor_Stop_SFX_Loop" ID="{52F6D668-4E1A-495B-BEED-545C4BD7D59B}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<PositioningInfo>
+												<Position Name="" ID="{FB7E48D7-295D-4F31-A8DB-F09DE7D7D812}"/>
+											</PositioningInfo>
+										</RandomSequenceContainer>
+									</ChildrenList>
+								</BlendContainer>
+							</ChildrenList>
+						</Folder>
+						<Folder Name="Sonidos_compartidos" ID="{01603048-E7BB-4FDD-B0C9-895493B43F9A}" ShortID="666650921">
+							<ChildrenList>
+								<BlendContainer Name="Bascula_Compresor" ID="{D9B58D62-0098-4C2F-8D66-E4B276A373C5}" ShortID="683971993">
+									<PropertyList>
+										<Property Name="BlendBehavior" Type="int16" Value="1"/>
+										<Property Name="Inclusion" Type="bool">
+											<ValueList>
+												<Value>False</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-8</Value>
+											</ValueList>
 										</Property>
 									</PropertyList>
 									<ReferenceList>
@@ -72,16 +596,797 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="Robo_Gods_Motor_LOOP_SFX_Car_1" ID="{16979E2D-8450-48DF-AA24-91AA032E979A}" ShortID="130078000">
-											<Language>SFX</Language>
-											<AudioFile>Robo_Gods_Motor_LOOP_SFX_Car_1.wav</AudioFile>
-										</AudioFileSource>
+										<Sound Name="Robo_Gods_Coche_1_Bascula_Compr_SFX_Start" ID="{63D060B7-4942-43F0-ADFD-9AE2E7060B4C}" ShortID="170445002">
+											<PropertyList>
+												<Property Name="Lowpass" Type="int16">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{58999A10-D1B7-4AE0-8136-9C23DA324C51}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="36"/>
+																	<Property Name="Min" Type="Real64" Value="-35"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{9C57E8E7-F14A-4DE7-8058-63A59C28612F}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="202"/>
+																	<Property Name="Min" Type="Real64" Value="-202"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-2</Value>
+													</ValueList>
+													<RTPCList>
+														<RTPC Name="" ID="{45FFC267-63F7-4729-97A7-372A79015977}" ShortID="361408690">
+															<ReferenceList>
+																<Reference Name="ControlInput">
+																	<Custom>
+																		<ModulatorEnvelope Name="Modulator Envelope (Custom)" ID="{A7FB97C2-3800-4AA3-864E-BB6F5680750B}" ShortID="763671986">
+																			<PropertyList>
+																				<Property Name="EnvelopeAutoRelease" Type="bool" Value="True"/>
+																				<Property Name="EnvelopeDecayTime" Type="Real64" Value="0.684"/>
+																				<Property Name="EnvelopeReleaseTime" Type="Real64" Value="0.732"/>
+																				<Property Name="EnvelopeSustainTime" Type="Real64" Value="0.553"/>
+																			</PropertyList>
+																		</ModulatorEnvelope>
+																	</Custom>
+																</Reference>
+															</ReferenceList>
+															<Curve Name="" ID="{8F1541F3-4A5C-46DC-AFB7-E2A58A2ADA17}">
+																<PropertyList>
+																	<Property Name="Flags" Type="int32" Value="3"/>
+																</PropertyList>
+																<PointList>
+																	<Point>
+																		<XPos>0</XPos>
+																		<YPos>0</YPos>
+																		<Flags>21</Flags>
+																	</Point>
+																	<Point>
+																		<XPos>1</XPos>
+																		<YPos>-200</YPos>
+																		<Flags>53</Flags>
+																	</Point>
+																</PointList>
+															</Curve>
+														</RTPC>
+													</RTPCList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Robo_Gods_Coche_1_Bascula_Compr_SFX_Start" ID="{FF5847A6-2E54-4156-8661-B59C90A87049}" ShortID="212278386">
+													<Language>SFX</Language>
+													<AudioFile>Robo_Gods_Coche_1_Bascula_Compr_SFX_Start.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Robo_Gods_Coche_1_Bascula_Compr_SFX_Start" ID="{FF5847A6-2E54-4156-8661-B59C90A87049}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<RandomSequenceContainer Name="Bascula_Loop" ID="{8F69226F-233D-4D61-A51D-3AFE63234916}" ShortID="710241200">
+											<PropertyList>
+												<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="4"/>
+												<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="Robo_Gods_Coche_1_Bascula_Compr_SFX_LOOP" ID="{18E4CB2E-E7E7-4504-8F1A-8ADD98A25483}" ShortID="295964114">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="Robo_Gods_Coche_1_Bascula_Compr_SFX_LOOP" ID="{864EBCAD-059A-4798-8DEC-EBE5F53F7A8D}" ShortID="428993683">
+															<Language>SFX</Language>
+															<AudioFile>Robo_Gods_Coche_1_Bascula_Compr_SFX_LOOP.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="Robo_Gods_Coche_1_Bascula_Compr_SFX_LOOP" ID="{864EBCAD-059A-4798-8DEC-EBE5F53F7A8D}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+										</RandomSequenceContainer>
 									</ChildrenList>
-									<ActiveSourceList>
-										<ActiveSource Name="Robo_Gods_Motor_LOOP_SFX_Car_1" ID="{16979E2D-8450-48DF-AA24-91AA032E979A}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="Robo_Gods_Motor_Start_SFX_Car_1" ID="{D571F9E4-1AB9-468F-97EE-CF4008E0159F}" ShortID="246570033">
+								</BlendContainer>
+								<RandomSequenceContainer Name="Coche_1_Turbo" ID="{8178D648-1415-4BAC-B883-CDFE93CEB7BE}" ShortID="253924389">
+									<PropertyList>
+										<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX_BUS" ID="{06504896-303E-4D3A-BC83-BAE0A55A7391}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="Robo_Gods_Motor_Turbo_SFX_Car_1" ID="{731865AB-4F90-4E62-AEE1-BB8D73A967AF}" ShortID="296061020">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Robo_Gods_Motor_Turbo_SFX_Car_1" ID="{28B8404A-ADCE-4401-A43D-F700D1FA3055}" ShortID="213490839">
+													<Language>SFX</Language>
+													<AudioFile>Robo_Gods_Motor_Turbo_SFX_Car_1.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Robo_Gods_Motor_Turbo_SFX_Car_1" ID="{28B8404A-ADCE-4401-A43D-F700D1FA3055}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</RandomSequenceContainer>
+								<RandomSequenceContainer Name="Coche_1_Freno" ID="{F3732206-578F-494A-8826-118F8490BE1B}" ShortID="1009154675">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-6</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX_BUS" ID="{06504896-303E-4D3A-BC83-BAE0A55A7391}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="Robo_Gods_Coche_1_Freno_Start_SFX" ID="{0E5914F1-14F7-486E-A615-114FB3B591F8}" ShortID="960496075">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Robo_Gods_Coche_1_Freno_Start_SFX" ID="{71F115BD-0678-4C0E-8E06-240E9B875CBB}" ShortID="135047683">
+													<Language>SFX</Language>
+													<AudioFile>Robo_Gods_Coche_1_Freno_Start_SFX.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Robo_Gods_Coche_1_Freno_Start_SFX" ID="{71F115BD-0678-4C0E-8E06-240E9B875CBB}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</RandomSequenceContainer>
+								<BlendContainer Name="Viento_Motor_Loop" ID="{A55280A5-6699-4E40-B582-AD1C1EBC2CB2}" ShortID="667979041">
+									<PropertyList>
+										<Property Name="Highpass" Type="int16">
+											<ValueList>
+												<Value>56</Value>
+											</ValueList>
+										</Property>
+										<Property Name="HoldListenerOrientation" Type="bool" Value="True"/>
+										<Property Name="MaxSoundPerInstance" Type="int16">
+											<ValueList>
+												<Value>1</Value>
+											</ValueList>
+										</Property>
+										<Property Name="UseMaxSoundPerInstance" Type="bool">
+											<ValueList>
+												<Value>True</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>4</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+										</Reference>
+										<Reference Name="Effect0">
+											<Custom>
+												<Effect Name="Wwise_Parametric_EQ_(Custom)" ID="{775CA1D7-3A26-4B10-B7BF-8149F24741DA}" ShortID="75238060" PluginName="Wwise Parametric EQ" CompanyID="0" PluginID="105" PluginType="3">
+													<PropertyList>
+														<Property Name="FrequencyBand1" Type="Real32" Value="275"/>
+														<Property Name="FrequencyBand2" Type="Real32" Value="433"/>
+														<Property Name="GainBand1" Type="Real32" Value="-2.5"/>
+														<Property Name="GainBand2" Type="Real32" Value="-3"/>
+													</PropertyList>
+												</Effect>
+											</Custom>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX_BUS" ID="{06504896-303E-4D3A-BC83-BAE0A55A7391}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<RandomSequenceContainer Name="Viento_SFX_Loop" ID="{C57E5393-275B-4A71-9D61-2335DFE908E0}" ShortID="356770760">
+											<Comment>Sonido compartido</Comment>
+											<PropertyList>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>1</Value>
+													</ValueList>
+												</Property>
+												<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="4"/>
+												<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-10</Value>
+													</ValueList>
+													<RTPCList>
+														<RTPC Name="" ID="{D8AB1F3E-A845-45A0-B178-0B0BAFD8FB37}" ShortID="148191195">
+															<ReferenceList>
+																<Reference Name="ControlInput">
+																	<ObjectRef Name="Player_Velocidad" ID="{E08C3774-7EB1-4D85-98DD-59215F2E9293}" WorkUnitID="{90A236A2-9029-4BFD-8983-FBFF09638A74}"/>
+																</Reference>
+															</ReferenceList>
+															<Curve Name="" ID="{4B095E34-B99E-487B-B589-780F62BDDFA4}">
+																<PropertyList>
+																	<Property Name="Flags" Type="int32" Value="3"/>
+																</PropertyList>
+																<PointList>
+																	<Point>
+																		<XPos>0</XPos>
+																		<YPos>-200</YPos>
+																		<Flags>5</Flags>
+																	</Point>
+																	<Point>
+																		<XPos>100</XPos>
+																		<YPos>0</YPos>
+																		<Flags>37</Flags>
+																	</Point>
+																</PointList>
+															</Curve>
+														</RTPC>
+													</RTPCList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="Robo_Gods_Viento_SFX_Loop" ID="{C50B478C-B627-41E9-AACF-6B0EEA86516B}" ShortID="1024338451">
+													<Comment>Sonido compartdio por todas las naves
+</Comment>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="Robo_Gods_Viento_SFX_Loop" ID="{FD05BFF9-09BE-441A-AB3C-B894C7021A2C}" ShortID="582402073">
+															<Language>SFX</Language>
+															<AudioFile>Robo_Gods_Viento_SFX_Loop.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="Robo_Gods_Viento_SFX_Loop" ID="{FD05BFF9-09BE-441A-AB3C-B894C7021A2C}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="Robo_Gods_Viento_SFX_Loop_2" ID="{1D722550-9634-4B1F-AAFE-DE7ED6A5847A}" ShortID="352314511">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="Robo_Gods_Viento_SFX_Loop_2" ID="{40603B30-CDC0-40BD-8421-F6FA16F106A4}" ShortID="5208582">
+															<Language>SFX</Language>
+															<AudioFile>Robo_Gods_Viento_SFX_Loop_2.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="Robo_Gods_Viento_SFX_Loop_2" ID="{40603B30-CDC0-40BD-8421-F6FA16F106A4}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="Nave_2_Acelerar_Loop" ID="{3D509573-13EE-433C-B7FC-B7E83217D666}" ShortID="184526231">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="1"/>
+												<Property Name="HoldEmitterPositionOrientation" Type="bool" Value="True"/>
+												<Property Name="Inclusion" Type="bool">
+													<ValueList>
+														<Value>False</Value>
+													</ValueList>
+												</Property>
+												<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="4"/>
+												<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+												<Property Name="SpeakerPanning" Type="int16" Value="1"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-19</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Attenuation">
+													<Custom>
+														<Attenuation Name="Attenuation (Custom)" ID="{218F9E4A-CE66-4408-8291-DD89E034173F}" ShortID="119419285">
+															<PropertyList>
+																<Property Name="ConeInnerAngle" Type="int32" Value="60"/>
+																<Property Name="ConeUse" Type="bool">
+																	<ValueList>
+																		<Value>True</Value>
+																	</ValueList>
+																</Property>
+															</PropertyList>
+															<CurveUsageInfoList>
+																<VolumeDryUsage>
+																	<CurveUsageInfo Platform="Linked" CurveToUse="Custom">
+																		<Curve Name="VolumeDry" ID="{F156A096-62C6-4EDA-B483-6085FC8BB4EB}">
+																			<PropertyList>
+																				<Property Name="Flags" Type="int32" Value="3"/>
+																			</PropertyList>
+																			<PointList>
+																				<Point>
+																					<XPos>0</XPos>
+																					<YPos>0</YPos>
+																					<Flags>5</Flags>
+																				</Point>
+																				<Point>
+																					<XPos>19.59799</XPos>
+																					<YPos>-0.98294</YPos>
+																					<Flags>0</Flags>
+																				</Point>
+																				<Point>
+																					<XPos>100</XPos>
+																					<YPos>-200</YPos>
+																					<Flags>37</Flags>
+																				</Point>
+																			</PointList>
+																		</Curve>
+																	</CurveUsageInfo>
+																</VolumeDryUsage>
+																<VolumeWetGameUsage>
+																	<CurveUsageInfo Platform="Linked" CurveToUse="UseVolumeDry"/>
+																</VolumeWetGameUsage>
+																<VolumeWetUserUsage>
+																	<CurveUsageInfo Platform="Linked" CurveToUse="UseVolumeDry"/>
+																</VolumeWetUserUsage>
+																<LowPassFilterUsage>
+																	<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
+																</LowPassFilterUsage>
+																<HighPassFilterUsage>
+																	<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
+																</HighPassFilterUsage>
+																<SpreadUsage>
+																	<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
+																</SpreadUsage>
+																<FocusUsage>
+																	<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
+																</FocusUsage>
+															</CurveUsageInfoList>
+														</Attenuation>
+													</Custom>
+												</Reference>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="Robo_Gods_Coche_2_Motor_Move_SFX_Loop" ID="{1A10CD07-50F6-4962-9E1D-634001E5D0EC}" ShortID="302371855">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="Robo_Gods_Coche_2_Motor_Move_SFX_Loop" ID="{4C8CCC34-C4CC-4F73-A41F-F56F4CA4D7C8}" ShortID="187162079">
+															<Language>SFX</Language>
+															<AudioFile>Robo_Gods_Coche_2_Motor_Move_SFX_Loop.wav</AudioFile>
+															<ConvertedFileIDList>
+																<File ID="773369396"/>
+															</ConvertedFileIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="Robo_Gods_Coche_2_Motor_Move_SFX_Loop" ID="{4C8CCC34-C4CC-4F73-A41F-F56F4CA4D7C8}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<PositioningInfo>
+												<Panner Name="" ID="{2BB475BD-2A9B-486C-A337-91D628B38BB7}"/>
+											</PositioningInfo>
+										</RandomSequenceContainer>
+									</ChildrenList>
+									<PositioningInfo>
+										<Position Name="" ID="{8792E514-8150-43BB-8FF9-253BF8F26652}"/>
+									</PositioningInfo>
+								</BlendContainer>
+							</ChildrenList>
+						</Folder>
+						<Folder Name="Nave_3" ID="{8075C2B6-9A6B-4E6E-A85C-222A17B884C6}" ShortID="535837684">
+							<ChildrenList>
+								<RandomSequenceContainer Name="Nave_3_Acelerar_Shoots" ID="{8A51CB1C-C41F-40D8-BA9A-019F2F30CFCE}" ShortID="1057212624">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-8</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX_BUS" ID="{06504896-303E-4D3A-BC83-BAE0A55A7391}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="Robo_Gods_Coche_3_Aceleracion_SFX_Start_1" ID="{1788D8B0-FA44-42F6-930D-A4DBE177E6C1}" ShortID="643530261">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Robo_Gods_Coche_3_Aceleracion_SFX_Start_1" ID="{FA119D00-87E2-43FD-B561-D92C48B51C5C}" ShortID="930814480">
+													<Language>SFX</Language>
+													<AudioFile>Robo_Gods_Coche_3_Aceleracion_SFX_Start_1.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Robo_Gods_Coche_3_Aceleracion_SFX_Start_1" ID="{FA119D00-87E2-43FD-B561-D92C48B51C5C}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Robo_Gods_Coche_3_Aceleracion_SFX_Start_2" ID="{EFB980E6-16A9-4874-AAFB-0767DA005E13}" ShortID="285126537">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Robo_Gods_Coche_3_Aceleracion_SFX_Start_2" ID="{B08C29D8-29C3-463A-B21B-F186F0CD96F4}" ShortID="126961041">
+													<Language>SFX</Language>
+													<AudioFile>Robo_Gods_Coche_3_Aceleracion_SFX_Start_2.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Robo_Gods_Coche_3_Aceleracion_SFX_Start_2" ID="{B08C29D8-29C3-463A-B21B-F186F0CD96F4}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Robo_Gods_Coche_3_Aceleracion_SFX_Start_3" ID="{2BED2CB1-54B9-455D-A808-0AB518A97704}" ShortID="965305950">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Robo_Gods_Coche_3_Aceleracion_SFX_Start_3" ID="{FCB76E69-5104-4C44-8AAF-F132C058C58B}" ShortID="830798216">
+													<Language>SFX</Language>
+													<AudioFile>Robo_Gods_Coche_3_Aceleracion_SFX_Start_3.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Robo_Gods_Coche_3_Aceleracion_SFX_Start_3" ID="{FCB76E69-5104-4C44-8AAF-F132C058C58B}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</RandomSequenceContainer>
+								<RandomSequenceContainer Name="Nave_3_Acelerar_Loop" ID="{A2EF9224-FE5E-417C-A0AD-E06B50AE3CB0}" ShortID="1034523126">
+									<PropertyList>
+										<Property Name="Lowpass" Type="int16">
+											<ValueList>
+												<Value>58</Value>
+											</ValueList>
+										</Property>
+										<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+										<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
+										<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="4"/>
+										<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+										<Property Name="SpeakerPanning" Type="int16" Value="1"/>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-10</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="MOTOR_1_3_BUS" ID="{9FF035E0-4086-4A9F-BA0A-49D983130EFC}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="Robo_Gods_Coche_1_Motor_Move_SFX_Loop" ID="{E9D66FE8-718A-4999-85D4-C2582AACABE3}" ShortID="684635839">
+											<PropertyList>
+												<Property Name="HoldEmitterPositionOrientation" Type="bool" Value="True"/>
+												<Property Name="HoldListenerOrientation" Type="bool" Value="True"/>
+												<Property Name="SpeakerPanning" Type="int16" Value="1"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="MOTOR_1_3_BUS" ID="{9FF035E0-4086-4A9F-BA0A-49D983130EFC}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Robo_Gods_Coche_1_Motor_Move_SFX_Loop" ID="{09A45D6A-6893-42E2-B8C3-792FED553B3A}" ShortID="431241670">
+													<Language>SFX</Language>
+													<AudioFile>Robo_Gods_Coche_1_Motor_Move_SFX_Loop.wav</AudioFile>
+													<ConvertedFileIDList>
+														<File ID="926041093"/>
+													</ConvertedFileIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<PositioningInfo>
+												<Panner Name="" ID="{B6E7A6DE-EDBF-4588-84D7-326BCA603B6E}">
+													<PropertyList>
+														<Property Name="PanX" Type="Real64" Value="-31.3609467455621"/>
+														<Property Name="PanY" Type="Real64" Value="1.11022302462516E-16"/>
+													</PropertyList>
+												</Panner>
+												<Position Name="" ID="{9597F426-784D-46B6-9035-AADFB22A4B31}"/>
+											</PositioningInfo>
+											<ActiveSourceList>
+												<ActiveSource Name="Robo_Gods_Coche_1_Motor_Move_SFX_Loop" ID="{09A45D6A-6893-42E2-B8C3-792FED553B3A}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+									<PositioningInfo>
+										<Panner Name="" ID="{39B1AFED-F0E9-4F51-9C22-0FA32C487B14}">
+											<PropertyList>
+												<Property Name="PanX" Type="Real64" Value="-31.361"/>
+											</PropertyList>
+										</Panner>
+									</PositioningInfo>
+								</RandomSequenceContainer>
+								<RandomSequenceContainer Name="Nave_3_Arranque" ID="{89D5F053-D64D-43C5-AEB0-DAEAA4172F44}" ShortID="676446656">
+									<PropertyList>
+										<Property Name="3DPosition" Type="int16" Value="1"/>
+										<Property Name="3DSpatialization" Type="int16" Value="1"/>
+										<Property Name="HoldEmitterPositionOrientation" Type="bool" Value="True"/>
+										<Property Name="OverridePositioning" Type="bool" Value="True"/>
+										<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+										<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
+										<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="4"/>
+										<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-5</Value>
+											</ValueList>
+											<RTPCList>
+												<RTPC Name="" ID="{C35FBEEA-ED66-4494-8353-B09BC62D5C92}" ShortID="744285138">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<Custom>
+																<ModulatorEnvelope Name="Modulator Envelope (Custom)" ID="{22FA4E47-B547-4775-BC09-56A829B8719C}" ShortID="596113580">
+																	<PropertyList>
+																		<Property Name="EnvelopeAttackTime" Type="Real64" Value="0.611"/>
+																	</PropertyList>
+																</ModulatorEnvelope>
+															</Custom>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{41E0487A-BCE2-4D9D-AEDE-9A02EB4D03CF}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="3"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>-200</YPos>
+																<Flags>21</Flags>
+															</Point>
+															<Point>
+																<XPos>1</XPos>
+																<YPos>0</YPos>
+																<Flags>53</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Attenuation">
+											<Custom>
+												<Attenuation Name="Attenuation (Custom)" ID="{93835D68-B4E9-4250-A1C3-BA7A22E716D0}" ShortID="908961654">
+													<PropertyList>
+														<Property Name="ConeInnerAngle" Type="int32" Value="60"/>
+														<Property Name="ConeUse" Type="bool">
+															<ValueList>
+																<Value>True</Value>
+															</ValueList>
+														</Property>
+													</PropertyList>
+													<CurveUsageInfoList>
+														<VolumeDryUsage>
+															<CurveUsageInfo Platform="Linked" CurveToUse="Custom">
+																<Curve Name="VolumeDry" ID="{A9153C0D-5BEA-4BB4-AF29-9E44584578F7}">
+																	<PropertyList>
+																		<Property Name="Flags" Type="int32" Value="3"/>
+																	</PropertyList>
+																	<PointList>
+																		<Point>
+																			<XPos>0</XPos>
+																			<YPos>0</YPos>
+																			<Flags>5</Flags>
+																		</Point>
+																		<Point>
+																			<XPos>100</XPos>
+																			<YPos>-200</YPos>
+																			<Flags>37</Flags>
+																		</Point>
+																	</PointList>
+																</Curve>
+															</CurveUsageInfo>
+														</VolumeDryUsage>
+														<VolumeWetGameUsage>
+															<CurveUsageInfo Platform="Linked" CurveToUse="UseVolumeDry"/>
+														</VolumeWetGameUsage>
+														<VolumeWetUserUsage>
+															<CurveUsageInfo Platform="Linked" CurveToUse="UseVolumeDry"/>
+														</VolumeWetUserUsage>
+														<LowPassFilterUsage>
+															<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
+														</LowPassFilterUsage>
+														<HighPassFilterUsage>
+															<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
+														</HighPassFilterUsage>
+														<SpreadUsage>
+															<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
+														</SpreadUsage>
+														<FocusUsage>
+															<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
+														</FocusUsage>
+													</CurveUsageInfoList>
+												</Attenuation>
+											</Custom>
+										</Reference>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="MOTOR_1_3_BUS" ID="{9FF035E0-4086-4A9F-BA0A-49D983130EFC}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="Robo_Gods_Coche_1_Motor_Stop_SFX_Loop" ID="{269FE07B-D5FB-40B8-B5D4-1F3F4C44C10B}" ShortID="630694354">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-8</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Robo_Gods_Coche_1_Motor_Stop_SFX_Loop" ID="{23CDF794-5B96-4215-B8BD-4DF49ABFCFA3}" ShortID="581266731">
+													<Language>SFX</Language>
+													<AudioFile>Robo_Gods_Coche_1_Motor_Stop_SFX_Loop.wav</AudioFile>
+													<ConvertedFileIDList>
+														<File ID="724286840"/>
+													</ConvertedFileIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Robo_Gods_Coche_1_Motor_Stop_SFX_Loop" ID="{23CDF794-5B96-4215-B8BD-4DF49ABFCFA3}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+									<PositioningInfo>
+										<Position Name="" ID="{11252E19-F306-4B68-B721-A3934225F151}"/>
+									</PositioningInfo>
+								</RandomSequenceContainer>
+							</ChildrenList>
+						</Folder>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="Musica" ID="{5EE719CE-9E66-4A59-82A3-07D1698D8FF8}" ShortID="354023354">
+					<ChildrenList>
+						<RandomSequenceContainer Name="Musica_Limbo" ID="{71EFB8A0-BA7C-4960-A988-F4EE61B6FB6B}" ShortID="738066233">
+							<PropertyList>
+								<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+								<Property Name="RandomOrSequence" Type="int16" Value="0"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-12</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="MUSICA_BUS" ID="{6C684514-A741-4BF9-B1F1-2BE3F140C499}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="Robo_Gods_Musica_Central_Deadline_1_BRUTO" ID="{3772A19D-E31E-4161-B119-097BF196F2D2}" ShortID="277051252">
+									<PropertyList>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
@@ -91,32 +1396,97 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="Robo_Gods_Motor_Start_SFX_Car_1" ID="{2914E819-6495-4D5C-9C90-1E24C6322981}" ShortID="1072197821">
+										<AudioFileSource Name="Robo_Gods_Musica_Central_Deadline_1_BRUTO" ID="{63F54168-87F3-4571-8073-672F2CB98448}" ShortID="95090160">
 											<Language>SFX</Language>
-											<AudioFile>Robo_Gods_Motor_Start_SFX_Car_1.wav</AudioFile>
+											<AudioFile>Robo_Gods_Musica_Central_Deadline_1_BRUTO.wav</AudioFile>
 										</AudioFileSource>
 									</ChildrenList>
 									<ActiveSourceList>
-										<ActiveSource Name="Robo_Gods_Motor_Start_SFX_Car_1" ID="{2914E819-6495-4D5C-9C90-1E24C6322981}" Platform="Linked"/>
+										<ActiveSource Name="Robo_Gods_Musica_Central_Deadline_1_BRUTO" ID="{63F54168-87F3-4571-8073-672F2CB98448}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Robo_Gods_Musica_Central_Deadline_1_Intro_BRUTO" ID="{16DAB303-9CB1-4E3D-920D-A65AD5A790C4}" ShortID="127193179">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Robo_Gods_Musica_Central_Deadline_1_Intro_BRUTO" ID="{4B0C66EC-9754-474D-84D1-EA9EFF1EB104}" ShortID="258279634">
+											<Language>SFX</Language>
+											<AudioFile>Robo_Gods_Musica_Central_Deadline_1_Intro_BRUTO.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Robo_Gods_Musica_Central_Deadline_1_Intro_BRUTO" ID="{4B0C66EC-9754-474D-84D1-EA9EFF1EB104}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 							</ChildrenList>
 							<Playlist>
-								<ItemRef Name="Robo_Gods_Motor_Start_SFX_Car_1" ID="{D571F9E4-1AB9-468F-97EE-CF4008E0159F}"/>
-								<ItemRef Name="Robo_Gods_Motor_LOOP_SFX_Car_1" ID="{F37EA5BE-25D9-4F52-8B42-8BA64AAC4DBA}"/>
+								<ItemRef Name="Robo_Gods_Musica_Central_Deadline_1_Intro_BRUTO" ID="{16DAB303-9CB1-4E3D-920D-A65AD5A790C4}"/>
+								<ItemRef Name="Robo_Gods_Musica_Central_Deadline_1_BRUTO" ID="{3772A19D-E31E-4161-B119-097BF196F2D2}"/>
 							</Playlist>
 						</RandomSequenceContainer>
-						<RandomSequenceContainer Name="Coche_1_Turbo" ID="{8178D648-1415-4BAC-B883-CDFE93CEB7BE}" ShortID="253924389">
+					</ChildrenList>
+				</Folder>
+				<Folder Name="IG_SFX" ID="{88D1E0BF-B93A-43D2-BBA8-217B5C5C39BF}" ShortID="723173898">
+					<ChildrenList>
+						<RandomSequenceContainer Name="Impactos" ID="{DE68157C-D552-4308-9637-BAEEDBCBC2B7}" ShortID="843207355">
+							<PropertyList>
+								<Property Name="Lowpass" Type="int16">
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{5C29AA5E-9D3C-418F-A046-5C54B8114701}">
+												<PropertyList>
+													<Property Name="Enabled" Type="bool" Value="True"/>
+													<Property Name="Min" Type="Real64" Value="-47"/>
+												</PropertyList>
+											</Modifier>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
+								<Property Name="MaxSoundPerInstance" Type="int16">
+									<ValueList>
+										<Value>2</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Pitch" Type="int32">
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{83CBF00C-7948-477F-98EA-2207526EE7B1}">
+												<PropertyList>
+													<Property Name="Enabled" Type="bool" Value="True"/>
+													<Property Name="Max" Type="Real64" Value="278"/>
+													<Property Name="Min" Type="Real64" Value="-202"/>
+												</PropertyList>
+											</Modifier>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
+								<Property Name="UseMaxSoundPerInstance" Type="bool">
+									<ValueList>
+										<Value>True</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-3</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
 								</Reference>
 								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+									<ObjectRef Name="SFX_BUS" ID="{06504896-303E-4D3A-BC83-BAE0A55A7391}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<Sound Name="Robo_Gods_Motor_Turbo_SFX_Car_1" ID="{731865AB-4F90-4E62-AEE1-BB8D73A967AF}" ShortID="296061020">
+								<Sound Name="Robo_Gods_Nave_Impact_SFX_Start_1" ID="{CBF7130C-76A1-46DE-B05D-BA72772ADC2E}" ShortID="439255136">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
@@ -126,28 +1496,16 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="Robo_Gods_Motor_Turbo_SFX_Car_1" ID="{28B8404A-ADCE-4401-A43D-F700D1FA3055}" ShortID="213490839">
+										<AudioFileSource Name="Robo_Gods_Nave_Impact_SFX_Start_1" ID="{7DE3EED7-68DA-4812-B472-29FF2F91033E}" ShortID="341508047">
 											<Language>SFX</Language>
-											<AudioFile>Robo_Gods_Motor_Turbo_SFX_Car_1.wav</AudioFile>
+											<AudioFile>Robo_Gods_Nave_Impact_SFX_Start_1.wav</AudioFile>
 										</AudioFileSource>
 									</ChildrenList>
 									<ActiveSourceList>
-										<ActiveSource Name="Robo_Gods_Motor_Turbo_SFX_Car_1" ID="{28B8404A-ADCE-4401-A43D-F700D1FA3055}" Platform="Linked"/>
+										<ActiveSource Name="Robo_Gods_Nave_Impact_SFX_Start_1" ID="{7DE3EED7-68DA-4812-B472-29FF2F91033E}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
-							</ChildrenList>
-						</RandomSequenceContainer>
-						<RandomSequenceContainer Name="Coche_1_Freno" ID="{F3732206-578F-494A-8826-118F8490BE1B}" ShortID="1009154675">
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<Sound Name="Robo_Gods_Freno_Stop_Start_SFX_Car_1" ID="{43278D1B-07C7-4D1E-97D9-F87E35E73657}" ShortID="272172569">
+								<Sound Name="Robo_Gods_Nave_Impact_SFX_Start_2" ID="{89EF9AE7-CAF2-45A3-BD00-8A892BB6183B}" ShortID="853835982">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
@@ -157,13 +1515,51 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="Robo_Gods_Freno_Stop_Start_SFX_Car_1" ID="{A6063DD0-4DD3-4090-8B10-879B4FF0493D}" ShortID="507993094">
+										<AudioFileSource Name="Robo_Gods_Nave_Impact_SFX_Start_2" ID="{F46564EF-D718-4C60-81D0-3CDC18869FC3}" ShortID="646319717">
 											<Language>SFX</Language>
-											<AudioFile>Robo_Gods_Freno_Stop_Start_SFX_Car_1.wav</AudioFile>
+											<AudioFile>Robo_Gods_Nave_Impact_SFX_Start_2.wav</AudioFile>
 										</AudioFileSource>
 									</ChildrenList>
 									<ActiveSourceList>
-										<ActiveSource Name="Robo_Gods_Freno_Stop_Start_SFX_Car_1" ID="{A6063DD0-4DD3-4090-8B10-879B4FF0493D}" Platform="Linked"/>
+										<ActiveSource Name="Robo_Gods_Nave_Impact_SFX_Start_2" ID="{F46564EF-D718-4C60-81D0-3CDC18869FC3}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Robo_Gods_Nave_Impact_SFX_Start_3" ID="{F42859D6-9615-46A0-985C-90BF185B09ED}" ShortID="160434821">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Robo_Gods_Nave_Impact_SFX_Start_3" ID="{001E51A9-BCDE-4797-9139-DD194469CF03}" ShortID="998259136">
+											<Language>SFX</Language>
+											<AudioFile>Robo_Gods_Nave_Impact_SFX_Start_3.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Robo_Gods_Nave_Impact_SFX_Start_3" ID="{001E51A9-BCDE-4797-9139-DD194469CF03}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Robo_Gods_Nave_Impact_SFX_Start_4" ID="{0F3E2E6F-8FCD-415A-8B25-1730D196E50A}" ShortID="320953837">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Robo_Gods_Nave_Impact_SFX_Start_4" ID="{99FF7AAC-DE6B-462C-969E-1F0C104CB562}" ShortID="55409328">
+											<Language>SFX</Language>
+											<AudioFile>Robo_Gods_Nave_Impact_SFX_Start_4.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Robo_Gods_Nave_Impact_SFX_Start_4" ID="{99FF7AAC-DE6B-462C-969E-1F0C104CB562}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 							</ChildrenList>

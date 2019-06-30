@@ -3,36 +3,485 @@
 	<Events>
 		<WorkUnit Name="Default Work Unit" ID="{8D58C439-FA66-4455-9A80-276710841C5B}" PersistMode="Standalone">
 			<ChildrenList>
-				<Folder Name="Coches" ID="{5DEB9E88-24FA-4E92-B43A-A3FF36229F6C}" ShortID="99658067">
+				<Folder Name="Naves" ID="{5DEB9E88-24FA-4E92-B43A-A3FF36229F6C}" ShortID="99658067">
 					<ChildrenList>
-						<Event Name="Coche_1_Motor_Start_Loop" ID="{4B031EEE-09AF-4B45-931B-AA4FA3B82F78}">
+						<Folder Name="Nave_1" ID="{8F3A752A-A335-4791-B00E-DF8BC1480911}" ShortID="488831611">
 							<ChildrenList>
-								<Action Name="" ID="{E732A3A5-1381-4C1C-88D9-6C1AB6EED94A}" ShortID="182472253">
+								<Event Name="Nave_1_Arranque" ID="{4B031EEE-09AF-4B45-931B-AA4FA3B82F78}">
+									<ChildrenList>
+										<Action Name="" ID="{E31E111C-EC5E-490F-9A2F-9563C703ECFA}" ShortID="371506401">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Coche_1_Arranque" ID="{9E02B558-2436-434D-AB7C-65C109C61655}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Nave_1_Acelerar_In" ID="{8B8264D4-3832-44C3-A863-17C1497BA022}">
+									<ChildrenList>
+										<Action Name="" ID="{2515EA28-4C27-4AAD-85A0-452BFADFCEB5}" ShortID="479711931">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Coche_1_Acelerar_Shoots" ID="{597EF449-FC26-492F-A765-7CBA06BEF7CB}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{D6C21CBE-7C31-404D-9A6C-D3B1D0765950}" ShortID="502641473">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Coche_1_Acelerar_Loop" ID="{64211896-62F1-49A5-9AE0-F11BAEABBD98}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{61E2F617-485B-4AF9-8814-C7162DED4946}" ShortID="1041131103">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="2"/>
+												<Property Name="Scope" Type="int16" Value="1"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Motor_Stop_Loop" ID="{F7D9C84A-0DAC-438C-9335-1831DE2CEA84}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{80411350-1E35-4354-AC99-41099664312A}" ShortID="17368992">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Viento_SFX_Loop" ID="{C57E5393-275B-4A71-9D61-2335DFE908E0}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{54D03CF1-0CB6-49DE-9BB4-0E94509C265F}" ShortID="1062471138">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="18"/>
+												<Property Name="Scope" Type="int16" Value="1"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Coche_1_Acelerar_Loop" ID="{64211896-62F1-49A5-9AE0-F11BAEABBD98}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Nave_1_Acelerar_Out" ID="{96E13455-22A9-4AA0-86AA-9D31CAB1DE0C}">
+									<ChildrenList>
+										<Action Name="" ID="{D2641308-2F1A-4E50-A1CB-CAD184B572A2}" ShortID="482507652">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="2"/>
+												<Property Name="FadeTime" Type="Real64" Value="2"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Coche_1_Acelerar_Loop" ID="{64211896-62F1-49A5-9AE0-F11BAEABBD98}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{244150FB-615E-46C7-8D63-08CCEB03C9C1}" ShortID="958621598">
+											<PropertyList>
+												<Property Name="FadeTime" Type="Real64" Value="1.5"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Motor_Stop_Loop" ID="{F7D9C84A-0DAC-438C-9335-1831DE2CEA84}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{F2683AB1-EFA9-4D0F-8D86-728A59FE0AC2}" ShortID="1019903032">
+											<PropertyList>
+												<Property Name="FadeTime" Type="Real64" Value="1"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Viento_SFX_Loop" ID="{C57E5393-275B-4A71-9D61-2335DFE908E0}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{3EA763B0-14C4-47D3-A6C0-E6C05E4AB70B}" ShortID="856011682">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="13"/>
+												<Property Name="FadeTime" Type="Real64" Value="2"/>
+												<Property Name="Pitch" Type="int32" Value="-400"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Coche_1_Acelerar_Loop" ID="{64211896-62F1-49A5-9AE0-F11BAEABBD98}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{167C9E75-27AE-4C67-9F4F-891ECE0A4F9D}" ShortID="399870326">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="2"/>
+												<Property Name="FadeTime" Type="Real64" Value="0.5"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Coche_1_Acelerar_Shoots" ID="{597EF449-FC26-492F-A765-7CBA06BEF7CB}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
+						<Folder Name="Eventos_Compartdos" ID="{90B40101-974D-46B9-A66F-DCD5832BEC3D}" ShortID="560704290">
+							<ChildrenList>
+								<Event Name="Bascula_Compresor_In" ID="{A570E982-BAA6-4DF8-B0EB-38C739B4B8F8}">
+									<ChildrenList>
+										<Action Name="" ID="{1E352C00-D722-45F9-90C5-71F946B62D69}" ShortID="72804982">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Bascula_Compresor" ID="{D9B58D62-0098-4C2F-8D66-E4B276A373C5}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Turbo_In" ID="{B6E35EEA-BE94-48FC-B26C-FA8EE2A9728B}">
+									<ChildrenList>
+										<Action Name="" ID="{86981292-6AAE-4693-ADE2-3420FD441B9A}" ShortID="655607111">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="16"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Coche_1_Turbo" ID="{8178D648-1415-4BAC-B883-CDFE93CEB7BE}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{DEF611D9-B040-4586-8350-C529A6E70189}" ShortID="842103765">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Coche_1_Turbo" ID="{8178D648-1415-4BAC-B883-CDFE93CEB7BE}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Turbo_Out" ID="{65A70348-BE3B-427F-8DA0-C817EB333C35}">
+									<ChildrenList>
+										<Action Name="" ID="{95C7EA4B-31E0-4286-8C08-D52C97308208}" ShortID="726227895">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="12"/>
+												<Property Name="FadeTime" Type="Real64" Value="1.5"/>
+												<Property Name="Volume" Type="Real64" Value="-96"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Coche_1_Turbo" ID="{8178D648-1415-4BAC-B883-CDFE93CEB7BE}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Freno_In" ID="{6BC1FC3A-0BCE-40F7-BEBA-CA1F4F783E44}">
+									<ChildrenList>
+										<Action Name="" ID="{FF713B29-3F91-409D-8357-94FECF76CA4C}" ShortID="938812306">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Coche_1_Freno" ID="{F3732206-578F-494A-8826-118F8490BE1B}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Bascula_Compresor_Out" ID="{FF3ED5ED-9615-4E26-AAE3-0105A41F5066}">
+									<ChildrenList>
+										<Action Name="" ID="{E5343F8C-3287-475B-A368-2262725B7285}" ShortID="509315935">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="2"/>
+												<Property Name="FadeTime" Type="Real64">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{A8E4D7A4-3CCA-4566-92B1-DC79C0EE2647}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="1"/>
+																	<Property Name="Min" Type="Real64" Value="-1"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Bascula_Compresor" ID="{D9B58D62-0098-4C2F-8D66-E4B276A373C5}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Coche_1_Freno_Out" ID="{98628690-809A-4E05-8744-72BA38CE55F6}">
+									<ChildrenList>
+										<Action Name="" ID="{B93E9D99-AA9E-43D1-9C3F-C158522D6D22}" ShortID="427368541">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="2"/>
+												<Property Name="FadeTime" Type="Real64" Value="1.5"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Coche_1_Freno" ID="{F3732206-578F-494A-8826-118F8490BE1B}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
+						<Folder Name="Nave_2" ID="{19A266D9-03E8-440D-AC42-4AC69FCF66CE}" ShortID="775091563">
+							<ChildrenList>
+								<Event Name="Nave_2_Acelerar_In" ID="{52107479-CB01-45C5-AE27-823F0739A717}">
+									<ChildrenList>
+										<Action Name="" ID="{79447BD1-7E9F-4B27-A867-D53284933A21}" ShortID="677494857">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Nave_2_Acelerar_Loop" ID="{1E494403-7AB2-4AA3-B246-74CA2AA8D22C}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{FD066E73-F7C4-42E9-82F8-5527353B74B1}" ShortID="938462265">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Nave_2_Acelerar_shoots" ID="{D526F91C-8610-484B-AFCE-D16B3DAA68F5}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{92AE4B14-95C3-4924-93B7-5680E0B486DA}" ShortID="272030897">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Viento_SFX_Loop" ID="{C57E5393-275B-4A71-9D61-2335DFE908E0}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{9D3F4B7D-F1E7-48F6-8380-9FC7D3376465}" ShortID="592808363">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="2"/>
+												<Property Name="FadeTime" Type="Real64" Value="1"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Nave_2_Arranque" ID="{8FE1D255-9A45-44D0-84BE-9690A4233C43}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{85F15A1F-B684-4FDE-87E6-593A2C4099F0}" ShortID="96014363">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="18"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Nave_2_Acelerar_Loop" ID="{1E494403-7AB2-4AA3-B246-74CA2AA8D22C}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Nave_2_Acelerar_Out" ID="{AB5FB3B7-117B-4BEE-8CCC-3709255C4290}">
+									<ChildrenList>
+										<Action Name="" ID="{AAC48254-BBA1-4AE2-B87E-818B96228FF0}" ShortID="193331410">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Nave_2_Arranque" ID="{8FE1D255-9A45-44D0-84BE-9690A4233C43}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{75CDE40E-CF19-43C7-B188-C12281F2E44E}" ShortID="205038271">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="2"/>
+												<Property Name="FadeTime" Type="Real64" Value="2"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Nave_2_Acelerar_Loop" ID="{1E494403-7AB2-4AA3-B246-74CA2AA8D22C}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{057BCA54-C0F4-407D-9859-7EA00BD829C2}" ShortID="889251260">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="13"/>
+												<Property Name="FadeTime" Type="Real64" Value="2"/>
+												<Property Name="Pitch" Type="int32" Value="-400"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Nave_2_Acelerar_Loop" ID="{1E494403-7AB2-4AA3-B246-74CA2AA8D22C}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{C923995E-4C71-45E2-8CBE-A5D843015ED1}" ShortID="638698382">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="2"/>
+												<Property Name="FadeTime" Type="Real64" Value="0.5"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Nave_2_Acelerar_shoots" ID="{D526F91C-8610-484B-AFCE-D16B3DAA68F5}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Nave_2_Arranque" ID="{74C78FE6-3794-4A64-B3D0-B85365888EEF}">
+									<ChildrenList>
+										<Action Name="" ID="{6B48DD75-998C-4389-80F8-6ACB0E8C1F5D}" ShortID="424291979">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Nave_2_Arranque" ID="{8FE1D255-9A45-44D0-84BE-9690A4233C43}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
+						<Folder Name="Nave_3" ID="{6DD5DA35-3433-44C2-8446-9BEBBF425F91}" ShortID="939735057">
+							<ChildrenList>
+								<Event Name="Nave_3_Acelerar_In" ID="{54374D9E-DB1A-450C-946E-53A41535BEAE}">
+									<ChildrenList>
+										<Action Name="" ID="{45055E3D-8F95-4526-86DF-9027433FCF1E}" ShortID="126318687">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Viento_SFX_Loop" ID="{C57E5393-275B-4A71-9D61-2335DFE908E0}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{C747BB1A-F2E5-4DEA-ADCD-13F7401DF3F8}" ShortID="978079702">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Nave_3_Acelerar_Loop" ID="{A2EF9224-FE5E-417C-A0AD-E06B50AE3CB0}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{5E5F614D-E420-4EA1-9765-9C7253918662}" ShortID="840758564">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Nave_3_Acelerar_Shoots" ID="{8A51CB1C-C41F-40D8-BA9A-019F2F30CFCE}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{54A0F696-F84C-4E63-ABBD-160A45E4B95D}" ShortID="398610302">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="18"/>
+												<Property Name="Scope" Type="int16" Value="1"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Nave_3_Acelerar_Loop" ID="{A2EF9224-FE5E-417C-A0AD-E06B50AE3CB0}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{0F9AEDE4-433E-49FA-9E0F-829A95288725}" ShortID="630289370">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="2"/>
+												<Property Name="Scope" Type="int16" Value="1"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Nave_3_Arranque" ID="{89D5F053-D64D-43C5-AEB0-DAEAA4172F44}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Nave_3_Acelerar_Out" ID="{D375E3AF-1D20-45A8-9680-C37BD9B566DF}">
+									<ChildrenList>
+										<Action Name="" ID="{DAA92F38-3035-49F8-B6F1-EF2192AE516D}" ShortID="667026622">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Nave_3_Arranque" ID="{89D5F053-D64D-43C5-AEB0-DAEAA4172F44}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{7633BFE5-AFA6-4B93-B216-44FE8C9228C7}" ShortID="367746498">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="2"/>
+												<Property Name="FadeTime" Type="Real64" Value="2"/>
+												<Property Name="Scope" Type="int16" Value="1"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Nave_3_Acelerar_Loop" ID="{A2EF9224-FE5E-417C-A0AD-E06B50AE3CB0}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{43EE20BE-5B23-4AC0-857A-323E78E647BE}" ShortID="798152857">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="13"/>
+												<Property Name="FadeTime" Type="Real64" Value="2"/>
+												<Property Name="Pitch" Type="int32" Value="-450"/>
+												<Property Name="Scope" Type="int16" Value="1"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Nave_3_Acelerar_Loop" ID="{A2EF9224-FE5E-417C-A0AD-E06B50AE3CB0}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{0603794D-C0DE-4E84-BF2D-1E3C777A839A}" ShortID="300237963">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="2"/>
+												<Property Name="FadeTime" Type="Real64" Value="0.5"/>
+												<Property Name="Scope" Type="int16" Value="1"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Nave_3_Acelerar_Shoots" ID="{8A51CB1C-C41F-40D8-BA9A-019F2F30CFCE}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{BA0A751C-5564-4111-B29D-936699235DBD}" ShortID="776019164">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="2"/>
+												<Property Name="FadeTime" Type="Real64" Value="2"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Viento_Motor_Loop" ID="{A55280A5-6699-4E40-B582-AD1C1EBC2CB2}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Nave_3_Arranque" ID="{135987B9-2BFB-4BE3-9506-8D2E9119AA39}">
+									<ChildrenList>
+										<Action Name="" ID="{953F52B8-84AF-40E4-A425-BC25F01817B8}" ShortID="543155489">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Nave_3_Arranque" ID="{89D5F053-D64D-43C5-AEB0-DAEAA4172F44}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="Musica" ID="{797811B4-DAC0-46B5-8A38-604374B0655D}" ShortID="362033665">
+					<ChildrenList>
+						<Event Name="Musica_Limbo" ID="{36E7E5CF-31C8-4D4F-995B-8654587F1DEF}">
+							<ChildrenList>
+								<Action Name="" ID="{B0B5519A-9F36-4FDE-BB0B-E3FB7C9BC77F}" ShortID="753125630">
 									<ReferenceList>
 										<Reference Name="Target">
-											<ObjectRef Name="Coche_1_Motor_Start_Loop" ID="{4BA916AE-F0D9-4BE8-B901-34D8C0515C07}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+											<ObjectRef Name="Musica_Limbo" ID="{71EFB8A0-BA7C-4960-A988-F4EE61B6FB6B}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
 							</ChildrenList>
 						</Event>
-						<Event Name="Coche_1_turbo" ID="{B6E35EEA-BE94-48FC-B26C-FA8EE2A9728B}">
+					</ChildrenList>
+				</Folder>
+				<Folder Name="IG_SFX" ID="{DE7F6A94-B755-448D-B577-86C16D73D22A}" ShortID="597550448">
+					<ChildrenList>
+						<Event Name="Impactos_In" ID="{AA8FCDBA-E59E-4660-8DF5-AB2A8E686174}">
 							<ChildrenList>
-								<Action Name="" ID="{86981292-6AAE-4693-ADE2-3420FD441B9A}" ShortID="655607111">
+								<Action Name="" ID="{888C5E43-7C03-4ED2-9C76-1E5F8D599C51}" ShortID="874895323">
 									<ReferenceList>
 										<Reference Name="Target">
-											<ObjectRef Name="Coche_1_Turbo" ID="{8178D648-1415-4BAC-B883-CDFE93CEB7BE}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-							</ChildrenList>
-						</Event>
-						<Event Name="Coche_1_Freno" ID="{6BC1FC3A-0BCE-40F7-BEBA-CA1F4F783E44}">
-							<ChildrenList>
-								<Action Name="" ID="{FF713B29-3F91-409D-8357-94FECF76CA4C}" ShortID="938812306">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="Coche_1_Freno" ID="{F3732206-578F-494A-8826-118F8490BE1B}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+											<ObjectRef Name="Impactos" ID="{DE68157C-D552-4308-9637-BAEEDBCBC2B7}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>

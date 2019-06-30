@@ -34,7 +34,7 @@ public class CameraController : MonoBehaviour, IControllable
     private float currentDistance, currentHeight;
     private float transitionGetAwayValue, transitionHeightValue, transitionRotationValueZ, transitionRotationValueX;
 
-    void OnEnable()
+    public void OnEnable()
     {
         currentDistance = defaultDistance;
         currentHeight = defaultHeight;
@@ -47,25 +47,13 @@ public class CameraController : MonoBehaviour, IControllable
         
         //Buscar un mejor sitio para esto o cuando cepa arregle lo del bindeo de los servicios comunes, cambiarlo
         Atto.Bind<IInputService,OwnInputProvider>();
-
-        //No tener en cuenta, solo para pruebas
-        if (activeDevice)
-            target.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
-         
-        //Le decimos a la cámara que lleva este script, que dispositivo lo va a controlar (va a poder acceder a Control(IDevice device))
-        Core.Input.AssignControllable(target.GetComponent<IncontrolProvider>(),this);
-    }
-
-    private void OnDisable()
-    {
-        //Eliminamos la referencia
-        Core.Input.UnassignControllable(target.GetComponent<IncontrolProvider>(),this);
     }
 
     public void Control(IDevice device)
     {
-
-        //Calcula el punto trasero de la cámara con respecto a su target
+        if (target != null)
+        {
+            //Calcula el punto trasero de la cámara con respecto a su target
         transform.position = target.transform.position - new Vector3(target.transform.forward.x, 0, target.transform.forward.z) * currentDistance;
         
         //Calcula el punto de la cámara según la altura
@@ -173,6 +161,7 @@ public class CameraController : MonoBehaviour, IControllable
 
             transitionRotationValueZ += Time.deltaTime * smoothRotationTransition;
             currentRotationZ = Mathf.Lerp(currentRotationZ, 0, transitionRotationValueZ);
+        }
         }
 
     } 

@@ -8,7 +8,107 @@
 						<Reference Name="AudioDevice">
 							<ObjectRef Name="System" ID="{1207ECC7-8F47-49F9-9652-58F9AF391F86}" WorkUnitID="{1FF15524-86AE-4661-83CD-A8C1F5312DDB}"/>
 						</Reference>
+						<Reference Name="Effect0">
+							<Custom>
+								<Effect Name="Wwise_Compressor_(Custom)" ID="{F3779DEE-604E-4859-A201-345BCD8E0B41}" ShortID="807116299" PluginName="Wwise Compressor" CompanyID="0" PluginID="108" PluginType="3">
+									<PropertyList>
+										<Property Name="OutputGain" Type="Real32" Value="3"/>
+										<Property Name="ReleaseTime" Type="Real32" Value="0.44"/>
+										<Property Name="Threshold" Type="Real32" Value="-30.9"/>
+									</PropertyList>
+								</Effect>
+							</Custom>
+						</Reference>
+						<Reference Name="Effect1">
+							<Custom>
+								<Effect Name="Wwise_Peak_Limiter_(Custom)" ID="{8A565887-4D56-4938-A975-D156DA2CA70B}" ShortID="366448007" PluginName="Wwise Peak Limiter" CompanyID="0" PluginID="110" PluginType="3">
+									<PropertyList>
+										<Property Name="Threshold" Type="Real32" Value="-7.1"/>
+									</PropertyList>
+								</Effect>
+							</Custom>
+						</Reference>
 					</ReferenceList>
+					<ChildrenList>
+						<Bus Name="MOTOR_1_3_BUS" ID="{9FF035E0-4086-4A9F-BA0A-49D983130EFC}">
+							<PropertyList>
+								<Property Name="MaxSoundPerInstance" Type="int16">
+									<ValueList>
+										<Value>6</Value>
+									</ValueList>
+								</Property>
+								<Property Name="OverLimitBehavior" Type="int16" Value="1"/>
+								<Property Name="UseMaxSoundPerInstance" Type="bool">
+									<ValueList>
+										<Value>True</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Effect0">
+									<Custom>
+										<Effect Name="Wwise_Parametric_EQ_(Custom)" ID="{267E05F6-3403-4E9A-9F69-E93805156629}" ShortID="277477046" PluginName="Wwise Parametric EQ" CompanyID="0" PluginID="105" PluginType="3">
+											<PropertyList>
+												<Property Name="FrequencyBand2" Type="Real32" Value="562"/>
+												<Property Name="GainBand1" Type="Real32" Value="-2"/>
+												<Property Name="GainBand2" Type="Real32" Value="-2"/>
+												<Property Name="QFactorBand2" Type="Real32" Value="1.5"/>
+											</PropertyList>
+										</Effect>
+									</Custom>
+								</Reference>
+							</ReferenceList>
+							<DuckingList>
+								<DuckItem>
+									<BusRef Name="SFX_BUS" ID="{06504896-303E-4D3A-BC83-BAE0A55A7391}"/>
+									<DuckingParam>
+										<Volume>-2</Volume>
+										<FadeInTime>1</FadeInTime>
+										<FadeOutTime>1</FadeOutTime>
+										<FadeCurve>FadeLinear</FadeCurve>
+									</DuckingParam>
+								</DuckItem>
+							</DuckingList>
+						</Bus>
+						<Bus Name="MOTOR_2_4_BUS" ID="{E9AC9E29-EE0A-4D0C-919A-F41E20AF4276}">
+							<DuckingList>
+								<DuckItem>
+									<BusRef Name="SFX_BUS" ID="{06504896-303E-4D3A-BC83-BAE0A55A7391}"/>
+									<DuckingParam>
+										<Volume>-2</Volume>
+										<FadeInTime>1</FadeInTime>
+										<FadeOutTime>1</FadeOutTime>
+										<FadeCurve>FadeLinear</FadeCurve>
+									</DuckingParam>
+								</DuckItem>
+							</DuckingList>
+						</Bus>
+						<Bus Name="MUSICA_BUS" ID="{6C684514-A741-4BF9-B1F1-2BE3F140C499}">
+							<DuckingList>
+								<DuckItem>
+									<BusRef Name="MOTOR_1_3_BUS" ID="{9FF035E0-4086-4A9F-BA0A-49D983130EFC}"/>
+									<DuckingParam>
+										<Volume>-5</Volume>
+										<FadeInTime>1</FadeInTime>
+										<FadeOutTime>1</FadeOutTime>
+										<FadeCurve>FadeInvSCurve</FadeCurve>
+										<TargetProp>BusVolume</TargetProp>
+									</DuckingParam>
+								</DuckItem>
+								<DuckItem>
+									<BusRef Name="MOTOR_2_4_BUS" ID="{E9AC9E29-EE0A-4D0C-919A-F41E20AF4276}"/>
+									<DuckingParam>
+										<Volume>-5</Volume>
+										<FadeInTime>1</FadeInTime>
+										<FadeOutTime>1</FadeOutTime>
+										<FadeCurve>FadeInvSCurve</FadeCurve>
+										<TargetProp>BusVolume</TargetProp>
+									</DuckingParam>
+								</DuckItem>
+							</DuckingList>
+						</Bus>
+						<Bus Name="SFX_BUS" ID="{06504896-303E-4D3A-BC83-BAE0A55A7391}"/>
+					</ChildrenList>
 				</Bus>
 			</ChildrenList>
 		</WorkUnit>

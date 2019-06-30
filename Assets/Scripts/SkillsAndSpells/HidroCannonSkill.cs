@@ -14,6 +14,11 @@ public class HidroCannonSkill : SkillBase
         Scale();
     }
 
+    public override void FinishEffect()
+    {
+        throw new NotImplementedException();
+    }
+
     public void Scale()
     { 
         transform.DOScaleZ(size, timeToScale);

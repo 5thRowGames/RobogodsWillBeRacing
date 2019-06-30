@@ -38,7 +38,7 @@ public class PlayerSelectionManager : MonoBehaviour
                 players[playerOrder].myPlayerActions = MyPlayerActions.BindControls();
                 players[playerOrder].InputDevice = inputDevice;
                 Core.Input.AssignControllable(players[playerOrder],playerSelectionController[playerOrder]);
-                Core.Input.ConnectDevice(players[playerOrder]);
+                //Core.Input.ConnectDevice(players[playerOrder]);
                 playerSelectionController[playerOrder].JoinGamePressed();
                 playerOrder++;
             }
@@ -50,14 +50,13 @@ public class PlayerSelectionManager : MonoBehaviour
 
             if (RaceManager.Instance.players < 4 && !keyboardSelected)
             {
-                //Quitar
                 keyboardSelected = true;
                 
                 RaceManager.Instance.players++;
                 players[playerOrder].InputDevice = null;
                 players[playerOrder].myPlayerActions = keyboardListener; //Prueba
                 Core.Input.AssignControllable(players[playerOrder],playerSelectionController[playerOrder]);
-                Core.Input.ConnectDevice(players[playerOrder]);
+                //Core.Input.ConnectDevice(players[playerOrder]);
                 playerSelectionController[playerOrder].JoinGamePressed();
                 playerOrder++;
             }

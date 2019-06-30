@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class FireBallBehaviour: MonoBehaviour
 {
-    public LayerMask layer;
     public Transform rotatePoint;
     
     [Range(50,300)]
@@ -28,6 +28,16 @@ public class FireBallBehaviour: MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
+        other.GetComponent<DeviceController>().playable = false;
+        gameObject.SetActive(false);
+
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(other.transform.DORotate(new Vector3(0, 360, 0), 1f,RotateMode.FastBeyond360).SetRelative())
+            .Append(other.transform.DORotate(new Vector3(0, 360, 0), 1f,RotateMode.FastBeyond360).SetRelative())
+            .Append(other.transform.DORotate(new Vector3(0, 360, 0), 1f,RotateMode.FastBeyond360).SetRelative())
+            .OnComplete(() =>
+        {
+            other.GetComponent<DeviceController>().playable = false; 
+        });
     }
 }

@@ -6,7 +6,7 @@ using InControl;
 
 public class MyCarController : MonoBehaviour, IControllable
 {
-    public bool activeDevice; //Para prueba solo
+    public bool activeDevice; 
 
     [Header("*Car Specs*")]
     [SerializeField] [Tooltip("Fuerza aplicada al acelerar")] private float speedForce = 50f;
@@ -81,72 +81,56 @@ public class MyCarController : MonoBehaviour, IControllable
     private List<RaycastHit> hitList;
 
     [SerializeField] private bool rcRunning;
-    
-    //Para sonidos
-    private bool isBoosting;
-    private bool isBraking;
 
     private void Start()
     {
+
         rb.centerOfMass = transform.InverseTransformPoint(centerOfMass.position);
         hitList = new List<RaycastHit>();
         for (int i = 0; i < carCorners.Count; i++)
             hitList.Add(new RaycastHit());
 
         rb.maxAngularVelocity = maxAngularSpeed;
-
-        if (activeDevice)
-            GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindBoth();
-
-        Core.Input.AssignControllable(GetComponent<IncontrolProvider>(),this);
-        
-        //Sonidos
-        AkSoundEngine.PostEvent("Coche_1_Motor_Start_Loop", gameObject);
-
         brakeToReverseTimer = brakeToReverseTime;
         deaccelerationTimer = deaccelerationTime;
+        
+        AkSoundEngine.PostEvent("Coche_1_Arranque", gameObject);
     }
 
     public void Control(IDevice device)
     {
-        boostInput = device.State.Jump.IsHeld;
-        accelerationInput = device.State.RightTrigger.Value;
-        steeringInput = device.State.Horizontal.Value;
-        brakeInput = device.State.Fire.Value;
-        handBrakeInput = device.State.LeftTrigger.Value;
-
-        resetInput = device.State.Special.IsPressed;
-        jumpInput = device.State.LeftBumper.IsPressed;
-
-        if (alwaysAccelerate && accelerationInput < minAcceleration) accelerationInput = minAcceleration;
-        
-        if (boostInput && !isBoosting)
+        if (device != null)
         {
-            isBoosting = true;
-            AkSoundEngine.PostEvent("Coche_1_turbo", gameObject);
-        }
+            boostInput = device.State.Jump.IsHeld;
+            accelerationInput = device.State.RightTrigger.Value;
+            steeringInput = device.State.Horizontal.Value;
+            brakeInput = device.State.Fire.Value;
+            handBrakeInput = device.State.LeftTrigger.Value;
 
-        if (!boostInput)
-            isBoosting = false;
-        else
-            accelerationInput *= boostMultiplier;
+            resetInput = device.State.Special.IsPressed;
+            jumpInput = device.State.LeftBumper.IsPressed;
+
+            if (alwaysAccelerate && accelerationInput < minAcceleration) accelerationInput = minAcceleration;
+
+            if (rb.velocity.magnitude < speedThreshold) accelerationInput *= instantSpeedForce;
+
+            ShaderPruebas.blurAmount = rb.velocity.magnitude / 500; //Borrar, solo es para pruebas
+
+            speedUnderThreshold = rb.velocity.magnitude < speedThreshold;
+        }
         
-        if (brakeInput > 0.9f && !isBraking)
-        {
-            isBraking = true;
-            AkSoundEngine.PostEvent("Coche_1_Freno", gameObject);
-        }
+    }
 
-        if (brakeInput < 0.9f)
-            isBraking = false;
-
-        if (rb.velocity.magnitude < speedThreshold) accelerationInput *= instantSpeedForce;
-
-        AkSoundEngine.SetRTPCValue("Player_Velocidad", rb.velocity.magnitude);
-
-        ShaderPruebas.blurAmount = rb.velocity.magnitude / 500; //Borrar, solo era para pruebas
-
-        speedUnderThreshold = rb.velocity.magnitude < speedThreshold ? true : false;
+    private void OnEnable()
+    {
+        ConnectDisconnectManager.ConnectCarControllerDelegate += ConnectCar;
+        ConnectDisconnectManager.DisconnectCarControllerDelegate += DisconnectCar;
+    }
+    
+    private void OnDisable()
+    {
+        ConnectDisconnectManager.ConnectCarControllerDelegate -= ConnectCar;
+        ConnectDisconnectManager.DisconnectCarControllerDelegate -= DisconnectCar;
     }
 
     private void FixedUpdate()
@@ -416,6 +400,16 @@ public class MyCarController : MonoBehaviour, IControllable
         rb.rotation = Quaternion.Euler(0, rb.rotation.eulerAngles.y, 0f);
         rb.Sleep();
         rb.WakeUp();
+    }
+
+    public void ConnectCar()
+    {
+        Core.Input.AssignControllable(GetComponent<IncontrolProvider>(), this);
+    }
+
+    public void DisconnectCar()
+    {
+        Core.Input.UnassignControllable(GetComponent<IncontrolProvider>(), this);
     }
 
     private void OnDrawGizmos()

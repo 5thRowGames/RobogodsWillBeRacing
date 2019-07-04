@@ -34,6 +34,8 @@ public class StartRaceEduardo : MonoBehaviour
     {
         SetCameraAndControl();
         StartRaceTween();
+
+        AkSoundEngine.PostEvent("Musica_Limbo",gameObject);
     }
 
     public void SetCameraAndControl()

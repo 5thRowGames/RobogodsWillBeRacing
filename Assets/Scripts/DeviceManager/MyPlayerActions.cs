@@ -154,4 +154,56 @@ public class MyPlayerActions : PlayerActionSet
 
         return myPlayerActions;
     }
+    
+    public static MyPlayerActions Eduardo1()
+    {
+        var myPlayerActions = new MyPlayerActions();
+        
+        myPlayerActions.Right.AddDefaultBinding(Key.D);
+        myPlayerActions.Left.AddDefaultBinding(Key.A);
+        myPlayerActions.Fire.AddDefaultBinding(Key.S);
+        myPlayerActions.RightTrigger.AddDefaultBinding(Key.W);
+        myPlayerActions.Gas.AddDefaultBinding(Key.X);
+
+        return myPlayerActions;
+    }
+
+    public static MyPlayerActions Eduardo2()
+    {
+        var myPlayerActions = new MyPlayerActions();
+        
+        myPlayerActions.Right.AddDefaultBinding(Key.K);
+        myPlayerActions.Left.AddDefaultBinding(Key.H);
+        myPlayerActions.Fire.AddDefaultBinding(Key.J);
+        myPlayerActions.RightTrigger.AddDefaultBinding(Key.U);
+        myPlayerActions.Gas.AddDefaultBinding(Key.N);
+
+        return myPlayerActions;
+    }
+    
+    public static MyPlayerActions Eduardo3()
+    {
+        var myPlayerActions = new MyPlayerActions();
+        
+        myPlayerActions.Right.AddDefaultBinding(Key.RightArrow);
+        myPlayerActions.Left.AddDefaultBinding(Key.LeftArrow);
+        myPlayerActions.Fire.AddDefaultBinding(Key.DownArrow);
+        myPlayerActions.RightTrigger.AddDefaultBinding(Key.UpArrow);
+        myPlayerActions.Gas.AddDefaultBinding(Key.M);
+
+        return myPlayerActions;
+    }
+    
+    public static MyPlayerActions Eduardo4()
+    {
+        var myPlayerActions = new MyPlayerActions();
+        
+        myPlayerActions.Right.AddDefaultBinding(Key.Pad6);
+        myPlayerActions.Left.AddDefaultBinding(Key.Pad4);
+        myPlayerActions.Fire.AddDefaultBinding(Key.Pad2);
+        myPlayerActions.RightTrigger.AddDefaultBinding(Key.Pad8);
+        myPlayerActions.Gas.AddDefaultBinding(Key.Pad0);
+
+        return myPlayerActions;
+    }
 }

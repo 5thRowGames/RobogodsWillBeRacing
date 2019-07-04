@@ -457,6 +457,114 @@
 								</Event>
 							</ChildrenList>
 						</Folder>
+						<Folder Name="Nave_4" ID="{4ECA5323-5F0E-46E3-B555-DA2AA6130620}" ShortID="1041288411">
+							<ChildrenList>
+								<Event Name="Nave_4_Acelerar_In" ID="{64EBAD92-19E6-4390-9320-627D36FD248A}">
+									<ChildrenList>
+										<Action Name="" ID="{1469A1A4-8144-49F0-B7B3-34C4628BC24F}" ShortID="49783290">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Viento_SFX_Loop" ID="{C57E5393-275B-4A71-9D61-2335DFE908E0}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{0B5E19F6-0429-491A-B223-0AE61032760E}" ShortID="388702933">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Nave_4_Acelerar_Loop" ID="{FA618A39-30E1-45D5-915A-D2803871F8DD}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{5F990C67-C102-417B-B817-EDB260C16301}" ShortID="190738091">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Nave_4_Acelerar_Shoots" ID="{09B99A9E-BEAA-4099-AA62-94F71E9889E6}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{83F1C944-E07A-4887-8928-82F3E85F80B3}" ShortID="219026174">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="18"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Nave_4_Acelerar_Loop" ID="{FA618A39-30E1-45D5-915A-D2803871F8DD}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{E892B4D2-ED6E-40AB-8671-1246BEC1056F}" ShortID="485378955">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="2"/>
+												<Property Name="FadeTime" Type="Real64" Value="1"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Nave_4_Arranque" ID="{630C9835-5314-48F1-BD5E-7E250747FF13}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Nave_4_Acelerar_Out" ID="{764CAFD5-148C-4D1F-8781-33EFC5620DEA}">
+									<ChildrenList>
+										<Action Name="" ID="{A4A4175A-2600-4FFA-A32C-56266D8E4912}" ShortID="482852863">
+											<PropertyList>
+												<Property Name="FadeTime" Type="Real64" Value="0.5"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Nave_4_Arranque" ID="{630C9835-5314-48F1-BD5E-7E250747FF13}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{4A3E6F26-A317-4A0D-83D8-EB073A39B318}" ShortID="10854599">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="2"/>
+												<Property Name="Delay" Type="Real64" Value="2"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Nave_4_Acelerar_Loop" ID="{FA618A39-30E1-45D5-915A-D2803871F8DD}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{D23A0028-0D40-4CD8-8FA2-F7A5AFE66CA2}" ShortID="989336388">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="13"/>
+												<Property Name="FadeTime" Type="Real64" Value="2"/>
+												<Property Name="Pitch" Type="int32" Value="-400"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Nave_4_Acelerar_Loop" ID="{FA618A39-30E1-45D5-915A-D2803871F8DD}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{D9FD5B22-B4DD-418B-AD4E-E86201124B3C}" ShortID="222862574">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="2"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Nave_4_Acelerar_Shoots" ID="{09B99A9E-BEAA-4099-AA62-94F71E9889E6}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Nave_4_Arranque" ID="{B5F75C5E-4FB0-4E54-A2E4-A8ABC0F0EDE3}">
+									<ChildrenList>
+										<Action Name="" ID="{168E5173-B890-4FBA-B65D-F0257C5A7748}" ShortID="768550826">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Nave_4_Arranque" ID="{630C9835-5314-48F1-BD5E-7E250747FF13}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Musica" ID="{797811B4-DAC0-46B5-8A38-604374B0655D}" ShortID="362033665">

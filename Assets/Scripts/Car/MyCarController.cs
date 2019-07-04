@@ -6,7 +6,7 @@ using InControl;
 
 public class MyCarController : MonoBehaviour, IControllable
 {
-    public bool activeDevice; 
+    public bool activeDevice; //Para prueba solo
 
     [Header("*Car Specs*")]
     [SerializeField] [Tooltip("Fuerza aplicada al acelerar")] private float speedForce = 50f;
@@ -21,13 +21,15 @@ public class MyCarController : MonoBehaviour, IControllable
     //[SerializeField] [Tooltip("Fuerza impulso para girar")] private float turnImpulse = 2f;
     [SerializeField] [Tooltip("Umbral de giro. Se considera que no se está girando si el valor de giro es menor a este")] [Range(0f, 1f)] private float steeringThreshold = 0.1f;
     [SerializeField] [Tooltip("Factor de reducción de la velocidad angular en cada FixedUpdate si no se está girando")] [Range(0f, 1f)] private float steeringReductionFactor = 0.9f;
+    [SerializeField] [Tooltip("Velocidad mínima del forward del coche para invertir la dirección de giro (marcha atrás)")] private float minZVelocityToReverseSteering = -1f;
     [SerializeField] [Tooltip("Reducción de velocidad angular constante")] private float angularVelocityReductionFactor = 0.95f;
     [SerializeField] [Tooltip("Velocidad angular máxima")] private float maxAngularSpeed = 20f;
     [SerializeField] [Tooltip("Fuerza del freno")] private float brakeForce = 20f;
-    [SerializeField] [Tooltip("Tiempo necesario para pasar de frenar a ir marcha atrás")]private float brakeToReverseTime = 0.5f;
+    [SerializeField] [Tooltip("Tiempo necesario para pasar de frenar a ir marcha atrás")] private float brakeToReverseTime = 0.5f;
     [Tooltip("Cronómero para pasar de frenar a ir marcha atrás")] private float brakeToReverseTimer;
-    [SerializeField][Tooltip("Indica si la velocidad del coche está por debajo del umbral")]private bool speedUnderThreshold;
+    [SerializeField] [Tooltip("Indica si la velocidad del coche está por debajo del umbral")] private bool speedUnderThreshold;
     [SerializeField] [Tooltip("Fuerza en sentido opuesto al giro cuando se usa el freno de mano")] private float handBrakeForce = 30f;
+    [SerializeField] [Tooltip("Factor por el que multiplicar handBrakeForce para aplicar freno")][Range(0f, 2f)] private float handBrakeBrakeFactor = 0.5f;
     //[SerializeField] [Tooltip("Factor de reducción de la velocidad en cada FixedUpdate cuando se usa el freno de mano. Actualmente no en uso.")] [Range(0f, 1f)] private float handBrakeBrakeFactor = 0.95f;
     [SerializeField] [Tooltip("Segundos que hay que mantener el freno de mano pulsado para recibir un turbo tras soltarlo")] private float handBrakeTurboTime = 4f;
     [SerializeField] [Tooltip("Contador de los segundos que estamos pulsando el freno de mano")] private float handBrakeTimer;
@@ -59,6 +61,7 @@ public class MyCarController : MonoBehaviour, IControllable
     [Tooltip("El Rigidbody del coche")] public Rigidbody rb;
     [Tooltip("Layers con los que pueden chocar los raycasts de la suspensión del coche. No deben chocar con el propio layer del coche")] public LayerMask layerMask;
     [Tooltip("Layer para ignorar todo lo que no sea el suelo")] public LayerMask groundLayer;
+    [Tooltip("Layers de los jugadores")] public LayerMask playersMask;
 
     [Header("*Input Info*")]
     [SerializeField] private float accelerationInput;
@@ -71,7 +74,8 @@ public class MyCarController : MonoBehaviour, IControllable
 
     [Header("*More Info*")]
     [SerializeField] [Tooltip("Velocidad angular del coche")] private Vector3 rbAngularVelocity;
-    [SerializeField] [Tooltip("Magnitud de la velocidad del coche")] private float velocity;
+    [SerializeField] [Tooltip("Magnitud de la velocidad del coche")] public float velocityMagnitude;
+    [SerializeField] [Tooltip("Vector de velocidad local del coche")] public Vector3 velocity;
     [SerializeField] [Tooltip("Indica si el vehículo está en el suelo o en el aire")] private bool isGrounded;
     [SerializeField] [Tooltip("Indica si el vehículo está boca abajo")] private bool isUpsideDown;
 
@@ -82,9 +86,18 @@ public class MyCarController : MonoBehaviour, IControllable
 
     [SerializeField] private bool rcRunning;
 
+    //Para sonidos
+    private bool isBoosting;
+    private bool isBraking;
+    private bool isHorizontal;
+
+    public int pruebaSonido;
+
+    //Posiciones de parrilla de salida
+    [SerializeField] private List<Transform> startingPositions;
+
     private void Start()
     {
-
         rb.centerOfMass = transform.InverseTransformPoint(centerOfMass.position);
         hitList = new List<RaycastHit>();
         for (int i = 0; i < carCorners.Count; i++)
@@ -93,32 +106,6 @@ public class MyCarController : MonoBehaviour, IControllable
         rb.maxAngularVelocity = maxAngularSpeed;
         brakeToReverseTimer = brakeToReverseTime;
         deaccelerationTimer = deaccelerationTime;
-        
-        AkSoundEngine.PostEvent("Coche_1_Arranque", gameObject);
-    }
-
-    public void Control(IDevice device)
-    {
-        if (device != null)
-        {
-            boostInput = device.State.Jump.IsHeld;
-            accelerationInput = device.State.RightTrigger.Value;
-            steeringInput = device.State.Horizontal.Value;
-            brakeInput = device.State.Fire.Value;
-            handBrakeInput = device.State.LeftTrigger.Value;
-
-            resetInput = device.State.Special.IsPressed;
-            jumpInput = device.State.LeftBumper.IsPressed;
-
-            if (alwaysAccelerate && accelerationInput < minAcceleration) accelerationInput = minAcceleration;
-
-            if (rb.velocity.magnitude < speedThreshold) accelerationInput *= instantSpeedForce;
-
-            ShaderPruebas.blurAmount = rb.velocity.magnitude / 500; //Borrar, solo es para pruebas
-
-            speedUnderThreshold = rb.velocity.magnitude < speedThreshold;
-        }
-        
     }
 
     private void OnEnable()
@@ -126,17 +113,46 @@ public class MyCarController : MonoBehaviour, IControllable
         ConnectDisconnectManager.ConnectCarControllerDelegate += ConnectCar;
         ConnectDisconnectManager.DisconnectCarControllerDelegate += DisconnectCar;
     }
-    
+
     private void OnDisable()
     {
         ConnectDisconnectManager.ConnectCarControllerDelegate -= ConnectCar;
         ConnectDisconnectManager.DisconnectCarControllerDelegate -= DisconnectCar;
     }
 
+    public void Control(IDevice device)
+    {
+        boostInput = device.State.Jump.IsHeld;
+        accelerationInput = device.State.RightTrigger.Value;
+        steeringInput = device.State.Horizontal.Value;
+        //brakeInput = deviceController.device.State.Fire.Value;
+        brakeInput = device.State.RightBumper.Value;
+        handBrakeInput = device.State.LeftTrigger.Value;
+
+        resetInput = device.State.Special.IsPressed;
+        jumpInput = device.State.LeftBumper.IsPressed;
+
+        if (alwaysAccelerate && accelerationInput < minAcceleration) accelerationInput = minAcceleration;
+
+        if (!boostInput)
+            isBoosting = false;
+        else
+            accelerationInput *= boostMultiplier;
+
+        if (rb.velocity.magnitude < speedThreshold) accelerationInput *= instantSpeedForce;
+
+        //ShaderPruebas.blurAmount = rb.velocity.magnitude / 100; //Borrar, solo era para pruebas
+
+        speedUnderThreshold = rb.velocity.magnitude < speedThreshold ? true : false;
+    }
+
     private void FixedUpdate()
     {
+        if (!activeDevice) return; // Esto es solo para alternar entre distintos vehículos
+
         rbAngularVelocity = rb.angularVelocity; // Para exponer la velocidad angular en el inspector
-        velocity = rb.velocity.magnitude;
+        velocityMagnitude = rb.velocity.magnitude;
+        velocity = transform.InverseTransformDirection(rb.velocity);
 
         // Suspensión
         if (useSimpleSuspension)
@@ -145,7 +161,7 @@ public class MyCarController : MonoBehaviour, IControllable
         }
         else
         {
-            for(int i = 0; i < carCorners.Count; i++)
+            for (int i = 0; i < carCorners.Count; i++)
             {
                 Suspension(carCorners[i], hitList[i], i);
             }
@@ -156,7 +172,10 @@ public class MyCarController : MonoBehaviour, IControllable
         // Para recolocar el vehículo
         if (resetInput)
         {
-            ResetPosition();
+            if (startingPositions != null)
+                ResetRacePosition();
+            else
+                ResetPosition();
             resetInput = false;
         }
 
@@ -246,7 +265,7 @@ public class MyCarController : MonoBehaviour, IControllable
             groundForward = transform.forward;
         }
 
-        if(accelerationInput > 0f)
+        if (accelerationInput > 0f)
         {
             rb.AddForceAtPosition(groundForward * accelerationInput * speedForce, accelPoint.position, ForceMode.Acceleration);
             deaccelerationTimer = deaccelerationTime;
@@ -254,10 +273,10 @@ public class MyCarController : MonoBehaviour, IControllable
         else
         {
             deaccelerationTimer -= Time.deltaTime;
-            if(deaccelerationTimer > 0f)
+            if (deaccelerationTimer > 0f)
             {
-                
-                float accelerationInertia = Mathf.Lerp(0f, 1f, deaccelerationTimer/deaccelerationTime);
+
+                float accelerationInertia = Mathf.Lerp(0f, 1f, deaccelerationTimer / deaccelerationTime);
                 rb.AddForceAtPosition(groundForward * accelerationInertia * speedForce, accelPoint.position, ForceMode.Acceleration);
             }
         }
@@ -295,14 +314,17 @@ public class MyCarController : MonoBehaviour, IControllable
         // Freno de mano
         if (handBrakeInput > 0f)
         {
-            rb.AddForceAtPosition(transform.right * handBrakeInput * handBrakeForce * -steeringInput, handBrakePoint.position);
-            // Freno del freno de mano
-            if (rb.velocity.magnitude != 0f)
+            if (rb.velocity.z > 0f)
             {
-                rb.AddForceAtPosition(-transform.forward * handBrakeInput * handBrakeForce * 2f, handBrakePoint.position, ForceMode.Acceleration);
-                //rb.velocity *= handBrakeBrakeFactor;
+                rb.AddForceAtPosition(transform.right * handBrakeInput * handBrakeForce * -steeringInput, handBrakePoint.position);
+                // Freno del freno de mano
+                if (rb.velocity.magnitude != 0f)
+                {
+                    rb.AddForceAtPosition(-transform.forward * handBrakeInput * brakeForce * handBrakeBrakeFactor, handBrakePoint.position, ForceMode.Acceleration);
+                    //rb.velocity *= handBrakeBrakeFactor;
+                }
+                handBrakeTimer += Time.deltaTime; // Se va incrementando el tiempo que está el freno de mano pulsado
             }
-            handBrakeTimer += Time.deltaTime; // Se va incrementando el tiempo que está el freno de mano pulsado 
         }
         else
         {
@@ -324,6 +346,8 @@ public class MyCarController : MonoBehaviour, IControllable
     {
         yield return new WaitForSeconds(seconds); // Espera para que al jugador le dé tiempo de orientar el vehículo a su conveniencia antes del turbo
 
+        AkSoundEngine.PostEvent("Turbo_In", gameObject);
+
         float timer = handBrakeBoostTime;
         while (timer >= 0f)
         {
@@ -331,6 +355,8 @@ public class MyCarController : MonoBehaviour, IControllable
             rb.AddForceAtPosition(groundForward * boostMultiplier * speedForce, accelPoint.position, ForceMode.Acceleration);
             yield return null;
         }
+
+        AkSoundEngine.PostEvent("Turbo_Out", gameObject);
     }
 
     private void Steering()
@@ -343,13 +369,15 @@ public class MyCarController : MonoBehaviour, IControllable
             }
             else
             {
-                //rb.AddRelativeTorque(0f, steeringInput * turnImpulse * turnSpeed, 0f);
-                rb.AddRelativeTorque(0f, steeringInput * turnSpeed, 0f);
+                if (velocity.z >= minZVelocityToReverseSteering)
+                    rb.AddRelativeTorque(0f, steeringInput * turnSpeed, 0f);
+                else
+                    rb.AddRelativeTorque(0f, -steeringInput * turnSpeed, 0f);
             }
         }
         else // Cuando está en el aire el giro se convierte en movimiento lateral
         {
-            rb.MovePosition(transform.position + (transform.right * steeringInput * velocity * airLateralShiftFactor));
+            rb.MovePosition(transform.position + (transform.right * steeringInput * velocityMagnitude * airLateralShiftFactor));
         }
         rb.angularVelocity *= angularVelocityReductionFactor;
     }
@@ -369,7 +397,7 @@ public class MyCarController : MonoBehaviour, IControllable
 
     private void Suspension(Transform corner, RaycastHit hit, int index)
     {
-        if(Physics.Raycast(corner.position, -Vector3.up, out hit, wheelHeight, layerMask))
+        if (Physics.Raycast(corner.position, -Vector3.up, out hit, wheelHeight, layerMask))
             rb.AddForceAtPosition(Vector3.up * upForce * (1.0f - (hit.distance / wheelHeight)), corner.position);
 
         hitList[index] = hit; // Guardo la información del impacto
@@ -395,21 +423,26 @@ public class MyCarController : MonoBehaviour, IControllable
         isUpsideDown = Physics.Raycast(transform.position, transform.up, Mathf.Infinity, groundLayer);
     }
 
+    public void ResetRacePosition()
+    {
+        foreach(Transform tr in startingPositions)
+        {
+            Collider[] colliders = Physics.OverlapSphere(tr.position, 4f, playersMask);
+            if (colliders.Length == 0)
+            {
+                ResetPosition();
+                transform.position = tr.position;
+                transform.rotation = tr.rotation;
+                break;
+            }
+        }
+    }
+
     private void ResetPosition()
     {
         rb.rotation = Quaternion.Euler(0, rb.rotation.eulerAngles.y, 0f);
         rb.Sleep();
         rb.WakeUp();
-    }
-
-    public void ConnectCar()
-    {
-        Core.Input.AssignControllable(GetComponent<IncontrolProvider>(), this);
-    }
-
-    public void DisconnectCar()
-    {
-        Core.Input.UnassignControllable(GetComponent<IncontrolProvider>(), this);
     }
 
     private void OnDrawGizmos()
@@ -419,7 +452,7 @@ public class MyCarController : MonoBehaviour, IControllable
         {
             // Puntos desde donde se lanzan los rayos para simular la suspensión
             Vector3 toPosition = new Vector3(carCorners[i].position.x, carCorners[i].position.y, carCorners[i].position.z);
-            
+
             Gizmos.DrawSphere(toPosition, 0.1f);
         }
         Gizmos.DrawLine(transform.position, transform.position - transform.up);
@@ -431,7 +464,7 @@ public class MyCarController : MonoBehaviour, IControllable
         Gizmos.DrawSphere(handBrakePoint.position, 0.15f);
 
         Gizmos.color = Color.magenta;
-        if(hitList != null)
+        if (hitList != null)
         {
             Gizmos.DrawLine(hitList[2].point, hitList[0].point);
             Gizmos.DrawLine(hitList[3].point, hitList[1].point);
@@ -443,5 +476,15 @@ public class MyCarController : MonoBehaviour, IControllable
             foreach (var hit in hitList)
                 Gizmos.DrawSphere(hit.point, 0.1f);
         }
+    }
+
+    public void ConnectCar()
+    {
+        Core.Input.AssignControllable(GetComponent<IncontrolProvider>(),this);
+    }
+
+    public void DisconnectCar()
+    {
+        Core.Input.UnassignControllable(GetComponent<IncontrolProvider>(),this);
     }
 }

@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using InControl;
+using UnityEngine;
 
 public class PlayerInfo
 {
+
     public InputDevice inputDevice;
-    public MyPlayerActions myPlayerActions;
+    public IncontrolProvider.ControlType controlType;
     public GodType.RobogodType godType;
 }
 

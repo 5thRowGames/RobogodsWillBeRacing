@@ -7,13 +7,13 @@ using UnityEngine;
 
 public class IncontrolProvider : MonoBehaviour, IDevice
 {
-    public MyPlayerActions myPlayerActions;
+    public MyPlayerActions myPlayerActions = new MyPlayerActions();
 
     public enum ControlType
     {
-        None,
-        Gamepad,
-        Keyboard
+        None = 1,
+        Gamepad = 2,
+        Keyboard = 3
     };
 
     public ControlType controlType;
@@ -35,7 +35,11 @@ public class IncontrolProvider : MonoBehaviour, IDevice
         get => inputDevice;
         set
         {
-            myPlayerActions.Device = value;
+            if(myPlayerActions != null)
+                myPlayerActions.Device = value;
+            else
+                Debug.Log("Estoy seteando un inputDevice teniendo los playerActions a null");
+            
             inputDevice = value;
         }
     }
@@ -55,7 +59,6 @@ public class IncontrolProvider : MonoBehaviour, IDevice
 
     private void Awake()
     {
-        myPlayerActions = new MyPlayerActions();
         controlType = ControlType.None;
     }
 

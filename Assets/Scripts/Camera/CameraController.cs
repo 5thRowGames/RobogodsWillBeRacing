@@ -47,6 +47,15 @@ public class CameraController : MonoBehaviour, IControllable
         
         //Buscar un mejor sitio para esto o cuando cepa arregle lo del bindeo de los servicios comunes, cambiarlo
         Atto.Bind<IInputService,OwnInputProvider>();
+
+        ConnectDisconnectManager.ConnectCarControllerDelegate += ConnectCamera;
+        ConnectDisconnectManager.DisconnectCarControllerDelegate += DisconnectCamera;
+    }
+
+    private void OnDisable()
+    {
+        ConnectDisconnectManager.ConnectCarControllerDelegate -= ConnectCamera;
+        ConnectDisconnectManager.DisconnectCarControllerDelegate -= DisconnectCamera;
     }
 
     public void Control(IDevice device)
@@ -54,47 +63,67 @@ public class CameraController : MonoBehaviour, IControllable
         if (target != null)
         {
             //Calcula el punto trasero de la cámara con respecto a su target
-        transform.position = target.transform.position - new Vector3(target.transform.forward.x, 0, target.transform.forward.z) * currentDistance;
-        
-        //Calcula el punto de la cámara según la altura
-        transform.position = new Vector3(transform.position.x, transform.position.y + currentHeight, transform.position.z);
-        transform.forward = target.transform.forward;
-        
-        //Rota la cámara  según la inclinación proporcionada en los ejes X y Z
-        transform.rotation = Quaternion.Euler(currentRotationX, transform.rotation.eulerAngles.y, currentRotationZ);
+            transform.position = target.transform.position - new Vector3(target.transform.forward.x, 0, target.transform.forward.z) * currentDistance;
+            
+            //Calcula el punto de la cámara según la altura
+            transform.position = new Vector3(transform.position.x, transform.position.y + currentHeight, transform.position.z);
+            transform.forward = target.transform.forward;
+            
+            //Rota la cámara  según la inclinación proporcionada en los ejes X y Z
+            transform.rotation = Quaternion.Euler(currentRotationX, transform.rotation.eulerAngles.y, currentRotationZ);
 
-        //Si pulsamos el turbo, la cámara deberá alejarse del target poco a poco
-        if (device.State.RightTrigger.IsHeld)
-        {
-
-            if (device.State.Jump.IsHeld)
+            //Si pulsamos el turbo, la cámara deberá alejarse del target poco a poco
+            if (device.State.RightTrigger.IsHeld)
             {
-                //En caso de que no se pulse el turbo, la cámara vuelve a su posición original, además de inclinar la cámara
-                if (changeTransition != 1)
+
+                if (device.State.Jump.IsHeld)
                 {
-                    changeTransition = 1;
-                    transitionGetAwayValue = 0;
-                    transitionHeightValue = 0;
-                    transitionRotationValueX = 0;
+                    //En caso de que no se pulse el turbo, la cámara vuelve a su posición original, además de inclinar la cámara
+                    if (changeTransition != 1)
+                    {
+                        changeTransition = 1;
+                        transitionGetAwayValue = 0;
+                        transitionHeightValue = 0;
+                        transitionRotationValueX = 0;
+                    }
+
+                    //Actualiza los valores con un Lerp para mantener un suavizado
+                    transitionGetAwayValue += Time.deltaTime * smoothGetAwayTransition;
+                    currentDistance = Mathf.Lerp(currentDistance, turboDistance, transitionGetAwayValue);
+
+                    transitionHeightValue += Time.deltaTime * smoothHeightTransition;
+                    currentHeight = Mathf.Lerp(currentHeight, turboHeight, transitionHeightValue);
+
+                    transitionRotationValueX += Time.deltaTime * smoothRotationTransition;
+                    currentRotationX = Mathf.Lerp(currentRotationX, maxRotationX, transitionRotationValueX);
                 }
+                else
+                {
+                    if (changeTransition != 2)
+                    {
+                        changeTransition = 2;
+                        transitionHeightValue = 0;
+                        transitionGetAwayValue = 0;
+                    }
 
-                //Actualiza los valores con un Lerp para mantener un suavizado
-                transitionGetAwayValue += Time.deltaTime * smoothGetAwayTransition;
-                currentDistance = Mathf.Lerp(currentDistance, turboDistance, transitionGetAwayValue);
+                    transitionGetAwayValue += Time.deltaTime * smoothGetAwayTransition;
+                    currentDistance = Mathf.Lerp(currentDistance, defaultDistance, transitionGetAwayValue);
 
-                transitionHeightValue += Time.deltaTime * smoothHeightTransition;
-                currentHeight = Mathf.Lerp(currentHeight, turboHeight, transitionHeightValue);
+                    transitionHeightValue += Time.deltaTime * smoothHeightTransition;
+                    currentHeight = Mathf.Lerp(currentHeight, defaultHeight, transitionHeightValue);
 
-                transitionRotationValueX += Time.deltaTime * smoothRotationTransition;
-                currentRotationX = Mathf.Lerp(currentRotationX, maxRotationX, transitionRotationValueX);
+                    transitionRotationValueX += Time.deltaTime * smoothRotationTransition;
+                    currentRotationX = Mathf.Lerp(currentRotationX, maxRotationX, transitionRotationValueX);
+                }
             }
             else
             {
-                if (changeTransition != 2)
+                if (changeTransition != 3)
                 {
-                    changeTransition = 2;
-                    transitionHeightValue = 0;
+                    changeTransition = 3;
                     transitionGetAwayValue = 0;
+                    transitionHeightValue = 0;
+                    transitionRotationValueX = 0;
                 }
 
                 transitionGetAwayValue += Time.deltaTime * smoothGetAwayTransition;
@@ -104,65 +133,55 @@ public class CameraController : MonoBehaviour, IControllable
                 currentHeight = Mathf.Lerp(currentHeight, defaultHeight, transitionHeightValue);
 
                 transitionRotationValueX += Time.deltaTime * smoothRotationTransition;
-                currentRotationX = Mathf.Lerp(currentRotationX, maxRotationX, transitionRotationValueX);
+                currentRotationX = Mathf.Lerp(currentRotationX, 0, transitionRotationValueX);
             }
-        }
-        else
-        {
-            if (changeTransition != 3)
+
+            //Si el jugador gira, la cámara rota de forma suave
+            if(device.State.Horizontal.Value < -0.1f)
             {
-                changeTransition = 3;
-                transitionGetAwayValue = 0;
-                transitionHeightValue = 0;
-                transitionRotationValueX = 0;
+                if (changeTransitionInRotation != 1)
+                {
+                    changeTransitionInRotation = 1;
+                    transitionRotationValueZ = 0;
+                }
+
+                transitionRotationValueZ += Time.deltaTime * smoothRotationTransition;
+                currentRotationZ = Mathf.Lerp(currentRotationZ, maxRotationZ, transitionRotationValueZ);
             }
-
-            transitionGetAwayValue += Time.deltaTime * smoothGetAwayTransition;
-            currentDistance = Mathf.Lerp(currentDistance, defaultDistance, transitionGetAwayValue);
-
-            transitionHeightValue += Time.deltaTime * smoothHeightTransition;
-            currentHeight = Mathf.Lerp(currentHeight, defaultHeight, transitionHeightValue);
-
-            transitionRotationValueX += Time.deltaTime * smoothRotationTransition;
-            currentRotationX = Mathf.Lerp(currentRotationX, 0, transitionRotationValueX);
-        }
-
-        //Si el jugador gira, la cámara rota de forma suave
-        if(device.State.Horizontal.Value < -0.1f)
-        {
-            if (changeTransitionInRotation != 1)
+            else if(device.State.Horizontal.Value > 0.1f)
             {
-                changeTransitionInRotation = 1;
-                transitionRotationValueZ = 0;
-            }
+                if (changeTransitionInRotation != -1)
+                {
+                    changeTransitionInRotation = -1;
+                    transitionRotationValueZ = 0;
+                }
 
-            transitionRotationValueZ += Time.deltaTime * smoothRotationTransition;
-            currentRotationZ = Mathf.Lerp(currentRotationZ, maxRotationZ, transitionRotationValueZ);
-        }
-        else if(device.State.Horizontal.Value > 0.1f)
-        {
-            if (changeTransitionInRotation != -1)
+                transitionRotationValueZ += Time.deltaTime * smoothRotationTransition;
+                currentRotationZ = Mathf.Lerp(currentRotationZ, -maxRotationZ, transitionRotationValueZ);
+            }
+            else
             {
-                changeTransitionInRotation = -1;
-                transitionRotationValueZ = 0;
+
+                if (changeTransitionInRotation != 0)
+                {
+                    changeTransitionInRotation = 0;
+                    transitionRotationValueZ = 0;
+                }
+
+                transitionRotationValueZ += Time.deltaTime * smoothRotationTransition;
+                currentRotationZ = Mathf.Lerp(currentRotationZ, 0, transitionRotationValueZ);
             }
-
-            transitionRotationValueZ += Time.deltaTime * smoothRotationTransition;
-            currentRotationZ = Mathf.Lerp(currentRotationZ, -maxRotationZ, transitionRotationValueZ);
-        }
-        else
-        {
-
-            if (changeTransitionInRotation != 0)
-            {
-                changeTransitionInRotation = 0;
-                transitionRotationValueZ = 0;
-            }
-
-            transitionRotationValueZ += Time.deltaTime * smoothRotationTransition;
-            currentRotationZ = Mathf.Lerp(currentRotationZ, 0, transitionRotationValueZ);
-        }
         }
 
-    } 
+    }
+
+    public void ConnectCamera()
+    {
+        Core.Input.AssignControllable(GetComponent<IncontrolProvider>(),this);
+    }
+
+    public void DisconnectCamera()
+    {
+        Core.Input.UnassignControllable(GetComponent<IncontrolProvider>(),this);
+    }
 }

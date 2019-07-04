@@ -28,7 +28,7 @@ public class FireBallBehaviour: MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        other.GetComponent<DeviceController>().playable = false;
+        /*other.GetComponent<DeviceController>().playable = false;
         gameObject.SetActive(false);
 
         Sequence sequence = DOTween.Sequence();
@@ -38,6 +38,6 @@ public class FireBallBehaviour: MonoBehaviour
             .OnComplete(() =>
         {
             other.GetComponent<DeviceController>().playable = false; 
-        });
+        });*/
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,10 +24,14 @@ public class StartRace : MonoBehaviour
     public GameObject mainCamera;
     
     public Transform finishPosition;
-    public Vector3[] path1;
-    public Vector3[] path2;
-    public Vector3[] path3;
-    public Image fadeImage; 
+    public Image fadeImage;
+    public List<Transform> path1List;
+    public List<Transform> path2List;
+    public List<Transform> path3List;
+    
+    private Vector3[] path1;
+    private Vector3[] path2;
+    private Vector3[] path3;
 
     private void Awake()
     {
@@ -35,28 +40,34 @@ public class StartRace : MonoBehaviour
             cameras[i].SetActive(false);
         }
         mainCamera.SetActive(true);
+
+        //PERFORMANCE
+        path1 = path1List.Select(transform => transform.position).ToArray();
+        path2 = path2List.Select(transform => transform.position).ToArray();
+        path3 = path3List.Select(transform => transform.position).ToArray();
+
     }
 
     private void Start()
     {
-        StartRaceTween();
         SetIA();
         SetCameraAndControl();
+        StartRaceTween();
     }
 
     public void SetIA()
     {
-        if (!RaceManager.Instance.poseidonIA)
-            Instantiate(poseidonIA, startPositions[0]);
+        if (RaceManager.Instance.poseidonIA)
+            Instantiate(poseidonIA, startPositions[0].position,startPositions[0].rotation);
 
-        if (!RaceManager.Instance.anubisIA)
-            Instantiate(anubisIA, startPositions[1]);
+        if (RaceManager.Instance.anubisIA)
+            Instantiate(anubisIA, startPositions[1].position,startPositions[1].rotation);
 
-        if (!RaceManager.Instance.thorIA)
-            Instantiate(thorIA, startPositions[2]);
+        if (RaceManager.Instance.thorIA)
+            Instantiate(thorIA, startPositions[2].position,startPositions[2].rotation);
 
         if (RaceManager.Instance.kaliIA)
-            Instantiate(kaliIA, startPositions[3]);
+            Instantiate(kaliIA, startPositions[3].position,startPositions[3].rotation);
     }
 
     public void SetCameraAndControl()
@@ -70,49 +81,90 @@ public class StartRace : MonoBehaviour
                                 
                 case GodType.RobogodType.Poseidon:
                     
-                    GameObject poseidon = Instantiate(poseidonPlayer, startPositions[0]);
+                    GameObject poseidon = Instantiate(poseidonPlayer, startPositions[0].position,startPositions[0].rotation);
                     poseidon.GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
-                    poseidon.GetComponent<IncontrolProvider>().myPlayerActions = playerInfo.myPlayerActions;
-                    
+                    poseidon.GetComponent<IncontrolProvider>().controlType = playerInfo.controlType;
+
                     cameras[cameraIndex].GetComponent<CameraController>().target = poseidon;
                     cameras[cameraIndex].GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
-                    cameras[cameraIndex].GetComponent<IncontrolProvider>().myPlayerActions = playerInfo.myPlayerActions;
+
+                    if (playerInfo.controlType == IncontrolProvider.ControlType.Gamepad)
+                    {
+                        poseidon.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
+                        cameras[cameraIndex].GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
+                    }
+                    else
+                    {
+                        poseidon.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
+                        cameras[cameraIndex].GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
+                    }
+
                     cameraIndex++;
                     break;
 
                 case GodType.RobogodType.Anubis:
                     
-                    GameObject anubis = Instantiate(anubisPlayer, startPositions[1]);
+                    GameObject anubis = Instantiate(anubisPlayer, startPositions[1].position,startPositions[1].rotation);
                     anubis.GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
-                    anubis.GetComponent<IncontrolProvider>().myPlayerActions = playerInfo.myPlayerActions;
-                    
+
                     cameras[cameraIndex].GetComponent<CameraController>().target = anubis;
                     cameras[cameraIndex].GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
-                    cameras[cameraIndex].GetComponent<IncontrolProvider>().myPlayerActions = playerInfo.myPlayerActions;
+                    
+                    if (playerInfo.controlType == IncontrolProvider.ControlType.Gamepad)
+                    {
+                        anubis.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
+                        cameras[cameraIndex].GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
+                    }
+                    else
+                    {
+                        anubis.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
+                        cameras[cameraIndex].GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
+                    }
+                    
                     cameraIndex++;
                     break;
                 
                 case GodType.RobogodType.Thor:
                     
-                    GameObject thor = Instantiate(thorPlayer, startPositions[2]);
+                    GameObject thor = Instantiate(thorPlayer, startPositions[2].position,startPositions[2].rotation);
                     thor.GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
-                    thor.GetComponent<IncontrolProvider>().myPlayerActions = playerInfo.myPlayerActions;
-                    
+
                     cameras[cameraIndex].GetComponent<CameraController>().target = thor;
                     cameras[cameraIndex].GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
-                    cameras[cameraIndex].GetComponent<IncontrolProvider>().myPlayerActions = playerInfo.myPlayerActions;
+                    
+                    if (playerInfo.controlType == IncontrolProvider.ControlType.Gamepad)
+                    {
+                        thor.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
+                        cameras[cameraIndex].GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
+                    }
+                    else
+                    {
+                       thor.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
+                        cameras[cameraIndex].GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
+                    }
+                    
                     cameraIndex++;
                     break;
                 
                 case GodType.RobogodType.Kali:
                     
-                    GameObject kali = Instantiate(kaliPlayer, startPositions[3]);
+                    GameObject kali = Instantiate(kaliPlayer, startPositions[3].position,startPositions[3].rotation);
                     kali.GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
-                    kali.GetComponent<IncontrolProvider>().myPlayerActions = playerInfo.myPlayerActions;
-                    
+
                     cameras[cameraIndex].GetComponent<CameraController>().target = kali;
                     cameras[cameraIndex].GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
-                    cameras[cameraIndex].GetComponent<IncontrolProvider>().myPlayerActions = playerInfo.myPlayerActions;
+                    
+                    if (playerInfo.controlType == IncontrolProvider.ControlType.Gamepad)
+                    {
+                        kali.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
+                        cameras[cameraIndex].GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
+                    }
+                    else
+                    {
+                        kali.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
+                        cameras[cameraIndex].GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
+                    }
+                    
                     cameraIndex++;
                     break;
             }   
@@ -176,7 +228,7 @@ public class StartRace : MonoBehaviour
     
     public void StartRaceTween()
     {
-        Sequence sequence = DOTween.Sequence();
+        /*Sequence sequence = DOTween.Sequence();
         sequence.Append(fadeImage.DOFade(0, 0.5f));
         sequence.Insert(0.1f, mainCamera.transform.DOMove(path1[0], 0.1f));
         sequence.Append(mainCamera.transform.DOPath(path1, 2f, PathType.CatmullRom, PathMode.Full3D, 5, Color.red));
@@ -189,10 +241,12 @@ public class StartRace : MonoBehaviour
         sequence.Append(fadeImage.DOFade(0, 0.3f));
         sequence.OnComplete(() =>
         {
-            SplitScreen(RaceManager.Instance.players);
-            ConnectDisconnectManager.DisconnectCarControllerDelegate();
-            ConnectDisconnectManager.ConnectCarSoundManager();
-        });
+            
+        });*/
+        
+        SplitScreen(RaceManager.Instance.players);
+        ConnectDisconnectManager.ConnectCarSoundManager();
+        ConnectDisconnectManager.ConnectCarControllerDelegate();
 
     }
 

@@ -7,7 +7,6 @@ public class FireBallSkill : SkillBase
 {
     public Transform spawnPosition;
     public List<GameObject> ballPool;
-    public DeviceController deviceController;
     public Transform parent;
 
     //Si es la primera que que se activa la habilidad, solo debe activar la rotación de las bolas
@@ -18,11 +17,11 @@ public class FireBallSkill : SkillBase
     {
         transform.rotation = Quaternion.Euler(0, parent.rotation.y, 0);
 
-        if (deviceController.device != null && deviceController.playable && deviceController.device.State.Fire.IsPressed && reactivateSkill)
+        /*if (deviceController.device != null && deviceController.playable && deviceController.device.State.Fire.IsPressed && reactivateSkill)
         {
             Effect();
             StartCoroutine(PressAgain(0.5f));
-        }
+        }*/
     }
 
     public override void Effect()

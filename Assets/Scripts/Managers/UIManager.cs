@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using InControl;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -26,14 +27,21 @@ public class UIManager : Singleton<UIManager>
 
     public int playersWithGodPicked;
     public int playersConfirmed;
-    
+
+    private MenuType.MenyType menuType;
 
     private void Awake()
     {
+        menuType = MenuType.MenyType.TitleScreen;
         poseidonChosen = false;
         kaliChosen = false;
         thorChosen = false;
         anubisChosen = false;
+    }
+
+    private void Update()
+    {
+        
     }
 
     private void ResetMainMenu()

@@ -29,6 +29,7 @@ public class UIManager : Singleton<UIManager>
     public int playersConfirmed;
 
     private MenuType.MenyType menuType;
+    private bool allowInput;
 
     private void Awake()
     {
@@ -41,7 +42,51 @@ public class UIManager : Singleton<UIManager>
 
     private void Update()
     {
-        
+        InputDevice device = InputManager.ActiveDevice;
+
+        if (allowInput && (device.Action1.IsPressed || Input.GetKeyDown(KeyCode.KeypadEnter)))
+        {
+            ChangeState();
+        }
+    }
+
+    private void ChangeState()
+    {
+        switch (menuType)
+        {
+            case MenuType.MenyType.Race:
+                
+                break;
+            
+            case MenuType.MenyType.Settings:
+                break;
+            
+            case MenuType.MenyType.Credits:
+                break;
+            
+            case MenuType.MenyType.Laps:
+                break;
+            
+            case MenuType.MenyType.CharacterSelection:
+                break;
+            
+            case MenuType.MenyType.Game:
+                break;
+            
+            case MenuType.MenyType.TitleScreen:
+                
+                break;
+            
+            case MenuType.MenyType.Pause:
+                break;
+        }
+    }
+
+    private void GoToMainMenu()
+    {
+        allowInput = false;
+        //Meter secuencia de dotween
+        allowInput = true;
     }
 
     private void ResetMainMenu()

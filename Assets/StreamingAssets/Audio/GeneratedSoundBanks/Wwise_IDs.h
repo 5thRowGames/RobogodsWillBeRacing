@@ -13,8 +13,6 @@ namespace AK
 {
     namespace EVENTS
     {
-        static const AkUniqueID BASCULA_COMPRESOR_IN = 3763551383U;
-        static const AkUniqueID BASCULA_COMPRESOR_OUT = 3004065450U;
         static const AkUniqueID COCHE_1_FRENO_OUT = 2410551647U;
         static const AkUniqueID FRENO_IN = 2731896591U;
         static const AkUniqueID IMPACTOS_IN = 2345257581U;
@@ -38,6 +36,7 @@ namespace AK
     namespace GAME_PARAMETERS
     {
         static const AkUniqueID PLAYER_VELOCIDAD = 2235079496U;
+        static const AkUniqueID TURBO_VOLUMEN = 2960231774U;
     } // namespace GAME_PARAMETERS
 
     namespace BANKS
@@ -51,9 +50,17 @@ namespace AK
         static const AkUniqueID MASTER_AUDIO_BUS = 3803692087U;
         static const AkUniqueID MOTOR_1_3_BUS = 453520701U;
         static const AkUniqueID MOTOR_2_4_BUS = 2749669717U;
+        static const AkUniqueID MOTOR_STOP_BUS = 1381725196U;
+        static const AkUniqueID MOTORES_GENERAL_BUS = 1275644990U;
         static const AkUniqueID MUSICA_BUS = 1054075596U;
         static const AkUniqueID SFX_BUS = 213475909U;
+        static const AkUniqueID TURBO_BUS = 2169386224U;
     } // namespace BUSSES
+
+    namespace AUX_BUSSES
+    {
+        static const AkUniqueID MOTOR_1_3_BUS_X = 3043237872U;
+    } // namespace AUX_BUSSES
 
     namespace AUDIO_DEVICES
     {

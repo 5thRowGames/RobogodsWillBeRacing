@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{8AD1D085-158A-43BA-B8E3-A88462FF38DE}" SchemaVersion="94">
 	<MixingSessions>
-		<WorkUnit Name="Default Work Unit" ID="{8AD1D085-158A-43BA-B8E3-A88462FF38DE}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{8AD1D085-158A-43BA-B8E3-A88462FF38DE}" PersistMode="Standalone">
+			<ChildrenList>
+				<MixingSession Name="New Mixing Session" ID="{209C4EA7-AC40-439C-88A0-DB1F9F94F8B0}">
+					<ObjectList>
+						<ObjectRef Name="MOTOR_1_3_BUS" ID="{9FF035E0-4086-4A9F-BA0A-49D983130EFC}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+						<ObjectRef Name="MOTORES_GENERAL_BUS" ID="{C71B5FA7-98F0-4A36-8AE4-A0A3EABC063F}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+						<ObjectRef Name="MOTOR_1_3_Bus_X" ID="{EE81EC5C-9623-4B87-9CD9-5D7A24B2289B}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+					</ObjectList>
+				</MixingSession>
+			</ChildrenList>
+		</WorkUnit>
 	</MixingSessions>
 </WwiseDocument>

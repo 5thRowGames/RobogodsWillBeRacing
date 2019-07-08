@@ -34,7 +34,12 @@
 							<PropertyList>
 								<Property Name="MaxSoundPerInstance" Type="int16">
 									<ValueList>
-										<Value>2</Value>
+										<Value>1</Value>
+									</ValueList>
+								</Property>
+								<Property Name="OutputBusVolume" Type="Real64">
+									<ValueList>
+										<Value>-96</Value>
 									</ValueList>
 								</Property>
 								<Property Name="UseMaxSoundPerInstance" Type="bool">
@@ -56,13 +61,28 @@
 										</Effect>
 									</Custom>
 								</Reference>
+								<Reference Name="Effect1" PluginName="Wwise Stereo Delay" CompanyID="0" PluginID="135" PluginType="3">
+									<ObjectRef Name="LR_Slap_with_CrossFeed" ID="{30319A92-C5AC-437A-9864-430059762933}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+								</Reference>
+								<Reference Name="UserAuxSend0">
+									<ObjectRef Name="MOTOR_1_3_Bus_X" ID="{EE81EC5C-9623-4B87-9CD9-5D7A24B2289B}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+								</Reference>
 							</ReferenceList>
 							<DuckingList>
 								<DuckItem>
-									<BusRef Name="SFX_BUS" ID="{06504896-303E-4D3A-BC83-BAE0A55A7391}"/>
+									<BusRef Name="MUSICA_BUS" ID="{6C684514-A741-4BF9-B1F1-2BE3F140C499}"/>
 									<DuckingParam>
 										<Volume>-2</Volume>
-										<FadeInTime>1</FadeInTime>
+										<FadeInTime>0.5</FadeInTime>
+										<FadeOutTime>1</FadeOutTime>
+										<FadeCurve>FadeLinear</FadeCurve>
+									</DuckingParam>
+								</DuckItem>
+								<DuckItem>
+									<BusRef Name="MOTOR_STOP_BUS" ID="{6603E1B2-3031-4BDA-AA70-5088A0020E9B}"/>
+									<DuckingParam>
+										<Volume>-2</Volume>
+										<FadeInTime>0.5</FadeInTime>
 										<FadeOutTime>1</FadeOutTime>
 										<FadeCurve>FadeLinear</FadeCurve>
 									</DuckingParam>
@@ -73,7 +93,12 @@
 							<PropertyList>
 								<Property Name="MaxSoundPerInstance" Type="int16">
 									<ValueList>
-										<Value>2</Value>
+										<Value>1</Value>
+									</ValueList>
+								</Property>
+								<Property Name="OutputBusVolume" Type="Real64">
+									<ValueList>
+										<Value>-96</Value>
 									</ValueList>
 								</Property>
 								<Property Name="UseMaxSoundPerInstance" Type="bool">
@@ -82,12 +107,20 @@
 									</ValueList>
 								</Property>
 							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Effect1" PluginName="Wwise Stereo Delay" CompanyID="0" PluginID="135" PluginType="3">
+									<ObjectRef Name="LR_Slap_with_CrossFeed" ID="{30319A92-C5AC-437A-9864-430059762933}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+								</Reference>
+								<Reference Name="UserAuxSend0">
+									<ObjectRef Name="MOTOR_1_3_Bus_X" ID="{EE81EC5C-9623-4B87-9CD9-5D7A24B2289B}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+								</Reference>
+							</ReferenceList>
 							<DuckingList>
 								<DuckItem>
-									<BusRef Name="SFX_BUS" ID="{06504896-303E-4D3A-BC83-BAE0A55A7391}"/>
+									<BusRef Name="MOTOR_STOP_BUS" ID="{6603E1B2-3031-4BDA-AA70-5088A0020E9B}"/>
 									<DuckingParam>
 										<Volume>-2</Volume>
-										<FadeInTime>1</FadeInTime>
+										<FadeInTime>0.5</FadeInTime>
 										<FadeOutTime>1</FadeOutTime>
 										<FadeCurve>FadeLinear</FadeCurve>
 									</DuckingParam>
@@ -95,30 +128,61 @@
 							</DuckingList>
 						</Bus>
 						<Bus Name="MUSICA_BUS" ID="{6C684514-A741-4BF9-B1F1-2BE3F140C499}">
+							<PropertyList>
+								<Property Name="BusVolume" Type="Real64">
+									<ValueList>
+										<Value>7</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+						</Bus>
+						<Bus Name="SFX_BUS" ID="{06504896-303E-4D3A-BC83-BAE0A55A7391}">
+							<PropertyList>
+								<Property Name="MaxSoundPerInstance" Type="int16">
+									<ValueList>
+										<Value>1</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+						</Bus>
+						<Bus Name="MOTOR_STOP_BUS" ID="{6603E1B2-3031-4BDA-AA70-5088A0020E9B}">
+							<PropertyList>
+								<Property Name="MaxSoundPerInstance" Type="int16">
+									<ValueList>
+										<Value>1</Value>
+									</ValueList>
+								</Property>
+								<Property Name="UseMaxSoundPerInstance" Type="bool">
+									<ValueList>
+										<Value>True</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+						</Bus>
+						<Bus Name="TURBO_BUS" ID="{C0DEBD96-6DD9-4CD9-AA14-558F2E7B4480}"/>
+						<Bus Name="MOTORES_GENERAL_BUS" ID="{C71B5FA7-98F0-4A36-8AE4-A0A3EABC063F}">
+							<PropertyList>
+								<Property Name="BusVolume" Type="Real64">
+									<ValueList>
+										<Value>-2</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ChildrenList>
+								<AuxBus Name="MOTOR_1_3_Bus_X" ID="{EE81EC5C-9623-4B87-9CD9-5D7A24B2289B}"/>
+							</ChildrenList>
 							<DuckingList>
 								<DuckItem>
-									<BusRef Name="MOTOR_1_3_BUS" ID="{9FF035E0-4086-4A9F-BA0A-49D983130EFC}"/>
+									<BusRef Name="MUSICA_BUS" ID="{6C684514-A741-4BF9-B1F1-2BE3F140C499}"/>
 									<DuckingParam>
-										<Volume>-5</Volume>
-										<FadeInTime>1</FadeInTime>
+										<Volume>-2</Volume>
+										<FadeInTime>0.300000011920929</FadeInTime>
 										<FadeOutTime>1</FadeOutTime>
 										<FadeCurve>FadeInvSCurve</FadeCurve>
-										<TargetProp>BusVolume</TargetProp>
-									</DuckingParam>
-								</DuckItem>
-								<DuckItem>
-									<BusRef Name="MOTOR_2_4_BUS" ID="{E9AC9E29-EE0A-4D0C-919A-F41E20AF4276}"/>
-									<DuckingParam>
-										<Volume>-5</Volume>
-										<FadeInTime>1</FadeInTime>
-										<FadeOutTime>1</FadeOutTime>
-										<FadeCurve>FadeInvSCurve</FadeCurve>
-										<TargetProp>BusVolume</TargetProp>
 									</DuckingParam>
 								</DuckItem>
 							</DuckingList>
 						</Bus>
-						<Bus Name="SFX_BUS" ID="{06504896-303E-4D3A-BC83-BAE0A55A7391}"/>
 					</ChildrenList>
 				</Bus>
 			</ChildrenList>

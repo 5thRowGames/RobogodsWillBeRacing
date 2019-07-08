@@ -21,14 +21,12 @@
 			<ShortName>ROBO_SoundBank</ShortName>
 			<Path>ROBO_SoundBank.bnk</Path>
 			<IncludedEvents>
-				<Event Id="3763551383" Name="Bascula_Compresor_In" ObjectPath="\Events\Default Work Unit\Naves\Eventos_Compartdos\Bascula_Compresor_In" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
-				<Event Id="3004065450" Name="Bascula_Compresor_Out" ObjectPath="\Events\Default Work Unit\Naves\Eventos_Compartdos\Bascula_Compresor_Out" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 				<Event Id="2410551647" Name="Coche_1_Freno_Out" ObjectPath="\Events\Default Work Unit\Naves\Eventos_Compartdos\Coche_1_Freno_Out" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 				<Event Id="2731896591" Name="Freno_In" ObjectPath="\Events\Default Work Unit\Naves\Eventos_Compartdos\Freno_In" DurationType="OneShot" DurationMin="3.593741" DurationMax="3.593741"/>
 				<Event Id="2345257581" Name="Impactos_In" ObjectPath="\Events\Default Work Unit\IG_SFX\Impactos_In" DurationType="OneShot" DurationMin="0.862233" DurationMax="1.949277"/>
 				<Event Id="4092793509" Name="Musica_Limbo" ObjectPath="\Events\Default Work Unit\Musica\Musica_Limbo" DurationType="Infinite"/>
 				<Event Id="2922585971" Name="Nave_1_Acelerar_In" ObjectPath="\Events\Default Work Unit\Naves\Nave_1\Nave_1_Acelerar_In" DurationType="Infinite"/>
-				<Event Id="2792057870" Name="Nave_1_Acelerar_Out" ObjectPath="\Events\Default Work Unit\Naves\Nave_1\Nave_1_Acelerar_Out" DurationType="Infinite"/>
+				<Event Id="2792057870" Name="Nave_1_Acelerar_Out" ObjectPath="\Events\Default Work Unit\Naves\Nave_1\Nave_1_Acelerar_Out" MaxAttenuation="100.000000" DurationType="Infinite"/>
 				<Event Id="3689912771" Name="Nave_1_Arranque" ObjectPath="\Events\Default Work Unit\Naves\Nave_1\Nave_1_Arranque" DurationType="Infinite"/>
 				<Event Id="4135892272" Name="Nave_2_Acelerar_In" ObjectPath="\Events\Default Work Unit\Naves\Nave_2\Nave_2_Acelerar_In" DurationType="Infinite"/>
 				<Event Id="703537943" Name="Nave_2_Acelerar_Out" ObjectPath="\Events\Default Work Unit\Naves\Nave_2\Nave_2_Acelerar_Out" DurationType="Infinite"/>
@@ -146,10 +144,6 @@
 				<File Id="1063212279" Language="SFX">
 					<ShortName>Robo_Gods_Coche_4_Aceleracion_SFX_Start_3.wav</ShortName>
 					<Path>SFX\Robo_Gods_Coche_4_Aceleracion_SFX_Start_3_10C4C929.wem</Path>
-				</File>
-				<File Id="1072197821" Language="SFX">
-					<ShortName>Robo_Gods_Motor_Start_SFX_Car_1.wav</ShortName>
-					<Path>SFX\Robo_Gods_Motor_Start_SFX_Car_1_10C4C929.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>

@@ -90,7 +90,9 @@
 										</Action>
 										<Action Name="" ID="{F2683AB1-EFA9-4D0F-8D86-728A59FE0AC2}" ShortID="1019903032">
 											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="2"/>
 												<Property Name="FadeTime" Type="Real64" Value="1"/>
+												<Property Name="Scope" Type="int16" Value="1"/>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Target">
@@ -127,17 +129,6 @@
 						</Folder>
 						<Folder Name="Eventos_Compartdos" ID="{90B40101-974D-46B9-A66F-DCD5832BEC3D}" ShortID="560704290">
 							<ChildrenList>
-								<Event Name="Bascula_Compresor_In" ID="{A570E982-BAA6-4DF8-B0EB-38C739B4B8F8}">
-									<ChildrenList>
-										<Action Name="" ID="{1E352C00-D722-45F9-90C5-71F946B62D69}" ShortID="72804982">
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="Bascula_Compresor" ID="{D9B58D62-0098-4C2F-8D66-E4B276A373C5}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
-									</ChildrenList>
-								</Event>
 								<Event Name="Turbo_In" ID="{B6E35EEA-BE94-48FC-B26C-FA8EE2A9728B}">
 									<ChildrenList>
 										<Action Name="" ID="{86981292-6AAE-4693-ADE2-3420FD441B9A}" ShortID="655607111">
@@ -181,33 +172,6 @@
 											<ReferenceList>
 												<Reference Name="Target">
 													<ObjectRef Name="Coche_1_Freno" ID="{F3732206-578F-494A-8826-118F8490BE1B}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
-									</ChildrenList>
-								</Event>
-								<Event Name="Bascula_Compresor_Out" ID="{FF3ED5ED-9615-4E26-AAE3-0105A41F5066}">
-									<ChildrenList>
-										<Action Name="" ID="{E5343F8C-3287-475B-A368-2262725B7285}" ShortID="509315935">
-											<PropertyList>
-												<Property Name="ActionType" Type="int16" Value="2"/>
-												<Property Name="FadeTime" Type="Real64">
-													<ModifierList>
-														<ModifierInfo>
-															<Modifier Name="" ID="{A8E4D7A4-3CCA-4566-92B1-DC79C0EE2647}">
-																<PropertyList>
-																	<Property Name="Enabled" Type="bool" Value="True"/>
-																	<Property Name="Max" Type="Real64" Value="1"/>
-																	<Property Name="Min" Type="Real64" Value="-1"/>
-																</PropertyList>
-															</Modifier>
-														</ModifierInfo>
-													</ModifierList>
-												</Property>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="Bascula_Compresor" ID="{D9B58D62-0098-4C2F-8D66-E4B276A373C5}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
 												</Reference>
 											</ReferenceList>
 										</Action>
@@ -319,6 +283,17 @@
 											<ReferenceList>
 												<Reference Name="Target">
 													<ObjectRef Name="Nave_2_Acelerar_shoots" ID="{D526F91C-8610-484B-AFCE-D16B3DAA68F5}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{B17E492E-85F5-42E8-943C-954B93FEB669}" ShortID="54266873">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="2"/>
+												<Property Name="Scope" Type="int16" Value="1"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Viento_SFX_Loop" ID="{C57E5393-275B-4A71-9D61-2335DFE908E0}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
 												</Reference>
 											</ReferenceList>
 										</Action>
@@ -436,10 +411,11 @@
 											<PropertyList>
 												<Property Name="ActionType" Type="int16" Value="2"/>
 												<Property Name="FadeTime" Type="Real64" Value="2"/>
+												<Property Name="Scope" Type="int16" Value="1"/>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Target">
-													<ObjectRef Name="Viento_Motor_Loop" ID="{A55280A5-6699-4E40-B582-AD1C1EBC2CB2}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+													<ObjectRef Name="Viento_SFX_Loop" ID="{C57E5393-275B-4A71-9D61-2335DFE908E0}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
 												</Reference>
 											</ReferenceList>
 										</Action>
@@ -549,6 +525,17 @@
 											<ReferenceList>
 												<Reference Name="Target">
 													<ObjectRef Name="Nave_4_Acelerar_Shoots" ID="{09B99A9E-BEAA-4099-AA62-94F71E9889E6}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{1F51A8E6-F0DB-4856-B516-02F3B97C5F4D}" ShortID="647601515">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="2"/>
+												<Property Name="Scope" Type="int16" Value="1"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Viento_SFX_Loop" ID="{C57E5393-275B-4A71-9D61-2335DFE908E0}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
 												</Reference>
 											</ReferenceList>
 										</Action>

@@ -13,15 +13,11 @@ public class PlayerSelectionManager : MonoBehaviour
     private MyPlayerActions keyboardListener;
     private MyPlayerActions joystickListener;
     private bool keyboardSelected;
-    
-    //Prueba
-    private MyPlayerActions both;
 
     private void OnEnable()
     {
         keyboardListener = MyPlayerActions.BindKeyboard();
         joystickListener = MyPlayerActions.BindControls();
-        both = MyPlayerActions.BindBoth();
         playerOrder = 0;
         keyboardSelected = false;
     }

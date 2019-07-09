@@ -50,9 +50,9 @@ public class StartRace : MonoBehaviour
 
     private void Start()
     {
-        SetIA();
+       //SetIA();
         SetCameraAndControl();
-        StartRaceTween();
+        //StartRaceTween();
     }
 
     public void SetIA()

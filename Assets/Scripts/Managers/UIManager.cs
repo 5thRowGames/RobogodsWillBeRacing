@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using InControl;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -9,7 +10,13 @@ using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>
 {
-    public GameObject raceButton;
+    //Buttons
+    public RectTransform raceButton;
+    public RectTransform settingsButton;
+    public RectTransform creditsButton;
+    public RectTransform exitButton;
+    
+    
     public List<GameObject> players;
     public List<GameObject> lapsButtons;
     public GameObject poseidonButton;
@@ -82,6 +89,15 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
+    public void OpenSettings()
+    {
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(raceButton.DOAnchorPosX(-800, 0.5f, true))
+            .Insert(0.2f, settingsButton.DOAnchorPosX(-800, 0.5f, true))
+            .Insert(0.4f, creditsButton.DOAnchorPosX(-800, 0.5f, true))
+            .Insert(0.6f, exitButton.DOAnchorPosX(-800, 0.5f, true));
+    }
+
     private void GoToMainMenu()
     {
         allowInput = false;
@@ -91,7 +107,7 @@ public class UIManager : Singleton<UIManager>
 
     private void ResetMainMenu()
     {
-        raceButton.SetActive(false);
+        raceButton.gameObject.SetActive(false);
 
         foreach (var player in players)
         {
@@ -119,7 +135,7 @@ public class UIManager : Singleton<UIManager>
 
     public void RacePressed()
     {
-        raceButton.SetActive(false);
+        raceButton.gameObject.SetActive(false);
 
         foreach (var lap in lapsButtons)
         {
@@ -149,8 +165,8 @@ public class UIManager : Singleton<UIManager>
 
     public void ReturnRace()
     {
-        raceButton.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(raceButton);
+        raceButton.gameObject.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(raceButton.gameObject);
     }
 
     public void ChooseCharacter(GodType.RobogodType robogod)

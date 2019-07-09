@@ -9,6 +9,11 @@ public class PlayerCarSoundManager : MonoBehaviour, IControllable
     public string unsharedSoundStart;
     public Rigidbody carRigidbody;
 
+    private void Awake()
+    {
+        AkSoundEngine.SetRTPCValue("Turbo_Volumen", 0);
+    }
+
     private void OnEnable()
     {
         ConnectDisconnectManager.ConnectCarSoundManager += ConnectSound;
@@ -23,11 +28,25 @@ public class PlayerCarSoundManager : MonoBehaviour, IControllable
 
     public void Control(IDevice device)
     {
+
+        if (device.State.Jump.IsHeld)
+        {
+            AkSoundEngine.SetRTPCValue("Turbo_Volumen", 100);
+        }
+        else
+        {
+            AkSoundEngine.SetRTPCValue("Turbo_Volumen", 0);
+        }
+        
         if (device.State.Jump.IsPressed)
+        {
             AkSoundEngine.PostEvent("Turbo_In", gameObject);
+        }
 
         if (device.State.Jump.IsReleased)
+        {
             AkSoundEngine.PostEvent("Turbo_Out", gameObject);
+        }
 
         if (device.State.RightBumper.IsPressed)
             AkSoundEngine.PostEvent("Freno_In", gameObject);

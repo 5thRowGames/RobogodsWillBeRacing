@@ -29,15 +29,6 @@ public class PlayerCarSoundManager : MonoBehaviour, IControllable
     public void Control(IDevice device)
     {
 
-        if (device.State.Jump.IsHeld)
-        {
-            AkSoundEngine.SetRTPCValue("Turbo_Volumen", 100);
-        }
-        else
-        {
-            AkSoundEngine.SetRTPCValue("Turbo_Volumen", 0);
-        }
-        
         if (device.State.Jump.IsPressed)
         {
             AkSoundEngine.PostEvent("Turbo_In", gameObject);

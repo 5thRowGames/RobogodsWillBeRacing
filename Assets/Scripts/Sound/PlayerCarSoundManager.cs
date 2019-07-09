@@ -9,11 +9,6 @@ public class PlayerCarSoundManager : MonoBehaviour, IControllable
     public string unsharedSoundStart;
     public Rigidbody carRigidbody;
 
-    private void Awake()
-    {
-        AkSoundEngine.SetRTPCValue("Turbo_Volumen", 0);
-    }
-
     private void OnEnable()
     {
         ConnectDisconnectManager.ConnectCarSoundManager += ConnectSound;

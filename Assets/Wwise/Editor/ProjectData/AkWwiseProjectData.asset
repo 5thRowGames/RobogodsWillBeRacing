@@ -17,21 +17,34 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 8da8baf873d5b24d8110c8b17b26b8e1
     GuidInternal: 
-    m_lastTime: -8586403386884775808
+    m_lastTime: -8586391096035490741
     List: []
   AuxBusWwu:
   - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
     ParentPhysicalPath: 
     guid: 3472356946ee5e45983790be8afb9fdd
     GuidInternal: 
-    m_lastTime: -8586393368667511296
-    List: []
+    m_lastTime: -8586389289337395747
+    List:
+    - name: MOTOR_1_3_Bus_X
+      guid: 5cec81ee2396874b9cd95d7a24b2289b
+      id: 3043237872
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Master Audio Bus
+        ObjectType: 2
+      - ElementName: MOTORES_GENERAL_BUS
+        ObjectType: 2
+      - ElementName: MOTOR_1_3_Bus_X
+        ObjectType: 1
+      Path: Default Work Unit\Master Audio Bus\MOTORES_GENERAL_BUS\MOTOR_1_3_Bus_X
   BankWwu:
   - PhysicalPath: SoundBanks\Default Work Unit.wwu
     ParentPhysicalPath: 
     guid: 9308f3abeeab67499e2534c5754eb3f1
     GuidInternal: 
-    m_lastTime: -8586393368593688108
+    m_lastTime: -8586388670740934355
     List:
     - name: ROBO_SoundBank
       guid: 01a568c6c2417c4d84fd535530885604
@@ -47,56 +60,8 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 39c4588d66fa55449a80276710841c5b
     GuidInternal: 
-    m_lastTime: -8586393368676606372
+    m_lastTime: -8586388670740764339
     List:
-    - name: Bascula_Compresor_In
-      guid: 82e970a5a6baf84db0eb38c739b4b8f8
-      id: 3763551383
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Naves
-        ObjectType: 4
-      - ElementName: Eventos_Compartdos
-        ObjectType: 4
-      - ElementName: Bascula_Compresor_In
-        ObjectType: 3
-      Path: Default Work Unit\Naves\Eventos_Compartdos\Bascula_Compresor_In
-      maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
-    - name: Bascula_Compresor_Out
-      guid: edd53eff1596264eaae30105a41f5066
-      id: 3004065450
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Naves
-        ObjectType: 4
-      - ElementName: Eventos_Compartdos
-        ObjectType: 4
-      - ElementName: Bascula_Compresor_Out
-        ObjectType: 3
-      Path: Default Work Unit\Naves\Eventos_Compartdos\Bascula_Compresor_Out
-      maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
-    - name: Coche_1_Freno_Out
-      guid: 908662989a80054e874472ba38ce55f6
-      id: 2410551647
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Naves
-        ObjectType: 4
-      - ElementName: Eventos_Compartdos
-        ObjectType: 4
-      - ElementName: Coche_1_Freno_Out
-        ObjectType: 3
-      Path: Default Work Unit\Naves\Eventos_Compartdos\Coche_1_Freno_Out
-      maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
     - name: Freno_In
       guid: 3afcc16bce0bf740bebaca1f4f783e44
       id: 2731896591
@@ -113,6 +78,22 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 3593741
       minDuration: 3593741
+    - name: Freno_Out
+      guid: 908662989a80054e874472ba38ce55f6
+      id: 1845752450
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Naves
+        ObjectType: 4
+      - ElementName: Eventos_Compartdos
+        ObjectType: 4
+      - ElementName: Freno_Out
+        ObjectType: 3
+      Path: Default Work Unit\Naves\Eventos_Compartdos\Freno_Out
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
     - name: Impactos_In
       guid: bacd8faa9ee560468df5ab2a8e686174
       id: 2345257581
@@ -170,7 +151,7 @@ MonoBehaviour:
       - ElementName: Nave_1_Acelerar_Out
         ObjectType: 3
       Path: Default Work Unit\Naves\Nave_1\Nave_1_Acelerar_Out
-      maxAttenuation: 0
+      maxAttenuation: 100000000
       maxDuration: -1
       minDuration: -1
     - name: Nave_1_Arranque
@@ -370,7 +351,7 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: a236a2902990fd4b8983fbff09638a74
     GuidInternal: 
-    m_lastTime: -8586397547854922879
+    m_lastTime: -8586389303859049630
     List:
     - name: Player_Velocidad
       guid: 74378ce0b17e854d98dd59215f2e9293
@@ -381,26 +362,35 @@ MonoBehaviour:
       - ElementName: Player_Velocidad
         ObjectType: 13
       Path: Default Work Unit\Player_Velocidad
+    - name: Turbo_Volumen
+      guid: 31a0cea77648db4985192e99f1bea15e
+      id: 2960231774
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Turbo_Volumen
+        ObjectType: 13
+      Path: Default Work Unit\Turbo_Volumen
   StateWwu:
   - PhysicalPath: States\Default Work Unit.wwu
     ParentPhysicalPath: 
     guid: 158a1460ac2fa24db6f38b93bfb329e3
     GuidInternal: 
-    m_lastTime: -8586403386884775808
+    m_lastTime: -8586391096035540748
     List: []
   SwitchWwu:
   - PhysicalPath: Switches\Default Work Unit.wwu
     ParentPhysicalPath: 
     guid: df5fbb69c86aa745a3c9bc4794629941
     GuidInternal: 
-    m_lastTime: -8586403386884775808
+    m_lastTime: -8586391096035520725
     List: []
   TriggerWwu:
   - PhysicalPath: Triggers\Default Work Unit.wwu
     ParentPhysicalPath: 
     guid: ad8a82ecac91e4429972d85a04800ea4
     GuidInternal: 
-    m_lastTime: -8586403386884775808
+    m_lastTime: -8586391096035510733
     List: []
   ExpandedItems:
   - /RobogodsWillBeRacing-Prototipo_WwiseProject
@@ -409,5 +399,6 @@ MonoBehaviour:
   - /RobogodsWillBeRacing-Prototipo_WwiseProject/Events/Default Work Unit/IG_SFX
   - /RobogodsWillBeRacing-Prototipo_WwiseProject/Events/Default Work Unit/Musica
   - /RobogodsWillBeRacing-Prototipo_WwiseProject/Events/Default Work Unit/Naves
+  - /RobogodsWillBeRacing-Prototipo_WwiseProject/Events/Default Work Unit/Naves/Eventos_Compartdos
   autoPopulateEnabled: 1
   CurrentPluginConfig: 

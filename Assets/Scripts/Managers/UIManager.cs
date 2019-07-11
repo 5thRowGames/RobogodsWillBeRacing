@@ -15,14 +15,28 @@ public class UIManager : Singleton<UIManager>
     public RectTransform settingsButton;
     public RectTransform creditsButton;
     public RectTransform exitButton;
-    
-    
+    public RectTransform volumeSlider;
+    public RectTransform effectSoundSlider;
+    public RectTransform languageSlider;
+    public RectTransform poseidonButton;
+    public RectTransform anubisButton;
+    public RectTransform thorButton;
+    public RectTransform kaliButton;
+    public RectTransform mainMenuBackground;
+    public RectTransform mainMenuTitle;
+    public RectTransform characterSelectionTitle;
+    public RectTransform settingsTitle;
+    public RectTransform infoPanel;
+
+    //Solo pruebas
+    public RectTransform poseidonBackground;
+    public RectTransform anubisBackground;
+    public RectTransform kaliBackground;
+    public RectTransform thorBackground;
+    //FinP pruebas
+
     public List<GameObject> players;
     public List<GameObject> lapsButtons;
-    public GameObject poseidonButton;
-    public GameObject kaliButton;
-    public GameObject anubisButton;
-    public GameObject thorButton;
     public GameObject characterSelectionManager;
 
     public Text playersConfirmedText;
@@ -54,6 +68,11 @@ public class UIManager : Singleton<UIManager>
         if (allowInput && (device.Action1.IsPressed || Input.GetKeyDown(KeyCode.KeypadEnter)))
         {
             ChangeState();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Prueba();
         }
     }
 
@@ -89,6 +108,50 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
+    public void Prueba()
+    {
+        anubisBackground.DOAnchorPos(new Vector2(0,0), 1f, true);
+        anubisButton.DOAnchorPos(new Vector2(0, 0), 1f, true);
+    }
+
+    public void RemoveMainMenu()
+    {
+        Sequence tweenSequence = DOTween.Sequence();
+        tweenSequence.Append(raceButton.DOAnchorPosX(-800, 0.5f, true))
+            .Insert(0.2f, settingsButton.DOAnchorPosX(-800, 0.5f, true))
+            .Insert(0.4f, creditsButton.DOAnchorPosX(-800, 0.5f, true))
+            .Insert(0.6f, exitButton.DOAnchorPosX(-800, 0.5f, true))
+            .Insert(0.4f, mainMenuBackground.DOAnchorPosY(1200, 0.5f, true))
+            .Insert(0.4f, mainMenuTitle.DOAnchorPosY(700, 0.5f, true))
+            .Insert(1f, anubisBackground.DOAnchorPos(new Vector2(0, 0), 1f, true))
+            .Insert(1f, anubisBackground.DOAnchorPos(new Vector2(0, 0), 1f, true))
+            .Insert(1f, poseidonBackground.DOAnchorPos(new Vector2(0, 0), 1f, true))
+            .Insert(1f, kaliBackground.DOAnchorPos(new Vector2(0, 0), 1f, true))
+            .Insert(1f, thorBackground.DOAnchorPos(new Vector2(0, 0), 1f, true))
+            .Insert(1f, anubisButton.DOAnchorPos(new Vector2(0, 0), 1f, true))
+            .Insert(1f, poseidonButton.DOAnchorPos(new Vector2(0, 0), 1f, true))
+            .Insert(1f, kaliButton.DOAnchorPos(new Vector2(0, 0), 1f, true))
+            .Insert(1f, thorButton.DOAnchorPos(new Vector2(0, 0), 1f, true))
+            .Insert(1.6f, characterSelectionTitle.DOAnchorPos(new Vector2(0, 0), 0.5f, true))
+            .Insert(1.6f, infoPanel.DOAnchorPos(new Vector2(0, 0), 0.5f, true));
+    }
+
+    private void BuildCharacterSelection()
+    {
+        Sequence tweenSequence = DOTween.Sequence();
+        tweenSequence.Append(anubisBackground.DOAnchorPos(new Vector2(0, 0), 1f, true))
+            .Insert(0f, anubisBackground.DOAnchorPos(new Vector2(0, 0), 1f, true))
+            .Insert(0f, poseidonBackground.DOAnchorPos(new Vector2(0, 0), 1f, true))
+            .Insert(0f, kaliBackground.DOAnchorPos(new Vector2(0, 0), 1f, true))
+            .Insert(0f, thorBackground.DOAnchorPos(new Vector2(0, 0), 1f, true))
+            .Insert(0f, anubisButton.DOAnchorPos(new Vector2(0, 0), 1f, true))
+            .Insert(0f, poseidonButton.DOAnchorPos(new Vector2(0, 0), 1f, true))
+            .Insert(0f, kaliButton.DOAnchorPos(new Vector2(0, 0), 1f, true))
+            .Insert(0f, thorButton.DOAnchorPos(new Vector2(0, 0), 1f, true))
+            .Insert(0.2f, characterSelectionTitle.DOAnchorPos(new Vector2(0, 0), 1f, true))
+            .Insert(0.2f, infoPanel.DOAnchorPos(new Vector2(0, 0), 1f, true));
+    }
+
     public void OpenSettings()
     {
         Sequence sequence = DOTween.Sequence();
@@ -114,10 +177,10 @@ public class UIManager : Singleton<UIManager>
             player.SetActive(false);
         }
 
-        poseidonButton.SetActive(false);
-        kaliButton.SetActive(false);
-        anubisButton.SetActive(false);
-        thorButton.SetActive(false);
+        poseidonButton.gameObject.SetActive(false);
+        kaliButton.gameObject.SetActive(false);
+        anubisButton.gameObject.SetActive(false);
+        thorButton.gameObject.SetActive(false);
 
         playersWithGodPicked = 0;
         playersConfirmed = 0;
@@ -150,10 +213,10 @@ public class UIManager : Singleton<UIManager>
             lap.SetActive(false);
         }
 
-        poseidonButton.SetActive(true);
-        kaliButton.SetActive(true);
-        anubisButton.SetActive(true);
-        thorButton.SetActive(true);
+        poseidonButton.gameObject.SetActive(true);
+        kaliButton.gameObject.SetActive(true);
+        anubisButton.gameObject.SetActive(true);
+        thorButton.gameObject.SetActive(true);
 
         foreach (var player in players)
         {

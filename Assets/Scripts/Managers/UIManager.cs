@@ -16,7 +16,7 @@ public class UIManager : Singleton<UIManager>
     public RectTransform creditsButton;
     public RectTransform exitButton;
     public RectTransform volumeSlider;
-    public RectTransform effectSoundSlider;
+    public RectTransform soundEffectsSlider;
     public RectTransform languageSlider;
     public RectTransform poseidonButton;
     public RectTransform anubisButton;
@@ -27,6 +27,9 @@ public class UIManager : Singleton<UIManager>
     public RectTransform characterSelectionTitle;
     public RectTransform settingsTitle;
     public RectTransform infoPanel;
+
+    [Header("References")]
+
 
     //Solo pruebas
     public RectTransform poseidonBackground;
@@ -70,9 +73,14 @@ public class UIManager : Singleton<UIManager>
             ChangeState();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             Prueba();
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            Prueba2();
         }
     }
 
@@ -108,22 +116,26 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
-    public void Prueba()
+    private void Prueba()
     {
-        anubisBackground.DOAnchorPos(new Vector2(0,0), 1f, true);
-        anubisButton.DOAnchorPos(new Vector2(0, 0), 1f, true);
+       BuildCharacterSelection();
+    }
+    
+    private void Prueba2()
+    {
+        RemoveCharacterSelection();
     }
 
-    public void RemoveMainMenu()
+    public void OpenCharacterSelection()
     {
         Sequence tweenSequence = DOTween.Sequence();
-        tweenSequence.Append(raceButton.DOAnchorPosX(-800, 0.5f, true))
-            .Insert(0.2f, settingsButton.DOAnchorPosX(-800, 0.5f, true))
-            .Insert(0.4f, creditsButton.DOAnchorPosX(-800, 0.5f, true))
-            .Insert(0.6f, exitButton.DOAnchorPosX(-800, 0.5f, true))
-            .Insert(0.4f, mainMenuBackground.DOAnchorPosY(1200, 0.5f, true))
-            .Insert(0.4f, mainMenuTitle.DOAnchorPosY(700, 0.5f, true))
-            .Insert(1f, anubisBackground.DOAnchorPos(new Vector2(0, 0), 1f, true))
+        tweenSequence.Append(raceButton.DOAnchorPosX(-675, 0.5f, true))
+            .Insert(0.2f, settingsButton.DOAnchorPosX(-675, 0.5f, true))
+            .Insert(0.4f, creditsButton.DOAnchorPosX(-675, 0.5f, true))
+            .Insert(0.4f, mainMenuBackground.DOAnchorPosY(1035, 0.5f, true))
+            .Insert(0.4f, mainMenuTitle.DOAnchorPosY(295, 0.5f, true))
+            .Insert(0.6f, exitButton.DOAnchorPosX(-675, 0.5f, true))
+            .Insert(1f,anubisBackground.DOAnchorPos(new Vector2(0, 0), 1f, true))
             .Insert(1f, anubisBackground.DOAnchorPos(new Vector2(0, 0), 1f, true))
             .Insert(1f, poseidonBackground.DOAnchorPos(new Vector2(0, 0), 1f, true))
             .Insert(1f, kaliBackground.DOAnchorPos(new Vector2(0, 0), 1f, true))
@@ -132,33 +144,78 @@ public class UIManager : Singleton<UIManager>
             .Insert(1f, poseidonButton.DOAnchorPos(new Vector2(0, 0), 1f, true))
             .Insert(1f, kaliButton.DOAnchorPos(new Vector2(0, 0), 1f, true))
             .Insert(1f, thorButton.DOAnchorPos(new Vector2(0, 0), 1f, true))
-            .Insert(1.6f, characterSelectionTitle.DOAnchorPos(new Vector2(0, 0), 0.5f, true))
-            .Insert(1.6f, infoPanel.DOAnchorPos(new Vector2(0, 0), 0.5f, true));
+            .Insert(1.6f, characterSelectionTitle.DOAnchorPos(new Vector2(0, 0), 0.6f, true))
+            .Insert(1.6f, infoPanel.DOAnchorPos(new Vector2(0, 0), 0.6f, true));
     }
-
+    
     private void BuildCharacterSelection()
     {
         Sequence tweenSequence = DOTween.Sequence();
-        tweenSequence.Append(anubisBackground.DOAnchorPos(new Vector2(0, 0), 1f, true))
-            .Insert(0f, anubisBackground.DOAnchorPos(new Vector2(0, 0), 1f, true))
-            .Insert(0f, poseidonBackground.DOAnchorPos(new Vector2(0, 0), 1f, true))
-            .Insert(0f, kaliBackground.DOAnchorPos(new Vector2(0, 0), 1f, true))
-            .Insert(0f, thorBackground.DOAnchorPos(new Vector2(0, 0), 1f, true))
-            .Insert(0f, anubisButton.DOAnchorPos(new Vector2(0, 0), 1f, true))
-            .Insert(0f, poseidonButton.DOAnchorPos(new Vector2(0, 0), 1f, true))
-            .Insert(0f, kaliButton.DOAnchorPos(new Vector2(0, 0), 1f, true))
-            .Insert(0f, thorButton.DOAnchorPos(new Vector2(0, 0), 1f, true))
-            .Insert(0.2f, characterSelectionTitle.DOAnchorPos(new Vector2(0, 0), 1f, true))
-            .Insert(0.2f, infoPanel.DOAnchorPos(new Vector2(0, 0), 1f, true));
+        tweenSequence.Append(anubisBackground.DOAnchorPosY(0, 1f, true))
+            .Insert(0f, poseidonBackground.DOAnchorPosY(0, 1f, true))
+            .Insert(0f, kaliBackground.DOAnchorPosY(0, 1f, true))
+            .Insert(0f, thorBackground.DOAnchorPosY(0, 1f, true))
+            .Insert(0f, anubisButton.DOAnchorPosY(0, 1f, true))
+            .Insert(0f, poseidonButton.DOAnchorPosY(0, 1f, true))
+            .Insert(0f, kaliButton.DOAnchorPosY(0, 1f, true))
+            .Insert(0f, thorButton.DOAnchorPosY(0, 1f, true))
+            .Insert(0.6f, characterSelectionTitle.DOAnchorPosX(0, 0.6f, true))
+            .Insert(0.6f, infoPanel.DOAnchorPosX(0, 0.6f, true));
     }
 
-    public void OpenSettings()
+    private void RemoveCharacterSelection()
+    {
+        Sequence tweenSequence = DOTween.Sequence();
+        tweenSequence.Insert(0f, characterSelectionTitle.DOAnchorPosX(-1926, 0.6f, true))
+            .Insert(0f, infoPanel.DOAnchorPosX(1936, 0.6f, true))
+            .Insert(0.6f,anubisBackground.DOAnchorPosY(727, 1f, true))
+            .Insert(0.6f, poseidonBackground.DOAnchorPosY(727, 1f, true))
+            .Insert(0.6f, kaliBackground.DOAnchorPosY(727, 1f, true))
+            .Insert(0.6f, thorBackground.DOAnchorPosY(727, 1f, true))
+            .Insert(0.6f, anubisButton.DOAnchorPosY(-230, 1f, true))
+            .Insert(0.6f, poseidonButton.DOAnchorPosY(-230, 1f, true))
+            .Insert(0.6f, kaliButton.DOAnchorPosY(-230, 1f, true))
+            .Insert(0.6f, thorButton.DOAnchorPosY(-230, 1f, true));
+    }
+
+    private void BuildMainMenu()
+    {
+        Sequence tweenSequence = DOTween.Sequence();
+        tweenSequence.Append(raceButton.DOAnchorPosX(0, 0.5f, true))
+            .Insert(0.2f, settingsButton.DOAnchorPosX(0, 0.5f, true))
+            .Insert(0.4f, creditsButton.DOAnchorPosX(0, 0.5f, true))
+            .Insert(0.4f, mainMenuBackground.DOAnchorPosY(0, 0.5f, true))
+            .Insert(0.4f, mainMenuTitle.DOAnchorPosY(0, 0.5f, true))
+            .Insert(0.6f, exitButton.DOAnchorPosX(0, 0.5f, true));
+    }
+
+    private void RemoveMainMenu()
+    {
+        Sequence tweenSequence = DOTween.Sequence();
+        tweenSequence.Append(raceButton.DOAnchorPosX(-675, 0.5f, true))
+            .Insert(0.2f, settingsButton.DOAnchorPosX(-675, 0.5f, true))
+            .Insert(0.4f, creditsButton.DOAnchorPosX(-675, 0.5f, true))
+            .Insert(0.4f, mainMenuBackground.DOAnchorPosY(1035, 0.5f, true))
+            .Insert(0.4f, mainMenuTitle.DOAnchorPosY(295, 0.5f, true))
+            .Insert(0.6f, exitButton.DOAnchorPosX(-675, 0.5f, true));
+    }
+
+    private void BuildSettings()
     {
         Sequence sequence = DOTween.Sequence();
-        sequence.Append(raceButton.DOAnchorPosX(-800, 0.5f, true))
-            .Insert(0.2f, settingsButton.DOAnchorPosX(-800, 0.5f, true))
-            .Insert(0.4f, creditsButton.DOAnchorPosX(-800, 0.5f, true))
-            .Insert(0.6f, exitButton.DOAnchorPosX(-800, 0.5f, true));
+        sequence.Append(settingsTitle.DOAnchorPos(new Vector2(0,settingsTitle.anchoredPosition.y), 0.5f, true))
+            .Insert(0.2f, volumeSlider.DOAnchorPos(new Vector2(0,0), 0.5f, true))
+            .Insert(0.4f, soundEffectsSlider.DOAnchorPos(new Vector2(0,0), 0.5f, true))
+            .Insert(0.6f, languageSlider.DOAnchorPos(new Vector2(0,0), 0.5f, true));
+    }
+
+    private void RemoveSettings()
+    {
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(settingsTitle.DOAnchorPos(new Vector2(-550, settingsTitle.anchoredPosition.y), 0.5f, true))
+            .Insert(0.2f, volumeSlider.DOAnchorPosX(-675, 0.5f, true))
+            .Insert(0.4f, soundEffectsSlider.DOAnchorPosX(-675, 0.5f, true))
+            .Insert(0.6f, languageSlider.DOAnchorPosX(-675, 0.5f, true));
     }
 
     private void GoToMainMenu()

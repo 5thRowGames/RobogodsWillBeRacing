@@ -96,6 +96,13 @@ public class MyCarController : MonoBehaviour, IControllable
     //Posiciones de parrilla de salida
     [SerializeField] private List<Transform> startingPositions;
 
+    public string Name { get; private set; }
+
+    private void Awake()
+    {
+        Name = gameObject.name;
+    }
+
     private void Start()
     {
         rb.centerOfMass = transform.InverseTransformPoint(centerOfMass.position);

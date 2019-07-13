@@ -75,12 +75,12 @@ public class UIManager : Singleton<UIManager>
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Prueba();
+            //Prueba();
         }
         
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            Prueba2();
+            //Prueba2();
         }
     }
 
@@ -116,16 +116,6 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
-    private void Prueba()
-    {
-       BuildCharacterSelection();
-    }
-    
-    private void Prueba2()
-    {
-        RemoveCharacterSelection();
-    }
-
     public void OpenCharacterSelection()
     {
         Sequence tweenSequence = DOTween.Sequence();
@@ -135,17 +125,18 @@ public class UIManager : Singleton<UIManager>
             .Insert(0.4f, mainMenuBackground.DOAnchorPosY(1035, 0.5f, true))
             .Insert(0.4f, mainMenuTitle.DOAnchorPosY(295, 0.5f, true))
             .Insert(0.6f, exitButton.DOAnchorPosX(-675, 0.5f, true))
-            .Insert(1f,anubisBackground.DOAnchorPos(new Vector2(0, 0), 1f, true))
-            .Insert(1f, anubisBackground.DOAnchorPos(new Vector2(0, 0), 1f, true))
-            .Insert(1f, poseidonBackground.DOAnchorPos(new Vector2(0, 0), 1f, true))
-            .Insert(1f, kaliBackground.DOAnchorPos(new Vector2(0, 0), 1f, true))
-            .Insert(1f, thorBackground.DOAnchorPos(new Vector2(0, 0), 1f, true))
-            .Insert(1f, anubisButton.DOAnchorPos(new Vector2(0, 0), 1f, true))
-            .Insert(1f, poseidonButton.DOAnchorPos(new Vector2(0, 0), 1f, true))
-            .Insert(1f, kaliButton.DOAnchorPos(new Vector2(0, 0), 1f, true))
-            .Insert(1f, thorButton.DOAnchorPos(new Vector2(0, 0), 1f, true))
-            .Insert(1.6f, characterSelectionTitle.DOAnchorPos(new Vector2(0, 0), 0.6f, true))
-            .Insert(1.6f, infoPanel.DOAnchorPos(new Vector2(0, 0), 0.6f, true));
+            .Insert(0.4f, infoPanel.DOAnchorPosY(-100,0.5f,true))
+            .Insert(1f,anubisBackground.DOAnchorPosY(0, 1f, true))
+            .Insert(1f,infoPanel.DOAnchorPos(new Vector2(1936,0),0.01f,true))
+            .Insert(1f, poseidonBackground.DOAnchorPosY(0, 1f, true))
+            .Insert(1f, kaliBackground.DOAnchorPosY(0, 1f, true))
+            .Insert(1f, thorBackground.DOAnchorPosY(0, 1f, true))
+            .Insert(1f, anubisButton.DOAnchorPosY(0, 1f, true))
+            .Insert(1f, poseidonButton.DOAnchorPosY(0, 1f, true))
+            .Insert(1f, kaliButton.DOAnchorPosY(0, 1f, true))
+            .Insert(1f, thorButton.DOAnchorPosY(0, 1f, true))
+            .Insert(1.6f, characterSelectionTitle.DOAnchorPosX(0, 0.6f, true))
+            .Insert(1.6f, infoPanel.DOAnchorPosX(0, 0.6f, true));
     }
     
     private void BuildCharacterSelection()
@@ -167,7 +158,7 @@ public class UIManager : Singleton<UIManager>
     {
         Sequence tweenSequence = DOTween.Sequence();
         tweenSequence.Insert(0f, characterSelectionTitle.DOAnchorPosX(-1926, 0.6f, true))
-            .Insert(0f, infoPanel.DOAnchorPosX(1936, 0.6f, true))
+            .Insert(0f, infoPanel.DOAnchorPosY(-100, 0.6f, true))
             .Insert(0.6f,anubisBackground.DOAnchorPosY(727, 1f, true))
             .Insert(0.6f, poseidonBackground.DOAnchorPosY(727, 1f, true))
             .Insert(0.6f, kaliBackground.DOAnchorPosY(727, 1f, true))

@@ -6,11 +6,7 @@ using UnityEngine.UI;
 
 public class CharacterSelectionController : MonoBehaviour,IControllable
 {
-    public int space;
-    public RectTransform rectTransform;
-    public Image mark;
-
-    public List<RectTransform> positions;
+    public List<Image> images;
 
     private int position;
     private bool confirm;
@@ -25,9 +21,7 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
         position = 0;
         confirm = false;
         confirmed = false;
-        mark.enabled = false;
         canChooseGod = false;
-        rectTransform.anchoredPosition = positions[position].anchoredPosition;
     }
 
     private void OnEnable()
@@ -89,6 +83,7 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
 
     private void MoveMark(bool moveLeft)
     {
+        images[position].enabled = false;
         if (!moveLeft)
         {
             position++;
@@ -97,11 +92,11 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
             {
                 position = 0;
 
-                rectTransform.anchoredPosition = positions[position].anchoredPosition;
+                images[position].enabled = true;
             }
             else
             {
-                rectTransform.anchoredPosition = positions[position].anchoredPosition;
+                images[position].enabled = true;
             }
         }
         else
@@ -112,11 +107,11 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
             {
                 position = 3;
 
-                rectTransform.anchoredPosition = positions[position].anchoredPosition;
+                images[position].enabled = true;
             }
             else
             {
-                rectTransform.anchoredPosition = positions[position].anchoredPosition;
+                images[position].enabled = true;
             }
         }
     }
@@ -210,7 +205,7 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
 
     public void JoinGamePressed()
     {
-        mark.enabled = true;
+        images[0].enabled = true;
         StartCoroutine(DelayBetweenEnterAndSelect());
     }
 

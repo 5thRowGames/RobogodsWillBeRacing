@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PlayerSelectionManager : MonoBehaviour
 {
-    public List<IncontrolProvider> players;
+    public List<IncontrolProvider> playersInControl;
     public List<CharacterSelectionController> playerSelectionController;
     
     private int playerOrder;
@@ -31,10 +31,10 @@ public class PlayerSelectionManager : MonoBehaviour
             if (FindPlayerUsingDevice(inputDevice) == null && RaceManager.Instance.players < 4)
             {
                 RaceManager.Instance.players++;
-                players[playerOrder].controlType = IncontrolProvider.ControlType.Gamepad;
-                players[playerOrder].myPlayerActions = MyPlayerActions.BindControls();
-                players[playerOrder].InputDevice = inputDevice;
-                Core.Input.AssignControllable(players[playerOrder],playerSelectionController[playerOrder]);
+                playersInControl[playerOrder].controlType = IncontrolProvider.ControlType.Gamepad;
+                playersInControl[playerOrder].myPlayerActions = MyPlayerActions.BindControls();
+                playersInControl[playerOrder].InputDevice = inputDevice;
+                Core.Input.AssignControllable(playersInControl[playerOrder],playerSelectionController[playerOrder]);
                 playerSelectionController[playerOrder].JoinGamePressed();
                 playerOrder++;
             }
@@ -49,10 +49,10 @@ public class PlayerSelectionManager : MonoBehaviour
                 keyboardSelected = true;
                 
                 RaceManager.Instance.players++;
-                players[playerOrder].controlType = IncontrolProvider.ControlType.Keyboard;
-                players[playerOrder].InputDevice = null;
-                players[playerOrder].myPlayerActions = keyboardListener;
-                Core.Input.AssignControllable(players[playerOrder],playerSelectionController[playerOrder]);
+                playersInControl[playerOrder].controlType = IncontrolProvider.ControlType.Keyboard;
+                playersInControl[playerOrder].InputDevice = null;
+                playersInControl[playerOrder].myPlayerActions = keyboardListener;
+                Core.Input.AssignControllable(playersInControl[playerOrder],playerSelectionController[playerOrder]);
                 playerSelectionController[playerOrder].JoinGamePressed();
                 playerOrder++;
             }
@@ -67,6 +67,6 @@ public class PlayerSelectionManager : MonoBehaviour
 
     IDevice FindPlayerUsingDevice( InputDevice inputDevice )
     {
-        return players.Find(x => x.InputDevice == inputDevice);
+        return playersInControl.Find(x => x.InputDevice == inputDevice);
     }
 }

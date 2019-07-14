@@ -7,11 +7,14 @@ using UnityEngine.UI;
 public class CharacterSelectionController : MonoBehaviour,IControllable
 {
     public List<Image> images;
+    public int playerID;
 
     private int position;
     private bool confirm;
     private bool confirmed;
     private bool canChooseGod;
+    
+    
 
     public GodType.RobogodType robogodPicked;
 
@@ -41,11 +44,11 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
 
         if (confirm)
         {
-            if (controller.State.Jump.IsPressed && !confirmed)
+            if (controller.State.Submit.IsPressed && !confirmed)
             {
-                UIManager.Instance.ConfirmConfirmation();
+                UIManager.Instance.ConfirmConfirmation(playerID);
             }
-            else if (controller.State.Action.IsPressed)
+            else if (controller.State.Cancel.IsPressed)
             {
                 UIManager.Instance.DenyConfirmation();
                 UIManager.Instance.DeselectCharacter(robogodPicked);
@@ -59,7 +62,6 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
             {
                 if (controller.State.Horizontal.IsPressed)
                 {
-
                     if (controller.State.Horizontal.Value < -0.3)
                     {
                         MoveMark(true);
@@ -70,12 +72,12 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
                     }
                 }
             
-                if(controller.State.Jump.IsPressed)
+                if(controller.State.Submit.IsPressed)
                     ChooseGod();
             }
             else
             {
-                if(controller.State.Action.IsPressed)
+                if(controller.State.Cancel.IsPressed)
                     DeselectGod();
             }
         }

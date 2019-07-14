@@ -92,8 +92,13 @@ public class MyPlayerActions : PlayerActionSet
     {
         var myPlayerActions = new MyPlayerActions();
 
-        /*myPlayerActions.Up.AddDefaultBinding(Key.W);
-        myPlayerActions.Down.AddDefaultBinding(Key.S);*/
+        myPlayerActions.Up.AddDefaultBinding(Key.UpArrow);
+        myPlayerActions.Down.AddDefaultBinding(Key.DownArrow);
+        myPlayerActions.Right.AddDefaultBinding(Key.RightArrow);
+        myPlayerActions.Left.AddDefaultBinding(Key.LeftArrow);
+        
+        myPlayerActions.Up.AddDefaultBinding(Key.W);
+        myPlayerActions.Down.AddDefaultBinding(Key.S);
         myPlayerActions.Right.AddDefaultBinding(Key.D);
         myPlayerActions.Left.AddDefaultBinding(Key.A);
 
@@ -108,7 +113,7 @@ public class MyPlayerActions : PlayerActionSet
         myPlayerActions.RightTrigger.AddDefaultBinding(Key.W);
 
         myPlayerActions.Submit.AddDefaultBinding(Key.Return);
-        myPlayerActions.Cancel.AddDefaultBinding(Key.RightAlt);
+        myPlayerActions.Cancel.AddDefaultBinding(Key.Escape);
 
         return myPlayerActions;
     }
@@ -122,6 +127,11 @@ public class MyPlayerActions : PlayerActionSet
         myPlayerActions.Down.AddDefaultBinding(Key.DownArrow);
         myPlayerActions.Right.AddDefaultBinding(Key.RightArrow);
         myPlayerActions.Left.AddDefaultBinding(Key.LeftArrow);
+        
+        myPlayerActions.Up.AddDefaultBinding(Key.W);
+        myPlayerActions.Down.AddDefaultBinding(Key.S);
+        myPlayerActions.Right.AddDefaultBinding(Key.D);
+        myPlayerActions.Left.AddDefaultBinding(Key.A);
 
         myPlayerActions.Gas.AddDefaultBinding(Key.Space);
         myPlayerActions.Fire.AddDefaultBinding(Key.Key1);
@@ -134,7 +144,7 @@ public class MyPlayerActions : PlayerActionSet
         myPlayerActions.RightTrigger.AddDefaultBinding(Key.W);
 
         myPlayerActions.Submit.AddDefaultBinding(Key.Return);
-        myPlayerActions.Cancel.AddDefaultBinding(Key.RightAlt);
+        myPlayerActions.Cancel.AddDefaultBinding(Key.Escape);
         
         //Mando
         myPlayerActions.Up.AddDefaultBinding(InputControlType.LeftStickUp);

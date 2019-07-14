@@ -6,24 +6,28 @@ using UnityEngine;
 public class UITween : MonoBehaviour
 {
     public RectTransform rectTransform;
-    
+
+    public float duration = 1f;
+
     [Header("Scale")]
     public Vector3 expand;
     public Vector3 contract;
-    
+
     [Space(5)]
     [Header("Movement")]
     public Vector3 from;
     public Vector3 to;
+    
+    
 
     public void ExpandTween()
     {
-        rectTransform.DOScale(expand, 0.03f);
+        rectTransform.DOScale(expand, duration);
     }
 
     public void ContractTween()
     {
-        rectTransform.DOScale(contract, 0.03f);
+        rectTransform.DOScale(contract, duration);
     }
 
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using InControl;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -27,19 +28,24 @@ public class UIManager : Singleton<UIManager>
     public RectTransform characterSelectionTitle;
     public RectTransform settingsTitle;
     public RectTransform infoPanel;
+    public RectTransform confirmCharacterSelection;
 
     //Solo pruebas
     public RectTransform poseidonBackground;
     public RectTransform anubisBackground;
     public RectTransform kaliBackground;
     public RectTransform thorBackground;
-    //FinP pruebas
 
+    public Color confirmedColor;
+    public Color deniedColor;
+    //Fin pruebas
+
+    public Image fade;
+    public List<Image> confirmPlayerIcons;
     public List<GameObject> players;
-    public List<GameObject> lapsButtons;
     public GameObject characterSelectionManager;
 
-    public Text playersConfirmedText;
+    public TextMeshProUGUI playersConfirmedText;
 
     public bool poseidonChosen;
     public bool kaliChosen;
@@ -60,8 +66,16 @@ public class UIManager : Singleton<UIManager>
         anubisChosen = false;
     }
 
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
     public void OpenCharacterSelection()
     {
+        inControlInputModule.enabled = false;
+        EventSystem.current.SetSelectedGameObject(null);
+        
         Sequence tweenSequence = DOTween.Sequence();
         tweenSequence.Append(raceButton.DOAnchorPosX(-675, 0.5f, true))
             .Insert(0.2f, settingsButton.DOAnchorPosX(-675, 0.5f, true))
@@ -69,9 +83,9 @@ public class UIManager : Singleton<UIManager>
             .Insert(0.4f, mainMenuBackground.DOAnchorPosY(1035, 0.5f, true))
             .Insert(0.4f, mainMenuTitle.DOAnchorPosY(295, 0.5f, true))
             .Insert(0.6f, exitButton.DOAnchorPosX(-675, 0.5f, true))
-            .Insert(0.4f, infoPanel.DOAnchorPosY(-100,0.5f,true))
-            .Insert(1f,anubisBackground.DOAnchorPosY(0, 1f, true))
-            .Insert(1f,infoPanel.DOAnchorPos(new Vector2(1936,0),0.01f,true))
+            .Insert(0.4f, infoPanel.DOAnchorPosY(-100, 0.5f, true))
+            .Insert(1f, anubisBackground.DOAnchorPosY(0, 1f, true))
+            .Insert(1f, infoPanel.DOAnchorPos(new Vector2(1936, 0), 0.01f, true))
             .Insert(1f, poseidonBackground.DOAnchorPosY(0, 1f, true))
             .Insert(1f, kaliBackground.DOAnchorPosY(0, 1f, true))
             .Insert(1f, thorBackground.DOAnchorPosY(0, 1f, true))
@@ -80,7 +94,52 @@ public class UIManager : Singleton<UIManager>
             .Insert(1f, kaliButton.DOAnchorPosY(0, 1f, true))
             .Insert(1f, thorButton.DOAnchorPosY(0, 1f, true))
             .Insert(1.6f, characterSelectionTitle.DOAnchorPosX(0, 0.6f, true))
-            .Insert(1.6f, infoPanel.DOAnchorPosX(0, 0.6f, true));
+            .Insert(1.6f, infoPanel.DOAnchorPosX(0, 0.6f, true)).OnComplete(() =>
+            {
+                characterSelectionManager.SetActive(true);
+            });
+    }
+
+    public void OpenSettings()
+    {
+        inControlInputModule.enabled = false;
+        EventSystem.current.SetSelectedGameObject(null);
+        
+        Sequence tweenSequence = DOTween.Sequence();
+        tweenSequence.Append(raceButton.DOAnchorPosX(-675, 0.5f, true))
+            .Insert(0.2f, settingsButton.DOAnchorPosX(-675, 0.5f, true))
+            .Insert(0.4f, creditsButton.DOAnchorPosX(-675, 0.5f, true))
+            .Insert(0.4f, mainMenuTitle.DOAnchorPosY(295, 0.5f, true))
+            .Insert(0.6f, exitButton.DOAnchorPosX(-675, 0.5f, true))
+            .Insert(1.1f,settingsTitle.DOAnchorPos(new Vector2(0,settingsTitle.anchoredPosition.y), 0.5f, true))
+            .Insert(1.3f, volumeSlider.DOAnchorPos(new Vector2(0,0), 0.5f, true))
+            .Insert(1.5f, soundEffectsSlider.DOAnchorPos(new Vector2(0,0), 0.5f, true))
+            .Insert(1.6f, languageSlider.DOAnchorPos(new Vector2(0,0), 0.5f, true)).OnComplete(() =>
+            {
+                inControlInputModule.enabled = true;
+                EventSystem.current.SetSelectedGameObject(volumeSlider.gameObject);
+            });
+    }
+
+    public void CloseSettings()
+    {
+        inControlInputModule.enabled = false;
+        EventSystem.current.SetSelectedGameObject(null);
+        
+        Sequence tweenSequence = DOTween.Sequence();
+        tweenSequence.Append(settingsTitle.DOAnchorPos(new Vector2(-550, settingsTitle.anchoredPosition.y), 0.5f, true))
+            .Insert(0.2f, volumeSlider.DOAnchorPosX(-675, 0.5f, true))
+            .Insert(0.4f, soundEffectsSlider.DOAnchorPosX(-675, 0.5f, true))
+            .Insert(0.6f, languageSlider.DOAnchorPosX(-675, 0.5f, true))
+            .Insert(1f, raceButton.DOAnchorPosX(0, 0.5f, true))
+            .Insert(1.2f, settingsButton.DOAnchorPosX(0, 0.5f, true))
+            .Insert(1.4f, creditsButton.DOAnchorPosX(0, 0.5f, true))
+            .Insert(1.4f, mainMenuTitle.DOAnchorPosY(0, 0.5f, true))
+            .Insert(1.6f, exitButton.DOAnchorPosX(0, 0.5f, true)).OnComplete(() =>
+            {
+                inControlInputModule.enabled = true;
+                EventSystem.current.SetSelectedGameObject(raceButton.gameObject);
+            });
     }
     
     private void BuildCharacterSelection()
@@ -153,14 +212,19 @@ public class UIManager : Singleton<UIManager>
             .Insert(0.6f, languageSlider.DOAnchorPosX(-675, 0.5f, true));
     }
 
+    private void OpenConfirmCharacterSelection()
+    {
+        EventSystem.current.SetSelectedGameObject(confirmCharacterSelection.gameObject);
+    }
+
+    private void CloseConfirmCharacterSelection()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+    }
+
     private void ResetMainMenu()
     {
         raceButton.gameObject.SetActive(false);
-
-        foreach (var player in players)
-        {
-            player.SetActive(false);
-        }
 
         poseidonButton.gameObject.SetActive(false);
         kaliButton.gameObject.SetActive(false);
@@ -169,11 +233,6 @@ public class UIManager : Singleton<UIManager>
 
         playersWithGodPicked = 0;
         playersConfirmed = 0;
-
-        foreach (var laps in lapsButtons)
-        {
-            laps.SetActive(false);
-        }
 
         playersConfirmedText.text = "";
         playersConfirmedText.gameObject.SetActive(false);
@@ -184,31 +243,16 @@ public class UIManager : Singleton<UIManager>
     public void RacePressed()
     {
         raceButton.gameObject.SetActive(false);
-
-        foreach (var lap in lapsButtons)
-        {
-            lap.SetActive(true);
-        }
     }
 
+    //BORRAR
     public void CharacterSelectionPressed(int num)
     {
-        foreach (var lap in lapsButtons)
-        {
-            lap.SetActive(false);
-        }
 
         poseidonButton.gameObject.SetActive(true);
         kaliButton.gameObject.SetActive(true);
         anubisButton.gameObject.SetActive(true);
         thorButton.gameObject.SetActive(true);
-
-        foreach (var player in players)
-        {
-            player.SetActive(true);
-        }
-
-        characterSelectionManager.SetActive(true);
     }
 
     public void ReturnRace()
@@ -295,38 +339,42 @@ public class UIManager : Singleton<UIManager>
         {
             playersConfirmed = 0;
 
-            playersConfirmedText.text =
-                "Jugadores confirmados " + playersConfirmed + "   / " + RaceManager.Instance.players;
+            playersConfirmedText.text = playersConfirmed + "/" + RaceManager.Instance.players;
 
+            //REFACTORIZAR
+            for (int i = 0; i < RaceManager.Instance.players; i++)
+            {
+                confirmPlayerIcons[i].gameObject.SetActive(true);
+            }
+            
             foreach (var player in players)
             {
                 if (player.gameObject.activeInHierarchy)
                     player.GetComponent<CharacterSelectionController>().Confirm();
             }
+
+            OpenConfirmCharacterSelection();
         }
     }
 
-    public void ConfirmConfirmation()
+    public void ConfirmConfirmation(int playerID)
     {
         playersConfirmed++; 
+        
+        confirmPlayerIcons[playerID - 1].color = confirmedColor;
 
         if (playersConfirmed == RaceManager.Instance.players)
         {
-
-            foreach (var player in players)
+            for (int i = 0; i < RaceManager.Instance.players; i++)
             {
-                if (player.GetComponent<Image>().enabled)
-                {
-                    PlayerInfo playerInfo = new PlayerInfo();
-                    playerInfo.inputDevice = player.GetComponent<IncontrolProvider>().InputDevice;
-                    playerInfo.godType = player.GetComponent<CharacterSelectionController>().robogodPicked;
-                    playerInfo.controlType = player.GetComponent<IncontrolProvider>().controlType;
-                    RaceManager.Instance.playerInfo.Add(playerInfo);
-                }
+                PlayerInfo playerInfo = new PlayerInfo();
+                playerInfo.inputDevice = players[i].GetComponent<IncontrolProvider>().InputDevice;
+                playerInfo.godType = players[i].GetComponent<CharacterSelectionController>().robogodPicked;
+                playerInfo.controlType = players[i].GetComponent<IncontrolProvider>().controlType;
+                RaceManager.Instance.playerInfo.Add(playerInfo);
             }
 
-            ResetMainMenu();
-            SceneManager.LoadScene("Carrera");
+            StartCoroutine(FadeToRace());
 
         }
     }
@@ -335,6 +383,13 @@ public class UIManager : Singleton<UIManager>
     {
         playersConfirmedText.text = "";
         playersConfirmed = 0;
+        
+        CloseConfirmCharacterSelection();
+
+        for (int i = 0; i < confirmPlayerIcons.Count; i++)
+        {
+            confirmPlayerIcons[i].color = deniedColor;
+        }
 
         foreach (var player in players)
         {
@@ -342,5 +397,13 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
-
+    private IEnumerator FadeToRace()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Tween tween = fade.DOFade(1, 1f);
+        yield return new WaitForSeconds(tween.Duration());
+        ResetMainMenu();
+        SceneManager.LoadScene("Carrera");
+    }
+    
 }

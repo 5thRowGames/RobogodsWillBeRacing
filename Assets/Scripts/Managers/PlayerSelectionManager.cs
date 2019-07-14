@@ -62,7 +62,7 @@ public class PlayerSelectionManager : MonoBehaviour
     
     bool JoinButtonWasPressed( MyPlayerActions actions )
     {
-        return actions.Gas.WasPressed;
+        return actions.Submit.WasPressed;
     }
 
     IDevice FindPlayerUsingDevice( InputDevice inputDevice )

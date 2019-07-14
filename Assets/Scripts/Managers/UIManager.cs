@@ -44,6 +44,7 @@ public class UIManager : Singleton<UIManager>
     public List<Image> confirmPlayerIcons;
     public List<GameObject> players;
     public GameObject characterSelectionManager;
+    public GameObject titleScreenPanel;
 
     public TextMeshProUGUI playersConfirmedText;
 
@@ -59,7 +60,6 @@ public class UIManager : Singleton<UIManager>
 
     private void Awake()
     {
-        EventSystem.current.SetSelectedGameObject(raceButton.gameObject);
         poseidonChosen = false;
         kaliChosen = false;
         thorChosen = false;
@@ -141,6 +141,25 @@ public class UIManager : Singleton<UIManager>
                 EventSystem.current.SetSelectedGameObject(raceButton.gameObject);
             });
     }
+
+
+    public void ReturnTitleScreen()
+    {
+        inControlInputModule.enabled = false;
+        EventSystem.current.SetSelectedGameObject(null);
+        
+        Sequence tweenSequence = DOTween.Sequence();
+        tweenSequence.Append(raceButton.DOAnchorPosX(-675, 0.5f, true))
+            .Insert(0.2f, settingsButton.DOAnchorPosX(-675, 0.5f, true))
+            .Insert(0.4f, creditsButton.DOAnchorPosX(-675, 0.5f, true))
+            .Insert(0.4f, mainMenuBackground.DOAnchorPosY(1035, 0.5f, true))
+            .Insert(0.4f, mainMenuTitle.DOAnchorPosY(295, 0.5f, true))
+            .Insert(0.4f, infoPanel.DOAnchorPosY(-150,0.5f,true))
+            .Insert(0.6f, exitButton.DOAnchorPosX(-675, 0.5f, true)).OnComplete(() =>
+            {
+                titleScreenPanel.SetActive(true);
+            });
+    }
     
     private void BuildCharacterSelection()
     {
@@ -172,7 +191,7 @@ public class UIManager : Singleton<UIManager>
             .Insert(0.6f, thorButton.DOAnchorPosY(-230, 1f, true));
     }
 
-    private void BuildMainMenu()
+    public void BuildMainMenu()
     {
         Sequence tweenSequence = DOTween.Sequence();
         tweenSequence.Append(raceButton.DOAnchorPosX(0, 0.5f, true))
@@ -180,7 +199,8 @@ public class UIManager : Singleton<UIManager>
             .Insert(0.4f, creditsButton.DOAnchorPosX(0, 0.5f, true))
             .Insert(0.4f, mainMenuBackground.DOAnchorPosY(0, 0.5f, true))
             .Insert(0.4f, mainMenuTitle.DOAnchorPosY(0, 0.5f, true))
-            .Insert(0.6f, exitButton.DOAnchorPosX(0, 0.5f, true));
+            .Insert(0.6f, exitButton.DOAnchorPosX(0, 0.5f, true))
+            .Insert(0.4f, infoPanel.DOAnchorPosY(0, 0.5f, true));
     }
 
     private void RemoveMainMenu()
@@ -362,6 +382,8 @@ public class UIManager : Singleton<UIManager>
         playersConfirmed++; 
         
         confirmPlayerIcons[playerID - 1].color = confirmedColor;
+        
+        playersConfirmedText.text = playersConfirmed + "/" + RaceManager.Instance.players;
 
         if (playersConfirmed == RaceManager.Instance.players)
         {
@@ -405,5 +427,5 @@ public class UIManager : Singleton<UIManager>
         ResetMainMenu();
         SceneManager.LoadScene("Carrera");
     }
-    
+
 }

@@ -28,9 +28,6 @@ public class UIManager : Singleton<UIManager>
     public RectTransform settingsTitle;
     public RectTransform infoPanel;
 
-    [Header("References")]
-
-
     //Solo pruebas
     public RectTransform poseidonBackground;
     public RectTransform anubisBackground;
@@ -51,69 +48,16 @@ public class UIManager : Singleton<UIManager>
 
     public int playersWithGodPicked;
     public int playersConfirmed;
-
-    private MenuType.MenyType menuType;
-    private bool allowInput;
+    
+    public InControlInputModule inControlInputModule;
 
     private void Awake()
     {
-        menuType = MenuType.MenyType.TitleScreen;
+        EventSystem.current.SetSelectedGameObject(raceButton.gameObject);
         poseidonChosen = false;
         kaliChosen = false;
         thorChosen = false;
         anubisChosen = false;
-    }
-
-    private void Update()
-    {
-        InputDevice device = InputManager.ActiveDevice;
-
-        if (allowInput && (device.Action1.IsPressed || Input.GetKeyDown(KeyCode.KeypadEnter)))
-        {
-            ChangeState();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            //Prueba();
-        }
-        
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            //Prueba2();
-        }
-    }
-
-    private void ChangeState()
-    {
-        switch (menuType)
-        {
-            case MenuType.MenyType.Race:
-                
-                break;
-            
-            case MenuType.MenyType.Settings:
-                break;
-            
-            case MenuType.MenyType.Credits:
-                break;
-            
-            case MenuType.MenyType.Laps:
-                break;
-            
-            case MenuType.MenyType.CharacterSelection:
-                break;
-            
-            case MenuType.MenyType.Game:
-                break;
-            
-            case MenuType.MenyType.TitleScreen:
-                
-                break;
-            
-            case MenuType.MenyType.Pause:
-                break;
-        }
     }
 
     public void OpenCharacterSelection()
@@ -207,13 +151,6 @@ public class UIManager : Singleton<UIManager>
             .Insert(0.2f, volumeSlider.DOAnchorPosX(-675, 0.5f, true))
             .Insert(0.4f, soundEffectsSlider.DOAnchorPosX(-675, 0.5f, true))
             .Insert(0.6f, languageSlider.DOAnchorPosX(-675, 0.5f, true));
-    }
-
-    private void GoToMainMenu()
-    {
-        allowInput = false;
-        //Meter secuencia de dotween
-        allowInput = true;
     }
 
     private void ResetMainMenu()

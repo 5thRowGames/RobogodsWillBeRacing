@@ -14,6 +14,8 @@ public class MyPlayerActions : PlayerActionSet
     public PlayerOneAxisAction Horizontal;
     public PlayerOneAxisAction Vertical;
 
+    public PlayerTwoAxisAction Move;
+
     public PlayerAction Gas;
     public PlayerAction Fire;
     public PlayerAction Action;
@@ -39,6 +41,7 @@ public class MyPlayerActions : PlayerActionSet
 
         Horizontal = CreateOneAxisPlayerAction(Left, Right);
         Vertical = CreateOneAxisPlayerAction(Down, Up);
+        Move = CreateTwoAxisPlayerAction(Left, Right, Down, Up);
 
         Gas = CreatePlayerAction("Jump");
         Fire = CreatePlayerAction("Fire");
@@ -115,10 +118,10 @@ public class MyPlayerActions : PlayerActionSet
     {
         var myPlayerActions = new MyPlayerActions();
 
-        /*myPlayerActions.Up.AddDefaultBinding(Key.W);
-        myPlayerActions.Down.AddDefaultBinding(Key.S);*/
-        myPlayerActions.Right.AddDefaultBinding(Key.D);
-        myPlayerActions.Left.AddDefaultBinding(Key.A);
+        myPlayerActions.Up.AddDefaultBinding(Key.UpArrow);
+        myPlayerActions.Down.AddDefaultBinding(Key.DownArrow);
+        myPlayerActions.Right.AddDefaultBinding(Key.RightArrow);
+        myPlayerActions.Left.AddDefaultBinding(Key.LeftArrow);
 
         myPlayerActions.Gas.AddDefaultBinding(Key.Space);
         myPlayerActions.Fire.AddDefaultBinding(Key.Key1);

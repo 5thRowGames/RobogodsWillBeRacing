@@ -343,6 +343,11 @@
 								</RandomSequenceContainer>
 								<BlendContainer Name="Coche_1_Arranque" ID="{9E02B558-2436-434D-AB7C-65C109C61655}" ShortID="795011391">
 									<PropertyList>
+										<Property Name="Inclusion" Type="bool">
+											<ValueList>
+												<Value>False</Value>
+											</ValueList>
+										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
 												<Value>-5</Value>
@@ -563,7 +568,7 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<Sound Name="Robo_Gods_Motor_Turbo_SFX_Car_1" ID="{731865AB-4F90-4E62-AEE1-BB8D73A967AF}" ShortID="296061020">
+										<Sound Name="Robo_Gods_Motor_Turbo_SFX" ID="{1AB42DDC-7A8C-402C-AD9D-7CC438746D0F}" ShortID="652229768">
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
@@ -573,13 +578,13 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="Robo_Gods_Motor_Turbo_SFX_Car_1" ID="{28B8404A-ADCE-4401-A43D-F700D1FA3055}" ShortID="213490839">
+												<AudioFileSource Name="Robo_Gods_Motor_Turbo_SFX" ID="{5218CFF2-DD64-41B9-AC40-CE4C114B85E6}" ShortID="371663980">
 													<Language>SFX</Language>
-													<AudioFile>Robo_Gods_Motor_Turbo_SFX_Car_1.wav</AudioFile>
+													<AudioFile>Robo_Gods_Motor_Turbo_SFX.wav</AudioFile>
 												</AudioFileSource>
 											</ChildrenList>
 											<ActiveSourceList>
-												<ActiveSource Name="Robo_Gods_Motor_Turbo_SFX_Car_1" ID="{28B8404A-ADCE-4401-A43D-F700D1FA3055}" Platform="Linked"/>
+												<ActiveSource Name="Robo_Gods_Motor_Turbo_SFX" ID="{5218CFF2-DD64-41B9-AC40-CE4C114B85E6}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
 									</ChildrenList>
@@ -1336,7 +1341,7 @@
 								<Property Name="RandomOrSequence" Type="int16" Value="0"/>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-18</Value>
+										<Value>-20</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -1349,7 +1354,26 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<Sound Name="Robo_Gods_Musica_Central_Deadline_1_BRUTO" ID="{3772A19D-E31E-4161-B119-097BF196F2D2}" ShortID="277051252">
+								<Sound Name="Robo_Gods_Musica_Limbo_INTRO" ID="{246B7BFC-E117-470F-9374-B0697F83EE04}" ShortID="801187508">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Robo_Gods_Musica_Limbo_INTRO" ID="{3BB1F317-E4DD-4867-BD82-CAFAE154944E}" ShortID="825288189">
+											<Language>SFX</Language>
+											<AudioFile>Robo_Gods_Musica_Limbo_INTRO.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Robo_Gods_Musica_Limbo_INTRO" ID="{3BB1F317-E4DD-4867-BD82-CAFAE154944E}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Robo_Gods_Musica_Limbo_LOOP" ID="{5DE07C10-CE07-4D34-9FCE-2D3D6655F795}" ShortID="25491639">
 									<PropertyList>
 										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
 									</PropertyList>
@@ -1362,38 +1386,19 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="Robo_Gods_Musica_Central_Deadline_1_BRUTO" ID="{63F54168-87F3-4571-8073-672F2CB98448}" ShortID="95090160">
+										<AudioFileSource Name="Robo_Gods_Musica_Limbo_LOOP" ID="{AEDF637E-EA8C-4BF5-8DAB-118018AB21BA}" ShortID="706172927">
 											<Language>SFX</Language>
-											<AudioFile>Robo_Gods_Musica_Central_Deadline_1_BRUTO.wav</AudioFile>
+											<AudioFile>Robo_Gods_Musica_Limbo_LOOP.wav</AudioFile>
 										</AudioFileSource>
 									</ChildrenList>
 									<ActiveSourceList>
-										<ActiveSource Name="Robo_Gods_Musica_Central_Deadline_1_BRUTO" ID="{63F54168-87F3-4571-8073-672F2CB98448}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="Robo_Gods_Musica_Central_Deadline_1_Intro_BRUTO" ID="{16DAB303-9CB1-4E3D-920D-A65AD5A790C4}" ShortID="127193179">
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="Robo_Gods_Musica_Central_Deadline_1_Intro_BRUTO" ID="{4B0C66EC-9754-474D-84D1-EA9EFF1EB104}" ShortID="258279634">
-											<Language>SFX</Language>
-											<AudioFile>Robo_Gods_Musica_Central_Deadline_1_Intro_BRUTO.wav</AudioFile>
-										</AudioFileSource>
-									</ChildrenList>
-									<ActiveSourceList>
-										<ActiveSource Name="Robo_Gods_Musica_Central_Deadline_1_Intro_BRUTO" ID="{4B0C66EC-9754-474D-84D1-EA9EFF1EB104}" Platform="Linked"/>
+										<ActiveSource Name="Robo_Gods_Musica_Limbo_LOOP" ID="{AEDF637E-EA8C-4BF5-8DAB-118018AB21BA}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 							</ChildrenList>
 							<Playlist>
-								<ItemRef Name="Robo_Gods_Musica_Central_Deadline_1_Intro_BRUTO" ID="{16DAB303-9CB1-4E3D-920D-A65AD5A790C4}"/>
-								<ItemRef Name="Robo_Gods_Musica_Central_Deadline_1_BRUTO" ID="{3772A19D-E31E-4161-B119-097BF196F2D2}"/>
+								<ItemRef Name="Robo_Gods_Musica_Limbo_INTRO" ID="{246B7BFC-E117-470F-9374-B0697F83EE04}"/>
+								<ItemRef Name="Robo_Gods_Musica_Limbo_LOOP" ID="{5DE07C10-CE07-4D34-9FCE-2D3D6655F795}"/>
 							</Playlist>
 						</RandomSequenceContainer>
 					</ChildrenList>
@@ -1421,6 +1426,9 @@
 									</ValueList>
 								</Property>
 								<Property Name="Pitch" Type="int32">
+									<ValueList>
+										<Value>-80</Value>
+									</ValueList>
 									<ModifierList>
 										<ModifierInfo>
 											<Modifier Name="" ID="{83CBF00C-7948-477F-98EA-2207526EE7B1}">
@@ -1440,8 +1448,39 @@
 								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-17</Value>
+										<Value>-9</Value>
 									</ValueList>
+									<RTPCList>
+										<RTPC Name="" ID="{FA07F2F1-5D44-47F8-8AC7-835EE53F1658}" ShortID="270049461">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<ObjectRef Name="Player_Velocidad" ID="{E08C3774-7EB1-4D85-98DD-59215F2E9293}" WorkUnitID="{90A236A2-9029-4BFD-8983-FBFF09638A74}"/>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{F38484FF-1C70-4D51-A6D8-1AB19A5F9B2C}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="3"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>0.11354</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>55.97751</XPos>
+														<YPos>-1.18575</YPos>
+														<Flags>0</Flags>
+													</Point>
+													<Point>
+														<XPos>100</XPos>
+														<YPos>-200</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
 								</Property>
 							</PropertyList>
 							<ReferenceList>

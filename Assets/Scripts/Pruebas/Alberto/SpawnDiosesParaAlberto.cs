@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using InControl;
 using UnityEngine;
+using System;
 
 public class SpawnDiosesParaAlberto : MonoBehaviour
 {
+    public static event Action<GameObject> OnGodSpawned;
 
     public List<GameObject> dioses;
     public List<Transform> spawnPositions;
@@ -42,6 +44,10 @@ public class SpawnDiosesParaAlberto : MonoBehaviour
                     dios.GetComponent<MyCarController>().ConnectCar();
                     cameras[playerOrder].GetComponent<CameraController>().target = dios;
                     playerOrder++;
+
+                    if (dios != null && OnGodSpawned != null)
+                        OnGodSpawned.Invoke(dios);
+
                 }
             }
         
@@ -59,6 +65,9 @@ public class SpawnDiosesParaAlberto : MonoBehaviour
                     dios.GetComponent<MyCarController>().ConnectCar();
                     cameras[playerOrder].GetComponent<CameraController>().target = dios;
                     playerOrder++;
+
+                    if (dios != null && OnGodSpawned != null)
+                        OnGodSpawned.Invoke(dios);
                 }
             }
 

@@ -158,7 +158,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2890753206469783470}
   - component: {fileID: 2890753206469783456}
-  - component: {fileID: 2890753206469783457}
+  - component: {fileID: 5194434211437821412}
   m_Layer: 5
   m_Name: FillArea
   m_TagString: Untagged
@@ -193,7 +193,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2890753206469783471}
   m_CullTransparentMesh: 0
---- !u!114 &2890753206469783457
+--- !u!114 &5194434211437821412
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -206,18 +206,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 21300090, guid: 148a7416d4c344a42bb28cb23ee31708, type: 3}
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -500,6 +500,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rectTransform: {fileID: 5943374495013391137}
+  duration: 1
   expand: {x: 1.5, y: 1.5, z: 1.5}
   contract: {x: 1, y: 1, z: 1}
   from: {x: 0, y: 0, z: 0}

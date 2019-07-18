@@ -79,7 +79,7 @@ public class StartRace : MonoBehaviour
             switch (playerInfo.godType)
             {
                                 
-                case GodType.RobogodType.Poseidon:
+                case God.Type.Poseidon:
                     
                     GameObject poseidon = Instantiate(poseidonPlayer, startPositions[0].position,startPositions[0].rotation);
                     poseidon.GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
@@ -102,7 +102,7 @@ public class StartRace : MonoBehaviour
                     cameraIndex++;
                     break;
 
-                case GodType.RobogodType.Anubis:
+                case God.Type.Anubis:
                     
                     GameObject anubis = Instantiate(anubisPlayer, startPositions[1].position,startPositions[1].rotation);
                     anubis.GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
@@ -124,7 +124,7 @@ public class StartRace : MonoBehaviour
                     cameraIndex++;
                     break;
                 
-                case GodType.RobogodType.Thor:
+                case God.Type.Thor:
                     
                     GameObject thor = Instantiate(thorPlayer, startPositions[2].position,startPositions[2].rotation);
                     thor.GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
@@ -146,7 +146,7 @@ public class StartRace : MonoBehaviour
                     cameraIndex++;
                     break;
                 
-                case GodType.RobogodType.Kali:
+                case God.Type.Kali:
                     
                     GameObject kali = Instantiate(kaliPlayer, startPositions[3].position,startPositions[3].rotation);
                     kali.GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;

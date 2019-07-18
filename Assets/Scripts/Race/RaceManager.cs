@@ -7,7 +7,7 @@ public class PlayerInfo
 
     public InputDevice inputDevice;
     public IncontrolProvider.ControlType controlType;
-    public GodType.RobogodType godType;
+    public God.Type godType;
 }
 
 public class RaceManager : Singleton<RaceManager>

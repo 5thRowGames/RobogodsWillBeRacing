@@ -605,6 +605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rectTransform: {fileID: 0}
+  duration: 1
   expand: {x: 0, y: 0, z: 0}
   contract: {x: 0, y: 0, z: 0}
   from: {x: 0, y: 0, z: 0}
@@ -694,6 +695,7 @@ GameObject:
   - component: {fileID: 64399220911486708}
   - component: {fileID: 6406342398435318485}
   - component: {fileID: 4527984423877950191}
+  - component: {fileID: 1131306625542568550}
   m_Layer: 5
   m_Name: DescriptionText
   m_TagString: Untagged
@@ -843,3 +845,17 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1131306625542568550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6188066383158757987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59569ac7d43050541abed8e63807a6f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localizationID: PLAYERS_CONFIRMED
+  textMeshPro: {fileID: 4527984423877950191}

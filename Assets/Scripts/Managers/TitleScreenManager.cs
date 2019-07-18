@@ -13,6 +13,8 @@ public class TitleScreenManager : MonoBehaviour
     public InControlInputModule inControlInputModule;
     public RectTransform pressToPlay;
 
+    private Tween firstTween;
+
     private bool controlSubmit;
     private bool initialTweenComplete;
     
@@ -45,12 +47,13 @@ public class TitleScreenManager : MonoBehaviour
 
     IEnumerator ButtonPressedTween()
     {
-        if (initialTweenComplete)
+        if (!initialTweenComplete)
         {
-            pressToPlay.DOScale(Vector3.zero, 0.3f);
-            yield return new WaitForSeconds(0.3f);
+            firstTween.Kill();
         }
         
+        pressToPlay.DOScale(Vector3.zero, 0.3f);
+        yield return new WaitForSeconds(0.3f);
         UIManager.Instance.BuildMainMenu();
         yield return new WaitForSeconds(1.2f);
         titleScreenPanel.SetActive(false);
@@ -61,6 +64,6 @@ public class TitleScreenManager : MonoBehaviour
 
     private void TitleTween()
     {
-        pressToPlay.DOAnchorPosY(150, 1f, true).OnComplete(() => { initialTweenComplete = true; });
+        firstTween = pressToPlay.DOAnchorPosY(150, 1f, true).OnComplete(() => { initialTweenComplete = true; });
     }
 }

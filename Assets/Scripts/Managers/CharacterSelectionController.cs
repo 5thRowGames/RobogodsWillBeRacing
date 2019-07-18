@@ -16,11 +16,11 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
     
     
 
-    public GodType.RobogodType robogodPicked;
+    public God.Type robogodPicked;
 
     private void Awake()
     {
-        robogodPicked = GodType.RobogodType.None;
+        robogodPicked = God.Type.None;
         position = 0;
         confirm = false;
         confirmed = false;
@@ -52,7 +52,7 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
             {
                 UIManager.Instance.DenyConfirmation();
                 UIManager.Instance.DeselectCharacter(robogodPicked);
-                robogodPicked = GodType.RobogodType.None;
+                robogodPicked = God.Type.None;
                 canChooseGod = true;
             }
         }
@@ -126,8 +126,8 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
 
                 if (!UIManager.Instance.poseidonChosen)
                 {
-                    UIManager.Instance.ChooseCharacter(GodType.RobogodType.Poseidon);
-                    robogodPicked = GodType.RobogodType.Poseidon;
+                    UIManager.Instance.ChooseCharacter(God.Type.Poseidon);
+                    robogodPicked = God.Type.Poseidon;
                     canChooseGod = false;
                 }
                 break;
@@ -136,8 +136,8 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
                     
                 if (!UIManager.Instance.kaliChosen)
                 {
-                    UIManager.Instance.ChooseCharacter(GodType.RobogodType.Kali);
-                    robogodPicked = GodType.RobogodType.Kali;
+                    UIManager.Instance.ChooseCharacter(God.Type.Kali);
+                    robogodPicked = God.Type.Kali;
                     canChooseGod = false;
                 }
                 break;
@@ -146,8 +146,8 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
 
                 if (!UIManager.Instance.thorChosen)
                 {
-                    UIManager.Instance.ChooseCharacter(GodType.RobogodType.Thor);
-                    robogodPicked = GodType.RobogodType.Thor;
+                    UIManager.Instance.ChooseCharacter(God.Type.Thor);
+                    robogodPicked = God.Type.Thor;
                     canChooseGod = false;
                 }
                 break;
@@ -156,8 +156,8 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
 
                 if (!UIManager.Instance.anubisChosen)
                 {
-                    UIManager.Instance.ChooseCharacter(GodType.RobogodType.Anubis);
-                    robogodPicked = GodType.RobogodType.Anubis;
+                    UIManager.Instance.ChooseCharacter(God.Type.Anubis);
+                    robogodPicked = God.Type.Anubis;
                     canChooseGod = false;
                 }
                 break;
@@ -166,28 +166,28 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
     
     private void DeselectGod()
     {
-        if (robogodPicked != GodType.RobogodType.None)
+        if (robogodPicked != God.Type.None)
         {
 
-            robogodPicked = GodType.RobogodType.None;
+            robogodPicked = God.Type.None;
             canChooseGod = true;
             
             switch (position)
             {
                 case 0:
-                    UIManager.Instance.DeselectCharacter(GodType.RobogodType.Poseidon);
+                    UIManager.Instance.DeselectCharacter(God.Type.Poseidon);
                     break;
             
                 case 1:
-                    UIManager.Instance.DeselectCharacter(GodType.RobogodType.Kali);
+                    UIManager.Instance.DeselectCharacter(God.Type.Kali);
                     break;
             
                 case 2:
-                    UIManager.Instance.DeselectCharacter(GodType.RobogodType.Thor);
+                    UIManager.Instance.DeselectCharacter(God.Type.Thor);
                     break;
             
                 case 3:
-                    UIManager.Instance.DeselectCharacter(GodType.RobogodType.Anubis);
+                    UIManager.Instance.DeselectCharacter(God.Type.Anubis);
                     break;
             }
         }

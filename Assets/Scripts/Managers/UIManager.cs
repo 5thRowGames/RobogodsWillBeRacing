@@ -58,6 +58,8 @@ public class UIManager : Singleton<UIManager>
     
     public InControlInputModule inControlInputModule;
 
+    public AnimationCurve animCurve;
+
     private void Awake()
     {
         poseidonChosen = false;
@@ -69,6 +71,61 @@ public class UIManager : Singleton<UIManager>
     public void ExitGame()
     {
         Application.Quit();
+    }
+
+    public void Plancha1Entrar()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        Sequence sequence = DOTween.Sequence();
+        sequence.Insert(0f, raceButton.DOScale(new Vector3(0.8f, 0.8f, 0.8f), 0.01f))
+            .Insert(0f, settingsButton.DOScale(new Vector3(0.8f, 0.8f, 0.8f), 0.01f))
+            .Insert(0f, creditsButton.DOScale(new Vector3(0.8f, 0.8f, 0.8f), 0.01f))
+            .Insert(0f, exitButton.DOScale(new Vector3(0.8f, 0.8f, 0.8f), 0.01f))
+            .Insert(0.1f, raceButton.DOAnchorPosX(0, 0.7f, true))
+            .Insert(0.1f, creditsButton.DOAnchorPosX(0, 0.7f, true))
+            .Insert(0.1f, exitButton.DOAnchorPosX(0, 0.7f, true))
+            .Insert(0.1f, settingsButton.DOAnchorPosX(0, 0.7f, true))
+            .Insert(0.8f, raceButton.DOScale(Vector3.one, 0.3f))
+            .Insert(0.8f, settingsButton.DOScale(Vector3.one, 0.3f))
+            .Insert(0.8f, creditsButton.DOScale(Vector3.one, 0.3f))
+            .Insert(0.8f, exitButton.DOScale(Vector3.one, 0.3f));
+
+    }
+
+    public void Plancha1Salir()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(settingsButton.DOAnchorPos(new Vector2(-359, 651), 2f, true))
+            .Insert(0.3f, raceButton.DOScale(new Vector3(0.7f, 0.7f, 0.7f), 0.3f))
+            .Insert(0.3f, creditsButton.DOScale(new Vector3(0.7f, 0.7f, 0.7f), 0.3f))
+            .Insert(0.3f, exitButton.DOScale(new Vector3(0.7f, 0.7f, 0.7f), 0.3f))
+            .Insert(0.6f, raceButton.DOAnchorPosY(-800, 0.7f, true).SetEase(animCurve))
+            .Insert(0.6f, creditsButton.DOAnchorPosY(-800, 0.7f, true).SetEase(animCurve))
+            .Insert(0.6f, exitButton.DOAnchorPosY(-800, 0.7f, true).SetEase(animCurve));
+    }
+
+    public void EliminarPorEsquina()
+    {
+
+        EventSystem.current.SetSelectedGameObject(null);
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(settingsButton.DOAnchorPos(new Vector2(-359, 651), 2f, true))
+            .Insert(0.3f, raceButton.DOAnchorPosY(-800, 1.4f, true).SetEase(animCurve))
+            .Insert(0.4f, creditsButton.DOAnchorPosY(-800, 1.4f, true).SetEase(animCurve))
+            .Insert(0.5f, exitButton.DOAnchorPosY(-800, 1.2f, true).SetEase(animCurve));
+
+    }
+
+    public void EliminarPorEsquina2()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(settingsButton.DOAnchorPos(new Vector2(-359, 651), 2f, true))
+            .Insert(0.4f, raceButton.DOAnchorPosY(-900, 1.2f, true).SetEase(animCurve))
+            .Insert(0.6f,raceButton.DORotate(new Vector3(0,0,-20f), 0.8f,RotateMode.Fast))
+            .Insert(0.4f, creditsButton.DOAnchorPosY(-800, 1.4f, true).SetEase(animCurve))
+            .Insert(0.5f, exitButton.DOAnchorPosY(-800, 1.2f, true).SetEase(animCurve));
     }
 
     public void OpenCharacterSelection()
@@ -281,32 +338,32 @@ public class UIManager : Singleton<UIManager>
         EventSystem.current.SetSelectedGameObject(raceButton.gameObject);
     }
 
-    public void ChooseCharacter(GodType.RobogodType robogod)
+    public void ChooseCharacter(God.Type robogod)
     {
         switch (robogod)
         {
-            case GodType.RobogodType.Anubis:
+            case God.Type.Anubis:
 
                 //Corutina
                 anubisChosen = true;
                 RaceManager.Instance.anubisIA = false;
                 break;
             
-            case GodType.RobogodType.Kali:
+            case God.Type.Kali:
 
                 //Corutina
                 kaliChosen = true;
                 RaceManager.Instance.kaliIA = false;
                 break;
             
-            case GodType.RobogodType.Poseidon:
+            case God.Type.Poseidon:
 
                 //Corutina
                 poseidonChosen = true;
                 RaceManager.Instance.poseidonIA = false;
                 break;
             
-            case GodType.RobogodType.Thor:
+            case God.Type.Thor:
 
                 //Corutina
                 thorChosen = true;
@@ -316,32 +373,32 @@ public class UIManager : Singleton<UIManager>
         EveryoneHasGod(1);
     }
 
-    public void DeselectCharacter(GodType.RobogodType robogod)
+    public void DeselectCharacter(God.Type robogod)
     {
         switch (robogod)
         {
-            case GodType.RobogodType.Anubis:
+            case God.Type.Anubis:
                 //Corutina
                 anubisChosen = false;
                 RaceManager.Instance.anubisIA = true;
 
                 break;
             
-            case GodType.RobogodType.Kali:
+            case God.Type.Kali:
                 //Corutina
                 kaliChosen = false;
                 RaceManager.Instance.anubisIA = true;
 
                 break;
             
-            case GodType.RobogodType.Poseidon:
+            case God.Type.Poseidon:
                 //Corutina
                 poseidonChosen = false;
                 RaceManager.Instance.anubisIA = true;
 
                 break;
             
-            case GodType.RobogodType.Thor:
+            case God.Type.Thor:
                 //Corutina
                 thorChosen = false;
                 RaceManager.Instance.anubisIA = true;

@@ -11,7 +11,7 @@ public class Checkpoint : MonoBehaviour
         if(other.gameObject.GetComponent<MyCarController>() != null) // Es un coche/dios
         {
             Debug.Log($"Checkpoint {Index} passed!");
-            LapsManager.instance.UpdateCheckPoint(other.gameObject.name, Index);
+            LapsManager.instance.UpdateCheckPoint(other.gameObject, Index);
         }
     }
 }

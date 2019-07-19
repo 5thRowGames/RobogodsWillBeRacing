@@ -6,21 +6,18 @@ using UnityEngine.UI;
 public class LapsManager : MonoBehaviour
 {
     [System.Serializable]
-    public class GodLapsController
+    public class GodRaceInfo
     {
-        public string god;
-        public Transform tr;
+        public GameObject god;
         public int currentLap;
         public int currentCheckPoint;
         public float distanceToNextCheckPoint;
+        public int racePosition;
         public bool raceFinished;
 
-        public GodLapsController(string god, Transform tr)
+        public GodRaceInfo(GameObject god)
         {
             this.god = god;
-            this.tr = tr;
-            currentLap = 0;
-            currentCheckPoint = 0;
             raceFinished = false;
         }
 
@@ -30,7 +27,7 @@ public class LapsManager : MonoBehaviour
 
     public List<GameObject> gods;
     public List<Checkpoint> checkPoints;
-    public List<GodLapsController> godLaps;
+    public List<GodRaceInfo> godRaceInfoList;
 
     public List<string> godsPositions;
 
@@ -55,7 +52,6 @@ public class LapsManager : MonoBehaviour
 
     private void Awake()
     {
-
         if (instance == null)
             instance = this;
         else if (instance != this)
@@ -65,18 +61,16 @@ public class LapsManager : MonoBehaviour
 
     private void Start()
     {
-        //Invoke(nameof(RegisterGods), 5f);
-        godLaps = new List<GodLapsController>();
-
-
+        godRaceInfoList = new List<GodRaceInfo>();
         RegisterCheckPoints();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         UpdateDistancesToCheckPoints();
-
-        godLaps.Sort(CompareRacePositions);
+        godRaceInfoList.Sort(CompareRacePositions);
+        for (int i = 0; i < godRaceInfoList.Count; i++)
+            godRaceInfoList[i].racePosition = i + 1;
     }
 
     private void OnEnable()
@@ -91,19 +85,19 @@ public class LapsManager : MonoBehaviour
 
     private void OnGodSpawned(GameObject god)
     {
-        godLaps.Add(new GodLapsController(god.name, god.transform));
+        godRaceInfoList.Add(new GodRaceInfo(god));
         Debug.Log($"{god.name} registered");
     }
 
     private void RegisterGods()
     {
-        godLaps = new List<GodLapsController>();
+        godRaceInfoList = new List<GodRaceInfo>();
         godsPositions = new List<string>();
         var players = FindObjectsOfType<MyCarController>();
         foreach (var player in players)
         {
             Debug.Log($"Hello, I'm {player.Name}");
-            godLaps.Add(new GodLapsController(player.Name, player.transform));
+            godRaceInfoList.Add(new GodRaceInfo(player.gameObject));
         }
     }
 
@@ -116,32 +110,32 @@ public class LapsManager : MonoBehaviour
     }
 
     // Revisar porque un mismo coche actualiza ambos textos, no a la vez
-    public void UpdateCheckPoint(string godName, int checkpoint)
+    public void UpdateCheckPoint(GameObject god, int checkpoint)
     {
-        GodLapsController god = godLaps.Find(g => g.god == godName);
-        int index = godLaps.FindIndex(g => g.god == godName);
+        GodRaceInfo gri = godRaceInfoList.Find(g => g.god == god);
+        int index = godRaceInfoList.FindIndex(g => g.god == god);
         
-        if (god == null)
+        if (gri == null)
             return;
 
-        if(god.currentCheckPoint == checkpoint) // Hemos pasado el checkpoint que tocaba
+        if(gri.currentCheckPoint == checkpoint) // Hemos pasado el checkpoint que tocaba
         {
-            if(god.currentCheckPoint + 1 >= checkPoints.Count) // nueva vuelta
+            if(gri.currentCheckPoint + 1 >= checkPoints.Count) // nueva vuelta
             {
-                if(god.currentLap + 1 >= numberOfLaps) // Termina la carrera para el dios
+                if(gri.currentLap + 1 >= numberOfLaps) // Termina la carrera para el dios
                 {
-                    god.raceFinished = true;
+                    gri.raceFinished = true;
                     RaceFinishedByAll = IsRaceFinished(); // Se comprueba si todos han terminado la carrera
                 }
-                god.currentLap++;
-                UpdateLapsText(index, god.currentLap);
-                god.currentCheckPoint = 0;
+                gri.currentLap++;
+                UpdateLapsText(index, gri.currentLap);
+                gri.currentCheckPoint = 0;
                 UpdateCheckPointsText(index, 0);
             }
             else
             {
-                god.currentCheckPoint++;
-                UpdateCheckPointsText(index, god.currentCheckPoint);
+                gri.currentCheckPoint++;
+                UpdateCheckPointsText(index, gri.currentCheckPoint);
             }
         }
     }
@@ -158,7 +152,7 @@ public class LapsManager : MonoBehaviour
 
     private bool IsRaceFinished()
     {
-        foreach(var gl in godLaps)
+        foreach(var gl in godRaceInfoList)
         {
             if (!gl.raceFinished)
                 return false;
@@ -166,7 +160,7 @@ public class LapsManager : MonoBehaviour
         return true;
     }
 
-    public static int CompareRacePositions(GodLapsController godA, GodLapsController godB)
+    public static int CompareRacePositions(GodRaceInfo godA, GodRaceInfo godB)
     {
         if (godA.currentLap > godB.currentLap)
             return -1;
@@ -187,18 +181,19 @@ public class LapsManager : MonoBehaviour
         }
     }
 
-    public float DistanceToNextCheckPoint(GodLapsController glc)
+    public float DistanceToNextCheckPoint(GodRaceInfo gri)
     {
-        int index = godLaps.FindIndex(g => g.god == glc.god);
+        int index = godRaceInfoList.FindIndex(g => g.god == gri.god);
+
         Vector3 nextCheckPointPosition = checkPoints[index].transform.position;
-        return Vector3.Distance(glc.tr.position, nextCheckPointPosition);
+        return Vector3.Distance(gri.god.transform.position, nextCheckPointPosition);
     }
 
     public void UpdateDistancesToCheckPoints()
     {
-        foreach(GodLapsController glc in godLaps)
+        foreach(GodRaceInfo gri in godRaceInfoList)
         {
-            glc.distanceToNextCheckPoint = DistanceToNextCheckPoint(glc);
+            gri.distanceToNextCheckPoint = DistanceToNextCheckPoint(gri);
         }
     }
 

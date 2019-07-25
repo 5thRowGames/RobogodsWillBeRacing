@@ -9,7 +9,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class UIManager : Singleton<UIManager>
+public class UIManagerClon2 : Singleton<UIManagerClon2>
 {
     //Buttons
     public RectTransform raceButton;

@@ -46,12 +46,12 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
         {
             if (controller.State.Submit.IsPressed && !confirmed)
             {
-                UIManager.Instance.ConfirmConfirmation(playerID);
+                CharacterSelectionManager.Instance.ConfirmConfirmation(playerID);
             }
             else if (controller.State.Cancel.IsPressed)
             {
-                UIManager.Instance.DenyConfirmation();
-                UIManager.Instance.DeselectCharacter(robogodPicked);
+                CharacterSelectionManager.Instance.DenyConfirmation();
+                CharacterSelectionManager.Instance.DeselectCharacter(robogodPicked);
                 robogodPicked = God.Type.None;
                 canChooseGod = true;
             }
@@ -124,9 +124,9 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
         {
             case 0:
 
-                if (!UIManager.Instance.poseidonChosen)
+                if (!CharacterSelectionManager.Instance.poseidonChosen)
                 {
-                    UIManager.Instance.ChooseCharacter(God.Type.Poseidon);
+                    CharacterSelectionManager.Instance.ChooseCharacter(God.Type.Poseidon);
                     robogodPicked = God.Type.Poseidon;
                     canChooseGod = false;
                 }
@@ -134,9 +134,9 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
             
             case 1:
                     
-                if (!UIManager.Instance.kaliChosen)
+                if (!CharacterSelectionManager.Instance.kaliChosen)
                 {
-                    UIManager.Instance.ChooseCharacter(God.Type.Kali);
+                    CharacterSelectionManager.Instance.ChooseCharacter(God.Type.Kali);
                     robogodPicked = God.Type.Kali;
                     canChooseGod = false;
                 }
@@ -144,9 +144,9 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
             
             case 2:
 
-                if (!UIManager.Instance.thorChosen)
+                if (!CharacterSelectionManager.Instance.thorChosen)
                 {
-                    UIManager.Instance.ChooseCharacter(God.Type.Thor);
+                    CharacterSelectionManager.Instance.ChooseCharacter(God.Type.Thor);
                     robogodPicked = God.Type.Thor;
                     canChooseGod = false;
                 }
@@ -154,9 +154,9 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
             
             case 3:
 
-                if (!UIManager.Instance.anubisChosen)
+                if (!CharacterSelectionManager.Instance.anubisChosen)
                 {
-                    UIManager.Instance.ChooseCharacter(God.Type.Anubis);
+                    CharacterSelectionManager.Instance.ChooseCharacter(God.Type.Anubis);
                     robogodPicked = God.Type.Anubis;
                     canChooseGod = false;
                 }
@@ -175,19 +175,19 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
             switch (position)
             {
                 case 0:
-                    UIManager.Instance.DeselectCharacter(God.Type.Poseidon);
+                    CharacterSelectionManager.Instance.DeselectCharacter(God.Type.Poseidon);
                     break;
             
                 case 1:
-                    UIManager.Instance.DeselectCharacter(God.Type.Kali);
+                    CharacterSelectionManager.Instance.DeselectCharacter(God.Type.Kali);
                     break;
             
                 case 2:
-                    UIManager.Instance.DeselectCharacter(God.Type.Thor);
+                    CharacterSelectionManager.Instance.DeselectCharacter(God.Type.Thor);
                     break;
             
                 case 3:
-                    UIManager.Instance.DeselectCharacter(God.Type.Anubis);
+                    CharacterSelectionManager.Instance.DeselectCharacter(God.Type.Anubis);
                     break;
             }
         }

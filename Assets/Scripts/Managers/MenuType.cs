@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class MenuType 
 {
-    public enum MenyType
+    public enum Menu
     {
         TitleScreen = 0,
-        Race = 1,
+        MainMenu = 1,
         Settings = 2,
         Credits = 3,
-        Laps = 4,
-        CharacterSelection = 5,
-        Game = 6,
-        Pause = 7,
-        SettingsIngame = 8,
-        CreditsInGame = 9
+        CharacterSelection = 4,
+        Pause = 5
     }
 }

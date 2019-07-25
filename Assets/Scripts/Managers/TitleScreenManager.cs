@@ -8,19 +8,15 @@ using UnityEngine.EventSystems;
 
 public class TitleScreenManager : MonoBehaviour
 {
-    public GameObject raceButton;
-    public GameObject titleScreenPanel;
-    public InControlInputModule inControlInputModule;
     public RectTransform pressToPlay;
 
     private Tween firstTween;
-
     private bool controlSubmit;
     private bool initialTweenComplete;
     
     private void OnEnable()
     {
-        inControlInputModule.enabled = true;
+        UIManager.Instance.inControlInputModule.enabled = true;
         EventSystem.current.SetSelectedGameObject(null);
         controlSubmit = false;
         initialTweenComplete = false;
@@ -34,11 +30,11 @@ public class TitleScreenManager : MonoBehaviour
         initialTweenComplete = false;
         controlSubmit = false;
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
-        if (!controlSubmit && inControlInputModule.SubmitAction.WasPressed)
+        //No se si acceder así es eficiente (investigar)
+        if (!controlSubmit && UIManager.Instance.inControlInputModule.SubmitAction.WasPressed)
         {
             controlSubmit = true;
             StartCoroutine(ButtonPressedTween());
@@ -54,11 +50,10 @@ public class TitleScreenManager : MonoBehaviour
         
         pressToPlay.DOScale(Vector3.zero, 0.3f);
         yield return new WaitForSeconds(0.3f);
-        UIManager.Instance.BuildMainMenu();
         yield return new WaitForSeconds(1.2f);
-        titleScreenPanel.SetActive(false);
-        EventSystem.current.SetSelectedGameObject(raceButton);
-        EventSystem.current.firstSelectedGameObject = raceButton;
+        UIManager.Instance.ChangeScreen(MenuType.Menu.MainMenu);
+        gameObject.SetActive(false);
+        //EventSystem.current.firstSelectedGameObject = raceButton;
         //sinControlInputModule.enabled = false;
     }
 

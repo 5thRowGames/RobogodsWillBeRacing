@@ -20,8 +20,8 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
    public RectTransform thorBackground;
    
    public RectTransform infoPanel;
-   public RectTransform confirmCharacterSelection;
-   public RectTransform characterSelectionTitle;
+   public RectTransform confirmCharacterSelectionPanel;
+   public RectTransform characterSelectionTitlePanel;
 
    public float godPositionY;
    public float panelPositionX;
@@ -31,13 +31,14 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
    public List<Image> confirmPlayerIcons;
    public List<GameObject> players;
 
-   public TextMeshProUGUI playersConfirmedText;
+   public TextMeshProUGUI playersNumberConfirmedText;
 
    public bool poseidonChosen;
    public bool kaliChosen;
    public bool thorChosen;
    public bool anubisChosen;
 
+   [Header ("Debug")]
    public int playersWithGodPicked;
    public int playersConfirmed;
 
@@ -135,7 +136,7 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
         {
             playersConfirmed = 0;
 
-            playersConfirmedText.text = playersConfirmed + "/" + RaceManager.Instance.players;
+            playersNumberConfirmedText.text = playersConfirmed + "/" + RaceManager.Instance.players;
 
             //REFACTORIZAR
             for (int i = 0; i < RaceManager.Instance.players; i++)
@@ -149,7 +150,7 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
                     player.GetComponent<CharacterSelectionController>().Confirm();
             }
 
-            EventSystem.current.SetSelectedGameObject(confirmCharacterSelection.gameObject);
+            EventSystem.current.SetSelectedGameObject(confirmCharacterSelectionPanel.gameObject);
         }
     }
 
@@ -159,7 +160,7 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
         
         //confirmPlayerIcons[playerID - 1].color = confirmedColor;
         
-        playersConfirmedText.text = playersConfirmed + "/" + RaceManager.Instance.players;
+        playersNumberConfirmedText.text = playersConfirmed + "/" + RaceManager.Instance.players;
 
         if (playersConfirmed == RaceManager.Instance.players)
         {
@@ -179,7 +180,7 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
 
     public void DenyConfirmation()
     {
-        playersConfirmedText.text = "";
+        playersNumberConfirmedText.text = "";
         playersConfirmed = 0;
         
         EventSystem.current.SetSelectedGameObject(null);
@@ -202,6 +203,7 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
    private void BuildCharacterSelection()
    {
       EventSystem.current.SetSelectedGameObject(null);
+      EventSystem.current.firstSelectedGameObject = null;
       
       Sequence tweenSequence = DOTween.Sequence();
       tweenSequence.Append(anubisBackground.DOAnchorPosY(0, 1f, true))
@@ -212,7 +214,7 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
          .Insert(0f, poseidonButton.DOAnchorPosY(0, 1f, true))
          .Insert(0f, kaliButton.DOAnchorPosY(0, 1f, true))
          .Insert(0f, thorButton.DOAnchorPosY(0, 1f, true))
-         .Insert(0.6f, characterSelectionTitle.DOAnchorPosX(0, 0.6f, true))
+         .Insert(0.6f, characterSelectionTitlePanel.DOAnchorPosX(0, 0.6f, true))
          .Insert(0.6f, infoPanel.DOAnchorPosX(0, 0.6f, true));
    }
 
@@ -223,7 +225,7 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
        
        Sequence tweenSequence = DOTween.Sequence();
        tweenSequence.Append(infoPanel.DOAnchorPosX(panelPositionX, 0.6f, true))
-           .Insert(0f, characterSelectionTitle.DOAnchorPosX(-panelPositionX, 0.6f, true))
+           .Insert(0f, characterSelectionTitlePanel.DOAnchorPosX(-panelPositionX, 0.6f, true))
            .Insert(0.6f, poseidonBackground.DOAnchorPosY(godPositionY, 1f, true))
            .Insert(0.6f, anubisBackground.DOAnchorPosY(godPositionY, 1f, true))
            .Insert(0.6f, kaliBackground.DOAnchorPosY(godPositionY, 1f, true))
@@ -249,7 +251,7 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
        kaliButton.anchoredPosition = new Vector2(0,buttonPositionY);
        thorButton.anchoredPosition = new Vector2(0,buttonPositionY);
        infoPanel.anchoredPosition = new Vector2(panelPositionX, 0);
-       characterSelectionTitle.anchoredPosition = new Vector2(-panelPositionX, 0);
+       characterSelectionTitlePanel.anchoredPosition = new Vector2(-panelPositionX, 0);
    }
    
    #endregion

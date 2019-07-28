@@ -39,6 +39,5 @@ public class LanguageManager : SettingsBase
     public override void Deactivate()
     {
         base.Deactivate();
-        Debug.Log("Enntro");
     }
 }

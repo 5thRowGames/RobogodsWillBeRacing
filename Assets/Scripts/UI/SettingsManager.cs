@@ -26,11 +26,6 @@ public class SettingsManager : MonoBehaviour
         ResetSettingsMenu();
     }
 
-    public void RemoveSelected()
-    {
-        EventSystem.current.SetSelectedGameObject(null);
-    }
-
     private void ResetSettingsMenu()
     {
         volumeSlider.anchoredPosition = new Vector2(sliderPosition.x, 0);
@@ -43,7 +38,8 @@ public class SettingsManager : MonoBehaviour
 
     private void BuildSettings()
     {
-        RemoveSelected();
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.firstSelectedGameObject = volumeSlider.gameObject;
         
         Sequence sequence = DOTween.Sequence();
         sequence.Insert(0f, volumeSlider.DOAnchorPosX(0, movementDuration, true))
@@ -59,7 +55,7 @@ public class SettingsManager : MonoBehaviour
 
     public void HideSettings()
     {
-        RemoveSelected();
+        EventSystem.current.SetSelectedGameObject(null);
         
         Sequence sequence = DOTween.Sequence();
             sequence.Insert(0f, volumeSlider.DOAnchorPosY(sliderPosition.y, movementDuration, true))

@@ -66,6 +66,7 @@ public class MainMenuManager : MonoBehaviour
     public void BuildMainMenu()
     {
         EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.firstSelectedGameObject = raceButton.gameObject;
         
         Sequence sequence = DOTween.Sequence();
             sequence.Insert(0f, raceButton.DOAnchorPosX(0, movementDuration, true))
@@ -81,7 +82,7 @@ public class MainMenuManager : MonoBehaviour
             });
 
             if (isInfoPanelHidden)
-                sequence.Insert(0.1f, infoPanel.DOAnchorPosY(infoPanelPositionY * -1, movementDuration, true));
+                sequence.Insert(0.1f, infoPanel.DOAnchorPosY(0, movementDuration, true));
     }
 
     //TODO
@@ -105,7 +106,7 @@ public class MainMenuManager : MonoBehaviour
             });
     }
 
-    public void HideMenuWithoutRace()
+    public void HideMenuRaceSelected()
     {
         EventSystem.current.SetSelectedGameObject(null);
         UIManager.Instance.inControlInputModule.enabled = false;
@@ -123,7 +124,7 @@ public class MainMenuManager : MonoBehaviour
                 });
     }
     
-    public void HideMenuWithoutSettings()
+    public void HideMenuSettingsSelected()
     {
         EventSystem.current.SetSelectedGameObject(null);
         UIManager.Instance.inControlInputModule.enabled = false;
@@ -140,7 +141,7 @@ public class MainMenuManager : MonoBehaviour
             });
     }
     
-    public void HideMenuWithoutCredits()
+    public void HideMenuCreditsSelected()
     {
         EventSystem.current.SetSelectedGameObject(null);
         UIManager.Instance.inControlInputModule.enabled = false;
@@ -159,7 +160,7 @@ public class MainMenuManager : MonoBehaviour
     
     //TODO
     //Añadir el sistema de luces como si se volviese al title screen
-    public void HideMenuWithoutExit()
+    public void HideMenuExitSelected()
     {
         EventSystem.current.SetSelectedGameObject(null);
         UIManager.Instance.inControlInputModule.enabled = false;

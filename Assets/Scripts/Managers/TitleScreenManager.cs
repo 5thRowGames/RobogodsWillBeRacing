@@ -33,7 +33,6 @@ public class TitleScreenManager : MonoBehaviour
     
     void Update()
     {
-        //No se si acceder así es eficiente (investigar)
         if (!controlSubmit && UIManager.Instance.inControlInputModule.SubmitAction.WasPressed)
         {
             controlSubmit = true;

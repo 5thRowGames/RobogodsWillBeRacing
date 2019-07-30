@@ -13,8 +13,6 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
     private bool confirm;
     private bool confirmed;
     private bool canChooseGod;
-    
-    
 
     public God.Type robogodPicked;
 
@@ -35,6 +33,11 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
 
     private void OnDisable()
     {
+        foreach (var img in images)
+        {
+            img.enabled = false;
+        }
+        
         ConnectDisconnectManager.ConnectCharacterSelectionControllerDelegate -= ConnectCharacterSelection;
         ConnectDisconnectManager.DisconnectCarControllerDelegate -= DisconnectCharacterSelection;
     }
@@ -71,6 +74,10 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
                         MoveMark(false);
                     }
                 }
+                
+                if(controller.State.Cancel.IsPressed)
+                    CharacterSelectionManager.Instance.ReturnMainMenuTween();
+                    
             
                 if(controller.State.Submit.IsPressed)
                     ChooseGod();

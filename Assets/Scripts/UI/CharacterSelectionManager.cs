@@ -42,22 +42,20 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
    public int playersWithGodPicked;
    public int playersConfirmed;
 
-   private void Awake()
+   private void OnEnable()
    {
        poseidonChosen = false;
        kaliChosen = false;
        thorChosen = false;
        anubisChosen = false;
-   }
-
-   private void OnEnable()
-   {
-      ResetCharacterSelection();
-      BuildCharacterSelection();
+       playersWithGodPicked = 0;
+       playersConfirmed = 0;
+       ResetCharacterSelectionUI();
+       BuildCharacterSelection();
    }
 
    #region Functionality
-   
+
    public void ChooseCharacter(God.Type robogod)
     {
         switch (robogod)
@@ -173,7 +171,7 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
                 RaceManager.Instance.playerInfo.Add(playerInfo);
             }
 
-            //StartCoroutine(FadeToRace());
+            StartRaceTween();
 
         }
     }
@@ -200,6 +198,19 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
    
    #region Tweens
 
+   private void StartRaceTween()
+   {
+       EventSystem.current.SetSelectedGameObject(null);
+       EventSystem.current.firstSelectedGameObject = null;
+       
+       
+       fade.DOFade(1, 0.5f).OnComplete(() =>
+       {
+           UIManager.Instance.ChangeScreen(MenuType.Menu.LoadingScreen);
+           gameObject.SetActive(false);
+       });
+   }
+
    private void BuildCharacterSelection()
    {
       EventSystem.current.SetSelectedGameObject(null);
@@ -220,8 +231,10 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
 
    //TODO
    //Proceso contrario a la construcción con matices
-   public void HideCharacterSelection()
+   public void ReturnMainMenuTween()
    {
+       EventSystem.current.SetSelectedGameObject(null);
+       EventSystem.current.firstSelectedGameObject = null;
        
        Sequence tweenSequence = DOTween.Sequence();
        tweenSequence.Append(infoPanel.DOAnchorPosX(panelPositionX, 0.6f, true))
@@ -236,11 +249,17 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
            .Insert(0.6f, anubisButton.DOAnchorPosY(godPositionY, 1f, true)).OnComplete(() =>
            {
                UIManager.Instance.ChangeScreen(MenuType.Menu.MainMenu);
+               ConnectDisconnectManager.DisconnectCarControllerDelegate();
                gameObject.SetActive(false);
            });
    }
 
-   public void ResetCharacterSelection()
+   public void GoToRace()
+   {
+       
+   }
+
+   public void ResetCharacterSelectionUI()
    {
        anubisBackground.anchoredPosition = new Vector2(0, godPositionY);
        poseidonBackground.anchoredPosition = new Vector2(0, godPositionY);

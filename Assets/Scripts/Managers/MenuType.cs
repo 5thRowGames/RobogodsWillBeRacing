@@ -11,6 +11,7 @@ public class MenuType
         Settings = 2,
         Credits = 3,
         CharacterSelection = 4,
-        Pause = 5
+        Pause = 5,
+        LoadingScreen = 6
     }
 }

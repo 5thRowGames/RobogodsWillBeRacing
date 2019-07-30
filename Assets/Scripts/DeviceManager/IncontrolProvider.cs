@@ -57,8 +57,9 @@ public class IncontrolProvider : MonoBehaviour, IDevice
     public DeviceState State { get => state; private set => state = value; }
     DeviceState previousState;
 
-    private void Awake()
+    private void OnEnable()
     {
+        inputDevice = null;
         controlType = ControlType.None;
     }
 

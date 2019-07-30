@@ -19,11 +19,10 @@ public class RaceManager : Singleton<RaceManager>
 
     public int players;
 
-    public List<PlayerInfo> playerInfo;
-
-    private void Awake()
+    public List<PlayerInfo> playerInfo = new List<PlayerInfo>();
+    
+    private void OnEnable()
     {
-        playerInfo = new List<PlayerInfo>();
         Reset();
     }
 

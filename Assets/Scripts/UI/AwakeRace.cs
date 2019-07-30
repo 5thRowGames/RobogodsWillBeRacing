@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class StartRaceTween : MonoBehaviour
+public class AwakeRace : MonoBehaviour
 {
-
+    public Image fade;
+    
     public List<Transform> path1List;
     public List<Transform> path2List;
     public List<Transform> path3List;
@@ -21,12 +23,13 @@ public class StartRaceTween : MonoBehaviour
     private Vector3[] path3;
     private Vector3[] finalPath;
 
+    public float fadeDuration;
+
     public Transform player;
 
     void Awake()
     {
-
-        //PERFORMANCE
+        //TODO PERFORMANCE
         path1 = path1List.Select(transform => transform.position).ToArray();
         path2 = path2List.Select(transform => transform.position).ToArray();
         path3 = path3List.Select(transform => transform.position).ToArray();
@@ -44,7 +47,8 @@ public class StartRaceTween : MonoBehaviour
     private void ShowMap()
     {
 
-        Sequence sequence = DOTween.Sequence();
+        Sequence sequence = DOTween.Sequence();    
+        sequence.Append(fade.DOFade(0, fadeDuration));
         sequence.Append(mainCamera.transform.DOMove(path1[0], 0.1f));
         sequence.Append(mainCamera.transform.DORotate(path1List[0].rotation.eulerAngles, 0.1f));
         sequence.Append(mainCamera.transform.DOLocalPath(path1, 4f, PathType.CatmullRom, PathMode.Full3D, 5, Color.red).OnWaypointChange(x => WayPointChanged(x, path1List)));

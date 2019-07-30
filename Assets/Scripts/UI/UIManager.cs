@@ -3,16 +3,22 @@ using UnityEngine;
 
 public class UIManager : Singleton<UIManager>
 {
-
-    //Se podría refactorizar con un delegado que active los objetos pasándole el tipo de menú que debe activarse
+    public InControlInputModule inControlInputModule;
+    
+    [Header("Menu principal")]
     public GameObject titleScreen;
     public GameObject mainMenu;
     public GameObject settings;
     public GameObject credits;
     public GameObject characterSelection;
-    public GameObject pauseMenu;
+    public GameObject loadingScreen;
 
-    public InControlInputModule inControlInputModule;
+    [Header("Carrera")] 
+    public GameObject pauseMenu;
+    public GameObject startRace;
+    public GameObject awakeRace;
+    public GameObject fisnishRace;
+    
 
     public void ChangeScreen(MenuType.Menu menuType)
     {
@@ -40,6 +46,31 @@ public class UIManager : Singleton<UIManager>
             
             case MenuType.Menu.Pause:
                 pauseMenu.SetActive(true);
+                break;
+            
+            case MenuType.Menu.LoadingScreen:
+                loadingScreen.SetActive(true);
+                break;
+        }
+    }
+
+    public void ChangeRaceEvent(RaceEvents.Race raceEvent)
+    {
+        switch (raceEvent)
+        {
+            case RaceEvents.Race.Awake:
+                break;
+            
+            case RaceEvents.Race.Start:
+                break;
+            
+            case RaceEvents.Race.Finish:
+                break;
+            
+            case RaceEvents.Race.Pause:
+                break;
+            
+            case RaceEvents.Race.SplitScreen:
                 break;
         }
     }

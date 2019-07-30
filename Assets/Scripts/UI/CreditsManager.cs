@@ -8,19 +8,25 @@ using UnityEngine.EventSystems;
 public class CreditsManager : MonoBehaviour
 {
     public RectTransform credits;
-
     public Vector2 creditsPosition;
-
     public float movementDuration;
     
-    private void OnEnable()
+    private bool controlSubmit;
+
+    private void Update()
     {
-        BuildCredits();
+        if (!controlSubmit && UIManager.Instance.inControlInputModule.CancelAction.WasPressed)
+        {
+            controlSubmit = true;
+            HideCredits();
+        }
     }
 
-    private void OnDisable()
+    private void OnEnable()
     {
-        throw new NotImplementedException();
+        controlSubmit = false;
+        ResetCredits();
+        BuildCredits();
     }
 
     private void ResetCredits()
@@ -33,6 +39,7 @@ public class CreditsManager : MonoBehaviour
     private void BuildCredits()
     {
         EventSystem.current.SetSelectedGameObject(null);
+        //UIManager.Instance.inControlInputModule.enabled = false;
         
         credits.DOMoveX(0, movementDuration, true).OnComplete(() =>
         {
@@ -45,7 +52,7 @@ public class CreditsManager : MonoBehaviour
     public void HideCredits()
     {
         UIManager.Instance.inControlInputModule.enabled = false;
-        
+
         credits.DOMoveY(creditsPosition.y, movementDuration, true).OnComplete(() =>
         {
             UIManager.Instance.inControlInputModule.enabled = false;

@@ -61,6 +61,12 @@ public class IncontrolProvider : MonoBehaviour, IDevice
     {
         inputDevice = null;
         controlType = ControlType.None;
+        myPlayerActions = new MyPlayerActions();
+    }
+
+    private void OnDisable()
+    {
+        myPlayerActions.Destroy();
     }
 
     void Update ()
@@ -104,9 +110,14 @@ public class IncontrolProvider : MonoBehaviour, IDevice
 
     public void ControlSlaves()
     {
-        foreach (var slave in Slaves)
+        /*foreach (var slave in Slaves)
         {
             slave.Control(this);
+        }*/
+
+        for (int i = 0; i < Slaves.Count; i++)
+        {
+            Slaves[i].Control(this);
         }
     }
 

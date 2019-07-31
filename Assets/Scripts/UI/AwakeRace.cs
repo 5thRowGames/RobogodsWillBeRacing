@@ -42,8 +42,6 @@ public class AwakeRace : MonoBehaviour
         ShowMap();
     }
 
-    private Transform ownTransform;
-
     private void ShowMap()
     {
 

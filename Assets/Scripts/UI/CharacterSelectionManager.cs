@@ -50,6 +50,7 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
        anubisChosen = false;
        playersWithGodPicked = 0;
        playersConfirmed = 0;
+       RaceManager.Instance.Reset();
        ResetCharacterSelectionUI();
        BuildCharacterSelection();
    }
@@ -152,7 +153,7 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
         }
     }
 
-    public void ConfirmConfirmation(int playerID)
+    public void ConfirmConfirmation()
     {
         playersConfirmed++; 
         
@@ -233,6 +234,7 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
    //Proceso contrario a la construcción con matices
    public void ReturnMainMenuTween()
    {
+       ConnectDisconnectManager.DisconnectCarControllerDelegate();
        EventSystem.current.SetSelectedGameObject(null);
        EventSystem.current.firstSelectedGameObject = null;
        
@@ -249,7 +251,6 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
            .Insert(0.6f, anubisButton.DOAnchorPosY(godPositionY, 1f, true)).OnComplete(() =>
            {
                UIManager.Instance.ChangeScreen(MenuType.Menu.MainMenu);
-               ConnectDisconnectManager.DisconnectCarControllerDelegate();
                gameObject.SetActive(false);
            });
    }

@@ -12,7 +12,8 @@ public class LoadingScreenManager : MonoBehaviour
     public float fadeDuration;
     public float loadingScreenDuration;
     
-    private AsyncOperation asyncLoad;
+    private AsyncOperation asyncLoadNextScene;
+    private AsyncOperation asyncUnloadCurrentScene;
 
     private void OnEnable()
     {
@@ -24,18 +25,23 @@ public class LoadingScreenManager : MonoBehaviour
     IEnumerator LoadingScreen()
     {
         fade.DOFade(0, fadeDuration);
-        asyncLoad = SceneManager.LoadSceneAsync("StartRaceAnimation", LoadSceneMode.Additive);
-        asyncLoad.allowSceneActivation = false;
-        
+        asyncLoadNextScene = SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
+        asyncLoadNextScene.allowSceneActivation = false;
+
+        //Ver el flujo a partir de aquí
         yield return new WaitForSeconds(loadingScreenDuration);
 
+        //No estoy seguro si petaría en el caso de que la escena no se cargue bien
+        //El problema es el allowSceneActivation, que capa todo lo demás es una mierda, el .isDone no funciona con eso parece ser
+        
         Sequence sequence = DOTween.Sequence();
-            sequence.Append(fade.DOFade(1, fadeDuration)).OnComplete(() =>
-            {
-                asyncLoad.allowSceneActivation = true;
-                SceneManager.UnloadSceneAsync("Menu");
-                gameObject.SetActive(false);
-            });
+        sequence.Append(fade.DOFade(1, fadeDuration)).OnComplete(() =>
+        {
+            SceneManager.UnloadSceneAsync(0);
+            Resources.UnloadUnusedAssets();
+            asyncLoadNextScene.allowSceneActivation = true;
+            gameObject.SetActive(false);
+        });
         
     }
     

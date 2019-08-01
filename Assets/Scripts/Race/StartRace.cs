@@ -14,7 +14,11 @@ public class StartRace : MonoBehaviour
     public GameObject kaliPlayer;
 
     public List<GameObject> cameras;
-    
+    public List<GameObject> playerCanvas;
+
+    public float rotateCameraTime;
+    public float intervalTimeBetweenRotateAndCountdown;
+
     //[Header("UI")]
 
     private void OnEnable()
@@ -26,11 +30,33 @@ public class StartRace : MonoBehaviour
         
         SetCameraAndControl();
         SplitScreen(RaceManager.Instance.players);
-        ConnectDisconnectManager.ConnectCarSoundManager();
-        ConnectDisconnectManager.ConnectCarControllerDelegate();
+        StartCoroutine(InitCameraPosition());
+        /*ConnectDisconnectManager.ConnectCarSoundManager();
+        ConnectDisconnectManager.ConnectCarControllerDelegate();*/
+    }
+    
+
+    IEnumerator InitCameraPosition()
+    {
+        int playersNumber = RaceManager.Instance.players;
+        
+        Tween tween = cameras[0].transform.parent.transform.DOLocalRotate(new Vector3(0, 180, 0), rotateCameraTime);
+
+        for (int i = 1; i < playersNumber; i++)
+        {
+            cameras[i].transform.parent.transform.DOLocalRotate(new Vector3(0, 180, 0), rotateCameraTime);
+        }
+
+        yield return tween.WaitForCompletion();
+        yield return new WaitForSeconds(intervalTimeBetweenRotateAndCountdown);
+        
+        for (int i = 0; i < playersNumber; i++)
+        {
+            playerCanvas[i].SetActive(true);
+        }
     }
 
-    public void SetCameraAndControl()
+    private void SetCameraAndControl()
     {
         int cameraIndex = 0;
         

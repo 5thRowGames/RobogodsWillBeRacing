@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RaceUIManager : MonoBehaviour
+public class RaceUIManager : Singleton<RaceUIManager>
 {
     [Header("Carrera")] 
     public GameObject pauseMenu;
     public GameObject startRace;
     public GameObject awakeRace;
     public GameObject finishRace;
-    public GameObject splitScreen;
-    
+
     public void ChangeRaceEvent(RaceEvents.Race raceEvent)
     {
         switch (raceEvent)
@@ -29,9 +28,6 @@ public class RaceUIManager : MonoBehaviour
             
             case RaceEvents.Race.Pause:
                 pauseMenu.SetActive(true);
-                break;
-            
-            case RaceEvents.Race.SplitScreen:
                 break;
         }
     }

@@ -44,10 +44,11 @@ public class PlayerSelectionManager : MonoBehaviour
         if (JoinButtonWasPressed(keyboardListener))
         {
 
+            Debug.Log("Entro");
             if (RaceManager.Instance.players < 4 && !keyboardSelected)
             {
                 keyboardSelected = true;
-                
+                Debug.Log("EEEEEEEEE");
                 RaceManager.Instance.players++;
                 playersInControl[playerOrder].controlType = IncontrolProvider.ControlType.Keyboard;
                 playersInControl[playerOrder].InputDevice = null;

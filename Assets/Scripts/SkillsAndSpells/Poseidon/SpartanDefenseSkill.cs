@@ -6,46 +6,44 @@ using UnityEngine;
 
 public class SpartanDefenseSkill : SkillBase
 {
-    public GameObject spartanDefenseObject;
+    //El objeto debería ser todo, que no tiene hijos
+    //public GameObject spartanDefenseObject;
 
     private Sequence pushSequence;
-    
-    //Borrar
-    public LayerMask pruebaLayer;
-    
+
     public override void Effect()
     {
-        spartanDefenseObject.SetActive(true);
-        //pushSequence.Play();
+        gameObject.SetActive(true);
     }
 
     public override void FinishEffect()
     {
-        throw new NotImplementedException();
+        pushSequence.Kill();
+        gameObject.SetActive(false);
+        ResetSkill();
     }
 
-    private void Update()
+    public override void ResetSkill()
     {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            pushSequence = DOTween.Sequence();
-            pushSequence.Append(transform.DOScale(new Vector3(1.2f, 1.2f, 1.2f), 0.1f));
-            pushSequence.Append(transform.DOScale(new Vector3(1, 1, 1), 0.1f));
-        }
+        transform.localScale = new Vector3(1, 1, 1);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        other.GetComponent<Rigidbody>().freezeRotation = true;
+        //Aqui se tendría que hacer algo
+        
+        
+        /*other.GetComponent<Rigidbody>().freezeRotation = true;
         if (pruebaLayer == (pruebaLayer | (1 << other.gameObject.layer)))
         {
-            Debug.Log("Salgo");
             pushSequence = DOTween.Sequence();
             pushSequence.Append(transform.DOScale(new Vector3(1.5f, 1.5f, 1.5f), 0.5f));
             pushSequence.Append(transform.DOScale(new Vector3(1, 1, 1), 0.5f));
             
             Vector3 direction = (other.transform.position - transform.position).normalized;
             other.GetComponent<Rigidbody>().AddForceAtPosition(direction * 10f,other.transform.position,ForceMode.Impulse);
-        }
+        }*/
+
+        //Tengo que hacer algo referente a empujar
     }
 }

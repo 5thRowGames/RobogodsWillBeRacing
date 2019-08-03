@@ -64,6 +64,11 @@ public class DaggerSkill : SkillBase
         throw new NotImplementedException();
     }
 
+    public override void ResetSkill()
+    {
+        throw new NotImplementedException();
+    }
+
     private void StopDaggers()
     {
         DOTween.Kill(leftDagger.transform);

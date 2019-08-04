@@ -5,6 +5,7 @@ using System.Numerics;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Vector3 = UnityEngine.Vector3;
 
@@ -16,6 +17,7 @@ public class PauseMenu : Singleton<PauseMenu>
     public float scaleDuration;
     public float fadeDuration;
 
+    private AsyncOperation asyncLoadNextScene;
 
     private void Awake()
     {
@@ -70,10 +72,16 @@ public class PauseMenu : Singleton<PauseMenu>
     {
         EventSystem.current.SetSelectedGameObject(null);
         RaceUIManager.Instance.inControlInputModule.enabled = false;
-
-        fade.DOFade(1, fadeDuration).SetUpdate(true).OnComplete(() =>
+        
+        asyncLoadNextScene = SceneManager.LoadSceneAsync(0);
+        asyncLoadNextScene.allowSceneActivation = false;
+        
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(fade.DOFade(1, fadeDuration)).SetUpdate(true).OnComplete(() =>
         {
-            //TODO Aquí habría que meter la carga y descarga de escenas
+            asyncLoadNextScene.allowSceneActivation = true;
+            Time.timeScale = 1f;
+            gameObject.SetActive(false);
         });
     }
 }

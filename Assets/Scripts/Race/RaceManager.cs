@@ -20,6 +20,7 @@ public class RaceManager : Singleton<RaceManager>
     public int players;
 
     public List<PlayerInfo> playerInfo;
+    public List<Transform> godPosition;
 
     private void Awake()
     {

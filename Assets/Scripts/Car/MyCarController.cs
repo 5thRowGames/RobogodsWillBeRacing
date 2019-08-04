@@ -7,6 +7,13 @@ using InControl;
 public class MyCarController : MonoBehaviour, IControllable
 {
     public bool activeDevice; //Para prueba solo
+    private float turboAmount;
+
+    public float TurboAmount
+    {
+        get => turboAmount;
+        set => turboAmount = Mathf.Clamp(value, 0, 100);
+    }
 
     [Header("*Car Specs*")]
     [SerializeField] [Tooltip("Fuerza aplicada al acelerar")] private float speedForce = 50f;

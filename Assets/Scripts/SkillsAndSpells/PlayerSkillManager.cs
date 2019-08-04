@@ -47,13 +47,7 @@ public class PlayerSkillManager : MonoBehaviour, IControllable
     public float Mana
     {
         get => mana;
-        set
-        {
-            if (value < 0)
-                mana = 0;
-            else
-                mana = value;
-        }
+        set => mana = Mathf.Clamp(value, 0, 100);
     }
 
 
@@ -173,29 +167,16 @@ public class PlayerSkillManager : MonoBehaviour, IControllable
                 if (religionSkill.isFinished)
                 {
                     timer = 0;
-                    StartCoroutine(ReligionTimeSkillTimer(religionSkill.coldown, true));
                     religionSkill.FinishEffect();
+                    activateReligionSkill = true;
                 }
             }
 
             if (!religionSkill.isFinished)
             {
-                StartCoroutine(ReligionTimeSkillTimer(religionSkill.coldown, true));
                 religionSkill.FinishEffect();
+                activateReligionSkill = true;
             }
-        }
-        else
-        {
-            ReligionSkillTimer = duration;
-
-            while (ReligionSkillTimer > 0)
-            {
-                ReligionSkillTimer -= Time.deltaTime;
-                religionTime.text = ReligionSkillTimer.ToString();
-                yield return null;
-            }
-            
-            activateReligionSkill = true;
         }
     }
 

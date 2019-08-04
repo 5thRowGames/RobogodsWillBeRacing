@@ -11,6 +11,7 @@ public class RaceEvents
         Finish = 2,
         Pause = 3,
         Start = 4,
-        SplitScreen = 5
+        SplitScreen = 5,
+        SettingsPause = 6
     }
 }

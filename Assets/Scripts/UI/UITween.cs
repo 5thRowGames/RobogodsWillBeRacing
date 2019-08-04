@@ -22,12 +22,12 @@ public class UITween : MonoBehaviour
 
     public void ExpandTween()
     {
-        rectTransform.DOScale(expand, duration);
+        rectTransform.DOScale(expand, duration).SetUpdate(true);
     }
 
     public void ContractTween()
     {
-        rectTransform.DOScale(contract, duration);
+        rectTransform.DOScale(contract, duration).SetUpdate(true);
     }
 
 }

@@ -6,8 +6,10 @@ using UnityEngine;
 public class UITween : MonoBehaviour
 {
     public RectTransform rectTransform;
+    public RectTransform gear;
 
     public float duration = 1f;
+    public float rotateDuration = 0.3f;
 
     [Header("Scale")]
     public Vector3 expand;
@@ -17,7 +19,8 @@ public class UITween : MonoBehaviour
     [Header("Movement")]
     public Vector3 from;
     public Vector3 to;
-    
+
+    private Tween rotateTween;
     
 
     public void ExpandTween()
@@ -28,6 +31,16 @@ public class UITween : MonoBehaviour
     public void ContractTween()
     {
         rectTransform.DOScale(contract, duration).SetUpdate(true);
+    }
+
+    public void Rotate()
+    {
+        rotateTween = gear.DOLocalRotate(new Vector3(0, 0, -360), 1f, RotateMode.FastBeyond360).SetEase(Ease.Linear).SetLoops(-1);
+    }
+
+    public void StopRotate()
+    {
+        rotateTween.Kill();
     }
 
 }

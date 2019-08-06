@@ -11,9 +11,12 @@ public class MainMenuManager : MonoBehaviour
     public RectTransform mainMenuTitle;
     public RectTransform infoPanel;
 
+    public RectTransform planchaMetal;
+
     [Header("Tween positions")]
     //Se van a utilizar los valores de "X" e "Y" por separado según convenga.
     public Vector2 buttonPosition;
+    public Vector2 planchaPosition;
 
     public Vector2 raceButtonSelectedPosition;
     public Vector2 settingsButtonSelectedPosition;
@@ -35,6 +38,7 @@ public class MainMenuManager : MonoBehaviour
 
     private void OnEnable()
     {
+        ResetMenu();
         BuildMainMenu();
     }
 
@@ -61,6 +65,7 @@ public class MainMenuManager : MonoBehaviour
         creditsButton.anchoredPosition = new Vector2(buttonPosition.x, 0);
         exitButton.anchoredPosition = new Vector2(buttonPosition.x, 0);
         mainMenuTitle.anchoredPosition = new Vector2(buttonPosition.x, 0);
+        planchaMetal.anchoredPosition = new Vector2(planchaPosition.x, 0);
     }
     
     public void BuildMainMenu()
@@ -74,6 +79,7 @@ public class MainMenuManager : MonoBehaviour
             .Insert(0f, exitButton.DOAnchorPosX(0, movementDuration, true))
             .Insert(0f, settingsButton.DOAnchorPosX(0, movementDuration, true))
             .Insert(0f,mainMenuTitle.DOAnchorPosX(0,movementDuration,true))
+            .Insert(0f,planchaMetal.DOAnchorPosX(0,movementDuration,true))
             .OnComplete(() =>
             {
                 UIManager.Instance.inControlInputModule.enabled = true;
@@ -98,6 +104,7 @@ public class MainMenuManager : MonoBehaviour
             .Insert(0f, creditsButton.DOAnchorPosX(buttonPosition.x, movementDuration, true))
             .Insert(0f, exitButton.DOAnchorPosX(buttonPosition.x, movementDuration, true))
             .Insert(0f,mainMenuTitle.DOAnchorPosX(buttonPosition.x,movementDuration,true))
+            .Insert(0f,planchaMetal.DOAnchorPosX(planchaPosition.x,movementDuration,true))
             .Insert(0f, infoPanel.DOAnchorPosY(infoPanelPositionY,movementDuration,true)).OnComplete(() =>
             {
                 UIManager.Instance.ChangeScreen(MenuType.Menu.TitleScreen);
@@ -117,6 +124,7 @@ public class MainMenuManager : MonoBehaviour
             .Insert(0.6f, creditsButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
            // .Insert(0.6f,mainMenuTitle.DOAnchorPosY(buttonPosition.y,movementDuration,true))
             .Insert(0.6f, infoPanel.DOAnchorPosY(-100,0.3f,true))
+            .Insert(0.6f,planchaMetal.DOAnchorPosY(planchaPosition.y,movementDuration,true))
             .Insert(0.6f, exitButton.DOAnchorPosY(buttonPosition.y, movementDuration, true)).OnComplete(() =>
                 {
                     isInfoPanelHidden = true;
@@ -134,6 +142,7 @@ public class MainMenuManager : MonoBehaviour
         sequence.Append(settingsButton.DOAnchorPos(settingsButtonSelectedPosition, selectDuration, true))
             .Insert(0.6f, raceButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
             .Insert(0.6f, creditsButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
+            .Insert(0.6f,planchaMetal.DOAnchorPosY(planchaPosition.y,movementDuration,true))
             //.Insert(0.6f,mainMenuTitle.DOAnchorPosY(buttonPosition.y,movementDuration,true))
             .Insert(0.6f, exitButton.DOAnchorPosY(buttonPosition.y, movementDuration, true)).OnComplete(() =>
             {
@@ -151,6 +160,7 @@ public class MainMenuManager : MonoBehaviour
         sequence.Append(creditsButton.DOAnchorPos(creditsButtonSelectedPosition, selectDuration, true))
             .Insert(0.6f, raceButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
             .Insert(0.6f, settingsButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
+            .Insert(0.6f,planchaMetal.DOAnchorPosY(planchaPosition.y,movementDuration,true))
             //.Insert(0.6f,mainMenuTitle.DOAnchorPosY(buttonPosition.y,movementDuration,true))
             .Insert(0.6f, exitButton.DOAnchorPosY(buttonPosition.y, movementDuration, true)).OnComplete(() =>
             {
@@ -170,6 +180,7 @@ public class MainMenuManager : MonoBehaviour
         sequence.Append(settingsButton.DOAnchorPos(exitButtonSelectedPosition, selectDuration, true))
             .Insert(0.6f, raceButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
             .Insert(0.6f, creditsButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
+            .Insert(0.6f,planchaMetal.DOAnchorPosY(planchaPosition.y,movementDuration,true))
             //.Insert(0.6f,mainMenuTitle.DOAnchorPosY(buttonPosition.y,movementDuration,true))
             .Insert(0.6f, exitButton.DOAnchorPosY(buttonPosition.y, movementDuration, true)).OnComplete(() =>
             {

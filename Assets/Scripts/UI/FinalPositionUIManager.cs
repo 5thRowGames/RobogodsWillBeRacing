@@ -81,76 +81,26 @@ public class FinalPositionUIManager : MonoBehaviour
 
             for (int i = 0; i < buttonPosition.Count; i++)
             {
-                if(auxList[i] != lastUpdatePosition[i])
+                if(auxList[i] < lastUpdatePosition[i])
                 {
 
+                    //TODO Habrá que hacer a lo mejor un control que no salga -1 la busqueda del índice
                     int lastPositionToDecrease = lastUpdatePosition.FindIndex(a => a == auxList[i]);
 
                     IncreaseRankingPosition(i,auxList[i]);
-                    //DecreaseRankingPosition(lastUpdatePosition[i],lastPositionToDecrease);
+                    DecreaseRankingPosition(lastPositionToDecrease,lastUpdatePosition[i]);
                     lastUpdatePosition[i] = auxList[i];
                     lastUpdatePosition[lastPositionToDecrease] = auxList[lastPositionToDecrease];
                 }
-                
-                /*if (godPosition[i] < lastUpdatePosition[i])
+                else if (auxList[i] > lastUpdatePosition[i])
                 {
-                    int lastPositionToDecrease = lastUpdatePosition.FindIndex(a => a == godPosition[i]);
-                    
-                    string ss = "";
-                    
-                    foreach (var pos in godPosition)
-                    {
-                        ss += " " + pos;
-                    }
+                    int lastPositionToDecrease = lastUpdatePosition.FindIndex(a => a == auxList[i]);
 
-                    Debug.Log(ss);
-                    
-                    Debug.Log("Increase "+i+"  "+godPosition[i]+"  Decrease "+lastPositionToDecrease+"   "+lastUpdatePosition[i]);
-
-                    IncreaseRankingPosition(i,godPosition[i]);
-                    DecreaseRankingPosition(godPosition[i],i);
-                    lastUpdatePosition[i] = godPosition[i];
-                    lastUpdatePosition[lastPositionToDecrease] = lastUpdatePosition[i];
-                    
-                    ss = "ss ";
-                    
-                    foreach (var pos in lastUpdatePosition)
-                    {
-                        ss += " " + pos;
-                    }
-                    
-                    Debug.Log(ss);
-                }
-                else if (godPosition[i] > lastUpdatePosition[i])
-                {
-                    int lastPositionToDecrease = lastUpdatePosition.FindIndex(a => a == godPosition[i]);
-                    
-                    string ss = " ";
-                    
-                    foreach (var pos in godPosition)
-                    {
-                        ss += " " + pos;
-                    }
-
-                    Debug.Log(ss);
-                    
-                    Debug.Log("Decrease "+i+"  "+godPosition[i]+"  Increase "+lastPositionToDecrease+"   "+lastUpdatePosition[i]);
-                
                     IncreaseRankingPosition(lastPositionToDecrease,lastUpdatePosition[i]);
-                    DecreaseRankingPosition(i, godPosition[i]);
-                    lastUpdatePosition[lastPositionToDecrease] = lastUpdatePosition[i];
-                    lastUpdatePosition[i] = godPosition[i];
-                    
-                    ss = "ss ";
-                    
-                    foreach (var pos in lastUpdatePosition)
-                    {
-                        ss += " " + pos;
-                    }
-                    
-                    Debug.Log(ss);
-                }*/
-                
+                    DecreaseRankingPosition(i,auxList[i]);
+                    lastUpdatePosition[i] = auxList[i];
+                    lastUpdatePosition[lastPositionToDecrease] = auxList[lastPositionToDecrease];
+                }
             }
         }
     }
@@ -169,11 +119,7 @@ public class FinalPositionUIManager : MonoBehaviour
     {
         buttonPosition[buttonID].anchoredPosition3D = new Vector3(buttonPosition[buttonID].anchoredPosition.x, buttonPosition[buttonID].anchoredPosition.y, -1);
 
-        Debug.Log(staticPosition[toPosition]);
-
-        Debug.Log(buttonID + "   " + toPosition);
-
-        buttonPosition[buttonID].DOAnchorPos(staticPosition[toPosition], 0.2f, true)
+        buttonPosition[buttonID].DOAnchorPos(staticPosition[toPosition], 0.4f, true)
             .OnComplete(() =>
             {
                 buttonPosition[buttonID].anchoredPosition3D = new Vector3(buttonPosition[buttonID].anchoredPosition.x, buttonPosition[buttonID].anchoredPosition.y, 0);
@@ -185,12 +131,12 @@ public class FinalPositionUIManager : MonoBehaviour
     {
 
         Sequence sequence = DOTween.Sequence();
-        sequence.Append(buttonPosition[buttonID].DOScale(Vector3.zero, 0.1f).OnComplete(() =>
+        sequence.Append(buttonPosition[buttonID].DOScale(Vector3.zero, 0.15f).OnComplete(() =>
             {
                 buttonPosition[buttonID].anchoredPosition = staticPosition[toPosition];
                 positionText[buttonID].text = toPosition + 1 + "º";
             }))
-            .Append(buttonPosition[buttonID].DOScale(Vector3.one, 0.1f)).SetDelay(0.1f);
+            .Append(buttonPosition[buttonID].DOScale(Vector3.one, 0.15f)).SetDelay(0.1f);
     }
 
 }

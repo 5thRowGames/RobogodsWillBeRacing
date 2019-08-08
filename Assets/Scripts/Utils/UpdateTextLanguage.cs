@@ -16,7 +16,7 @@ public class UpdateTextLanguage : MonoBehaviour
         UpdateText();
     }
     
-    private void UpdateText()
+    public void UpdateText()
     {
         textMeshPro.text = LocalizationManager.Instance.GetWord(localizationID);
     }

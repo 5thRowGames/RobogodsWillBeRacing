@@ -10,21 +10,21 @@ public class MainMenuManager : MonoBehaviour
     public RectTransform exitButton;
     public RectTransform mainMenuTitle;
     public RectTransform infoPanel;
-
-    public RectTransform planchaMetal;
+    public RectTransform metalSheet;
 
     [Header("Tween positions")]
     //Se van a utilizar los valores de "X" e "Y" por separado según convenga.
     public Vector2 buttonPosition;
-    public Vector2 planchaPosition;
+    public Vector2 metalSheetPosition;
+    public Vector2 infoTitlePosition;
 
     public Vector2 raceButtonSelectedPosition;
     public Vector2 settingsButtonSelectedPosition;
     public Vector2 creditsButtonSelectedPosition;
     public Vector2 exitButtonSelectedPosition;
 
-    
-    [Space(5)]
+
+    [Space(5)] 
     public float infoPanelPositionY;
     public float movementDuration;
     public float selectDuration;
@@ -64,31 +64,30 @@ public class MainMenuManager : MonoBehaviour
         settingsButton.anchoredPosition = new Vector2(buttonPosition.x, 0);
         creditsButton.anchoredPosition = new Vector2(buttonPosition.x, 0);
         exitButton.anchoredPosition = new Vector2(buttonPosition.x, 0);
-        mainMenuTitle.anchoredPosition = new Vector2(buttonPosition.x, 0);
-        planchaMetal.anchoredPosition = new Vector2(planchaPosition.x, 0);
+        mainMenuTitle.anchoredPosition = new Vector2(infoTitlePosition.x, 0);
+        metalSheet.anchoredPosition = new Vector2(metalSheetPosition.x, 0);
+        infoPanel.anchoredPosition = new Vector2(-infoTitlePosition.x, 0);
     }
     
     public void BuildMainMenu()
     {
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.firstSelectedGameObject = raceButton.gameObject;
-        
+
         Sequence sequence = DOTween.Sequence();
             sequence.Insert(0f, raceButton.DOAnchorPosX(0, movementDuration, true))
             .Insert(0f, creditsButton.DOAnchorPosX(0, movementDuration, true))
             .Insert(0f, exitButton.DOAnchorPosX(0, movementDuration, true))
             .Insert(0f, settingsButton.DOAnchorPosX(0, movementDuration, true))
             .Insert(0f,mainMenuTitle.DOAnchorPosX(0,movementDuration,true))
-            .Insert(0f,planchaMetal.DOAnchorPosX(0,movementDuration,true))
+            .Insert(0f,metalSheet.DOAnchorPosX(0,movementDuration,true))
+            .Insert(0.1f, infoPanel.DOAnchorPosX(0, movementDuration, true))
             .OnComplete(() =>
             {
                 UIManager.Instance.inControlInputModule.enabled = true;
                 isInfoPanelHidden = false;
                 EventSystem.current.SetSelectedGameObject(raceButton.gameObject);
             });
-
-            if (isInfoPanelHidden)
-                sequence.Insert(0.1f, infoPanel.DOAnchorPosX(0, movementDuration, true));
     }
 
     //TODO
@@ -100,12 +99,12 @@ public class MainMenuManager : MonoBehaviour
         
         Sequence sequence = DOTween.Sequence();
         sequence.Insert(0f, raceButton.DOAnchorPosX(buttonPosition.x, movementDuration, true))
-            .Insert(0f,settingsButton.DOAnchorPosX(buttonPosition.x, selectDuration, true))
+            .Insert(0f,settingsButton.DOAnchorPosX(buttonPosition.x, movementDuration, true))
             .Insert(0f, creditsButton.DOAnchorPosX(buttonPosition.x, movementDuration, true))
             .Insert(0f, exitButton.DOAnchorPosX(buttonPosition.x, movementDuration, true))
-            .Insert(0f,mainMenuTitle.DOAnchorPosX(buttonPosition.x,movementDuration,true))
-            .Insert(0f,planchaMetal.DOAnchorPosX(planchaPosition.x,movementDuration,true))
-            .Insert(0f, infoPanel.DOAnchorPosY(infoPanelPositionY,movementDuration,true)).OnComplete(() =>
+            .Insert(0f,mainMenuTitle.DOAnchorPosX(infoTitlePosition.x,movementDuration,true))
+            .Insert(0f,metalSheet.DOAnchorPosX(metalSheetPosition.x,movementDuration,true))
+            .Insert(0f, infoPanel.DOAnchorPosX(-infoTitlePosition.x,movementDuration,true)).OnComplete(() =>
             {
                 UIManager.Instance.ChangeScreen(MenuType.Menu.TitleScreen);
                 gameObject.SetActive(false);
@@ -122,9 +121,9 @@ public class MainMenuManager : MonoBehaviour
         sequence.Append(raceButton.DOAnchorPos(raceButtonSelectedPosition, selectDuration, true))
             .Insert(0.6f, settingsButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
             .Insert(0.6f, creditsButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
-           // .Insert(0.6f,mainMenuTitle.DOAnchorPosY(buttonPosition.y,movementDuration,true))
-            .Insert(0.6f, infoPanel.DOAnchorPosY(-100,0.3f,true))
-            .Insert(0.6f,planchaMetal.DOAnchorPosY(planchaPosition.y,movementDuration,true))
+            .Insert(0.3f,mainMenuTitle.DOAnchorPosX(infoTitlePosition.x,movementDuration,true))
+            .Insert(0.3f,infoPanel.DOAnchorPosX(-infoTitlePosition.x,movementDuration,true))
+            .Insert(0.6f,metalSheet.DOAnchorPosY(metalSheetPosition.y,movementDuration,true))
             .Insert(0.6f, exitButton.DOAnchorPosY(buttonPosition.y, movementDuration, true)).OnComplete(() =>
                 {
                     isInfoPanelHidden = true;
@@ -142,8 +141,9 @@ public class MainMenuManager : MonoBehaviour
         sequence.Append(settingsButton.DOAnchorPos(settingsButtonSelectedPosition, selectDuration, true))
             .Insert(0.6f, raceButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
             .Insert(0.6f, creditsButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
-            .Insert(0.6f,planchaMetal.DOAnchorPosY(planchaPosition.y,movementDuration,true))
-            //.Insert(0.6f,mainMenuTitle.DOAnchorPosY(buttonPosition.y,movementDuration,true))
+            .Insert(0.6f,metalSheet.DOAnchorPosY(metalSheetPosition.y,movementDuration,true))
+            .Insert(0.3f,mainMenuTitle.DOAnchorPosX(infoTitlePosition.x,movementDuration,true))
+            .Insert(0.3f,infoPanel.DOAnchorPosX(-infoTitlePosition.x,movementDuration,true))
             .Insert(0.6f, exitButton.DOAnchorPosY(buttonPosition.y, movementDuration, true)).OnComplete(() =>
             {
                 UIManager.Instance.ChangeScreen(MenuType.Menu.Settings);
@@ -160,8 +160,9 @@ public class MainMenuManager : MonoBehaviour
         sequence.Append(creditsButton.DOAnchorPos(creditsButtonSelectedPosition, selectDuration, true))
             .Insert(0.6f, raceButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
             .Insert(0.6f, settingsButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
-            .Insert(0.6f,planchaMetal.DOAnchorPosY(planchaPosition.y,movementDuration,true))
-            //.Insert(0.6f,mainMenuTitle.DOAnchorPosY(buttonPosition.y,movementDuration,true))
+            .Insert(0.6f,metalSheet.DOAnchorPosY(metalSheetPosition.y,movementDuration,true))
+            .Insert(0.3f,mainMenuTitle.DOAnchorPosX(infoTitlePosition.x,movementDuration,true))
+            .Insert(0.3f,infoPanel.DOAnchorPosX(-infoTitlePosition.x,movementDuration,true))
             .Insert(0.6f, exitButton.DOAnchorPosY(buttonPosition.y, movementDuration, true)).OnComplete(() =>
             {
                 UIManager.Instance.ChangeScreen(MenuType.Menu.Credits);
@@ -180,8 +181,9 @@ public class MainMenuManager : MonoBehaviour
         sequence.Append(settingsButton.DOAnchorPos(exitButtonSelectedPosition, selectDuration, true))
             .Insert(0.6f, raceButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
             .Insert(0.6f, creditsButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
-            .Insert(0.6f,planchaMetal.DOAnchorPosY(planchaPosition.y,movementDuration,true))
-            //.Insert(0.6f,mainMenuTitle.DOAnchorPosY(buttonPosition.y,movementDuration,true))
+            .Insert(0.6f,metalSheet.DOAnchorPosY(metalSheetPosition.y,movementDuration,true))
+            .Insert(0.3f,mainMenuTitle.DOAnchorPosX(infoTitlePosition.x,movementDuration,true))
+            .Insert(0.3f,infoPanel.DOAnchorPosX(-infoTitlePosition.x,movementDuration,true))
             .Insert(0.6f, exitButton.DOAnchorPosY(buttonPosition.y, movementDuration, true)).OnComplete(() =>
             {
                 gameObject.SetActive(false);

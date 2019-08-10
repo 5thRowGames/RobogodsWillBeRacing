@@ -26,7 +26,9 @@ public class MyCarController : MonoBehaviour, IControllable
     [SerializeField] [Tooltip("Velocidad angular máxima")] private float maxAngularSpeed = 20f;
     [SerializeField] [Tooltip("Fuerza del freno")] private float brakeForce = 20f;
     [SerializeField] [Tooltip("Tiempo necesario para pasar de frenar a ir marcha atrás")] private float brakeToReverseTime = 0.5f;
-    [Tooltip("Cronómero para pasar de frenar a ir marcha atrás")] private float brakeToReverseTimer;
+    [Tooltip("Cronómetro para pasar de frenar a ir marcha atrás")] private float brakeToReverseTimer;
+    [SerializeField] [Tooltip("El coche va marcha atrás")] private bool isGoingBackwards = false;
+    public bool IsGoingBackwards { get { isGoingBackwards = velocity.z < 0f; return isGoingBackwards; } }
     [SerializeField] [Tooltip("Indica si la velocidad del coche está por debajo del umbral")] private bool speedUnderThreshold;
     [SerializeField] [Tooltip("Fuerza en sentido opuesto al giro cuando se usa el freno de mano")] private float handBrakeForce = 30f;
     [SerializeField] [Tooltip("Factor por el que multiplicar handBrakeForce para aplicar freno")][Range(0f, 2f)] private float handBrakeBrakeFactor = 0.5f;
@@ -78,13 +80,14 @@ public class MyCarController : MonoBehaviour, IControllable
     [SerializeField] [Tooltip("Vector de velocidad local del coche")] public Vector3 velocity;
     [SerializeField] [Tooltip("Indica si el vehículo está en el suelo o en el aire")] private bool isGrounded;
     [SerializeField] [Tooltip("Indica si el vehículo está boca abajo")] private bool isUpsideDown;
+    public bool IsBeingTeleported = false;
 
     [Header("Helper")]
     public Transform helper;
 
     private List<RaycastHit> hitList;
 
-    [SerializeField] private bool rcRunning;
+    [SerializeField] private bool rotationToIdentityRunning;
 
     //Para sonidos
     private bool isBoosting;
@@ -186,7 +189,8 @@ public class MyCarController : MonoBehaviour, IControllable
             resetInput = false;
         }
 
-        ClampRotation(); // Para evitar que el vehículo rote más de lo permitido
+        //if (!IsBeingTeleported)
+        //    ClampRotation(); // Para evitar que el vehículo rote más de lo permitido
     }
 
     private void ClampRotation()
@@ -199,7 +203,7 @@ public class MyCarController : MonoBehaviour, IControllable
                 rot.eulerAngles = new Vector3(0f, rb.rotation.eulerAngles.y, rb.rotation.eulerAngles.z);
                 rb.MoveRotation(rb.rotation);
                 rb.constraints = rb.constraints | RigidbodyConstraints.FreezeRotationX;
-                if (!rcRunning) StartCoroutine(RotationToIdentity());
+                if (!rotationToIdentityRunning) StartCoroutine(RotationToIdentity());
             }
             else rb.constraints = RigidbodyConstraints.None;
 
@@ -209,16 +213,21 @@ public class MyCarController : MonoBehaviour, IControllable
                 rot.eulerAngles = new Vector3(rb.rotation.eulerAngles.x, rb.rotation.eulerAngles.y, 0f);
                 rb.MoveRotation(rb.rotation);
                 rb.constraints = rb.constraints | RigidbodyConstraints.FreezeRotationZ;
-                if (!rcRunning) StartCoroutine(RotationToIdentity());
+                if (!rotationToIdentityRunning) StartCoroutine(RotationToIdentity());
             }
             else rb.constraints = RigidbodyConstraints.None;
         }
         else rb.constraints = RigidbodyConstraints.None;
     }
 
+    public void StopRotationToIdentity()
+    {
+        StopCoroutine(RotationToIdentity());
+    }
+
     private IEnumerator RotationToIdentity()
     {
-        rcRunning = true;
+        rotationToIdentityRunning = true;
         float timeCount = 0f;
         Quaternion fromRotation = new Quaternion(rb.rotation.x, rb.rotation.y, rb.rotation.z, rb.rotation.w);
         Quaternion toRotation = new Quaternion();
@@ -230,7 +239,7 @@ public class MyCarController : MonoBehaviour, IControllable
             timeCount += Time.deltaTime;
             yield return null;
         }
-        rcRunning = false;
+        rotationToIdentityRunning = false;
     }
 
     public void Move()

@@ -26,7 +26,10 @@ public class LapsManager : MonoBehaviour
     public static LapsManager instance = null;
 
     public List<GameObject> gods;
+    public List<CircuitSection> circuitSections;
     public List<Checkpoint> checkPoints;
+    public List<Portal> portals;
+    public List<Transform> portalsExits;
     public List<GodRaceInfo> godRaceInfoList;
 
     public List<string> godsPositions;
@@ -57,12 +60,13 @@ public class LapsManager : MonoBehaviour
         else if (instance != this)
             Destroy(gameObject);
         // DontDestroyOnLoad(gameObject);
-    }
 
-    private void Start()
-    {
         godRaceInfoList = new List<GodRaceInfo>();
+        AddCheckpoints();
         RegisterCheckPoints();
+        AddPortals();
+        AddPortalsExits();
+        RegisterPortals();
     }
 
     private void FixedUpdate()
@@ -70,7 +74,7 @@ public class LapsManager : MonoBehaviour
         UpdateDistancesToCheckPoints();
         godRaceInfoList.Sort(CompareRacePositions);
         for (int i = 0; i < godRaceInfoList.Count; i++)
-            godRaceInfoList[i].racePosition = i + 1;
+            godRaceInfoList[i].racePosition = i;
     }
 
     private void OnEnable()
@@ -106,6 +110,75 @@ public class LapsManager : MonoBehaviour
         for (int i = 0; i < checkPoints.Count; i++)
         {
             checkPoints[i].Index = i;
+        }
+    }
+
+    // Revisar
+    private void RegisterPortalsOld()
+    {
+        for(int i = 1; i < portals.Count - 1; i += 2)
+        {
+            portals[i].targetPortal = portals[i + 1].transform;
+        }
+        portals[portals.Count - 1].targetPortal = portals[0].transform;
+        portals[0].targetPortal = portals[portals.Count - 1].transform;
+        for(int i = 2; i < portals.Count - 1; i += 2)
+        {
+            portals[i].targetPortal = portals[i - 1].transform;
+        }
+
+        for(int i = 0; i < portals.Count; i++)
+        {
+            portals[i].index = i;
+        }
+    }
+
+    private void RegisterPortals()
+    {
+        for(int i = 0; i < portals.Count - 1; i++)
+        {
+            portals[i].targetPortal = portalsExits[i + 1];
+        }
+        portals[portals.Count - 1].targetPortal = portalsExits[0];
+    }
+
+    private void AddCheckpoints()
+    {
+        if (circuitSections != null)
+            foreach (CircuitSection cs in circuitSections)
+            {
+                for (int i = 0; i < cs.checkpoints.Count; i++)
+                {
+                    checkPoints.Add(cs.checkpoints[i]);
+                }
+            }
+    }
+
+    private void AddPortals()
+    {
+        if (circuitSections != null)
+        {
+            foreach (CircuitSection cs in circuitSections)
+            {
+                for (int i = 0; i < cs.portalsEntrances.Count; i++)
+                {
+                    portals.Add(cs.portalsEntrances[i]);
+                }
+            }
+        }
+    }
+
+    private void AddPortalsExits()
+    {
+        if(circuitSections != null)
+        {
+            foreach(CircuitSection cs in circuitSections)
+            {
+                for(int i = 0; i < cs.portalsExits.Count; i++)
+                {
+                    portalsExits.Add(cs.portalsExits[i]);
+                }
+            }
         }
     }
 
@@ -184,6 +257,8 @@ public class LapsManager : MonoBehaviour
     public float DistanceToNextCheckPoint(GodRaceInfo gri)
     {
         int index = godRaceInfoList.FindIndex(g => g.god == gri.god);
+
+        if (index == -1) return Mathf.Infinity;
 
         Vector3 nextCheckPointPosition = checkPoints[index].transform.position;
         return Vector3.Distance(gri.god.transform.position, nextCheckPointPosition);

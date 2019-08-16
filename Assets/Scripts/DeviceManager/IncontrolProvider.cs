@@ -57,9 +57,16 @@ public class IncontrolProvider : MonoBehaviour, IDevice
     public DeviceState State { get => state; private set => state = value; }
     DeviceState previousState;
 
-    private void Awake()
+    private void OnEnable()
     {
+        inputDevice = null;
         controlType = ControlType.None;
+        myPlayerActions = new MyPlayerActions();
+    }
+
+    private void OnDisable()
+    {
+        myPlayerActions.Destroy();
     }
 
     void Update ()
@@ -103,9 +110,14 @@ public class IncontrolProvider : MonoBehaviour, IDevice
 
     public void ControlSlaves()
     {
-        foreach (var slave in Slaves)
+        /*foreach (var slave in Slaves)
         {
             slave.Control(this);
+        }*/
+
+        for (int i = 0; i < Slaves.Count; i++)
+        {
+            Slaves[i].Control(this);
         }
     }
 

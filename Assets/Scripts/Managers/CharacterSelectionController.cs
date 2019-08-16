@@ -6,32 +6,21 @@ using UnityEngine.UI;
 
 public class CharacterSelectionController : MonoBehaviour,IControllable
 {
-    public int space;
-    public RectTransform rectTransform;
-    public Image mark;
-
-    public List<RectTransform> positions;
+    public List<Image> images;
 
     private int position;
     private bool confirm;
     private bool confirmed;
     private bool canChooseGod;
 
-    public GodType.RobogodType robogodPicked;
-
-    private void Awake()
+    public God.Type robogodPicked;
+    private void OnEnable()
     {
-        robogodPicked = GodType.RobogodType.None;
+        robogodPicked = God.Type.None;
         position = 0;
         confirm = false;
         confirmed = false;
-        mark.enabled = false;
         canChooseGod = false;
-        rectTransform.anchoredPosition = positions[position].anchoredPosition;
-    }
-
-    private void OnEnable()
-    {
         ConnectDisconnectManager.ConnectCharacterSelectionControllerDelegate += ConnectCharacterSelection;
         ConnectDisconnectManager.DisconnectCarControllerDelegate += DisconnectCharacterSelection;
     }
@@ -44,18 +33,17 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
 
     public void Control(IDevice controller)
     {
-
         if (confirm)
         {
-            if (controller.State.Jump.IsPressed && !confirmed)
+            if (controller.State.Submit.IsPressed && !confirmed)
             {
-                UIManager.Instance.ConfirmConfirmation();
+                CharacterSelectionManager.Instance.ConfirmConfirmation();
             }
-            else if (controller.State.Action.IsPressed)
+            else if (controller.State.Cancel.IsPressed)
             {
-                UIManager.Instance.DenyConfirmation();
-                UIManager.Instance.DeselectCharacter(robogodPicked);
-                robogodPicked = GodType.RobogodType.None;
+                CharacterSelectionManager.Instance.DenyConfirmation();
+                CharacterSelectionManager.Instance.DeselectCharacter(robogodPicked);
+                robogodPicked = God.Type.None;
                 canChooseGod = true;
             }
         }
@@ -65,7 +53,6 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
             {
                 if (controller.State.Horizontal.IsPressed)
                 {
-
                     if (controller.State.Horizontal.Value < -0.3)
                     {
                         MoveMark(true);
@@ -75,20 +62,30 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
                         MoveMark(false);
                     }
                 }
-            
-                if(controller.State.Jump.IsPressed)
+
+                if (controller.State.Cancel.IsPressed)
+                {
+                   CharacterSelectionManager.Instance.ReturnMainMenuTween();
+                   CancelCharacterSelection();
+                }
+
+
+                if(controller.State.Submit.IsPressed)
                     ChooseGod();
             }
             else
             {
-                if(controller.State.Action.IsPressed)
+                if(controller.State.Cancel.IsPressed)
                     DeselectGod();
             }
         }
+        
     }
 
     private void MoveMark(bool moveLeft)
     {
+        images[position].enabled = false;
+
         if (!moveLeft)
         {
             position++;
@@ -97,11 +94,11 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
             {
                 position = 0;
 
-                rectTransform.anchoredPosition = positions[position].anchoredPosition;
+                images[position].enabled = true;
             }
             else
             {
-                rectTransform.anchoredPosition = positions[position].anchoredPosition;
+                images[position].enabled = true;
             }
         }
         else
@@ -112,13 +109,14 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
             {
                 position = 3;
 
-                rectTransform.anchoredPosition = positions[position].anchoredPosition;
+                images[position].enabled = true;
             }
             else
             {
-                rectTransform.anchoredPosition = positions[position].anchoredPosition;
+                images[position].enabled = true;
             }
         }
+        
     }
 
     private void ChooseGod()
@@ -126,41 +124,42 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
         switch (position)
         {
             case 0:
-
-                if (!UIManager.Instance.poseidonChosen)
+                
+                if (!CharacterSelectionManager.Instance.anubisChosen)
                 {
-                    UIManager.Instance.ChooseCharacter(GodType.RobogodType.Poseidon);
-                    robogodPicked = GodType.RobogodType.Poseidon;
+                    CharacterSelectionManager.Instance.ChooseCharacter(God.Type.Anubis);
+                    robogodPicked = God.Type.Anubis;
                     canChooseGod = false;
                 }
                 break;
             
             case 1:
                     
-                if (!UIManager.Instance.kaliChosen)
+                if (!CharacterSelectionManager.Instance.kaliChosen)
                 {
-                    UIManager.Instance.ChooseCharacter(GodType.RobogodType.Kali);
-                    robogodPicked = GodType.RobogodType.Kali;
+                    CharacterSelectionManager.Instance.ChooseCharacter(God.Type.Kali);
+                    robogodPicked = God.Type.Kali;
                     canChooseGod = false;
                 }
                 break;
             
             case 2:
-
-                if (!UIManager.Instance.thorChosen)
+                
+                if (!CharacterSelectionManager.Instance.poseidonChosen)
                 {
-                    UIManager.Instance.ChooseCharacter(GodType.RobogodType.Thor);
-                    robogodPicked = GodType.RobogodType.Thor;
+                    CharacterSelectionManager.Instance.ChooseCharacter(God.Type.Poseidon);
+                    robogodPicked = God.Type.Poseidon;
                     canChooseGod = false;
                 }
+                
                 break;
             
             case 3:
 
-                if (!UIManager.Instance.anubisChosen)
+                if (!CharacterSelectionManager.Instance.thorChosen)
                 {
-                    UIManager.Instance.ChooseCharacter(GodType.RobogodType.Anubis);
-                    robogodPicked = GodType.RobogodType.Anubis;
+                    CharacterSelectionManager.Instance.ChooseCharacter(God.Type.Thor);
+                    robogodPicked = God.Type.Thor;
                     canChooseGod = false;
                 }
                 break;
@@ -169,30 +168,38 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
     
     private void DeselectGod()
     {
-        if (robogodPicked != GodType.RobogodType.None)
+        if (robogodPicked != God.Type.None)
         {
 
-            robogodPicked = GodType.RobogodType.None;
+            robogodPicked = God.Type.None;
             canChooseGod = true;
             
             switch (position)
             {
                 case 0:
-                    UIManager.Instance.DeselectCharacter(GodType.RobogodType.Poseidon);
+                    CharacterSelectionManager.Instance.DeselectCharacter(God.Type.Poseidon);
                     break;
             
                 case 1:
-                    UIManager.Instance.DeselectCharacter(GodType.RobogodType.Kali);
+                    CharacterSelectionManager.Instance.DeselectCharacter(God.Type.Kali);
                     break;
             
                 case 2:
-                    UIManager.Instance.DeselectCharacter(GodType.RobogodType.Thor);
+                    CharacterSelectionManager.Instance.DeselectCharacter(God.Type.Thor);
                     break;
             
                 case 3:
-                    UIManager.Instance.DeselectCharacter(GodType.RobogodType.Anubis);
+                    CharacterSelectionManager.Instance.DeselectCharacter(God.Type.Anubis);
                     break;
             }
+        }
+    }
+
+    private void CancelCharacterSelection()
+    {
+        foreach (var img in images)
+        {
+            img.enabled = false;
         }
     }
 
@@ -210,7 +217,7 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
 
     public void JoinGamePressed()
     {
-        mark.enabled = true;
+        images[0].enabled = true;
         StartCoroutine(DelayBetweenEnterAndSelect());
     }
 
@@ -227,7 +234,7 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
 
     public void DisconnectCharacterSelection()
     {
-        Core.Input.AssignControllable(GetComponent<IncontrolProvider>(),this);
+        Core.Input.UnassignControllable(GetComponent<IncontrolProvider>(),this);
     }
     
 }

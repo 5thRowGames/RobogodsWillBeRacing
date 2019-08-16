@@ -6,22 +6,18 @@ using UnityEngine;
 
 public class PlayerSelectionManager : MonoBehaviour
 {
-    public List<IncontrolProvider> players;
+    public List<IncontrolProvider> playersInControl;
     public List<CharacterSelectionController> playerSelectionController;
     
     private int playerOrder;
     private MyPlayerActions keyboardListener;
     private MyPlayerActions joystickListener;
     private bool keyboardSelected;
-    
-    //Prueba
-    private MyPlayerActions both;
 
     private void OnEnable()
     {
         keyboardListener = MyPlayerActions.BindKeyboard();
         joystickListener = MyPlayerActions.BindControls();
-        both = MyPlayerActions.BindBoth();
         playerOrder = 0;
         keyboardSelected = false;
     }
@@ -35,10 +31,10 @@ public class PlayerSelectionManager : MonoBehaviour
             if (FindPlayerUsingDevice(inputDevice) == null && RaceManager.Instance.players < 4)
             {
                 RaceManager.Instance.players++;
-                players[playerOrder].controlType = IncontrolProvider.ControlType.Gamepad;
-                players[playerOrder].myPlayerActions = MyPlayerActions.BindControls();
-                players[playerOrder].InputDevice = inputDevice;
-                Core.Input.AssignControllable(players[playerOrder],playerSelectionController[playerOrder]);
+                playersInControl[playerOrder].controlType = IncontrolProvider.ControlType.Gamepad;
+                playersInControl[playerOrder].myPlayerActions = MyPlayerActions.BindControls();
+                playersInControl[playerOrder].InputDevice = inputDevice;
+                Core.Input.AssignControllable(playersInControl[playerOrder],playerSelectionController[playerOrder]);
                 playerSelectionController[playerOrder].JoinGamePressed();
                 playerOrder++;
             }
@@ -47,16 +43,14 @@ public class PlayerSelectionManager : MonoBehaviour
         //Prueba
         if (JoinButtonWasPressed(keyboardListener))
         {
-
             if (RaceManager.Instance.players < 4 && !keyboardSelected)
             {
                 keyboardSelected = true;
-                
                 RaceManager.Instance.players++;
-                players[playerOrder].controlType = IncontrolProvider.ControlType.Keyboard;
-                players[playerOrder].InputDevice = null;
-                players[playerOrder].myPlayerActions = keyboardListener;
-                Core.Input.AssignControllable(players[playerOrder],playerSelectionController[playerOrder]);
+                playersInControl[playerOrder].controlType = IncontrolProvider.ControlType.Keyboard;
+                playersInControl[playerOrder].InputDevice = null;
+                playersInControl[playerOrder].myPlayerActions = keyboardListener;
+                Core.Input.AssignControllable(playersInControl[playerOrder],playerSelectionController[playerOrder]);
                 playerSelectionController[playerOrder].JoinGamePressed();
                 playerOrder++;
             }
@@ -66,11 +60,11 @@ public class PlayerSelectionManager : MonoBehaviour
     
     bool JoinButtonWasPressed( MyPlayerActions actions )
     {
-        return actions.Gas.WasPressed;
+        return actions.Submit.WasPressed;
     }
 
     IDevice FindPlayerUsingDevice( InputDevice inputDevice )
     {
-        return players.Find(x => x.InputDevice == inputDevice);
+        return playersInControl.Find(x => x.InputDevice == inputDevice);
     }
 }

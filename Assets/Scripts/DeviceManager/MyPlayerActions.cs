@@ -14,6 +14,8 @@ public class MyPlayerActions : PlayerActionSet
     public PlayerOneAxisAction Horizontal;
     public PlayerOneAxisAction Vertical;
 
+    public PlayerTwoAxisAction Move;
+
     public PlayerAction Gas;
     public PlayerAction Fire;
     public PlayerAction Action;
@@ -39,6 +41,7 @@ public class MyPlayerActions : PlayerActionSet
 
         Horizontal = CreateOneAxisPlayerAction(Left, Right);
         Vertical = CreateOneAxisPlayerAction(Down, Up);
+        Move = CreateTwoAxisPlayerAction(Left, Right, Down, Up);
 
         Gas = CreatePlayerAction("Jump");
         Fire = CreatePlayerAction("Fire");
@@ -89,8 +92,13 @@ public class MyPlayerActions : PlayerActionSet
     {
         var myPlayerActions = new MyPlayerActions();
 
-        /*myPlayerActions.Up.AddDefaultBinding(Key.W);
-        myPlayerActions.Down.AddDefaultBinding(Key.S);*/
+        myPlayerActions.Up.AddDefaultBinding(Key.UpArrow);
+        myPlayerActions.Down.AddDefaultBinding(Key.DownArrow);
+        myPlayerActions.Right.AddDefaultBinding(Key.RightArrow);
+        myPlayerActions.Left.AddDefaultBinding(Key.LeftArrow);
+        
+        myPlayerActions.Up.AddDefaultBinding(Key.W);
+        myPlayerActions.Down.AddDefaultBinding(Key.S);
         myPlayerActions.Right.AddDefaultBinding(Key.D);
         myPlayerActions.Left.AddDefaultBinding(Key.A);
 
@@ -105,7 +113,7 @@ public class MyPlayerActions : PlayerActionSet
         myPlayerActions.RightTrigger.AddDefaultBinding(Key.W);
 
         myPlayerActions.Submit.AddDefaultBinding(Key.Return);
-        myPlayerActions.Cancel.AddDefaultBinding(Key.RightAlt);
+        myPlayerActions.Cancel.AddDefaultBinding(Key.Escape);
 
         return myPlayerActions;
     }
@@ -115,8 +123,13 @@ public class MyPlayerActions : PlayerActionSet
     {
         var myPlayerActions = new MyPlayerActions();
 
-        /*myPlayerActions.Up.AddDefaultBinding(Key.W);
-        myPlayerActions.Down.AddDefaultBinding(Key.S);*/
+        myPlayerActions.Up.AddDefaultBinding(Key.UpArrow);
+        myPlayerActions.Down.AddDefaultBinding(Key.DownArrow);
+        myPlayerActions.Right.AddDefaultBinding(Key.RightArrow);
+        myPlayerActions.Left.AddDefaultBinding(Key.LeftArrow);
+        
+        myPlayerActions.Up.AddDefaultBinding(Key.W);
+        myPlayerActions.Down.AddDefaultBinding(Key.S);
         myPlayerActions.Right.AddDefaultBinding(Key.D);
         myPlayerActions.Left.AddDefaultBinding(Key.A);
 
@@ -131,13 +144,18 @@ public class MyPlayerActions : PlayerActionSet
         myPlayerActions.RightTrigger.AddDefaultBinding(Key.W);
 
         myPlayerActions.Submit.AddDefaultBinding(Key.Return);
-        myPlayerActions.Cancel.AddDefaultBinding(Key.RightAlt);
+        myPlayerActions.Cancel.AddDefaultBinding(Key.Escape);
         
         //Mando
         myPlayerActions.Up.AddDefaultBinding(InputControlType.LeftStickUp);
         myPlayerActions.Right.AddDefaultBinding(InputControlType.LeftStickRight);
         myPlayerActions.Down.AddDefaultBinding(InputControlType.LeftStickDown);
         myPlayerActions.Left.AddDefaultBinding(InputControlType.LeftStickLeft);
+        
+        myPlayerActions.Up.AddDefaultBinding(InputControlType.DPadUp);
+        myPlayerActions.Right.AddDefaultBinding(InputControlType.DPadRight);
+        myPlayerActions.Down.AddDefaultBinding(InputControlType.DPadDown);
+        myPlayerActions.Left.AddDefaultBinding(InputControlType.DPadLeft);
 
         myPlayerActions.Gas.AddDefaultBinding(InputControlType.Action1);
         myPlayerActions.Fire.AddDefaultBinding(InputControlType.Action3);

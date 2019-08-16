@@ -7,7 +7,7 @@ public class PlayerInfo
 
     public InputDevice inputDevice;
     public IncontrolProvider.ControlType controlType;
-    public GodType.RobogodType godType;
+    public God.Type godType;
 }
 
 public class RaceManager : Singleton<RaceManager>
@@ -18,13 +18,10 @@ public class RaceManager : Singleton<RaceManager>
     public bool thorIA;
 
     public int players;
-
-    public List<PlayerInfo> playerInfo;
-    public List<Transform> godPosition;
-
-    private void Awake()
+    public List<PlayerInfo> playerInfo = new List<PlayerInfo>();
+    
+    private void OnEnable()
     {
-        playerInfo = new List<PlayerInfo>();
         Reset();
     }
 

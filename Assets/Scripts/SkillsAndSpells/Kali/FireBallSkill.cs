@@ -52,6 +52,11 @@ public class FireBallSkill : SkillBase
         gameObject.SetActive(false);
     }
 
+    public override void ResetSkill()
+    {
+        throw new NotImplementedException();
+    }
+
     private void OnDisable()
     {
         foreach (Transform ball in transform)

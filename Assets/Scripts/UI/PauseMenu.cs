@@ -34,11 +34,11 @@ public class PauseMenu : Singleton<PauseMenu>
     {
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.firstSelectedGameObject = continueButton;
-        RaceUIManager.Instance.inControlInputModule.enabled = false;
+        RaceEventManager.Instance.inControlInputModule.enabled = false;
 
         pauseMenuPanel.DOScale(new Vector3(1, 1, 1), scaleDuration).SetUpdate(true).OnComplete(() =>
         {
-            RaceUIManager.Instance.inControlInputModule.enabled = true;
+            RaceEventManager.Instance.inControlInputModule.enabled = true;
             EventSystem.current.SetSelectedGameObject(continueButton.gameObject);
         });
     }
@@ -52,6 +52,7 @@ public class PauseMenu : Singleton<PauseMenu>
         {
             //Meter la continuación de la carrera
             Time.timeScale = 1f;
+            RaceEventManager.Instance.ChangeRaceEvent(RaceEvents.Race.ContinueRace);
             gameObject.SetActive(false);
         });
     }
@@ -59,11 +60,11 @@ public class PauseMenu : Singleton<PauseMenu>
     public void OpenSettings()
     {
         EventSystem.current.SetSelectedGameObject(null);
-        RaceUIManager.Instance.inControlInputModule.enabled = false;
+        RaceEventManager.Instance.inControlInputModule.enabled = false;
 
         pauseMenuPanel.DOScale(new Vector3(0, 0, 0), scaleDuration).SetUpdate(true).OnComplete(() =>
         {
-            RaceUIManager.Instance.ChangeRaceEvent(RaceEvents.Race.SettingsPause);
+            RaceEventManager.Instance.ChangeRaceEvent(RaceEvents.Race.SettingsPause);
             gameObject.SetActive(false);
         });
     }
@@ -71,7 +72,7 @@ public class PauseMenu : Singleton<PauseMenu>
     public void ExitMainMenu()
     {
         EventSystem.current.SetSelectedGameObject(null);
-        RaceUIManager.Instance.inControlInputModule.enabled = false;
+        RaceEventManager.Instance.inControlInputModule.enabled = false;
         
         asyncLoadNextScene = SceneManager.LoadSceneAsync(0);
         asyncLoadNextScene.allowSceneActivation = false;

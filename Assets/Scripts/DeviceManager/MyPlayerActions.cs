@@ -26,6 +26,8 @@ public class MyPlayerActions : PlayerActionSet
     public PlayerAction LeftTrigger;
     public PlayerAction RightTrigger;
 
+    public PlayerAction Start;
+
     public PlayerAction VerticalSecondary;
     public PlayerAction HorizontalSecondary;
 
@@ -55,6 +57,8 @@ public class MyPlayerActions : PlayerActionSet
 
         Submit = CreatePlayerAction("Submit");
         Cancel = CreatePlayerAction("Cancel");
+
+        Start = CreatePlayerAction("Start");
 
     }
 
@@ -145,6 +149,8 @@ public class MyPlayerActions : PlayerActionSet
 
         myPlayerActions.Submit.AddDefaultBinding(Key.Return);
         myPlayerActions.Cancel.AddDefaultBinding(Key.Escape);
+
+        myPlayerActions.Start.AddDefaultBinding(Key.Escape);
         
         //Mando
         myPlayerActions.Up.AddDefaultBinding(InputControlType.LeftStickUp);
@@ -169,6 +175,8 @@ public class MyPlayerActions : PlayerActionSet
 
         myPlayerActions.Submit.AddDefaultBinding(InputControlType.Action1);
         myPlayerActions.Cancel.AddDefaultBinding(InputControlType.Action2);
+        
+        myPlayerActions.Start.AddDefaultBinding(InputControlType.Command);
 
         return myPlayerActions;
     }

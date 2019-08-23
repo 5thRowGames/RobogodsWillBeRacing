@@ -6,10 +6,10 @@ public class Item
 {
     public enum Type
     {
-        Hourglass = 1,
-        Magnet = 2,
-        LargeTurboCan = 3,
-        EnergyShield = 4,
-        Teleporter = 5
+        Hourglass = 0,
+        Magnet = 1,
+        LargeTurboCan = 2,
+        EnergyShield = 3,
+        Teleporter = 4
     }
 }

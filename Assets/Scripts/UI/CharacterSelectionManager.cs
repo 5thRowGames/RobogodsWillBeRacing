@@ -50,7 +50,7 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
        anubisChosen = false;
        playersWithGodPicked = 0;
        playersConfirmed = 0;
-       RaceManager.Instance.Reset();
+       StoreGodInfo.Instance.Reset();
        ResetCharacterSelectionUI();
        BuildCharacterSelection();
    }
@@ -65,28 +65,28 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
 
                 //Corutina
                 anubisChosen = true;
-                RaceManager.Instance.anubisIA = false;
+                StoreGodInfo.Instance.anubisIA = false;
                 break;
             
             case God.Type.Kali:
 
                 //Corutina
                 kaliChosen = true;
-                RaceManager.Instance.kaliIA = false;
+                StoreGodInfo.Instance.kaliIA = false;
                 break;
             
             case God.Type.Poseidon:
 
                 //Corutina
                 poseidonChosen = true;
-                RaceManager.Instance.poseidonIA = false;
+                StoreGodInfo.Instance.poseidonIA = false;
                 break;
             
             case God.Type.Thor:
 
                 //Corutina
                 thorChosen = true;
-                RaceManager.Instance.thorIA = false;
+                StoreGodInfo.Instance.thorIA = false;
                 break;
         }
         EveryoneHasGod(1);
@@ -99,28 +99,28 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
             case God.Type.Anubis:
                 //Corutina
                 anubisChosen = false;
-                RaceManager.Instance.anubisIA = true;
+                StoreGodInfo.Instance.anubisIA = true;
 
                 break;
             
             case God.Type.Kali:
                 //Corutina
                 kaliChosen = false;
-                RaceManager.Instance.anubisIA = true;
+                StoreGodInfo.Instance.anubisIA = true;
 
                 break;
             
             case God.Type.Poseidon:
                 //Corutina
                 poseidonChosen = false;
-                RaceManager.Instance.anubisIA = true;
+                StoreGodInfo.Instance.anubisIA = true;
 
                 break;
             
             case God.Type.Thor:
                 //Corutina
                 thorChosen = false;
-                RaceManager.Instance.anubisIA = true;
+                StoreGodInfo.Instance.anubisIA = true;
                 
                 break;
         }
@@ -131,14 +131,14 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
     {
         playersWithGodPicked += confirm;
 
-        if (playersWithGodPicked == RaceManager.Instance.players) 
+        if (playersWithGodPicked == StoreGodInfo.Instance.players) 
         {
             playersConfirmed = 0;
 
-            playersNumberConfirmedText.text = playersConfirmed + "/" + RaceManager.Instance.players;
+            playersNumberConfirmedText.text = playersConfirmed + "/" + StoreGodInfo.Instance.players;
 
             //REFACTORIZAR
-            for (int i = 0; i < RaceManager.Instance.players; i++)
+            for (int i = 0; i < StoreGodInfo.Instance.players; i++)
             {
                 confirmPlayerIcons[i].gameObject.SetActive(true);
             }
@@ -159,17 +159,18 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
         
         //confirmPlayerIcons[playerID - 1].color = confirmedColor;
         
-        playersNumberConfirmedText.text = playersConfirmed + "/" + RaceManager.Instance.players;
+        playersNumberConfirmedText.text = playersConfirmed + "/" + StoreGodInfo.Instance.players;
 
-        if (playersConfirmed == RaceManager.Instance.players)
+        if (playersConfirmed == StoreGodInfo.Instance.players)
         {
-            for (int i = 0; i < RaceManager.Instance.players; i++)
+            for (int i = 0; i < StoreGodInfo.Instance.players; i++)
             {
                 PlayerInfo playerInfo = new PlayerInfo();
                 playerInfo.inputDevice = players[i].GetComponent<IncontrolProvider>().InputDevice;
                 playerInfo.godType = players[i].GetComponent<CharacterSelectionController>().robogodPicked;
                 playerInfo.controlType = players[i].GetComponent<IncontrolProvider>().controlType;
-                RaceManager.Instance.playerInfo.Add(playerInfo);
+                playerInfo.playerID = players[i].GetComponent<IncontrolProvider>().playerID;
+                StoreGodInfo.Instance.playerInfo.Add(playerInfo);
             }
 
             StartRaceTween();

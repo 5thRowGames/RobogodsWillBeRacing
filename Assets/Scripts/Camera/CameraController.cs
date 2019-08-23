@@ -34,7 +34,19 @@ public class CameraController : MonoBehaviour, IControllable
     private float currentDistance, currentHeight;
     private float transitionGetAwayValue, transitionHeightValue, transitionRotationValueZ, transitionRotationValueX;
 
-    public void OnEnable()
+    private void Awake()
+    {
+        transform.position = new Vector3(transform.position.x, transform.position.y + currentHeight, transform.position.z);
+    }
+
+    private void OnEnable()
+    {
+        ConnectDisconnectManager.InitCamera += InitCamera;
+        ConnectDisconnectManager.ConnectCarControllerDelegate += ConnectCamera;
+        ConnectDisconnectManager.DisconnectCarControllerDelegate += DisconnectCamera;
+    }
+
+    public void InitCamera()
     {
         currentDistance = defaultDistance;
         currentHeight = defaultHeight;
@@ -50,6 +62,12 @@ public class CameraController : MonoBehaviour, IControllable
 
         ConnectDisconnectManager.ConnectCarControllerDelegate += ConnectCamera;
         ConnectDisconnectManager.DisconnectCarControllerDelegate += DisconnectCamera;
+
+        if (activeDevice)
+        {
+            GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
+            Core.Input.AssignControllable(GetComponent<IncontrolProvider>(),this);
+        } 
     }
 
     private void OnDisable()

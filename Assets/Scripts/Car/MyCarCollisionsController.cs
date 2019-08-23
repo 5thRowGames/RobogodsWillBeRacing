@@ -4,57 +4,40 @@ using UnityEngine;
 
 public class MyCarCollisionsController : MonoBehaviour
 {
-    //public LayerMask playerLayer; // Layer de los coches
     private Rigidbody rb; // Rigidbody de este coche
-    //private int myLayer;
+    //private int portalLayer; // Layer de los portales
     private RigidbodyConstraints priorConstraints; // Restricciones del rigidbody antes de chocar con otro coche
-    //public Vector3 localVelocity;
-    //public float minForce = 10f; // Fuerza mínima de choque
-    //public float maxForce = 50f; // Fuerza máxima de choque
+
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        //myLayer = gameObject.layer;
+        //portalLayer = LayerMask.NameToLayer("Portal");
     }
-
-    //private void FixedUpdate()
-    //{
-    //    localVelocity = transform.InverseTransformDirection(rb.velocity);
-    //}
 
     private void OnCollisionEnter(Collision collision)
     {
+        //Debug.Log("MyCarCollisionsController Collision");
         int otherLayer = collision.gameObject.layer;
-
+        /*Debug.Log($"otherLayer = {collision.gameObject.layer}");
+        Debug.Log($"portalLayer = {portalLayer}");*/
         AkSoundEngine.PostEvent("Impactos_In", gameObject);
 
-        //if(otherLayer == myLayer) // Si choco contra otro coche
-        //{
+        /*if (otherLayer != 15) // Si no choco contra un portal
+        {
+            Debug.Log(collision.gameObject.name);
             priorConstraints = rb.constraints; // Guardo las restricciones previas al choque
             rb.constraints = RigidbodyConstraints.FreezeRotation; // Congelo la rotación para evitar que el coche cambie su dirección
-
-            // Aplicar una fuerza de choque
-            //Vector3 otherLocalVelocity = collision.transform.InverseTransformDirection(collision.rigidbody.velocity);
-            //float otherXVelocity = otherLocalVelocity.x;
-            //float localXVelocity = localVelocity.x;
-            //float maxX = Mathf.Max(Mathf.Abs(localXVelocity), Mathf.Abs(otherXVelocity));
-            //float dirX = Mathf.Sign(localXVelocity) * -1f; // cambio de sentido de la velocidad en X 
-            //Vector3 vel = new Vector3(Mathf.Clamp(Mathf.Abs(localXVelocity) * dirX, minForce, maxForce), 0f, 0f);
-
-            //Debug.Log($"Velocidad en X anterior = {localVelocity.x}");
-            //rb.AddForce(vel, ForceMode.VelocityChange);
-            //Debug.Log($"Velocidad en X posterior = {localVelocity.x}");
-
-        //}
+        }
+        else Debug.Log($"He entrado en el portal {collision.gameObject.GetComponent<Portal>().index}");*/
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        //if (collision.gameObject.layer == myLayer)
-        //{
+       /*if (collision.gameObject.layer != 15)
+        {
             rb.constraints = priorConstraints;
-        //}
-            
+        }
+        else Debug.Log($"He salido del portal {collision.gameObject.GetComponent<Portal>().index}");*/
     }
 }

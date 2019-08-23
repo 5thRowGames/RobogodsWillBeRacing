@@ -346,28 +346,28 @@ public class UIManagerClon2 : Singleton<UIManagerClon2>
 
                 //Corutina
                 anubisChosen = true;
-                RaceManager.Instance.anubisIA = false;
+                StoreGodInfo.Instance.anubisIA = false;
                 break;
             
             case God.Type.Kali:
 
                 //Corutina
                 kaliChosen = true;
-                RaceManager.Instance.kaliIA = false;
+                StoreGodInfo.Instance.kaliIA = false;
                 break;
             
             case God.Type.Poseidon:
 
                 //Corutina
                 poseidonChosen = true;
-                RaceManager.Instance.poseidonIA = false;
+                StoreGodInfo.Instance.poseidonIA = false;
                 break;
             
             case God.Type.Thor:
 
                 //Corutina
                 thorChosen = true;
-                RaceManager.Instance.thorIA = false;
+                StoreGodInfo.Instance.thorIA = false;
                 break;
         }
         EveryoneHasGod(1);
@@ -380,28 +380,28 @@ public class UIManagerClon2 : Singleton<UIManagerClon2>
             case God.Type.Anubis:
                 //Corutina
                 anubisChosen = false;
-                RaceManager.Instance.anubisIA = true;
+                StoreGodInfo.Instance.anubisIA = true;
 
                 break;
             
             case God.Type.Kali:
                 //Corutina
                 kaliChosen = false;
-                RaceManager.Instance.anubisIA = true;
+                StoreGodInfo.Instance.anubisIA = true;
 
                 break;
             
             case God.Type.Poseidon:
                 //Corutina
                 poseidonChosen = false;
-                RaceManager.Instance.anubisIA = true;
+                StoreGodInfo.Instance.anubisIA = true;
 
                 break;
             
             case God.Type.Thor:
                 //Corutina
                 thorChosen = false;
-                RaceManager.Instance.anubisIA = true;
+                StoreGodInfo.Instance.anubisIA = true;
                 
                 break;
         }
@@ -412,14 +412,14 @@ public class UIManagerClon2 : Singleton<UIManagerClon2>
     {
         playersWithGodPicked += confirm;
 
-        if (playersWithGodPicked == RaceManager.Instance.players) 
+        if (playersWithGodPicked == StoreGodInfo.Instance.players) 
         {
             playersConfirmed = 0;
 
-            playersConfirmedText.text = playersConfirmed + "/" + RaceManager.Instance.players;
+            playersConfirmedText.text = playersConfirmed + "/" + StoreGodInfo.Instance.players;
 
             //REFACTORIZAR
-            for (int i = 0; i < RaceManager.Instance.players; i++)
+            for (int i = 0; i < StoreGodInfo.Instance.players; i++)
             {
                 confirmPlayerIcons[i].gameObject.SetActive(true);
             }
@@ -440,17 +440,17 @@ public class UIManagerClon2 : Singleton<UIManagerClon2>
         
         confirmPlayerIcons[playerID - 1].color = confirmedColor;
         
-        playersConfirmedText.text = playersConfirmed + "/" + RaceManager.Instance.players;
+        playersConfirmedText.text = playersConfirmed + "/" + StoreGodInfo.Instance.players;
 
-        if (playersConfirmed == RaceManager.Instance.players)
+        if (playersConfirmed == StoreGodInfo.Instance.players)
         {
-            for (int i = 0; i < RaceManager.Instance.players; i++)
+            for (int i = 0; i < StoreGodInfo.Instance.players; i++)
             {
                 PlayerInfo playerInfo = new PlayerInfo();
                 playerInfo.inputDevice = players[i].GetComponent<IncontrolProvider>().InputDevice;
                 playerInfo.godType = players[i].GetComponent<CharacterSelectionController>().robogodPicked;
                 playerInfo.controlType = players[i].GetComponent<IncontrolProvider>().controlType;
-                RaceManager.Instance.playerInfo.Add(playerInfo);
+                StoreGodInfo.Instance.playerInfo.Add(playerInfo);
             }
 
             StartCoroutine(FadeToRace());

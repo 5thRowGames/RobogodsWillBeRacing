@@ -40,23 +40,28 @@ public class AwakeRace : MonoBehaviour
     private void ShowMap()
     {
 
+        mainCamera.transform.position = path1[0];
+        mainCamera.transform.rotation = path1List[0].rotation;
+        
         Sequence sequence = DOTween.Sequence();
         sequence.Append(fade.DOFade(0, fadeDuration));
-        sequence.Insert(fadeDuration-0.1f,mainCamera.transform.DOMove(path1[0], 0.1f));
-        sequence.Append(mainCamera.transform.DORotate(path1List[0].rotation.eulerAngles, 0.1f));
-        sequence.Append(mainCamera.transform.DOLocalPath(path1, 4f, PathType.CatmullRom, PathMode.Full3D, 5, Color.red)
-            .OnWaypointChange(x => WayPointChanged(x, path1List)));
-        sequence.Append(mainCamera.transform.DOMove(path2[0], 0.1f));
-        sequence.Append(mainCamera.transform.DORotate(path2List[0].rotation.eulerAngles, 0.1f));
+        sequence.Insert(fadeDuration-0.1f, mainCamera.transform.DOLocalPath(path1, 4f, PathType.CatmullRom, PathMode.Full3D, 5, Color.red)
+            .OnWaypointChange(x => WayPointChanged(x, path1List)).OnComplete(() =>
+                {
+                    mainCamera.transform.position = path2[0];
+                    mainCamera.transform.rotation = path2List[0].rotation;
+                }));
         sequence.Append(mainCamera.transform.DOLocalPath(path2, 4f, PathType.CatmullRom, PathMode.Full3D, 5, Color.red)
-            .OnWaypointChange(x => WayPointChanged(x, path2List)));
-        sequence.Append(mainCamera.transform.DOMove(path3[0], 0.1f));
-        sequence.Append(mainCamera.transform.DORotate(path3List[0].rotation.eulerAngles, 0.1f));
+            .OnWaypointChange(x => WayPointChanged(x, path2List)).OnComplete(() =>
+            {
+                mainCamera.transform.position = path3[0];
+                mainCamera.transform.rotation = path3List[0].rotation;
+            }));
         sequence.Append(mainCamera.transform.DOPath(path3, 4f, PathType.CatmullRom, PathMode.Full3D, 5, Color.red)
             .OnWaypointChange(x => WayPointChanged(x, path3List)));
         sequence.OnComplete(() =>
         {
-            RaceUIManager.Instance.ChangeRaceEvent(RaceEvents.Race.Start);
+            RaceEventManager.Instance.ChangeRaceEvent(RaceEvents.Race.Start);
             mainCamera.SetActive(false);
             gameObject.SetActive(false);
         });

@@ -24,11 +24,11 @@ public class PauseSettingsMenu : MonoBehaviour
     {
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.firstSelectedGameObject = volumeSlider;
-        RaceUIManager.Instance.inControlInputModule.enabled = false;
+        RaceEventManager.Instance.inControlInputModule.enabled = false;
 
         pauseSettingsPanel.DOScale(new Vector3(1, 1, 1), scaleDuration).SetUpdate(true).OnComplete(() =>
         {
-            RaceUIManager.Instance.inControlInputModule.enabled = true;
+            RaceEventManager.Instance.inControlInputModule.enabled = true;
             EventSystem.current.SetSelectedGameObject(volumeSlider.gameObject);
         });
     }
@@ -36,11 +36,11 @@ public class PauseSettingsMenu : MonoBehaviour
     public void ReturnPauseMenu()
     {
         EventSystem.current.SetSelectedGameObject(null);
-        RaceUIManager.Instance.inControlInputModule.enabled = false;
+        RaceEventManager.Instance.inControlInputModule.enabled = false;
 
         pauseSettingsPanel.DOScale(new Vector3(0, 0, 0), scaleDuration).SetUpdate(true).OnComplete(() =>
         {
-            RaceUIManager.Instance.ChangeRaceEvent(RaceEvents.Race.Pause);
+            RaceEventManager.Instance.ChangeRaceEvent(RaceEvents.Race.Pause);
             gameObject.SetActive(false);
         });
     }

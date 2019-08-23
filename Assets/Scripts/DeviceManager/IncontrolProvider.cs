@@ -16,6 +16,7 @@ public class IncontrolProvider : MonoBehaviour, IDevice
         Keyboard = 3
     };
 
+    public int playerID = -1;
     public ControlType controlType;
     
     private string meta;
@@ -80,7 +81,7 @@ public class IncontrolProvider : MonoBehaviour, IDevice
     {
         previousState = State;
         State = new DeviceState();
-
+        
         UpdateAxis(AxisType.Vertical, myPlayerActions.Vertical);
         UpdateAxis(AxisType.Horizontal, myPlayerActions.Horizontal);
         UpdateAxis(AxisType.Jump, myPlayerActions.Gas);

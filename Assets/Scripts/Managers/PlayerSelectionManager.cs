@@ -28,9 +28,10 @@ public class PlayerSelectionManager : MonoBehaviour
         {   
             var inputDevice = InputManager.ActiveDevice;
 
-            if (FindPlayerUsingDevice(inputDevice) == null && RaceManager.Instance.players < 4)
+            if (FindPlayerUsingDevice(inputDevice) == null && StoreGodInfo.Instance.players < 4)
             {
-                RaceManager.Instance.players++;
+                StoreGodInfo.Instance.players++;
+                playersInControl[playerOrder].playerID = playerOrder;
                 playersInControl[playerOrder].controlType = IncontrolProvider.ControlType.Gamepad;
                 playersInControl[playerOrder].myPlayerActions = MyPlayerActions.BindControls();
                 playersInControl[playerOrder].InputDevice = inputDevice;
@@ -43,10 +44,11 @@ public class PlayerSelectionManager : MonoBehaviour
         //Prueba
         if (JoinButtonWasPressed(keyboardListener))
         {
-            if (RaceManager.Instance.players < 4 && !keyboardSelected)
+            if (StoreGodInfo.Instance.players < 4 && !keyboardSelected)
             {
                 keyboardSelected = true;
-                RaceManager.Instance.players++;
+                StoreGodInfo.Instance.players++;
+                playersInControl[playerOrder].playerID = playerOrder;
                 playersInControl[playerOrder].controlType = IncontrolProvider.ControlType.Keyboard;
                 playersInControl[playerOrder].InputDevice = null;
                 playersInControl[playerOrder].myPlayerActions = keyboardListener;

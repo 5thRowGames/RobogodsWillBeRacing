@@ -13,30 +13,34 @@ public class MyCarCollisionsController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         portalLayer = LayerMask.NameToLayer("Portal");
+        Debug.Log($"Portal layer = {portalLayer}");
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("MyCarCollisionsController Collision");
         int otherLayer = collision.gameObject.layer;
-        Debug.Log($"otherLayer = {collision.gameObject.layer}");
-        Debug.Log($"portalLayer = {portalLayer}");
+
         AkSoundEngine.PostEvent("Impactos_In", gameObject);
 
-        if (otherLayer != 15) // Si no choco contra un portal
+        if (otherLayer != portalLayer) // Si no choco contra un portal
         {
             Debug.Log(collision.gameObject.name);
             priorConstraints = rb.constraints; // Guardo las restricciones previas al choque
             rb.constraints = RigidbodyConstraints.FreezeRotation; // Congelo la rotación para evitar que el coche cambie su dirección
+            Debug.Log($"Restricciones al colisionar: {rb.constraints.ToString()}");
         }
         else Debug.Log($"He entrado en el portal {collision.gameObject.GetComponent<Portal>().index}");
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.layer != 15)
+        if (collision.gameObject.layer != portalLayer)
         {
+            Debug.Log($"Saliendo de una colisión");
             rb.constraints = priorConstraints;
+            //rb.constraints = RigidbodyConstraints.None;
+            Debug.Log($"Restricciones tras salir de colisión: {rb.constraints.ToString()}");
         }
         else Debug.Log($"He salido del portal {collision.gameObject.GetComponent<Portal>().index}");
     }

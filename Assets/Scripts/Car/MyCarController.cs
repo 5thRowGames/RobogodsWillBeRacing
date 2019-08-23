@@ -8,6 +8,8 @@ public class MyCarController : MonoBehaviour, IControllable
 {
     public bool activeDevice; //Para prueba solo
 
+    #region Members
+
     [Header("*Car Specs*")]
     [SerializeField] [Tooltip("Fuerza aplicada al acelerar")] private float speedForce = 50f;
     [SerializeField] [Tooltip("Impulso al acelerar con velocidad inferior a speedThreshold")] private float instantSpeedForce = 3f;
@@ -31,7 +33,7 @@ public class MyCarController : MonoBehaviour, IControllable
     public bool IsGoingBackwards { get { isGoingBackwards = velocity.z < 0f; return isGoingBackwards; } }
     [SerializeField] [Tooltip("Indica si la velocidad del coche está por debajo del umbral")] private bool speedUnderThreshold;
     [SerializeField] [Tooltip("Fuerza en sentido opuesto al giro cuando se usa el freno de mano")] private float handBrakeForce = 30f;
-    [SerializeField] [Tooltip("Factor por el que multiplicar handBrakeForce para aplicar freno")][Range(0f, 2f)] private float handBrakeBrakeFactor = 0.5f;
+    [SerializeField] [Tooltip("Factor por el que multiplicar handBrakeForce para aplicar freno")] [Range(0f, 2f)] private float handBrakeBrakeFactor = 0.5f;
     //[SerializeField] [Tooltip("Factor de reducción de la velocidad en cada FixedUpdate cuando se usa el freno de mano. Actualmente no en uso.")] [Range(0f, 1f)] private float handBrakeBrakeFactor = 0.95f;
     [SerializeField] [Tooltip("Segundos que hay que mantener el freno de mano pulsado para recibir un turbo tras soltarlo")] private float handBrakeTurboTime = 4f;
     [SerializeField] [Tooltip("Contador de los segundos que estamos pulsando el freno de mano")] private float handBrakeTimer;
@@ -50,11 +52,6 @@ public class MyCarController : MonoBehaviour, IControllable
     [SerializeField] [Tooltip("Drag a usar cuando el coche está en el aire")] private float airDrag = 0.5f;
     [SerializeField] [Tooltip("Drag angular a usar cuando el coche está en el aire")] private float airAngularDrag = 0.5f;
     [SerializeField] [Tooltip("Dirección donde aplicar la aceleración")] private Vector3 groundForward;
-    [SerializeField] [Tooltip("Grados máximos de rotación en X")] private float maxRotationX = 40f;
-    [SerializeField] [Tooltip("Grados mínimos de rotación en X")] private float minRotationX = -40f;
-    [SerializeField] [Tooltip("Grados máximos de rotación en Z")] private float maxRotationZ = 40f;
-    [SerializeField] [Tooltip("Grados mínimos de rotación en Z")] private float minRotationZ = -40f;
-    [SerializeField] [Tooltip("Tiempo para poner a 0 las rotaciones en X y Z cuando se llega a sus máximos")] private float timeToIdentityRotation = 1f;
 
     [Tooltip("Posición del centro de masa del coche")] public Transform centerOfMass;
     [Tooltip("Punto desde donde se aplica la fuerza de aceleración")] public Transform accelPoint;
@@ -62,7 +59,7 @@ public class MyCarController : MonoBehaviour, IControllable
     [Tooltip("Esquinas del coche")] public List<Transform> carCorners; // 0 - FL, 1 - FR, 2 - BL, 3 - BR
     [Tooltip("El Rigidbody del coche")] public Rigidbody rb;
     [Tooltip("Layers con los que pueden chocar los raycasts de la suspensión del coche. No deben chocar con el propio layer del coche")] public LayerMask layerMask;
-    [Tooltip("Layer para ignorar todo lo que no sea el suelo")] public LayerMask groundLayer;
+
     [Tooltip("Layers de los jugadores")] public LayerMask playersMask;
 
     [Header("*Input Info*")]
@@ -78,8 +75,7 @@ public class MyCarController : MonoBehaviour, IControllable
     [SerializeField] [Tooltip("Velocidad angular del coche")] private Vector3 rbAngularVelocity;
     [SerializeField] [Tooltip("Magnitud de la velocidad del coche")] public float velocityMagnitude;
     [SerializeField] [Tooltip("Vector de velocidad local del coche")] public Vector3 velocity;
-    [SerializeField] [Tooltip("Indica si el vehículo está en el suelo o en el aire")] private bool isGrounded;
-    [SerializeField] [Tooltip("Indica si el vehículo está boca abajo")] private bool isUpsideDown;
+    [SerializeField] public bool IsGrounded { get; private set; }
     public bool IsBeingTeleported = false;
 
     [Header("Helper")]
@@ -87,7 +83,7 @@ public class MyCarController : MonoBehaviour, IControllable
 
     private List<RaycastHit> hitList;
 
-    [SerializeField] private bool rotationToIdentityRunning;
+
 
     //Para sonidos
     private bool isBoosting;
@@ -100,6 +96,10 @@ public class MyCarController : MonoBehaviour, IControllable
     [SerializeField] private List<Transform> startingPositions;
 
     public string Name { get; private set; }
+
+    #endregion
+
+    #region Unity Events
 
     private void Awake()
     {
@@ -128,32 +128,6 @@ public class MyCarController : MonoBehaviour, IControllable
     {
         ConnectDisconnectManager.ConnectCarControllerDelegate -= ConnectCar;
         ConnectDisconnectManager.DisconnectCarControllerDelegate -= DisconnectCar;
-    }
-
-    public void Control(IDevice device)
-    {
-        boostInput = device.State.Jump.IsHeld;
-        accelerationInput = device.State.RightTrigger.Value;
-        steeringInput = device.State.Horizontal.Value;
-        //brakeInput = deviceController.device.State.Fire.Value;
-        brakeInput = device.State.RightBumper.Value;
-        handBrakeInput = device.State.LeftTrigger.Value;
-
-        resetInput = device.State.Special.IsPressed;
-        jumpInput = device.State.LeftBumper.IsPressed;
-
-        if (alwaysAccelerate && accelerationInput < minAcceleration) accelerationInput = minAcceleration;
-
-        if (!boostInput)
-            isBoosting = false;
-        else
-            accelerationInput *= boostMultiplier;
-
-        if (rb.velocity.magnitude < speedThreshold) accelerationInput *= instantSpeedForce;
-
-        //ShaderPruebas.blurAmount = rb.velocity.magnitude / 100; //Borrar, solo era para pruebas
-
-        speedUnderThreshold = rb.velocity.magnitude < speedThreshold ? true : false;
     }
 
     private void FixedUpdate()
@@ -193,60 +167,72 @@ public class MyCarController : MonoBehaviour, IControllable
         //    ClampRotation(); // Para evitar que el vehículo rote más de lo permitido
     }
 
-    private void ClampRotation()
+    private void OnDrawGizmos()
     {
-        if (!isGrounded || isUpsideDown)
+        Gizmos.color = Color.red;
+        for (int i = 0; i < carCorners.Count; i++)
         {
-            if (rb.rotation.eulerAngles.x > maxRotationX || rb.rotation.eulerAngles.x < minRotationX)
-            {
-                Quaternion rot = new Quaternion();
-                rot.eulerAngles = new Vector3(0f, rb.rotation.eulerAngles.y, rb.rotation.eulerAngles.z);
-                rb.MoveRotation(rb.rotation);
-                rb.constraints = rb.constraints | RigidbodyConstraints.FreezeRotationX;
-                if (!rotationToIdentityRunning) StartCoroutine(RotationToIdentity());
-            }
-            else rb.constraints = RigidbodyConstraints.None;
+            // Puntos desde donde se lanzan los rayos para simular la suspensión
+            Vector3 toPosition = new Vector3(carCorners[i].position.x, carCorners[i].position.y, carCorners[i].position.z);
 
-            if (rb.rotation.eulerAngles.z > maxRotationZ || rb.rotation.eulerAngles.z < minRotationZ)
-            {
-                Quaternion rot = new Quaternion();
-                rot.eulerAngles = new Vector3(rb.rotation.eulerAngles.x, rb.rotation.eulerAngles.y, 0f);
-                rb.MoveRotation(rb.rotation);
-                rb.constraints = rb.constraints | RigidbodyConstraints.FreezeRotationZ;
-                if (!rotationToIdentityRunning) StartCoroutine(RotationToIdentity());
-            }
-            else rb.constraints = RigidbodyConstraints.None;
+            Gizmos.DrawSphere(toPosition, 0.1f);
         }
-        else rb.constraints = RigidbodyConstraints.None;
+        Gizmos.DrawLine(transform.position, transform.position - transform.up);
+        Gizmos.DrawCube(rb.position + rb.centerOfMass, 0.3f * Vector3.one);
+        Gizmos.DrawLine(transform.position, transform.position - (transform.forward * accelerationInput));
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawSphere(accelPoint.position, 0.2f);
+        Gizmos.DrawSphere(handBrakePoint.position, 0.15f);
+
+        Gizmos.color = Color.magenta;
+        if (hitList != null)
+        {
+            Gizmos.DrawLine(hitList[2].point, hitList[0].point);
+            Gizmos.DrawLine(hitList[3].point, hitList[1].point);
+            Gizmos.color = Color.black;
+            Gizmos.DrawLine(hitList[2].point, hitList[3].point);
+
+            // Puntos donde chocan los rayos de la suspensión en el suelo
+            Gizmos.color = Color.yellow;
+            foreach (var hit in hitList)
+                Gizmos.DrawSphere(hit.point, 0.1f);
+        }
     }
 
-    public void StopRotationToIdentity()
-    {
-        StopCoroutine(RotationToIdentity());
-    }
+    #endregion
 
-    private IEnumerator RotationToIdentity()
+    public void Control(IDevice device)
     {
-        rotationToIdentityRunning = true;
-        float timeCount = 0f;
-        Quaternion fromRotation = new Quaternion(rb.rotation.x, rb.rotation.y, rb.rotation.z, rb.rotation.w);
-        Quaternion toRotation = new Quaternion();
+        boostInput = device.State.Jump.IsHeld;
+        accelerationInput = device.State.RightTrigger.Value;
+        steeringInput = device.State.Horizontal.Value;
+        //brakeInput = deviceController.device.State.Fire.Value;
+        brakeInput = device.State.RightBumper.Value;
+        handBrakeInput = device.State.LeftTrigger.Value;
 
-        while (timeCount <= timeToIdentityRotation)
-        {
-            toRotation = Quaternion.Euler(0f, rb.rotation.eulerAngles.y, 0f);
-            rb.MoveRotation(Quaternion.Slerp(fromRotation, toRotation, timeCount));
-            timeCount += Time.deltaTime;
-            yield return null;
-        }
-        rotationToIdentityRunning = false;
+        resetInput = device.State.Special.IsPressed;
+        jumpInput = device.State.LeftBumper.IsPressed;
+
+        if (alwaysAccelerate && accelerationInput < minAcceleration) accelerationInput = minAcceleration;
+
+        if (!boostInput)
+            isBoosting = false;
+        else
+            accelerationInput *= boostMultiplier;
+
+        if (rb.velocity.magnitude < speedThreshold) accelerationInput *= instantSpeedForce;
+
+        //ShaderPruebas.blurAmount = rb.velocity.magnitude / 100; //Borrar, solo era para pruebas
+
+        speedUnderThreshold = rb.velocity.magnitude < speedThreshold ? true : false;
     }
 
     public void Move()
     {
         CheckGrounded();
 
-        if (isGrounded)
+        if (IsGrounded)
         {
             rb.drag = groundDrag;
             rb.angularDrag = groundAngularDrag;
@@ -265,7 +251,7 @@ public class MyCarController : MonoBehaviour, IControllable
             if (jumpInput)
                 Accelerate();
         }
-        CheckUpsideDown();
+
         Steering(); // Según el coche esté en el suelo o en el aire, el giro será normal o lateral
     }
 
@@ -283,7 +269,8 @@ public class MyCarController : MonoBehaviour, IControllable
 
         if (accelerationInput > 0f)
         {
-            rb.AddForceAtPosition(groundForward * accelerationInput * speedForce, accelPoint.position, ForceMode.Acceleration);
+            //rb.AddForceAtPosition(groundForward * accelerationInput * speedForce, accelPoint.position, ForceMode.Acceleration);
+            rb.AddForce(groundForward * accelerationInput * speedForce, ForceMode.Acceleration);
             deaccelerationTimer = deaccelerationTime;
         }
         else
@@ -293,7 +280,8 @@ public class MyCarController : MonoBehaviour, IControllable
             {
 
                 float accelerationInertia = Mathf.Lerp(0f, 1f, deaccelerationTimer / deaccelerationTime);
-                rb.AddForceAtPosition(groundForward * accelerationInertia * speedForce, accelPoint.position, ForceMode.Acceleration);
+                //rb.AddForceAtPosition(groundForward * accelerationInertia * speedForce, accelPoint.position, ForceMode.Acceleration);
+                rb.AddForce(groundForward * accelerationInertia * speedForce, ForceMode.Acceleration);
             }
         }
 
@@ -377,7 +365,7 @@ public class MyCarController : MonoBehaviour, IControllable
 
     private void Steering()
     {
-        if (isGrounded)
+        if (IsGrounded)
         {
             if (Mathf.Abs(steeringInput) < steeringThreshold) // No se está girando
             {
@@ -431,17 +419,12 @@ public class MyCarController : MonoBehaviour, IControllable
 
     private void CheckGrounded()
     {
-        isGrounded = Physics.Raycast(transform.position, -transform.up, wheelHeight + exraHeightToNoGrounded, layerMask);
-    }
-
-    private void CheckUpsideDown()
-    {
-        isUpsideDown = Physics.Raycast(transform.position, transform.up, Mathf.Infinity, groundLayer);
+        IsGrounded = Physics.Raycast(transform.position, -transform.up, wheelHeight + exraHeightToNoGrounded, layerMask);
     }
 
     public void ResetRacePosition()
     {
-        foreach(Transform tr in startingPositions)
+        foreach (Transform tr in startingPositions)
         {
             Collider[] colliders = Physics.OverlapSphere(tr.position, 4f, playersMask);
             if (colliders.Length == 0)
@@ -461,46 +444,17 @@ public class MyCarController : MonoBehaviour, IControllable
         rb.WakeUp();
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        for (int i = 0; i < carCorners.Count; i++)
-        {
-            // Puntos desde donde se lanzan los rayos para simular la suspensión
-            Vector3 toPosition = new Vector3(carCorners[i].position.x, carCorners[i].position.y, carCorners[i].position.z);
-
-            Gizmos.DrawSphere(toPosition, 0.1f);
-        }
-        Gizmos.DrawLine(transform.position, transform.position - transform.up);
-        Gizmos.DrawCube(rb.position + rb.centerOfMass, 0.3f * Vector3.one);
-        Gizmos.DrawLine(transform.position, transform.position - (transform.forward * accelerationInput));
-
-        Gizmos.color = Color.blue;
-        Gizmos.DrawSphere(accelPoint.position, 0.2f);
-        Gizmos.DrawSphere(handBrakePoint.position, 0.15f);
-
-        Gizmos.color = Color.magenta;
-        if (hitList != null)
-        {
-            Gizmos.DrawLine(hitList[2].point, hitList[0].point);
-            Gizmos.DrawLine(hitList[3].point, hitList[1].point);
-            Gizmos.color = Color.black;
-            Gizmos.DrawLine(hitList[2].point, hitList[3].point);
-
-            // Puntos donde chocan los rayos de la suspensión en el suelo
-            Gizmos.color = Color.yellow;
-            foreach (var hit in hitList)
-                Gizmos.DrawSphere(hit.point, 0.1f);
-        }
-    }
+    #region Control Events
 
     public void ConnectCar()
     {
-        Core.Input.AssignControllable(GetComponent<IncontrolProvider>(),this);
+        Core.Input.AssignControllable(GetComponent<IncontrolProvider>(), this);
     }
 
     public void DisconnectCar()
     {
-        Core.Input.UnassignControllable(GetComponent<IncontrolProvider>(),this);
+        Core.Input.UnassignControllable(GetComponent<IncontrolProvider>(), this);
     }
+
+    #endregion
 }

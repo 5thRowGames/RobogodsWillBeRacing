@@ -42,6 +42,9 @@ public class SpawnDiosesParaAlberto : MonoBehaviour
                     dios.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
                     dios.GetComponent<IncontrolProvider>().InputDevice = inputDevice;
                     dios.GetComponent<MyCarController>().ConnectCar();
+                    //dios.GetComponentInChildren<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
+                    //dios.GetComponentInChildren<IncontrolProvider>().InputDevice = inputDevice;
+                    //dios.GetComponentInChildren<MyCarController>().ConnectCar();
                     cameras[playerOrder].GetComponent<CameraController>().target = dios;
                     playerOrder++;
 
@@ -63,6 +66,9 @@ public class SpawnDiosesParaAlberto : MonoBehaviour
                     dios.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
                     dios.GetComponent<IncontrolProvider>().InputDevice = null;
                     dios.GetComponent<MyCarController>().ConnectCar();
+                    //dios.GetComponentInChildren<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
+                    //dios.GetComponentInChildren<IncontrolProvider>().InputDevice = null;
+                    //dios.GetComponentInChildren<MyCarController>().ConnectCar();
                     cameras[playerOrder].GetComponent<CameraController>().target = dios;
                     playerOrder++;
 

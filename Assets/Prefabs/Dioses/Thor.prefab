@@ -106,9 +106,10 @@ GameObject:
   - component: {fileID: 8781901568245694341}
   - component: {fileID: 1861443327679592611}
   - component: {fileID: 1861443327679592608}
+  - component: {fileID: 5954955506265341576}
+  - component: {fileID: 5801939578819351298}
   - component: {fileID: 1861443327679592614}
   - component: {fileID: 3748047081505295847}
-  - component: {fileID: 5954955506265341576}
   m_Layer: 16
   m_Name: Thor
   m_TagString: Untagged
@@ -207,7 +208,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1861443327679592615}
   m_Material: {fileID: 13400000, guid: 6667dca808adca94eb261550203ba334, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.19
   m_Height: 1.28
   m_Direction: 0
@@ -221,7 +222,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1861443327679592615}
   m_Material: {fileID: 13400000, guid: 6667dca808adca94eb261550203ba334, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.19
   m_Height: 1.28
   m_Direction: 0
@@ -255,13 +256,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeDevice: 1
-  speedForce: 120
+  speedForce: 140
   instantSpeedForce: 10
   alwaysAccelerate: 0
   minAcceleration: 0.2
   boostMultiplier: 2
   deaccelerationTime: 2
-  turnSpeed: 40
+  turnSpeed: 50
   speedThreshold: 15
   steeringThreshold: 0.2
   steeringReductionFactor: 0.8
@@ -272,7 +273,7 @@ MonoBehaviour:
   brakeToReverseTime: 0.5
   isGoingBackwards: 0
   speedUnderThreshold: 0
-  handBrakeForce: 25
+  handBrakeForce: 30
   handBrakeBrakeFactor: 2
   handBrakeTurboTime: 3
   handBrakeTimer: 0
@@ -283,7 +284,7 @@ MonoBehaviour:
   airLateralShiftFactor: 0.008
   wheelHeight: 1
   downForce: 6
-  upForce: 20
+  upForce: 40
   jumpForce: 20
   useSimpleSuspension: 0
   groundDrag: 2
@@ -291,11 +292,6 @@ MonoBehaviour:
   airDrag: 0.5
   airAngularDrag: 0.5
   groundForward: {x: 0, y: 0, z: 0}
-  maxRotationX: 60
-  minRotationX: -60
-  maxRotationZ: 60
-  minRotationZ: -60
-  timeToIdentityRotation: 1
   centerOfMass: {fileID: 1861443329086094467}
   accelPoint: {fileID: 1861443327547899896}
   handBrakePoint: {fileID: 1861443328084724618}
@@ -307,13 +303,10 @@ MonoBehaviour:
   rb: {fileID: 1861443327679592611}
   layerMask:
     serializedVersion: 2
-    m_Bits: 1335
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 1025
   playersMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 246272
   accelerationInput: 0
   steeringInput: 0
   brakeInput: 0
@@ -324,12 +317,44 @@ MonoBehaviour:
   rbAngularVelocity: {x: 0, y: 0, z: 0}
   velocityMagnitude: 0
   velocity: {x: 0, y: 0, z: 0}
-  isGrounded: 0
-  isUpsideDown: 0
-  helper: {fileID: 0}
-  rcRunning: 0
+  IsBeingTeleported: 0
+  helper: {fileID: 7407539500139552718}
   pruebaSonido: 0
   startingPositions: []
+--- !u!114 &5954955506265341576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861443327679592615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e02c871179d1f24fa7fbaf675f45db4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5801939578819351298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861443327679592615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da747e8ef7c3c584fbf64d88c25844d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxRotationX: 40
+  minRotationX: -40
+  maxRotationZ: 40
+  minRotationZ: -40
+  timeToIdentityRotation: 1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  myCarController: {fileID: 1861443327679592608}
+  rb: {fileID: 1861443327679592611}
 --- !u!114 &1861443327679592614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,21 +383,6 @@ MonoBehaviour:
   incontrolProvider: {fileID: 1861443327679592614}
   unsharedSoundStart: Nave_4
   carRigidbody: {fileID: 1861443327679592611}
---- !u!114 &5954955506265341576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1861443327679592615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e02c871179d1f24fa7fbaf675f45db4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  portalLayer:
-    serializedVersion: 2
-    m_Bits: 32768
 --- !u!1 &1861443328084724619
 GameObject:
   m_ObjectHideFlags: 0

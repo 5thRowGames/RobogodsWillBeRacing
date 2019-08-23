@@ -318,13 +318,12 @@ GameObject:
   - component: {fileID: 7356784100876358362}
   - component: {fileID: 7356784100876358363}
   - component: {fileID: 7356784100876358356}
-  - component: {fileID: 5107652826434690649}
-  - component: {fileID: 2401796204266982124}
   - component: {fileID: 7356784100876358357}
   - component: {fileID: 7356784100876358358}
+  - component: {fileID: 4479856082882243980}
+  - component: {fileID: 97462564597274610}
   - component: {fileID: 7356784100876358352}
   - component: {fileID: 1598811163237596334}
-  - component: {fileID: 4479856082882243980}
   m_Layer: 15
   m_Name: Poseidon
   m_TagString: Untagged
@@ -414,34 +413,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!136 &5107652826434690649
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7356784100876358353}
-  m_Material: {fileID: 13400000, guid: 6667dca808adca94eb261550203ba334, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.19
-  m_Height: 1.28
-  m_Direction: 0
-  m_Center: {x: 0, y: 0, z: 0.4}
---- !u!136 &2401796204266982124
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7356784100876358353}
-  m_Material: {fileID: 13400000, guid: 6667dca808adca94eb261550203ba334, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.19
-  m_Height: 1.28
-  m_Direction: 0
-  m_Center: {x: 0, y: 0, z: -0.4}
 --- !u!54 &7356784100876358357
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -507,11 +478,6 @@ MonoBehaviour:
   airDrag: 0.5
   airAngularDrag: 0.5
   groundForward: {x: 0, y: 0, z: 0}
-  maxRotationX: 60
-  minRotationX: -60
-  maxRotationZ: 60
-  minRotationZ: -60
-  timeToIdentityRotation: 1
   centerOfMass: {fileID: 7356784099460421365}
   accelPoint: {fileID: 7356784100677883278}
   handBrakePoint: {fileID: 7356784100140917244}
@@ -523,13 +489,10 @@ MonoBehaviour:
   rb: {fileID: 7356784100876358357}
   layerMask:
     serializedVersion: 2
-    m_Bits: 1335
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 1025
   playersMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 246272
   accelerationInput: 0
   steeringInput: 0
   brakeInput: 0
@@ -540,12 +503,44 @@ MonoBehaviour:
   rbAngularVelocity: {x: 0, y: 0, z: 0}
   velocityMagnitude: 0
   velocity: {x: 0, y: 0, z: 0}
-  isGrounded: 0
-  isUpsideDown: 0
+  IsBeingTeleported: 0
   helper: {fileID: 0}
-  rcRunning: 0
   pruebaSonido: 0
   startingPositions: []
+--- !u!114 &4479856082882243980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7356784100876358353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e02c871179d1f24fa7fbaf675f45db4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &97462564597274610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7356784100876358353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da747e8ef7c3c584fbf64d88c25844d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxRotationX: 40
+  minRotationX: -40
+  maxRotationZ: 40
+  minRotationZ: -40
+  timeToIdentityRotation: 1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  myCarController: {fileID: 7356784100876358358}
+  rb: {fileID: 7356784100876358357}
 --- !u!114 &7356784100876358352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -574,21 +569,6 @@ MonoBehaviour:
   incontrolProvider: {fileID: 7356784100876358352}
   unsharedSoundStart: Nave_3
   carRigidbody: {fileID: 7356784100876358357}
---- !u!114 &4479856082882243980
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7356784100876358353}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e02c871179d1f24fa7fbaf675f45db4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  portalLayer:
-    serializedVersion: 2
-    m_Bits: 32768
 --- !u!1001 &4881244559063522647
 PrefabInstance:
   m_ObjectHideFlags: 0

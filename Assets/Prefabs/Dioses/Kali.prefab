@@ -102,13 +102,12 @@ GameObject:
   - component: {fileID: 551719142430012550}
   - component: {fileID: 551719142430012551}
   - component: {fileID: 551719142430012552}
-  - component: {fileID: 6177442409670714841}
-  - component: {fileID: 1482867181010094367}
   - component: {fileID: 551719142430012553}
   - component: {fileID: 551719142430012554}
+  - component: {fileID: 3463158760392872671}
+  - component: {fileID: 8584054329157395999}
   - component: {fileID: 551719142430012556}
   - component: {fileID: 7327317741127512671}
-  - component: {fileID: 3463158760392872671}
   m_Layer: 17
   m_Name: Kali
   m_TagString: Untagged
@@ -198,34 +197,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!136 &6177442409670714841
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 551719142430012557}
-  m_Material: {fileID: 13400000, guid: 6667dca808adca94eb261550203ba334, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.19
-  m_Height: 1.28
-  m_Direction: 0
-  m_Center: {x: 0, y: 0, z: 0.4}
---- !u!136 &1482867181010094367
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 551719142430012557}
-  m_Material: {fileID: 13400000, guid: 6667dca808adca94eb261550203ba334, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.19
-  m_Height: 1.28
-  m_Direction: 0
-  m_Center: {x: 0, y: 0, z: -0.4}
 --- !u!54 &551719142430012553
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -291,11 +262,6 @@ MonoBehaviour:
   airDrag: 0.5
   airAngularDrag: 0.5
   groundForward: {x: 0, y: 0, z: 0}
-  maxRotationX: 60
-  minRotationX: -60
-  maxRotationZ: 60
-  minRotationZ: -60
-  timeToIdentityRotation: 1
   centerOfMass: {fileID: 551719144240476329}
   accelPoint: {fileID: 551719142282851282}
   handBrakePoint: {fileID: 551719142819678112}
@@ -307,13 +273,10 @@ MonoBehaviour:
   rb: {fileID: 551719142430012553}
   layerMask:
     serializedVersion: 2
-    m_Bits: 1335
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 1025
   playersMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 246272
   accelerationInput: 0
   steeringInput: 0
   brakeInput: 0
@@ -324,12 +287,44 @@ MonoBehaviour:
   rbAngularVelocity: {x: 0, y: 0, z: 0}
   velocityMagnitude: 0
   velocity: {x: 0, y: 0, z: 0}
-  isGrounded: 0
-  isUpsideDown: 0
+  IsBeingTeleported: 0
   helper: {fileID: 0}
-  rcRunning: 0
   pruebaSonido: 0
   startingPositions: []
+--- !u!114 &3463158760392872671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551719142430012557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e02c871179d1f24fa7fbaf675f45db4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8584054329157395999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551719142430012557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da747e8ef7c3c584fbf64d88c25844d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxRotationX: 40
+  minRotationX: -40
+  maxRotationZ: 40
+  minRotationZ: -40
+  timeToIdentityRotation: 1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  myCarController: {fileID: 551719142430012554}
+  rb: {fileID: 551719142430012553}
 --- !u!114 &551719142430012556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,21 +353,6 @@ MonoBehaviour:
   incontrolProvider: {fileID: 551719142430012556}
   unsharedSoundStart: Nave_2
   carRigidbody: {fileID: 551719142430012553}
---- !u!114 &3463158760392872671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 551719142430012557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e02c871179d1f24fa7fbaf675f45db4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  portalLayer:
-    serializedVersion: 2
-    m_Bits: 32768
 --- !u!1 &551719142819678113
 GameObject:
   m_ObjectHideFlags: 0

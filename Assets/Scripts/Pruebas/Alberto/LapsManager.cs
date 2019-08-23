@@ -25,7 +25,7 @@ public class LapsManager : MonoBehaviour
 
     public static LapsManager instance = null;
 
-    public List<GameObject> gods;
+    //public List<GameObject> gods;
     public List<CircuitSection> circuitSections;
     public List<Checkpoint> checkPoints;
     public List<Portal> portals;
@@ -138,8 +138,10 @@ public class LapsManager : MonoBehaviour
         for(int i = 0; i < portals.Count - 1; i++)
         {
             portals[i].targetPortal = portalsExits[i + 1];
+            portals[i].index = i;
         }
         portals[portals.Count - 1].targetPortal = portalsExits[0];
+        portals[portals.Count - 1].index = portals.Count - 1;
     }
 
     private void AddCheckpoints()
@@ -186,7 +188,8 @@ public class LapsManager : MonoBehaviour
     public void UpdateCheckPoint(GameObject god, int checkpoint)
     {
         GodRaceInfo gri = godRaceInfoList.Find(g => g.god == god);
-        int index = godRaceInfoList.FindIndex(g => g.god == god);
+        //int index = godRaceInfoList.FindIndex(g => g.god == god);
+        int index = godRaceInfoList.IndexOf(gri);
         
         if (gri == null)
             return;

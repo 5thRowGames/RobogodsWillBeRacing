@@ -7,35 +7,42 @@ public class Portal : MonoBehaviour
     public Transform targetPortal; // Portal destino
     public int index; // Índice de orden de este portal respecto del resto del circuito
 
-    MyCarController myCarController;
+    private MyCarController myCarController;
+    private StabilityController stabilityController;
     public LayerMask playerLayer; // la layer de los coches
     private Vector3 teleportPoint; // punto donde teletransportar a los coches
     public float zOffset = 8f; // desplazamiento hacia delante respecto del punto de teletransporte
     private readonly float exitPortalSpeed = 60f;
     public Queue<Collider> carColliders; // Colliders de los coches que están esperando para ser teletransportados
 
-
     #region Unity Events
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Portal trigger"); 
         myCarController = other.GetComponent<MyCarController>();
+        stabilityController = other.GetComponent<StabilityController>();
+
         if (myCarController != null)
         {
             Debug.Log($"{other.gameObject.name} entered the portal trigger");
             carColliders.Enqueue(other);
-            myCarController.IsBeingTeleported = true;
-            //myCarController.StopRotationToIdentity();
-            myCarController.StopAllCoroutines();
-            MyCollisions();
+            
+            if(myCarController != null)
+            {
+                myCarController.IsBeingTeleported = true;
+                myCarController.StopAllCoroutines();
+            }
+            if (stabilityController != null)
+                stabilityController.StopRotationToIdentity();
+            //MyCollisions();
+            StartCoroutine(Teleport());
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        //Debug.Log($"{other.gameObject.name} exits the trigger");
-        if (carColliders.Contains(other))
-            other.attachedRigidbody.Sleep();
+        myCarController = null;
+        stabilityController = null;
     }
 
     bool m_Started;
@@ -44,9 +51,7 @@ public class Portal : MonoBehaviour
     {
         //Use this to ensure that the Gizmos are being drawn when in Play Mode.
         m_Started = true;
-
         teleportPoint = targetPortal.TransformPoint(0f, 0f, zOffset);
-
         carColliders = new Queue<Collider>();
     }
 
@@ -78,11 +83,30 @@ public class Portal : MonoBehaviour
             yield return null;
         }
 
-        carColliders.Peek().attachedRigidbody.MovePosition(teleportPoint);
-        carColliders.Peek().transform.rotation = targetPortal.rotation;
-        carColliders.Peek().attachedRigidbody.WakeUp();
-        myCarController.IsBeingTeleported = false;
-        carColliders.Peek().attachedRigidbody.velocity = targetPortal.forward.normalized * exitPortalSpeed;
+        SetCar(carColliders.Peek().attachedRigidbody);
+        var myCC = carColliders.Peek().GetComponent<MyCarController>();
+        if (myCC != null)
+            myCC.IsBeingTeleported = false;
+        //carColliders.Peek().GetComponent<MyCarController>().IsBeingTeleported = false;
         carColliders.Dequeue();
+    }
+
+    private void SetCar(Rigidbody rb)
+    {
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+
+        //rb.usegravity = false;
+        //rb.iskinematic = true;
+
+        rb.position = teleportPoint;
+
+        //rb.useGravity = true;
+        //rb.isKinematic = false;
+
+        rb.rotation = targetPortal.rotation;
+        rb.velocity = targetPortal.forward.normalized * exitPortalSpeed;
+
+        //rb.WakeUp();
     }
 }

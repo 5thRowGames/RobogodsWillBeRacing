@@ -52,7 +52,7 @@ public class SettingsManager : MonoBehaviour
             .OnComplete(() =>
             {
                 EventSystem.current.SetSelectedGameObject(volumeSlider.gameObject);
-                UIManager.Instance.inControlInputModule.enabled = true;
+                UIEventManager.Instance.inControlInputModule.enabled = true;
             });
     }
 
@@ -68,8 +68,8 @@ public class SettingsManager : MonoBehaviour
             .Insert(0f, infoPanel.DOAnchorPosX(-settingsTitlePosition.x,movementDuration,true))
             .Insert(0.3f, languageSlider.DOAnchorPosY(metalSheetPosition.y, movementDuration, true)).OnComplete(() =>
             {
-                UIManager.Instance.inControlInputModule.enabled = false;
-                UIManager.Instance.ChangeScreen(MenuType.Menu.MainMenu);
+                UIEventManager.Instance.inControlInputModule.enabled = false;
+                UIEventManager.Instance.ChangeScreen(MenuType.Menu.MainMenu);
                 gameObject.SetActive(false);
             });
     }

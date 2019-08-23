@@ -84,7 +84,7 @@ public class MainMenuManager : MonoBehaviour
             .Insert(0.1f, infoPanel.DOAnchorPosX(0, movementDuration, true))
             .OnComplete(() =>
             {
-                UIManager.Instance.inControlInputModule.enabled = true;
+                UIEventManager.Instance.inControlInputModule.enabled = true;
                 isInfoPanelHidden = false;
                 EventSystem.current.SetSelectedGameObject(raceButton.gameObject);
             });
@@ -95,7 +95,7 @@ public class MainMenuManager : MonoBehaviour
     public void ReturnTitleScreen()
     {
         EventSystem.current.SetSelectedGameObject(null);
-        UIManager.Instance.inControlInputModule.enabled = false;
+        UIEventManager.Instance.inControlInputModule.enabled = false;
         
         Sequence sequence = DOTween.Sequence();
         sequence.Insert(0f, raceButton.DOAnchorPosX(buttonPosition.x, movementDuration, true))
@@ -106,7 +106,7 @@ public class MainMenuManager : MonoBehaviour
             .Insert(0f,metalSheet.DOAnchorPosX(metalSheetPosition.x,movementDuration,true))
             .Insert(0f, infoPanel.DOAnchorPosX(-infoTitlePosition.x,movementDuration,true)).OnComplete(() =>
             {
-                UIManager.Instance.ChangeScreen(MenuType.Menu.TitleScreen);
+                UIEventManager.Instance.ChangeScreen(MenuType.Menu.TitleScreen);
                 gameObject.SetActive(false);
                 isInfoPanelHidden = true;
             });
@@ -115,7 +115,7 @@ public class MainMenuManager : MonoBehaviour
     public void HideMenuRaceSelected()
     {
         EventSystem.current.SetSelectedGameObject(null);
-        UIManager.Instance.inControlInputModule.enabled = false;
+        UIEventManager.Instance.inControlInputModule.enabled = false;
         
         Sequence sequence = DOTween.Sequence();
         sequence.Append(raceButton.DOAnchorPos(raceButtonSelectedPosition, selectDuration, true))
@@ -127,7 +127,7 @@ public class MainMenuManager : MonoBehaviour
             .Insert(0.6f, exitButton.DOAnchorPosY(buttonPosition.y, movementDuration, true)).OnComplete(() =>
                 {
                     isInfoPanelHidden = true;
-                    UIManager.Instance.ChangeScreen(MenuType.Menu.CharacterSelection);
+                    UIEventManager.Instance.ChangeScreen(MenuType.Menu.CharacterSelection);
                     gameObject.SetActive(false);
                 });
     }
@@ -135,7 +135,7 @@ public class MainMenuManager : MonoBehaviour
     public void HideMenuSettingsSelected()
     {
         EventSystem.current.SetSelectedGameObject(null);
-        UIManager.Instance.inControlInputModule.enabled = false;
+        UIEventManager.Instance.inControlInputModule.enabled = false;
         
         Sequence sequence = DOTween.Sequence();
         sequence.Append(settingsButton.DOAnchorPos(settingsButtonSelectedPosition, selectDuration, true))
@@ -146,7 +146,7 @@ public class MainMenuManager : MonoBehaviour
             .Insert(0.3f,infoPanel.DOAnchorPosX(-infoTitlePosition.x,movementDuration,true))
             .Insert(0.6f, exitButton.DOAnchorPosY(buttonPosition.y, movementDuration, true)).OnComplete(() =>
             {
-                UIManager.Instance.ChangeScreen(MenuType.Menu.Settings);
+                UIEventManager.Instance.ChangeScreen(MenuType.Menu.Settings);
                 gameObject.SetActive(false);
             });
     }
@@ -154,7 +154,7 @@ public class MainMenuManager : MonoBehaviour
     public void HideMenuCreditsSelected()
     {
         EventSystem.current.SetSelectedGameObject(null);
-        UIManager.Instance.inControlInputModule.enabled = false;
+        UIEventManager.Instance.inControlInputModule.enabled = false;
         
         Sequence sequence = DOTween.Sequence();
         sequence.Append(creditsButton.DOAnchorPos(creditsButtonSelectedPosition, selectDuration, true))
@@ -165,7 +165,7 @@ public class MainMenuManager : MonoBehaviour
             .Insert(0.3f,infoPanel.DOAnchorPosX(-infoTitlePosition.x,movementDuration,true))
             .Insert(0.6f, exitButton.DOAnchorPosY(buttonPosition.y, movementDuration, true)).OnComplete(() =>
             {
-                UIManager.Instance.ChangeScreen(MenuType.Menu.Credits);
+                UIEventManager.Instance.ChangeScreen(MenuType.Menu.Credits);
                 gameObject.SetActive(false);
             });
     }
@@ -175,7 +175,7 @@ public class MainMenuManager : MonoBehaviour
     public void HideMenuExitSelected()
     {
         EventSystem.current.SetSelectedGameObject(null);
-        UIManager.Instance.inControlInputModule.enabled = false;
+        UIEventManager.Instance.inControlInputModule.enabled = false;
         
         Sequence sequence = DOTween.Sequence();
         sequence.Append(settingsButton.DOAnchorPos(exitButtonSelectedPosition, selectDuration, true))

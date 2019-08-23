@@ -15,7 +15,7 @@ public class CreditsManager : MonoBehaviour
 
     private void Update()
     {
-        if (!controlSubmit && UIManager.Instance.inControlInputModule.CancelAction.WasPressed)
+        if (!controlSubmit && UIEventManager.Instance.inControlInputModule.CancelAction.WasPressed)
         {
             controlSubmit = true;
             HideCredits();
@@ -39,11 +39,11 @@ public class CreditsManager : MonoBehaviour
     private void BuildCredits()
     {
         EventSystem.current.SetSelectedGameObject(null);
-        //UIManager.Instance.inControlInputModule.enabled = false;
+        //UIEventManager.Instance.inControlInputModule.enabled = false;
         
         credits.DOMoveX(0, movementDuration, true).OnComplete(() =>
         {
-            UIManager.Instance.inControlInputModule.enabled = true;
+            UIEventManager.Instance.inControlInputModule.enabled = true;
             //TODO
             //Habrá que hacer algo aquí relacionado con el scroll
         });
@@ -51,12 +51,12 @@ public class CreditsManager : MonoBehaviour
 
     public void HideCredits()
     {
-        UIManager.Instance.inControlInputModule.enabled = false;
+        UIEventManager.Instance.inControlInputModule.enabled = false;
 
         credits.DOMoveY(creditsPosition.y, movementDuration, true).OnComplete(() =>
         {
-            UIManager.Instance.inControlInputModule.enabled = false;
-            UIManager.Instance.ChangeScreen(MenuType.Menu.MainMenu);
+            UIEventManager.Instance.inControlInputModule.enabled = false;
+            UIEventManager.Instance.ChangeScreen(MenuType.Menu.MainMenu);
             gameObject.SetActive(false);
         });
     }

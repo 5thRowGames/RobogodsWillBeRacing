@@ -16,7 +16,7 @@ public class TitleScreenManager : MonoBehaviour
     
     private void OnEnable()
     {
-        UIManager.Instance.inControlInputModule.enabled = true;
+        UIEventManager.Instance.inControlInputModule.enabled = true;
         EventSystem.current.SetSelectedGameObject(null);
         controlSubmit = false;
         initialTweenComplete = false;
@@ -33,7 +33,7 @@ public class TitleScreenManager : MonoBehaviour
     
     void Update()
     {
-        if (!controlSubmit && UIManager.Instance.inControlInputModule.SubmitAction.WasPressed)
+        if (!controlSubmit && UIEventManager.Instance.inControlInputModule.SubmitAction.WasPressed)
         {
             controlSubmit = true;
             StartCoroutine(ButtonPressedTween());
@@ -49,7 +49,7 @@ public class TitleScreenManager : MonoBehaviour
         
         pressToPlay.DOScale(Vector3.zero, 0.3f);
         yield return new WaitForSeconds(0.3f);
-        UIManager.Instance.ChangeScreen(MenuType.Menu.MainMenu);
+        UIEventManager.Instance.ChangeScreen(MenuType.Menu.MainMenu);
         gameObject.SetActive(false);
         //EventSystem.current.firstSelectedGameObject = raceButton;
         //sinControlInputModule.enabled = false;

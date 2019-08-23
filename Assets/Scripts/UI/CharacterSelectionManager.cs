@@ -208,7 +208,7 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
        
        fade.DOFade(1, 0.5f).OnComplete(() =>
        {
-           UIManager.Instance.ChangeScreen(MenuType.Menu.LoadingScreen);
+           UIEventManager.Instance.ChangeScreen(MenuType.Menu.LoadingScreen);
            gameObject.SetActive(false);
        });
    }
@@ -251,7 +251,7 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
            .Insert(0.6f, thorButton.DOAnchorPosY(godPositionY, 1f, true))
            .Insert(0.6f, anubisButton.DOAnchorPosY(godPositionY, 1f, true)).OnComplete(() =>
            {
-               UIManager.Instance.ChangeScreen(MenuType.Menu.MainMenu);
+               UIEventManager.Instance.ChangeScreen(MenuType.Menu.MainMenu);
                gameObject.SetActive(false);
            });
    }

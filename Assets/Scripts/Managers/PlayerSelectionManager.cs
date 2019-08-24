@@ -40,8 +40,6 @@ public class PlayerSelectionManager : MonoBehaviour
                 playerOrder++;
             }
         }
-        
-        //Prueba
         if (JoinButtonWasPressed(keyboardListener))
         {
             if (StoreGodInfo.Instance.players < 4 && !keyboardSelected)

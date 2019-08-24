@@ -38,6 +38,11 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
    public bool thorChosen;
    public bool anubisChosen;
 
+   public GameObject anubis;
+   public GameObject poseidon;
+   public GameObject kali;
+   public GameObject thor;
+
    [Header ("Debug")]
    public int playersWithGodPicked;
    public int playersConfirmed;
@@ -62,29 +67,29 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
         switch (robogod)
         {
             case God.Type.Anubis:
-
-                //Corutina
+                
+                anubis.GetComponent<HologramToNormal>().TransformIntoNormal();
                 anubisChosen = true;
                 StoreGodInfo.Instance.anubisIA = false;
                 break;
             
             case God.Type.Kali:
-
-                //Corutina
+                
+                kali.GetComponent<HologramToNormal>().TransformIntoNormal();
                 kaliChosen = true;
                 StoreGodInfo.Instance.kaliIA = false;
                 break;
             
             case God.Type.Poseidon:
-
-                //Corutina
+                
+                poseidon.GetComponent<HologramToNormal>().TransformIntoNormal();
                 poseidonChosen = true;
                 StoreGodInfo.Instance.poseidonIA = false;
                 break;
             
             case God.Type.Thor:
 
-                //Corutina
+                thor.GetComponent<HologramToNormal>().TransformIntoNormal();
                 thorChosen = true;
                 StoreGodInfo.Instance.thorIA = false;
                 break;
@@ -97,28 +102,32 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
         switch (robogod)
         {
             case God.Type.Anubis:
-                //Corutina
+                
+                anubis.GetComponent<HologramToNormal>().TransformIntoHologram();
                 anubisChosen = false;
                 StoreGodInfo.Instance.anubisIA = true;
 
                 break;
             
             case God.Type.Kali:
-                //Corutina
+                
+                kali.GetComponent<HologramToNormal>().TransformIntoHologram();
                 kaliChosen = false;
                 StoreGodInfo.Instance.anubisIA = true;
 
                 break;
             
             case God.Type.Poseidon:
-                //Corutina
+                
+                poseidon.GetComponent<HologramToNormal>().TransformIntoHologram();
                 poseidonChosen = false;
                 StoreGodInfo.Instance.anubisIA = true;
 
                 break;
             
             case God.Type.Thor:
-                //Corutina
+                
+                thor.GetComponent<HologramToNormal>().TransformIntoHologram();
                 thorChosen = false;
                 StoreGodInfo.Instance.anubisIA = true;
                 
@@ -254,11 +263,6 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
                UIEventManager.Instance.ChangeScreen(MenuType.Menu.MainMenu);
                gameObject.SetActive(false);
            });
-   }
-
-   public void GoToRace()
-   {
-       
    }
 
    public void ResetCharacterSelectionUI()

@@ -7,10 +7,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RimLight
-  m_Shader: {fileID: 4800000, guid: d52783133eb3d144cb449f9d886e0634, type: 3}
-  m_ShaderKeywords: _EMISSION
-  m_LightmapFlags: 1
+  m_Name: Hologram
+  m_Shader: {fileID: 4800000, guid: 1dd322d6ffd90c64a9283c0eccb138e9, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -20,7 +20,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Albedo:
-        m_Texture: {fileID: 2800000, guid: ff9da6b9c3ae4e8439ce851c4452c3a0, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4160b4eaa85016a4482240cdc65c4a91, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Albedos:
+        m_Texture: {fileID: 2800000, guid: 4160b4eaa85016a4482240cdc65c4a91, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -48,7 +52,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Metallic:
-        m_Texture: {fileID: 2800000, guid: 6618005f6bafebf40b3d09f498401fba, type: 3}
+        m_Texture: {fileID: 2800000, guid: 404d5059ceafeef41a404f217de4cf40, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -56,11 +60,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normals:
-        m_Texture: {fileID: 2800000, guid: 066f29fd0fc3d0341b96857dcf2cede3, type: 3}
-        m_Scale: {x: 2, y: 2}
-        m_Offset: {x: 0, y: 0}
-    - _Occlusion:
-        m_Texture: {fileID: 2800000, guid: a8de9c9c15d9c7e4eaa883c727391bee, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -71,20 +71,28 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _char_woodman_diffuse:
-        m_Texture: {fileID: 2800000, guid: 1c335bac7dc9aa445bb8c34cf4a296b1, type: 3}
+    - _ScanLines:
+        m_Texture: {fileID: 2800000, guid: 85aa5e7893ad16e46885b08126f5729e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _char_woodman_metallic:
-        m_Texture: {fileID: 2800000, guid: 2be69b1584d71e048a393fff2ef0a80d, type: 3}
+    - _Texture0:
+        m_Texture: {fileID: 2800000, guid: 85aa5e7893ad16e46885b08126f5729e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _char_woodman_normals:
-        m_Texture: {fileID: 2800000, guid: 3832909a151eb124e80a8c701d5a7014, type: 3}
+    - _TextureSample0:
+        m_Texture: {fileID: 2800000, guid: e28dc97a9541e3642a48c0e3886688c5, type: 3}
+        m_Scale: {x: 10, y: 10}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample1:
+        m_Texture: {fileID: 2800000, guid: 0fef5178c3706314e905e84f725d53d9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _char_woodman_occlusion:
-        m_Texture: {fileID: 2800000, guid: eca2288426df1a449b4f8e08f7d7e1b7, type: 3}
+    - _s:
+        m_Texture: {fileID: 2800000, guid: 404d5059ceafeef41a404f217de4cf40, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _sss:
+        m_Texture: {fileID: 2800000, guid: 4160b4eaa85016a4482240cdc65c4a91, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
@@ -99,18 +107,29 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _LerpController: 0.37048355
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RimPower: 5.77
+    - _PowerFresnel: 1.86
+    - _Rimpower: 0.84
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _Tiling: 4
     - _UVSec: 0
     - _ZWrite: 1
-    - __dirty: 1
+    - __dirty: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _RimColor: {r: 0, g: 1, b: 0.91724133, a: 0}
+    - _Fresnelcolor: {r: 0, g: 0.7634954, b: 1.4745098, a: 1}
+    - _LineColor: {r: 2.2588236, g: 0, b: 4, a: 0}
+    - _MainColor: {r: 0, g: 0.5257993, b: 1, a: 0}
+    - _Maincolor: {r: 0, g: 0.5833228, b: 1, a: 1}
+    - _Rimcolor: {r: 0, g: 0, b: 0, a: 0}
+    - _Speed: {r: 0, g: 0.05, b: 0, a: 0}
+    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
+    - _UVSpeed: {r: 0, g: 0.005, b: 0, a: 0}
+    - _Vector0: {r: 1, g: 1, b: 0, a: 0}

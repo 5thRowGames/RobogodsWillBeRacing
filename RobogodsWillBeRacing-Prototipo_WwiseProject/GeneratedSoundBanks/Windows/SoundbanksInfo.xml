@@ -23,9 +23,11 @@
 			<IncludedEvents>
 				<Event Id="3763551383" Name="Bascula_Compresor_In" ObjectPath="\Events\Default Work Unit\Naves\Eventos_Compartdos\Bascula_Compresor_In" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 				<Event Id="3004065450" Name="Bascula_Compresor_Out" ObjectPath="\Events\Default Work Unit\Naves\Eventos_Compartdos\Bascula_Compresor_Out" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
+				<Event Id="3240997650" Name="Caja_Random_In" ObjectPath="\Events\Default Work Unit\IG_SFX\Caja_Random_In" DurationType="OneShot" DurationMin="4.504127" DurationMax="4.504127"/>
 				<Event Id="2410551647" Name="Coche_1_Freno_Out" ObjectPath="\Events\Default Work Unit\Naves\Eventos_Compartdos\Coche_1_Freno_Out" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 				<Event Id="2731896591" Name="Freno_In" ObjectPath="\Events\Default Work Unit\Naves\Eventos_Compartdos\Freno_In" DurationType="OneShot" DurationMin="3.593741" DurationMax="3.593741"/>
 				<Event Id="2345257581" Name="Impactos_In" ObjectPath="\Events\Default Work Unit\IG_SFX\Impactos_In" DurationType="OneShot" DurationMin="0.862233" DurationMax="1.949277"/>
+				<Event Id="616368701" Name="Inicio_Carrea_In" ObjectPath="\Events\Default Work Unit\Cinematicas\Inicio_Carrea_In" DurationType="OneShot" DurationMin="25.766123" DurationMax="25.766123"/>
 				<Event Id="4092793509" Name="Musica_Limbo" ObjectPath="\Events\Default Work Unit\Musica\Musica_Limbo" DurationType="Infinite"/>
 				<Event Id="2922585971" Name="Nave_1_Acelerar_In" ObjectPath="\Events\Default Work Unit\Naves\Nave_1\Nave_1_Acelerar_In" DurationType="Infinite"/>
 				<Event Id="2792057870" Name="Nave_1_Acelerar_Out" ObjectPath="\Events\Default Work Unit\Naves\Nave_1\Nave_1_Acelerar_Out" DurationType="Infinite"/>
@@ -41,6 +43,7 @@
 				<Event Id="1038650524" Name="Nave_4_Arranque" ObjectPath="\Events\Default Work Unit\Naves\Nave_4\Nave_4_Arranque" DurationType="Infinite"/>
 				<Event Id="706776875" Name="Turbo_In" ObjectPath="\Events\Default Work Unit\Naves\Eventos_Compartdos\Turbo_In" DurationType="OneShot" DurationMin="8.859183" DurationMax="8.859183"/>
 				<Event Id="2234672166" Name="Turbo_Out" ObjectPath="\Events\Default Work Unit\Naves\Eventos_Compartdos\Turbo_Out" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
+				<Event Id="2335810608" Name="UI_Start_In" ObjectPath="\Events\Default Work Unit\UI\UI_Start_In" DurationType="OneShot" DurationMin="4.959660" DurationMax="4.959660"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
 				<File Id="2491906" Language="SFX">
@@ -59,9 +62,17 @@
 					<ShortName>Robo_Gods_Musica_Central_Deadline_1_BRUTO.wav</ShortName>
 					<Path>SFX\Robo_Gods_Musica_Central_Deadline_1_BRUTO_D79FB2B7.wem</Path>
 				</File>
+				<File Id="101530992" Language="SFX">
+					<ShortName>Robo_Gods_UI_Select_Inicio_Start.wav</ShortName>
+					<Path>SFX\Robo_Gods_UI_Select_Inicio_Start_10C4C929.wem</Path>
+				</File>
 				<File Id="126961041" Language="SFX">
 					<ShortName>Robo_Gods_Coche_3_Aceleracion_SFX_Start_2.wav</ShortName>
 					<Path>SFX\Robo_Gods_Coche_3_Aceleracion_SFX_Start_2_10C4C929.wem</Path>
+				</File>
+				<File Id="134193726" Language="SFX">
+					<ShortName>Robo_Gods_Cinematica_Inicio_Carrera_Start.wav</ShortName>
+					<Path>SFX\Robo_Gods_Cinematica_Inicio_Carrera_Start_10C4C929.wem</Path>
 				</File>
 				<File Id="135047683" Language="SFX">
 					<ShortName>Robo_Gods_Coche_1_Freno_Start_SFX.wav</ShortName>
@@ -98,6 +109,10 @@
 				<File Id="646319717" Language="SFX">
 					<ShortName>Robo_Gods_Nave_Impact_SFX_Start_2.wav</ShortName>
 					<Path>SFX\Robo_Gods_Nave_Impact_SFX_Start_2_10C4C929.wem</Path>
+				</File>
+				<File Id="652092941" Language="SFX">
+					<ShortName>Robo_Gods_Random_Box_SFX_Start.wav</ShortName>
+					<Path>SFX\Robo_Gods_Random_Box_SFX_Start_10C4C929.wem</Path>
 				</File>
 				<File Id="724286840" Language="SFX">
 					<ShortName>Robo_Gods_Coche_1_Motor_Stop_SFX_Loop.wav</ShortName>

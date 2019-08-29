@@ -18,7 +18,6 @@ public class HologramToNormal : MonoBehaviour
     private void Start()
     {
         material = meshRenderer.material;
-        Debug.Log(material.name);
         progression = max;
         progressionPerTick = (max - min) / transformationTime;
     }

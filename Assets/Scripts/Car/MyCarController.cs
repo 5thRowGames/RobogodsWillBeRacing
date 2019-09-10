@@ -16,6 +16,7 @@ public class MyCarController : MonoBehaviour, IControllable
     [SerializeField] [Tooltip("¿Siempre aplicar la aceleración mínima?")] private bool alwaysAccelerate = true;
     [SerializeField] [Tooltip("Aceleración mínima aplicada en cada momento")] [Range(0f, 1f)] private float minAcceleration = 0.2f;
     [SerializeField] [Tooltip("Incremento de la fuerza de aceleración cuando se usa el turbo")] private float boostMultiplier = 3f;
+    [SerializeField] [Tooltip("")] private bool carUnderControl = false;
     [SerializeField] [Tooltip("Tiempo desde que se suelta el acelerador hasta que deja de acelerar el coche")] private float deaccelerationTime = 2f;
     [Tooltip("Contador del tiempo desde que se suelta el acelerador")] private float deaccelerationTimer;
     [SerializeField] [Tooltip("Velocidad de giro")] private float turnSpeed = 10f;
@@ -275,6 +276,8 @@ public class MyCarController : MonoBehaviour, IControllable
         }
         else
         {
+            if (!carUnderControl) return;
+
             deaccelerationTimer -= Time.deltaTime;
             if (deaccelerationTimer > 0f)
             {
@@ -449,11 +452,13 @@ public class MyCarController : MonoBehaviour, IControllable
     public void ConnectCar()
     {
         Core.Input.AssignControllable(GetComponent<IncontrolProvider>(), this);
+        carUnderControl = true;
     }
 
     public void DisconnectCar()
     {
         Core.Input.UnassignControllable(GetComponent<IncontrolProvider>(), this);
+        carUnderControl = false;
     }
 
     #endregion

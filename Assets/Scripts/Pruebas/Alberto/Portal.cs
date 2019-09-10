@@ -93,8 +93,8 @@ public class Portal : MonoBehaviour
 
     private void SetCar(Rigidbody rb)
     {
-        rb.velocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
+        rb.velocity = targetPortal.TransformDirection(targetPortal.forward) * 0f;
+        rb.angularVelocity = targetPortal.TransformDirection(targetPortal.forward) * 0f; // Vector3.zero;
 
         //rb.usegravity = false;
         //rb.iskinematic = true;

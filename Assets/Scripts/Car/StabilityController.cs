@@ -9,7 +9,7 @@ public class StabilityController : MonoBehaviour
     [SerializeField] [Tooltip("Grados mínimos de rotación en X")] private float minRotationX = -40f;
     [SerializeField] [Tooltip("Grados máximos de rotación en Z")] private float maxRotationZ = 40f;
     [SerializeField] [Tooltip("Grados mínimos de rotación en Z")] private float minRotationZ = -40f;
-    [SerializeField] [Tooltip("Tiempo para poner a 0 las rotaciones en X y Z cuando se llega a sus máximos")] private float timeToIdentityRotation = 1f;
+    [SerializeField] [Tooltip("Tiempo para poner a 0 las rotaciones en X y Z cuando se llega a sus máximos")] private readonly float timeToIdentityRotation = 1f;
     [Tooltip("Layer para ignorar todo lo que no sea el suelo")] public LayerMask groundLayer;
     #endregion
 
@@ -29,7 +29,8 @@ public class StabilityController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        ClampRotation();
+        if(!myCarController.IsBeingTeleported)
+            ClampRotation();
         CheckUpsideDown();
     }
 

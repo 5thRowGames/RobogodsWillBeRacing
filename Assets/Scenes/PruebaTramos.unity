@@ -718,7 +718,7 @@ MonoBehaviour:
   circuitSections:
   - {fileID: 2701389123517767565}
   - {fileID: 2502821653924142558}
-  - {fileID: 1961443006}
+  - {fileID: 173735500365183104}
   - {fileID: 668503466}
   checkPoints: []
   portals: []
@@ -2646,18 +2646,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1903586400}
   m_CullTransparentMesh: 0
---- !u!114 &1961443006 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2185309813005545652, guid: c253c99c969206b4896c58912fab09a3,
-    type: 3}
-  m_PrefabInstance: {fileID: 2034215491517204532}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6de6fb5069eb624dab6fa0722a96f3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2007073269
 GameObject:
   m_ObjectHideFlags: 0
@@ -2864,6 +2852,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &173735500365183104 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2185309813005545652, guid: c253c99c969206b4896c58912fab09a3,
+    type: 3}
+  m_PrefabInstance: {fileID: 2034215491517204532}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6de6fb5069eb624dab6fa0722a96f3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2034215491517204532
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2875,6 +2875,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Section2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2034215492667001706, guid: c253c99c969206b4896c58912fab09a3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2185309813005545652, guid: c253c99c969206b4896c58912fab09a3,
         type: 3}

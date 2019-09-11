@@ -33,6 +33,7 @@ namespace AK
         static const AkUniqueID NAVE_4_ACELERAR_IN = 2760755186U;
         static const AkUniqueID NAVE_4_ACELERAR_OUT = 3895169229U;
         static const AkUniqueID NAVE_4_ARRANQUE = 1038650524U;
+        static const AkUniqueID SONIC_LOGO_IN = 3032635407U;
         static const AkUniqueID TURBO_IN = 706776875U;
         static const AkUniqueID TURBO_OUT = 2234672166U;
         static const AkUniqueID UI_START_IN = 2335810608U;

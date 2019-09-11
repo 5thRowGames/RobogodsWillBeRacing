@@ -182,6 +182,64 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &4668403000840390850
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8554887609631548971}
+  - component: {fileID: 164003054194793722}
+  - component: {fileID: 1575283319808667835}
+  m_Layer: 0
+  m_Name: Checkpoint0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8554887609631548971
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4668403000840390850}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7972921045819403602}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &164003054194793722
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4668403000840390850}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 50, y: 30, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1575283319808667835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4668403000840390850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c27fea8081f251b47bd3d266f4431cf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lastCheckpoint: 1
 --- !u!1 &7972921044122331139
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,6 +540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c27fea8081f251b47bd3d266f4431cf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lastCheckpoint: 0
 --- !u!1 &7972921044906075988
 GameObject:
   m_ObjectHideFlags: 0
@@ -580,6 +639,7 @@ Transform:
   - {fileID: 7972921044741770419}
   - {fileID: 7972921044575243254}
   - {fileID: 7972921044853279259}
+  - {fileID: 8554887609631548971}
   - {fileID: 8626992591827503583}
   - {fileID: 1962775072872170025}
   m_Father: {fileID: 0}
@@ -599,6 +659,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   checkpoints:
   - {fileID: 7972921044853279258}
+  - {fileID: 1575283319808667835}
   portalsEntrances:
   - {fileID: 3607173235523129595}
   portalsExits:
@@ -744,7 +805,7 @@ PrefabInstance:
     - target: {fileID: 6188410810297068594, guid: ed5c9d4157053cb4d807764276c84ab0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6188410810297068594, guid: ed5c9d4157053cb4d807764276c84ab0,
         type: 3}
@@ -831,7 +892,7 @@ PrefabInstance:
     - target: {fileID: 6188410810297068594, guid: 9cfea6eef38603d49b57b2ad1383c9ab,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6188410810297068594, guid: 9cfea6eef38603d49b57b2ad1383c9ab,
         type: 3}

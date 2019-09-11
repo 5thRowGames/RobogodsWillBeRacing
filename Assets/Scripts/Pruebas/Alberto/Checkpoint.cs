@@ -5,6 +5,7 @@ using UnityEngine;
 public class Checkpoint : MonoBehaviour
 {
     public int Index { set; get; }
+    public bool lastCheckpoint = false;
 
     private void OnTriggerEnter(Collider other)
     {

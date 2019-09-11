@@ -146,14 +146,25 @@ public class LapsManager : MonoBehaviour
 
     private void AddCheckpoints()
     {
+        Checkpoint lastCheckpoint = null;
         if (circuitSections != null)
+        {
             foreach (CircuitSection cs in circuitSections)
             {
                 for (int i = 0; i < cs.checkpoints.Count; i++)
                 {
-                    checkPoints.Add(cs.checkpoints[i]);
+                    if (!cs.checkpoints[i].lastCheckpoint)
+                        checkPoints.Add(cs.checkpoints[i]);
+                    else
+                    {
+                        lastCheckpoint = cs.checkpoints[i];
+                        Debug.Log($"{lastCheckpoint.transform.parent.name}.{lastCheckpoint.name}");
+                    }
                 }
             }
+        }
+        if (lastCheckpoint != null)
+            checkPoints.Add(lastCheckpoint);
     }
 
     private void AddPortals()

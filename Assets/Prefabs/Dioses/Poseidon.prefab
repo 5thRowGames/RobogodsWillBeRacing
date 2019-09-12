@@ -317,13 +317,15 @@ GameObject:
   - component: {fileID: 7356784100876358361}
   - component: {fileID: 7356784100876358362}
   - component: {fileID: 7356784100876358363}
+  - component: {fileID: 7804179181166896946}
   - component: {fileID: 7356784100876358356}
+  - component: {fileID: 6774690148121646746}
   - component: {fileID: 7356784100876358357}
   - component: {fileID: 7356784100876358358}
-  - component: {fileID: 7356784100876358359}
+  - component: {fileID: 4479856082882243980}
+  - component: {fileID: 97462564597274610}
   - component: {fileID: 7356784100876358352}
   - component: {fileID: 1598811163237596334}
-  - component: {fileID: 4479856082882243980}
   m_Layer: 15
   m_Name: Poseidon
   m_TagString: Untagged
@@ -400,6 +402,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!136 &7804179181166896946
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7356784100876358353}
+  m_Material: {fileID: 13400000, guid: 6667dca808adca94eb261550203ba334, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.19
+  m_Height: 1.28
+  m_Direction: 0
+  m_Center: {x: 0, y: 0, z: 0.4}
 --- !u!65 &7356784100876358356
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -407,12 +423,26 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7356784100876358353}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 6667dca808adca94eb261550203ba334, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 0.7}
-  m_Center: {x: 0, y: 0.5, z: -0.15}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &6774690148121646746
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7356784100876358353}
+  m_Material: {fileID: 13400000, guid: 6667dca808adca94eb261550203ba334, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.19
+  m_Height: 1.28
+  m_Direction: 0
+  m_Center: {x: 0, y: 0, z: -0.4}
 --- !u!54 &7356784100876358357
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -442,24 +472,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeDevice: 1
-  speedForce: 120
+  speedForce: 140
   instantSpeedForce: 10
   alwaysAccelerate: 0
   minAcceleration: 0.2
   boostMultiplier: 2
+  carUnderControl: 0
   deaccelerationTime: 2
-  turnSpeed: 40
+  turnSpeed: 50
   speedThreshold: 15
   steeringThreshold: 0.2
   steeringReductionFactor: 0.8
-  minZVelocityToReverseSteering: -1
+  minZVelocityToReverseSteering: -0.8
   angularVelocityReductionFactor: 1
   maxAngularSpeed: 20
   brakeForce: 40
   brakeToReverseTime: 0.5
+  isGoingBackwards: 0
   speedUnderThreshold: 0
-  handBrakeForce: 25
-  handBrakeBrakeFactor: 0.5
+  handBrakeForce: 30
+  handBrakeBrakeFactor: 2
   handBrakeTurboTime: 3
   handBrakeTimer: 0
   handBrakeBoostWait: 0.3
@@ -469,7 +501,7 @@ MonoBehaviour:
   airLateralShiftFactor: 0.008
   wheelHeight: 1
   downForce: 6
-  upForce: 20
+  upForce: 40
   jumpForce: 20
   useSimpleSuspension: 0
   groundDrag: 2
@@ -477,11 +509,6 @@ MonoBehaviour:
   airDrag: 0.5
   airAngularDrag: 0.5
   groundForward: {x: 0, y: 0, z: 0}
-  maxRotationX: 60
-  minRotationX: -60
-  maxRotationZ: 60
-  minRotationZ: -60
-  timeToIdentityRotation: 1
   centerOfMass: {fileID: 7356784099460421365}
   accelPoint: {fileID: 7356784100677883278}
   handBrakePoint: {fileID: 7356784100140917244}
@@ -493,13 +520,10 @@ MonoBehaviour:
   rb: {fileID: 7356784100876358357}
   layerMask:
     serializedVersion: 2
-    m_Bits: 1335
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 1025
   playersMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 246272
   accelerationInput: 0
   steeringInput: 0
   brakeInput: 0
@@ -510,25 +534,45 @@ MonoBehaviour:
   rbAngularVelocity: {x: 0, y: 0, z: 0}
   velocityMagnitude: 0
   velocity: {x: 0, y: 0, z: 0}
-  isGrounded: 0
-  isUpsideDown: 0
-  helper: {fileID: 1801858888414852536}
-  rcRunning: 0
+  IsBeingTeleported: 0
+  helper: {fileID: 0}
   pruebaSonido: 0
   startingPositions: []
---- !u!135 &7356784100876358359
-SphereCollider:
+--- !u!114 &4479856082882243980
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7356784100876358353}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.2
-  m_Center: {x: 0, y: 0, z: 0.54}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e02c871179d1f24fa7fbaf675f45db4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myVelocity: {x: 0, y: 0, z: 0}
+  collisionAngle: 0
+--- !u!114 &97462564597274610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7356784100876358353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da747e8ef7c3c584fbf64d88c25844d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxRotationX: 30
+  minRotationX: -30
+  maxRotationZ: 30
+  minRotationZ: -30
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  myCarController: {fileID: 7356784100876358358}
+  rb: {fileID: 7356784100876358357}
 --- !u!114 &7356784100876358352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -557,18 +601,6 @@ MonoBehaviour:
   incontrolProvider: {fileID: 7356784100876358352}
   unsharedSoundStart: Nave_3
   carRigidbody: {fileID: 7356784100876358357}
---- !u!114 &4479856082882243980
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7356784100876358353}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e02c871179d1f24fa7fbaf675f45db4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &4881244559063522647
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -586,11 +618,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400026, guid: 85d7a6b7a6cd1ec4d90baf6e4e72abbf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.4130001
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400026, guid: 85d7a6b7a6cd1ec4d90baf6e4e72abbf, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.32099915
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400026, guid: 85d7a6b7a6cd1ec4d90baf6e4e72abbf, type: 3}
       propertyPath: m_LocalRotation.x
@@ -661,11 +693,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9447ce042706efc469d24b3e7771ec4f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.4
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9447ce042706efc469d24b3e7771ec4f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9447ce042706efc469d24b3e7771ec4f, type: 3}
       propertyPath: m_LocalRotation.x

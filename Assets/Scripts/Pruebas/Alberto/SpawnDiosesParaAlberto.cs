@@ -29,7 +29,7 @@ public class SpawnDiosesParaAlberto : MonoBehaviour
 
     void Update()
     {
-        if (!updateBool)
+        /*if (!updateBool)
         {
             if (JoinButtonWasPressed(joystickListener))
             {   
@@ -82,7 +82,7 @@ public class SpawnDiosesParaAlberto : MonoBehaviour
                 SplitScreen(playersToPlay);
             }
 
-        }
+        }*/
     }
     
     private void SplitScreen(int players)

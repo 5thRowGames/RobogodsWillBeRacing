@@ -385,7 +385,7 @@ public class MyCarController : MonoBehaviour, IControllable
         else // Cuando está en el aire el giro se convierte en movimiento lateral
         {
             rb.MovePosition(transform.position + (transform.right * steeringInput * velocityMagnitude * airLateralShiftFactor));
-        }*/
+        }
         
         if (Mathf.Abs(steeringInput) < steeringThreshold) // No se está girando
         {

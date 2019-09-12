@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LapsManager : MonoBehaviour
+public class LapsManager : Singleton<LapsManager>
 {
     [System.Serializable]
     public class GodRaceInfo
@@ -12,7 +12,6 @@ public class LapsManager : MonoBehaviour
         public int currentLap;
         public int currentCheckPoint;
         public float distanceToNextCheckPoint;
-        public int racePosition;
         public bool raceFinished;
 
         public GodRaceInfo(GameObject god)
@@ -22,59 +21,28 @@ public class LapsManager : MonoBehaviour
         }
 
     }
-
-    public static LapsManager instance = null;
-
-    //public List<GameObject> gods;
+    
+    public List<GameObject> road;
     public List<CircuitSection> circuitSections;
     public List<Checkpoint> checkPoints;
     public List<Portal> portals;
     public List<Transform> portalsExits;
     public List<GodRaceInfo> godRaceInfoList;
+    public List<int> racePosition;
 
-    public List<string> godsPositions;
-
-    public int numberOfLaps = 3;
-
-    private bool m_raceFinishedByAll = false;
-    public bool RaceFinishedByAll
-    {
-        get { return m_raceFinishedByAll; }
-        private set
-        {
-            m_raceFinishedByAll = value;
-            if (m_raceFinishedByAll)
-                raceOverPanel.SetActive(true);
-        }
-    }
-
-    [Header("Canvas")]
-    public List<Text> lapsText;
-    public List<Text> checkPointsText;
-    public GameObject raceOverPanel;
-
+    //Apoyo para actualizar las posiciones
+    private int godAmount;
+    
     private void Awake()
     {
-        if (instance == null)
-            instance = this;
-        else if (instance != this)
-            Destroy(gameObject);
-        // DontDestroyOnLoad(gameObject);
-
         godRaceInfoList = new List<GodRaceInfo>();
         AddCheckpoints();
         RegisterCheckPoints();
         AddPortals();
         AddPortalsExits();
         RegisterPortals();
-    }
-
-    private void FixedUpdate()
-    {
-        UpdateDistancesToCheckPoints();
-        godRaceInfoList.Sort(CompareRacePositions);
-        for (int i = 0; i < godRaceInfoList.Count; i++)
-            godRaceInfoList[i].racePosition = i;
+        FirstUpdate();
+        godAmount = godRaceInfoList.Count;
     }
 
     private void OnEnable()
@@ -86,6 +54,14 @@ public class LapsManager : MonoBehaviour
     {
         SpawnDiosesParaAlberto.OnGodSpawned -= OnGodSpawned;
     }
+    
+    private void FirstUpdate()
+    {
+        for (int i = 0; i < godRaceInfoList.Count; i++)
+        {
+            racePosition[i] = i;
+        }
+    }
 
     private void OnGodSpawned(GameObject god)
     {
@@ -96,7 +72,6 @@ public class LapsManager : MonoBehaviour
     private void RegisterGods()
     {
         godRaceInfoList = new List<GodRaceInfo>();
-        godsPositions = new List<string>();
         var players = FindObjectsOfType<MyCarController>();
         foreach (var player in players)
         {
@@ -194,119 +169,88 @@ public class LapsManager : MonoBehaviour
             }
         }
     }
-
-    // Revisar porque un mismo coche actualiza ambos textos, no a la vez
-    public void UpdateCheckPoint(GameObject god, int checkpoint)
+    
+    public void UpdateGodPosition()
     {
-        GodRaceInfo gri = godRaceInfoList.Find(g => g.god == god);
-        //int index = godRaceInfoList.FindIndex(g => g.god == god);
-        int index = godRaceInfoList.IndexOf(gri);
+        StartCoroutine(UpdateRacePositionCoroutine());
+    }
+
+    IEnumerator UpdateRacePositionCoroutine()
+    {
+        yield return new WaitForSeconds(0.5f);
         
-        if (gri == null)
-            return;
-
-        if(gri.currentCheckPoint == checkpoint) // Hemos pasado el checkpoint que tocaba
+        UpdateDistanceNextCheckpoint();
+        UpdateRacePosition();
+    }
+    
+    private void UpdateRacePosition()
+    {
+        for (int i = 0; i < godAmount; i++)
         {
-            if(gri.currentCheckPoint + 1 >= checkPoints.Count) // nueva vuelta
+            for (int j = i + 1; j < godAmount; j++)
             {
-                if(gri.currentLap + 1 >= numberOfLaps) // Termina la carrera para el dios
+                int aux;
+                if (godRaceInfoList[i].currentLap == godRaceInfoList[j].currentLap)
                 {
-                    gri.raceFinished = true;
-                    RaceFinishedByAll = IsRaceFinished(); // Se comprueba si todos han terminado la carrera
+                    if (godRaceInfoList[i].currentCheckPoint == godRaceInfoList[j].currentCheckPoint)
+                    {
+                        if (godRaceInfoList[i].distanceToNextCheckPoint < godRaceInfoList[j].distanceToNextCheckPoint && racePosition[i] > racePosition[j])
+                        {
+                            aux = racePosition[i];
+                            racePosition[i] = racePosition[j];
+                            racePosition[j] = aux;
+                        }
+                    }
+                    else if (godRaceInfoList[i].currentCheckPoint > godRaceInfoList[j].currentCheckPoint && racePosition[i] > racePosition[j])
+                    {
+                        aux = racePosition[i];
+                        racePosition[i] = racePosition[j];
+                        racePosition[j] = aux;
+                    }
+                    else if (godRaceInfoList[i].currentCheckPoint < godRaceInfoList[j].currentCheckPoint && racePosition[i] < racePosition[j])
+                    {
+                        aux = racePosition[i];
+                        racePosition[i] = racePosition[j];
+                        racePosition[j] = aux;
+                    }
                 }
-                gri.currentLap++;
-                UpdateLapsText(index, gri.currentLap);
-                gri.currentCheckPoint = 0;
-                UpdateCheckPointsText(index, 0);
+                else if (godRaceInfoList[i].currentLap > godRaceInfoList[j].currentLap && racePosition[i] > racePosition[j])
+                {
+                    aux = racePosition[i];
+                    racePosition[i] = racePosition[j];
+                    racePosition[j] = aux;
+                }
+                else if (godRaceInfoList[i].currentLap < godRaceInfoList[j].currentLap && racePosition[i] < racePosition[j])
+                {
+                    aux = racePosition[i];
+                    racePosition[i] = racePosition[j];
+                    racePosition[j] = aux;
+                }
             }
-            else
+        }
+    }
+
+    private void UpdateDistanceNextCheckpoint()
+    {
+        for (int i = 0; i < godAmount; i++)
+        {
+            int currentCheckpoint = godRaceInfoList[i].currentCheckPoint;
+
+            if (currentCheckpoint + 1 == checkPoints.Count)
+                currentCheckpoint = 0;
+
+            godRaceInfoList[i].distanceToNextCheckPoint = (checkPoints[currentCheckpoint].transform.position - godRaceInfoList[i].god.transform.position).sqrMagnitude;
+        }
+    }
+
+    public void UpdateCheckPoint(GameObject god, int checkPoint)
+    {
+        for (int i = 0; i < godRaceInfoList.Count; i++)
+        {
+            if (godRaceInfoList[i].god == god)
             {
-                gri.currentCheckPoint++;
-                UpdateCheckPointsText(index, gri.currentCheckPoint);
+                godRaceInfoList[i].currentCheckPoint = checkPoint;
             }
-        }
-    }
-
-    private void UpdateLapsText(int index, int lap)
-    {
-        lapsText[index].text = lap.ToString();
-    }
-
-    private void UpdateCheckPointsText(int index, int checkPoint)
-    {
-        checkPointsText[index].text = checkPoint.ToString();
-    }
-
-    private bool IsRaceFinished()
-    {
-        foreach(var gl in godRaceInfoList)
-        {
-            if (!gl.raceFinished)
-                return false;
-        }
-        return true;
-    }
-
-    public static int CompareRacePositions(GodRaceInfo godA, GodRaceInfo godB)
-    {
-        if (godA.currentLap > godB.currentLap)
-            return -1;
-        else if (godA.currentLap < godB.currentLap)
-            return 1;
-        else // Mismas vueltas
-        {
-            if (godA.currentCheckPoint > godB.currentCheckPoint)
-                return -1;
-            else if (godA.currentCheckPoint < godB.currentCheckPoint)
-                return 1;
-            else if (godA.distanceToNextCheckPoint < godB.distanceToNextCheckPoint)
-                return -1;
-            else if (godA.distanceToNextCheckPoint > godB.distanceToNextCheckPoint)
-                return 1;
-            else
-                return 0;
-        }
-    }
-
-    public float DistanceToNextCheckPoint(GodRaceInfo gri)
-    {
-        int index = godRaceInfoList.FindIndex(g => g.god == gri.god);
-
-        if (index == -1) return Mathf.Infinity;
-
-        Vector3 nextCheckPointPosition = checkPoints[index].transform.position;
-        return Vector3.Distance(gri.god.transform.position, nextCheckPointPosition);
-    }
-
-    public void UpdateDistancesToCheckPoints()
-    {
-        foreach(GodRaceInfo gri in godRaceInfoList)
-        {
-            gri.distanceToNextCheckPoint = DistanceToNextCheckPoint(gri);
-        }
-    }
-
-    public static Vector3 GetClosestPointOnLineSegment(Vector3 A, Vector3 B, Vector3 P)
-    {
-        Vector3 AP = P - A;       //Vector from A to P   
-        Vector3 AB = B - A;       //Vector from A to B  
-
-        float magnitudeAB = AB.sqrMagnitude;     //Magnitude of AB vector (it's length squared)     
-        float ABAPproduct = Vector3.Dot(AP, AB);    //The DOT product of a_to_p and a_to_b     
-        float distance = ABAPproduct / magnitudeAB; //The normalized "distance" from a to your closest point  
-
-        if (distance < 0)     //Check if P projection is over vectorAB     
-        {
-            return A;
-
-        }
-        else if (distance > 1)
-        {
-            return B;
-        }
-        else
-        {
-            return A + AB * distance;
         }
     }
 }

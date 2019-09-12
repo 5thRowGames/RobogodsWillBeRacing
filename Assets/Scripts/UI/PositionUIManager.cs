@@ -52,7 +52,7 @@ public class PositionUIManager : Singleton<PositionUIManager>
 
         for (int i = 0; i < godAmount; i++)
         {
-            positionText[i].text = LapsManager.Instance.godRaceInfoList[i].racePosition + 1.ToString();
+            positionText[i].text = LapsManager.Instance.racePosition[i] + 1.ToString();
         }
     }
 
@@ -69,7 +69,7 @@ public class PositionUIManager : Singleton<PositionUIManager>
             yield return new WaitForSeconds(0.5f);
 
             for (int i = 0; i < godAmount; i++)
-                auxList[i] = LapsManager.Instance.godRaceInfoList[i].racePosition;
+                auxList[i] = LapsManager.Instance.racePosition[i];
 
             for (int i = 0; i < buttonPosition.Count; i++)
             {
@@ -101,9 +101,9 @@ public class PositionUIManager : Singleton<PositionUIManager>
     {
         for (int i = 0; i < buttonPosition.Count; i++)
         {
-            buttonPosition[i].anchoredPosition = staticPosition[LapsManager.Instance.godRaceInfoList[i].racePosition];
-            positionText[i].text = LapsManager.Instance.godRaceInfoList[i].racePosition + 1 + "º";
-            lastUpdatePosition.Add(LapsManager.Instance.godRaceInfoList[i].racePosition);
+            buttonPosition[i].anchoredPosition = staticPosition[LapsManager.Instance.racePosition[i]];
+            positionText[i].text = LapsManager.Instance.racePosition[i] + 1 + "º";
+            lastUpdatePosition.Add(LapsManager.Instance.racePosition[i]);
         }
     }
 

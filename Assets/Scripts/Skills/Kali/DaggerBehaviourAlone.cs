@@ -64,7 +64,7 @@ public class DaggerBehaviourAlone : MonoBehaviour
         {
             direction = -1;
             closestCheckpointIndex = LapsManager.Instance.godRaceInfoList[kaliIndex].currentCheckPoint;
-            closestCheckpoint = LapsManager.Instance.checkPoints[closestCheckpointIndex];
+            closestCheckpoint = LapsManager.Instance.checkPoints[closestCheckpointIndex].transform;
         }
         else
         {
@@ -73,7 +73,7 @@ public class DaggerBehaviourAlone : MonoBehaviour
             if (closestCheckpointIndex == LapsManager.Instance.checkPoints.Count)
                 closestCheckpointIndex = 0;
             
-            closestCheckpoint = LapsManager.Instance.checkPoints[closestCheckpointIndex];
+            closestCheckpoint = LapsManager.Instance.checkPoints[closestCheckpointIndex].transform;
 
             direction = 1;
         }
@@ -101,7 +101,7 @@ public class DaggerBehaviourAlone : MonoBehaviour
             else if (closestCheckpointIndex == LapsManager.Instance.checkPoints.Count)
                 closestCheckpointIndex = 0;
             
-            closestCheckpoint = LapsManager.Instance.checkPoints[closestCheckpointIndex];
+            closestCheckpoint = LapsManager.Instance.checkPoints[closestCheckpointIndex].transform;
             currentTarget = closestCheckpoint;
         }
     }

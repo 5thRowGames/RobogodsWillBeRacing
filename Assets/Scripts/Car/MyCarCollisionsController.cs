@@ -28,10 +28,14 @@ public class MyCarCollisionsController : MonoBehaviour
     {
         Debug.Log("MyCarCollisionsController Collision");
         int otherLayer = collision.gameObject.layer;
-        /*Debug.Log($"otherLayer = {collision.gameObject.layer}");
-        Debug.Log($"portalLayer = {portalLayer}");*/
+
         AkSoundEngine.PostEvent("Impactos_In", gameObject);
 
+        if (otherLayer != portalLayer) // Si no choco contra un portal
+        {
+            Debug.Log(collision.gameObject.name);
+            priorConstraints = rb.constraints; // Guardo las restricciones previas al choque
+            rb.constraints = RigidbodyConstraints.FreezeRotation; // Congelo la rotación para evitar que el coche cambie su dirección
             Debug.Log($"Restricciones al colisionar: {rb.constraints.ToString()}");
             CheckFrontCollision(collision);
         }

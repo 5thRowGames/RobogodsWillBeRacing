@@ -101,8 +101,10 @@ GameObject:
   - component: {fileID: 551719142430012549}
   - component: {fileID: 551719142430012550}
   - component: {fileID: 551719142430012551}
+  - component: {fileID: 8781051464329652859}
   - component: {fileID: 551719142430012552}
   - component: {fileID: 551719142430012553}
+  - component: {fileID: 758347946996646115}
   - component: {fileID: 551719142430012554}
   - component: {fileID: 3463158760392872671}
   - component: {fileID: 8584054329157395999}
@@ -184,6 +186,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!136 &8781051464329652859
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551719142430012557}
+  m_Material: {fileID: 13400000, guid: 6667dca808adca94eb261550203ba334, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.19
+  m_Height: 1.28
+  m_Direction: 0
+  m_Center: {x: 0, y: 0, z: 0.4}
 --- !u!65 &551719142430012552
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -213,6 +229,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!136 &758347946996646115
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551719142430012557}
+  m_Material: {fileID: 13400000, guid: 6667dca808adca94eb261550203ba334, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.19
+  m_Height: 1.28
+  m_Direction: 0
+  m_Center: {x: 0, y: 0, z: -0.4}
 --- !u!114 &551719142430012554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,6 +261,7 @@ MonoBehaviour:
   alwaysAccelerate: 0
   minAcceleration: 0.2
   boostMultiplier: 2
+  carUnderControl: 0
   deaccelerationTime: 2
   turnSpeed: 50
   speedThreshold: 15
@@ -303,6 +334,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e02c871179d1f24fa7fbaf675f45db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myVelocity: {x: 0, y: 0, z: 0}
+  collisionAngle: 0
 --- !u!114 &8584054329157395999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,11 +348,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da747e8ef7c3c584fbf64d88c25844d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRotationX: 40
-  minRotationX: -40
-  maxRotationZ: 40
-  minRotationZ: -40
-  timeToIdentityRotation: 1
+  maxRotationX: 30
+  minRotationX: -30
+  maxRotationZ: 30
+  minRotationZ: -30
   groundLayer:
     serializedVersion: 2
     m_Bits: 1024

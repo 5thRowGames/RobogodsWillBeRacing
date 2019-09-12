@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class UITween : MonoBehaviour
 {
+    public ParticleSystem particles;
     public RectTransform rectTransform;
     public RectTransform gear;
 
@@ -41,6 +42,16 @@ public class UITween : MonoBehaviour
     public void StopRotate()
     {
         rotateTween.Kill();
+    }
+
+    public void PlayParticles()
+    {
+        particles.Play();
+    }
+
+    public void StopParticles()
+    {
+        particles.Stop();
     }
 
 }

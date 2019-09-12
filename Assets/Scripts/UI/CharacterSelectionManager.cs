@@ -255,10 +255,10 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
            .Insert(0.6f, anubisBackground.DOAnchorPosY(godPositionY, 1f, true))
            .Insert(0.6f, kaliBackground.DOAnchorPosY(godPositionY, 1f, true))
            .Insert(0.6f, thorBackground.DOAnchorPosY(godPositionY, 1f, true))
-           .Insert(0.6f, poseidonButton.DOAnchorPosY(godPositionY, 1f, true))
-           .Insert(0.6f, kaliButton.DOAnchorPosY(godPositionY, 1f, true))
-           .Insert(0.6f, thorButton.DOAnchorPosY(godPositionY, 1f, true))
-           .Insert(0.6f, anubisButton.DOAnchorPosY(godPositionY, 1f, true)).OnComplete(() =>
+           .Insert(0.6f, poseidonButton.DOAnchorPosY(-godPositionY, 1f, true))
+           .Insert(0.6f, kaliButton.DOAnchorPosY(-godPositionY, 1f, true))
+           .Insert(0.6f, thorButton.DOAnchorPosY(-godPositionY, 1f, true))
+           .Insert(0.6f, anubisButton.DOAnchorPosY(-godPositionY, 1f, true)).OnComplete(() =>
            {
                UIEventManager.Instance.ChangeScreen(MenuType.Menu.MainMenu);
                gameObject.SetActive(false);

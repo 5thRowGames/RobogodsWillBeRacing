@@ -7,9 +7,14 @@ using UnityEngine.EventSystems;
 
 public class CreditsManager : MonoBehaviour
 {
+    public RectTransform title;
+    public RectTransform infoPanel;
     public RectTransform credits;
+    public float topBotInitialX;
     public Vector2 creditsPosition;
     public float movementDuration;
+    public float infoTweenDuration;
+    public float titleTweenDuration;
     
     private bool controlSubmit;
 
@@ -31,6 +36,8 @@ public class CreditsManager : MonoBehaviour
 
     private void ResetCredits()
     {
+        title.anchoredPosition = new Vector2(-topBotInitialX, 0);
+        infoPanel.anchoredPosition = new Vector2(topBotInitialX, 0);
         credits.anchoredPosition = new Vector2(creditsPosition.x, 0);
     }
     
@@ -40,25 +47,29 @@ public class CreditsManager : MonoBehaviour
     {
         EventSystem.current.SetSelectedGameObject(null);
         //UIEventManager.Instance.inControlInputModule.enabled = false;
-        
-        credits.DOMoveX(0, movementDuration, true).OnComplete(() =>
-        {
-            UIEventManager.Instance.inControlInputModule.enabled = true;
-            //TODO
-            //Habrá que hacer algo aquí relacionado con el scroll
-        });
+
+        Sequence seq = DOTween.Sequence();
+        seq.Insert(0f, title.DOAnchorPosX(0f,titleTweenDuration))
+            .Insert(0f, infoPanel.DOAnchorPosX(0f, infoTweenDuration))
+            .Insert(0f,credits.DOAnchorPosX(0, movementDuration, true).OnComplete(() =>
+            {
+                UIEventManager.Instance.inControlInputModule.enabled = true;
+            }));
     }
 
     public void HideCredits()
     {
         UIEventManager.Instance.inControlInputModule.enabled = false;
 
-        credits.DOMoveY(creditsPosition.y, movementDuration, true).OnComplete(() =>
-        {
-            UIEventManager.Instance.inControlInputModule.enabled = false;
-            UIEventManager.Instance.ChangeScreen(MenuType.Menu.MainMenu);
-            gameObject.SetActive(false);
-        });
+        Sequence seq = DOTween.Sequence();
+        seq.Insert(0f, title.DOAnchorPosX(-topBotInitialX,titleTweenDuration))
+            .Insert(0f, infoPanel.DOAnchorPosX(topBotInitialX, infoTweenDuration))
+            .Insert(0.5f,credits.DOAnchorPosY(creditsPosition.y, movementDuration, true).OnComplete(() =>
+            {
+                UIEventManager.Instance.inControlInputModule.enabled = false;
+                UIEventManager.Instance.ChangeScreen(MenuType.Menu.MainMenu);
+                gameObject.SetActive(false);
+            }));
     }
     
     #endregion

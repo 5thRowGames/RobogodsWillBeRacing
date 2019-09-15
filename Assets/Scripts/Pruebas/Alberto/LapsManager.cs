@@ -27,7 +27,7 @@ public class LapsManager : Singleton<LapsManager>
     public List<Checkpoint> checkPoints;
     public List<Portal> portals;
     public List<Transform> portalsExits;
-    public List<GodRaceInfo> godRaceInfoList;
+    public List<GodRaceInfo> godRaceInfoList; //Posiciones en la lista: Anubis = 0, Poseidon = 1, Kali = 2, Thor = 3
     public List<int> racePosition;
 
     //Apoyo para actualizar las posiciones

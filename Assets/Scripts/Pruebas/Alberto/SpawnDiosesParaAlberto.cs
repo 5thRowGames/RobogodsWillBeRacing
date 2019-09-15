@@ -20,6 +20,8 @@ public class SpawnDiosesParaAlberto : MonoBehaviour
     private bool keyboardSelected;
     public bool updateBool;
 
+    private int jugadores = 0;
+    
     private void OnEnable()
     {
         keyboardListener = MyPlayerActions.BindKeyboard();
@@ -29,15 +31,15 @@ public class SpawnDiosesParaAlberto : MonoBehaviour
 
     void Update()
     {
-        /*if (!updateBool)
+        if (!updateBool)
         {
             if (JoinButtonWasPressed(joystickListener))
             {   
                 var inputDevice = InputManager.ActiveDevice;
 
-                if (RaceManager.Instance.players < 4)
+                if (jugadores < 4)
                 {
-                    RaceManager.Instance.players++;
+                    jugadores++;
                     GameObject dios = Instantiate(dioses[playerOrder], spawnPositions[playerOrder].position, spawnPositions[playerOrder].rotation);
                     dios.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
                     dios.GetComponent<IncontrolProvider>().InputDevice = inputDevice;
@@ -58,10 +60,10 @@ public class SpawnDiosesParaAlberto : MonoBehaviour
             if (JoinButtonWasPressed(keyboardListener))
             {
 
-                if (RaceManager.Instance.players < 4 && !keyboardSelected)
+                if (jugadores < 4 && !keyboardSelected)
                 {
                     keyboardSelected = true;
-                    RaceManager.Instance.players++;
+                    jugadores++;
                     GameObject dios = Instantiate(dioses[playerOrder], spawnPositions[playerOrder].position, spawnPositions[playerOrder].rotation);
                     dios.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
                     dios.GetComponent<IncontrolProvider>().InputDevice = null;
@@ -82,7 +84,7 @@ public class SpawnDiosesParaAlberto : MonoBehaviour
                 SplitScreen(playersToPlay);
             }
 
-        }*/
+        }
     }
     
     private void SplitScreen(int players)

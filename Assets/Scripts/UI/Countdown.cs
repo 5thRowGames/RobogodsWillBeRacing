@@ -63,12 +63,7 @@ public class Countdown : MonoBehaviour
                 //Hay que descomentar cuando sea definitivo
                 //LapsManager.Instance.UpdateGodPosition(); 
                 //PositionUIManager.Instance.UpdateRacePosition();
-                
-                //Borrar esto de abajo
-                if (!StoreGodInfo.Instance.anubisIA)
-                    anubis.GetComponent<MyCarController>().enabled = true;
-                //Hasta aqui
-                
+
                 //Esto lo pongo aqui para que el jugador no pueda hacer nada hasta que no empiece la carrera
                 ConnectDisconnectManager.InitCamera();
                 ConnectDisconnectManager.ConnectCarControllerDelegate();

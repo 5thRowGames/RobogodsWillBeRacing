@@ -8,12 +8,12 @@ public class HammerThrow : SkillBase
     public int skidAmount;
     public float recoverTime;
     
-    public Transform initPoint;
+    public Transform spawnPoint;
     public float hammerSpeed;
 
-    private void Start()
+    private void OnEnable()
     {
-        transform.position = initPoint.position;
+        transform.position = spawnPoint.position;
     }
 
     private void Update()
@@ -34,7 +34,7 @@ public class HammerThrow : SkillBase
 
     public override void ResetSkill()
     {
-        transform.position = initPoint.position;
+        transform.position = spawnPoint.position;
     }
 
     private void OnTriggerEnter(Collider other)

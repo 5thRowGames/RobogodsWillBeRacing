@@ -37,6 +37,13 @@ public class CameraController : MonoBehaviour, IControllable
     private void Awake()
     {
         transform.position = new Vector3(transform.position.x, transform.position.y + currentHeight, transform.position.z);
+        
+        if (activeDevice)
+        {
+            GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
+            Core.Input.AssignControllable(GetComponent<IncontrolProvider>(),this);
+            InitCamera();
+        } 
     }
 
     private void OnEnable()
@@ -62,12 +69,6 @@ public class CameraController : MonoBehaviour, IControllable
 
         ConnectDisconnectManager.ConnectCarControllerDelegate += ConnectCamera;
         ConnectDisconnectManager.DisconnectCarControllerDelegate += DisconnectCamera;
-
-        if (activeDevice)
-        {
-            GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
-            Core.Input.AssignControllable(GetComponent<IncontrolProvider>(),this);
-        } 
     }
 
     private void OnDisable()

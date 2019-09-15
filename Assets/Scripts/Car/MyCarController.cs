@@ -6,8 +6,8 @@ using InControl;
 
 public class MyCarController : MonoBehaviour, IControllable
 {
-    public bool activeDevice; //Para prueba solo
-
+    public bool activeDevice;
+    
     #region Members
 
     [Header("*Car Specs*")]
@@ -114,12 +114,13 @@ public class MyCarController : MonoBehaviour, IControllable
         brakeToReverseTimer = brakeToReverseTime;
         deaccelerationTimer = deaccelerationTime;
 
-        //Pruebas solo (borrar)
         if (activeDevice)
         {
+            carUnderControl = true;
             GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
-            Core.Input.AssignControllable(GetComponent<IncontrolProvider>(), this);
-        }
+            Core.Input.AssignControllable(GetComponent<IncontrolProvider>(),this);
+            Core.Input.AssignControllable(GetComponent<IncontrolProvider>(),GetComponent<PlayerSkillManager>());
+        } 
     }
 
     private void OnEnable()

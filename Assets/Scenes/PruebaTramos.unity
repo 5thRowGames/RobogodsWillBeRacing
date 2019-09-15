@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5522098, g: 0.21830863, b: 0.15877283, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -310,6 +310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187f32bbefc710a43b434016dfc4d0b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerID: -1
   controlType: 0
 --- !u!1 &101594074
 GameObject:
@@ -710,11 +711,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 329218676}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb81ea97f7b67194b9201a5e98b0da4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  road: []
   circuitSections:
   - {fileID: 2701389123517767565}
   - {fileID: 2502821653924142558}
@@ -724,15 +726,7 @@ MonoBehaviour:
   portals: []
   portalsExits: []
   godRaceInfoList: []
-  godsPositions: []
-  numberOfLaps: 3
-  lapsText:
-  - {fileID: 1527751835}
-  - {fileID: 242706182}
-  checkPointsText:
-  - {fileID: 1743958989}
-  - {fileID: 461703362}
-  raceOverPanel: {fileID: 405780594}
+  racePosition: 
 --- !u!1 &405780594
 GameObject:
   m_ObjectHideFlags: 0
@@ -1467,6 +1461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187f32bbefc710a43b434016dfc4d0b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerID: -1
   controlType: 0
 --- !u!1 &1113376113
 GameObject:
@@ -1860,6 +1855,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187f32bbefc710a43b434016dfc4d0b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerID: -1
   controlType: 0
 --- !u!1 &1202090858
 GameObject:
@@ -2354,6 +2350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187f32bbefc710a43b434016dfc4d0b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerID: -1
   controlType: 0
 --- !u!4 &1495000424 stripped
 Transform:
@@ -3358,7 +3355,7 @@ PrefabInstance:
     - target: {fileID: 7972921045554683817, guid: 31cb1c9083ff5ef4babbdfa11106eac5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.7
+      value: 105.9
       objectReference: {fileID: 0}
     - target: {fileID: 7972921045554683817, guid: 31cb1c9083ff5ef4babbdfa11106eac5,
         type: 3}

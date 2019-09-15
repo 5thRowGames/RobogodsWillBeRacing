@@ -134,6 +134,7 @@ public class StartRace : MonoBehaviour
                     }
                     else
                     {
+                        Debug.Log("ENTRO AQUI");
                         anubisPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
                         cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
                     }

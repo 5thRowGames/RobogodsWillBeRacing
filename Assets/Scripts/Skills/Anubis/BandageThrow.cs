@@ -5,31 +5,26 @@ using UnityEngine;
 
 public class BandageThrow : SkillBase
 {
-    //TODO NO SE BIEN COMO IMPLEMENTAR VISUALMENTE ESTA HABILIDAD
-    public float size;
-    public float scaleTime;
+
+    public Transform spawnPosition;
+    public GameObject bandage;
     
-    private Tween scaleTween;
-    
-    public override void Effect()
+public override void Effect()
     {
+        ResetSkill();
         gameObject.SetActive(true);
-        ScaleTween();
+        bandage.SetActive(true);
     }
 
     public override void FinishEffect()
     {
-        scaleTween.Kill();
+        bandage.SetActive(false);
         gameObject.SetActive(false);
     }
 
     public override void ResetSkill()
     {
-        transform.localScale = new Vector3(1, 1, 1);
-    }
-    
-    private void ScaleTween()
-    {
-        scaleTween = transform.DOScaleZ(size, scaleTime);
+        bandage.transform.position = spawnPosition.position;
+        bandage.transform.rotation = spawnPosition.rotation;
     }
 }

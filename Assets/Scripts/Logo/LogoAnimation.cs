@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LogoAnimation : MonoBehaviour
 {
     public GameObject baseLogo;
-    public GameObject numberLogo;
     public GameObject topLeftScrew;
     public GameObject topRightScrew;
     public GameObject botLeftScrew;
@@ -23,6 +23,8 @@ public class LogoAnimation : MonoBehaviour
     public float numberAnimationTime;
     public float minDissolve;
     public float maxDissolve;
+
+    private AsyncOperation asyncLoadNextScene;
 
     IEnumerator Start()
     {
@@ -49,7 +51,9 @@ public class LogoAnimation : MonoBehaviour
 
     IEnumerator NumberLogoAnimation()
     {
-
+        asyncLoadNextScene = SceneManager.LoadSceneAsync(1);
+        asyncLoadNextScene.allowSceneActivation = false;
+        
         yield return new WaitForSeconds(0.1f);
         float time = numberAnimationTime;
         float amount = maxDissolve;
@@ -63,6 +67,21 @@ public class LogoAnimation : MonoBehaviour
             yield return null;
 
         }
+
+        yield return new WaitForSeconds(0.25f);
+        asyncLoadNextScene.allowSceneActivation = true;
+    }
+
+    private void DisableLogo()
+    {
+        baseLogo.SetActive(false);
+        topLeftScrew.SetActive(false);
+        topRightScrew.SetActive(false);
+    }
+
+    private void CanRunAnimation()
+    {
+        
     }
 
     private void OnDisable()

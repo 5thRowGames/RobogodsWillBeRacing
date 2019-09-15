@@ -10,7 +10,14 @@ public class BandageBehaviour : MonoBehaviour
     public float speedIncreasedTime;
     public float speedDecreasedTime;
     public BandageThrow bandageThrow;
-    
+
+    public float speed;
+
+    private void Update()
+    {
+        transform.Translate(Time.deltaTime * speed * Vector3.forward);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         switch (other.tag)

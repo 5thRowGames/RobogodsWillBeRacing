@@ -6,9 +6,10 @@ using Random = UnityEngine.Random;
 
 public class ItemManager : MonoBehaviour, IControllable
 {
-    //Hay que establecer un orden por ahora: 0 anubis, 1 poseidon 2 thor 3 kali
     public God.Type god;
-    public int position;
+    
+    [Header("Anubis = 0, Poseidon = 1, Kali = 2, Thor = 3")]
+    public int positionInList; //Anubis = 0, Poseidon = 1, Kali = 2, Thor = 3
     private int currentItemID; //-1 si no hay ningún objeto a usar
 
     public PlayerSkillManager playerSkillManager;
@@ -21,8 +22,6 @@ public class ItemManager : MonoBehaviour, IControllable
     private Dictionary<int, List<int>> itemPercentageDictionary;
     private bool isItemChosen;
 
-    
-    
     private void Awake()
     {
         playerSkillManager = GetComponent<PlayerSkillManager>();
@@ -119,7 +118,7 @@ public class ItemManager : MonoBehaviour, IControllable
         
         for (int i = 0; i < itemNumber; i++)
         {
-            amount += itemPercentageDictionary[position][i];
+            amount += itemPercentageDictionary[positionInList][i];
 
             if (amount >= random)
             {

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5522098, g: 0.21830863, b: 0.15877283, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -367,6 +367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187f32bbefc710a43b434016dfc4d0b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerID: -1
   controlType: 0
 --- !u!1 &101594074
 GameObject:
@@ -805,7 +806,6 @@ GameObject:
   - component: {fileID: 329218677}
   - component: {fileID: 329218678}
   - component: {fileID: 329218679}
-  - component: {fileID: 329218680}
   m_Layer: 0
   m_Name: RaceManager
   m_TagString: Untagged
@@ -878,49 +878,6 @@ MonoBehaviour:
   kaliIA: 0
   thorIA: 0
   players: 0
---- !u!114 &329218680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 329218676}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb81ea97f7b67194b9201a5e98b0da4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gods: []
-  circuitSections: []
-  checkPoints:
-  - {fileID: 1145274248}
-  - {fileID: 82687614}
-  - {fileID: 1776452033}
-  - {fileID: 250058410}
-  - {fileID: 557175413}
-  - {fileID: 1617969275}
-  - {fileID: 1388802562}
-  - {fileID: 273200195}
-  - {fileID: 676659634}
-  - {fileID: 1862859886}
-  - {fileID: 1881958059}
-  - {fileID: 479339815}
-  - {fileID: 1138193182}
-  - {fileID: 872891756}
-  - {fileID: 2050764083}
-  - {fileID: 1282048838}
-  portals: []
-  portalsExits: []
-  godRaceInfoList: []
-  godsPositions: []
-  numberOfLaps: 3
-  lapsText:
-  - {fileID: 1527751835}
-  - {fileID: 242706182}
-  checkPointsText:
-  - {fileID: 1743958989}
-  - {fileID: 461703362}
-  raceOverPanel: {fileID: 405780594}
 --- !u!1 &405780594
 GameObject:
   m_ObjectHideFlags: 0
@@ -1941,6 +1898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187f32bbefc710a43b434016dfc4d0b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerID: -1
   controlType: 0
 --- !u!1 &1138193179
 GameObject:
@@ -2357,6 +2315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187f32bbefc710a43b434016dfc4d0b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerID: -1
   controlType: 0
 --- !u!1 &1202090858
 GameObject:
@@ -2866,6 +2825,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187f32bbefc710a43b434016dfc4d0b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerID: -1
   controlType: 0
 --- !u!1 &1527751833
 GameObject:

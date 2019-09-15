@@ -24,7 +24,7 @@ public class LoadingScreenManager : MonoBehaviour
     IEnumerator LoadingScreen()
     {
         fade.DOFade(0, fadeDuration);
-        asyncLoadNextScene = SceneManager.LoadSceneAsync(1);
+        asyncLoadNextScene = SceneManager.LoadSceneAsync(2);
         asyncLoadNextScene.allowSceneActivation = false;
         
         yield return new WaitForSeconds(loadingScreenDuration);

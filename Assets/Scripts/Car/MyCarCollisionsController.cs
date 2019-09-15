@@ -16,7 +16,6 @@ public class MyCarCollisionsController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         portalLayer = LayerMask.NameToLayer("Portal");
-        Debug.Log($"Portal layer = {portalLayer}");
     }
 
     private void FixedUpdate()
@@ -26,32 +25,25 @@ public class MyCarCollisionsController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("MyCarCollisionsController Collision");
         int otherLayer = collision.gameObject.layer;
 
-        AkSoundEngine.PostEvent("Impactos_In", gameObject);
+        //AkSoundEngine.PostEvent("Impactos_In", gameObject);
 
         if (otherLayer != portalLayer) // Si no choco contra un portal
         {
-            Debug.Log(collision.gameObject.name);
             priorConstraints = rb.constraints; // Guardo las restricciones previas al choque
             rb.constraints = RigidbodyConstraints.FreezeRotation; // Congelo la rotación para evitar que el coche cambie su dirección
-            Debug.Log($"Restricciones al colisionar: {rb.constraints.ToString()}");
             CheckFrontCollision(collision);
         }
-        else Debug.Log($"He entrado en el portal {collision.gameObject.GetComponent<Portal>().index}");
     }
 
     private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.layer != portalLayer)
         {
-            Debug.Log($"Saliendo de una colisión");
             rb.constraints = priorConstraints;
             //rb.constraints = RigidbodyConstraints.None;
-            Debug.Log($"Restricciones tras salir de colisión: {rb.constraints.ToString()}");
         }
-        else Debug.Log($"He salido del portal {collision.gameObject.GetComponent<Portal>().index}");
     }
 
     #endregion
@@ -60,7 +52,6 @@ public class MyCarCollisionsController : MonoBehaviour
     {
         Vector3 normal = collision.contacts[0].normal;
         collisionAngle = (Vector3.Angle(myVelocity, -normal));
-        Debug.Log("Collision Angle:" + collisionAngle);
         //if (myVelocity) ;
     }
 }

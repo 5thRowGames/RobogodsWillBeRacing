@@ -40,6 +40,9 @@ public class HarmManager : Singleton<HarmManager>
     public GameObject thorShield;
     public GameObject kaliShield;
 
+    public Action StartLocustPlagueDelegate;
+    public Action FinishLocustPlagueDelegate;
+
     private void Awake()
     {
         isAnubisWet = false;

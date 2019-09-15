@@ -7,6 +7,7 @@ public class FireBallSkill : SkillBase
 {
     public Transform spawnPosition;
     public List<GameObject> ballPool;
+    public List<GameObject> kaliBalls;
     public float rotationSpeedY;
 
     //Si es la primera que que se activa la habilidad, solo debe activar la rotación de las bolas
@@ -47,9 +48,9 @@ public class FireBallSkill : SkillBase
 
     public override void ResetSkill()
     {
-        foreach (Transform ball in transform)
+        foreach (GameObject kaliBall in kaliBalls)
         {
-            ball.gameObject.SetActive(true);
+            kaliBall.SetActive(true);
         }
 
         firstActivate = true;
@@ -68,11 +69,11 @@ public class FireBallSkill : SkillBase
 
     private bool EnoughBalls()
     {
-        foreach (Transform child in gameObject.transform)
+        foreach (GameObject kaliBall in kaliBalls)
         {
-            if (child.gameObject.activeInHierarchy)
+            if (kaliBall.activeInHierarchy)
             {
-                child.gameObject.SetActive(false);
+                kaliBall.SetActive(false);
                 return true;
             }
         }

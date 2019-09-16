@@ -130,7 +130,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1819665678780228815}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: AccelerationPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 5930299421512260170}
   - component: {fileID: 1568884518616013905}
   - component: {fileID: 9147788445022969729}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Helper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -487,7 +487,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2588308161755889356}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: FR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -748,7 +748,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4861192854317524549}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: BR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -779,7 +779,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4414221229278402506}
   - component: {fileID: 4414221229278402507}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: SecondarySkill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -826,7 +826,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4414221230180666446}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: SpawnPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -857,7 +857,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4414221230556037218}
   - component: {fileID: 4414221230556037219}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: PrimarySkill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -907,7 +907,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4414221230580430357}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Items
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -942,7 +942,7 @@ GameObject:
   - component: {fileID: 4414221230727696423}
   - component: {fileID: 4414221230727696422}
   - component: {fileID: 4414221230727696421}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1056,7 +1056,8 @@ GameObject:
   - component: {fileID: 2032240727887254665}
   - component: {fileID: 4414221230866716631}
   - component: {fileID: 4414221230866716628}
-  m_Layer: 14
+  - component: {fileID: 2044952356}
+  m_Layer: 0
   m_Name: Anubis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1369,6 +1370,25 @@ MonoBehaviour:
   god: 0
   godSkill: {fileID: 4414221230556037219}
   religionSkill: {fileID: 4414221229278402507}
+--- !u!114 &2044952356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4414221230866716625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea95e692e0d678f49975c2c19e189397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerIcon: {fileID: 0}
+  start: {fileID: 0}
+  finish: {fileID: 0}
+  currentAmount: 0
+  distanceBetweenPoints: 0
+  totalLength: 0
+  currentPercentage: 0
 --- !u!1 &4414221231105604186
 GameObject:
   m_ObjectHideFlags: 0
@@ -1378,7 +1398,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4414221231105604187}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Skills
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1584,7 +1604,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7393537334647328585}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: BL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1768,7 +1788,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4963757257390315170}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: HandBrakePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1798,7 +1818,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5852585389379503146}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: FL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1905,7 +1925,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 772467450236138833}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: CenterOfMass
   m_TagString: Untagged
   m_Icon: {fileID: 0}

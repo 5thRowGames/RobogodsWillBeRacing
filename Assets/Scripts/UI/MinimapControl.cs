@@ -6,10 +6,7 @@ using UnityEngine.UI;
 
 public class MinimapControl : MonoBehaviour
 {
-    public List<Transform> checkPoints;
-    public Transform player;
     public RectTransform playerIcon;
-
     public RectTransform start;
     public RectTransform finish;
 
@@ -21,11 +18,11 @@ public class MinimapControl : MonoBehaviour
         get => lastCheckpoint;
         set
         {
-            if (value < checkPoints.Count)
+            if (value < LapsManager.Instance.checkPoints.Count)
                 lastCheckpoint = value;
         }
     }
-
+    
     public float currentAmount;
 
     [SerializeField] private float distanceBetweenPoints;
@@ -53,20 +50,20 @@ public class MinimapControl : MonoBehaviour
 
     private void CalculateDistance()
     {
-        distanceBetweenPoints = (checkPoints[LastCheckpoint].position - player.position).magnitude;
-
+        distanceBetweenPoints = (LapsManager.Instance.checkPoints[LastCheckpoint].transform.position - transform.position).magnitude;
+        
         currentPercentage = (currentAmount + distanceBetweenPoints) / totalLength;
     }
 
     private void CalculateTotalLength()
     {
-        for (int i = 0; i < checkPoints.Count - 1; i++)
+        for (int i = 0; i < LapsManager.Instance.checkPoints.Count - 1; i++)
         {
-            totalLength += (checkPoints[i].position - checkPoints[i + 1].position).magnitude;
+            totalLength += (LapsManager.Instance.checkPoints[i].transform.position - LapsManager.Instance.checkPoints[i + 1].transform.position).magnitude;
         }
         
         //Borrar, como vamos a dividir el mapa no podemoss cerrar el circuito de primeras
-        totalLength += (checkPoints[checkPoints.Count - 1].position - checkPoints[0].position).magnitude;
+        totalLength += (LapsManager.Instance.checkPoints[LapsManager.Instance.checkPoints.Count - 1].transform.position - LapsManager.Instance.checkPoints[0].transform.position).magnitude;
     }
 
     public void UpdateCurrentDistance()
@@ -80,14 +77,14 @@ public class MinimapControl : MonoBehaviour
             
             for (int i = 0; i < lastCheckpoint; i++)
             {
-                amount += (checkPoints[i].position - checkPoints[i + 1].position).magnitude;
+                amount += (LapsManager.Instance.checkPoints[i].transform.position - LapsManager.Instance.checkPoints[i + 1].transform.position).magnitude;
             }
 
             currentAmount = amount;
         }
         else
         {
-            currentAmount += (checkPoints[LastCheckpoint].position - checkPoints[LastCheckpoint - 1].position).magnitude;
+            currentAmount += (LapsManager.Instance.checkPoints[LastCheckpoint].transform.position - LapsManager.Instance.checkPoints[LastCheckpoint - 1].transform.position).magnitude;
         }
     }
 

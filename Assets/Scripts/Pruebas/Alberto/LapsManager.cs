@@ -86,7 +86,7 @@ public class LapsManager : Singleton<LapsManager>
     {
         for (int i = 0; i < checkPoints.Count; i++)
         {
-            checkPoints[i].Index = i;
+            checkPoints[i].index = i;
         }
     }
 

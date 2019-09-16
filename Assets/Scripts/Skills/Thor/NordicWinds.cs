@@ -8,8 +8,7 @@ public class NordicWinds : SkillBase
     public LayerMask groundLayer;
     public string iceTag;
     public string normalTag;
-    public float time;
-    
+
     private int groundID;
     
     //Pruebas, lo suyo es hacerlo con un blend y un parámetro que controle de 0 a 1 como de mezclado esta
@@ -19,7 +18,7 @@ public class NordicWinds : SkillBase
     public override void Effect()
     {
         gameObject.SetActive(true);
-        StartCoroutine(RestoreTimer());
+        Freeze();
 
     }
 
@@ -39,11 +38,13 @@ public class NordicWinds : SkillBase
         RaycastHit hit;
 
         groundID = -1;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity,
-            groundLayer))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity, groundLayer))
         {
+            Debug.Log(hit.transform.gameObject.name);
             groundID = LapsManager.Instance.road.FindIndex(x => x == hit.transform.gameObject);
         }
+        
+        Debug.Log(groundID);
     }
 
     private void FreezeRoads()
@@ -74,11 +75,9 @@ public class NordicWinds : SkillBase
         }
     }
 
-    IEnumerator RestoreTimer()
+    private void Freeze()
     {
         CheckGround();
         FreezeRoads();
-        yield return new WaitForSeconds(time);
-        FinishEffect();
     }
 }

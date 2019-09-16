@@ -13,12 +13,6 @@ public class FireBallBehaviour: MonoBehaviour
     public int scaleFactor;
     public bool move;
 
-    private void OnEnable()
-    {
-        move = true;
-        explosionTransform.localScale = new Vector3(0.1f,0.1f,0.1f);
-    }
-
     void Update()
     {
         if(move)

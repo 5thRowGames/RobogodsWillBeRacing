@@ -8,6 +8,9 @@ using UnityEngine.UI;
 
 public class PlayerSkillManager : MonoBehaviour, IControllable
 {
+    //Pruebas
+    public bool activeDevice;
+    
     public God.Type god;
     public SkillBase godSkill;
     public SkillBase religionSkill;
@@ -35,6 +38,16 @@ public class PlayerSkillManager : MonoBehaviour, IControllable
     {
         activateGodSkill = true;
         activateReligionSkill = true;
+        
+    }
+
+    private void Start()
+    {
+        if (activeDevice)
+        {
+            GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
+            Core.Input.AssignControllable(GetComponent<IncontrolProvider>(),this);
+        } 
     }
 
     private void OnEnable()
@@ -53,29 +66,28 @@ public class PlayerSkillManager : MonoBehaviour, IControllable
 
     public void Control(IDevice device)
     {
-        
         if (device.State.Fire.IsPressed && activateGodSkill) //Menor para eliminar comparaciones igualitarias con floats
         {
-            //activateGodSkill = false;
+            activateGodSkill = false;
             godSkill.Effect();
 
-            //if (!godSkill.instant)
-                //godSkill.isFinished = false;
+            if (!godSkill.instant)
+                godSkill.isFinished = false;
 
-            //StartCoroutine(GodTimeSkillTimer(godSkill.executionDuration, godSkill.instant));
+            StartCoroutine(GodTimeSkillTimer(godSkill.executionDuration, godSkill.instant));
         }
-
         
         if (device.State.Special.IsPressed && activateReligionSkill && Mana >= religionSkill.mana)
         {
-            //activateReligionSkill = false;
-           // Mana -= religionSkill.mana;
+            activateReligionSkill = false;
+            //Mana -= religionSkill.mana;
+            Debug.Log("Entro");
             religionSkill.Effect();
 
-            //if (!religionSkill.instant)
-                //religionSkill.isFinished = false;
+            if (!religionSkill.instant)
+                religionSkill.isFinished = false;
 
-            //StartCoroutine(ReligionTimeSkillTimer(religionSkill.executionDuration, religionSkill.instant));
+            StartCoroutine(ReligionTimeSkillTimer(religionSkill.executionDuration, religionSkill.instant));
 
         }
     }
@@ -110,7 +122,7 @@ public class PlayerSkillManager : MonoBehaviour, IControllable
         else
         {
             godSkillTime = duration;
-            HUDManager.Instance.StartSecondarySkillTime(god,duration);
+            //HUDManager.Instance.StartSecondarySkillTime(god,duration);
             
             while (godSkillTime > 0)
             {
@@ -118,6 +130,7 @@ public class PlayerSkillManager : MonoBehaviour, IControllable
                 yield return null;
             }
             activateGodSkill = true;
+            godSkill.FinishEffect();
         }
     }
 

@@ -43,6 +43,10 @@ public class HarmManager : Singleton<HarmManager>
     public Action StartLocustPlagueDelegate;
     public Action FinishLocustPlagueDelegate;
 
+    private bool isAnubisRecovering;
+    private bool isThorRecovering;
+    private bool isKaliRecovering;
+
     private void Awake()
     {
         isAnubisWet = false;
@@ -119,22 +123,40 @@ public class HarmManager : Singleton<HarmManager>
     IEnumerator RecoverSpeedTimerCoroutine(God.Type god, float recoverSpeedTime, int speedReduced)
     {
         
+        switch (god)
+        {
+            case God.Type.Anubis:
+                isAnubisRecovering = true;
+                break;
+
+            case God.Type.Thor:
+                isThorRecovering = true;
+                break;
+            
+            case God.Type.Kali:
+                isKaliRecovering = true;
+                break;
+        }
+        
         yield return new WaitForSeconds(recoverSpeedTime);
 
         switch (god)
         {
             case God.Type.Anubis:
                 anubisCar.speedForce += speedReduced;
+                isAnubisRecovering = false;
                 isAnubisWet = false;
                 break;
 
             case God.Type.Thor:
                 thorCar.speedForce += speedReduced;
+                isThorRecovering = false;
                 isThorWet = false;
                 break;
             
             case God.Type.Kali:
                 kaliCar.speedForce += speedReduced;
+                isKaliRecovering = false;
                 isKaliWet = false;
                 break;
         }
@@ -153,7 +175,7 @@ public class HarmManager : Singleton<HarmManager>
         {
             case God.Type.Anubis:
                 original = anubisCar.speedForce;
-                //anubisCar.speedForce -= amount;
+                anubisCar.speedForce -= amount;
 
                 if (anubisCar.speedForce < 0)
                     anubisCar.speedForce = 0;
@@ -162,7 +184,7 @@ public class HarmManager : Singleton<HarmManager>
 
             case God.Type.Poseidon:
                 original = poseidonCar.speedForce;
-                //poseidonCar.speedForce -= amount;
+                poseidonCar.speedForce -= amount;
 
                 if (poseidonCar.speedForce < 0)
                     poseidonCar.speedForce = 0;
@@ -170,7 +192,7 @@ public class HarmManager : Singleton<HarmManager>
             
             case God.Type.Kali:
                 original = kaliCar.speedForce;
-                //kaliCar.speedForce -= amount;
+                kaliCar.speedForce -= amount;
 
                 if (kaliCar.speedForce < 0)
                     kaliCar.speedForce = 0;
@@ -182,15 +204,15 @@ public class HarmManager : Singleton<HarmManager>
         switch (god)
         {
             case God.Type.Anubis:
-                //anubisCar.speedForce = original;
+                anubisCar.speedForce = original;
                 break;
 
             case God.Type.Poseidon:
-                //poseidonCar.speedForce = original;
+                poseidonCar.speedForce = original;
                 break;
             
             case God.Type.Kali:
-                //kaliCar.speedForce = original;
+                kaliCar.speedForce = original;
                 break;
         }
     }
@@ -300,9 +322,9 @@ public class HarmManager : Singleton<HarmManager>
 
                 isAnubisStunned = true;
                 Sequence sequenceA = DOTween.Sequence();
-                sequenceA.Append(anubis.transform.DORotate(new Vector3(0, 360, 0), 1f,RotateMode.FastBeyond360).SetRelative())
-                    .Append(anubis.transform.DORotate(new Vector3(0, 360, 0), 1f,RotateMode.FastBeyond360).SetRelative())
-                    .Append(anubis.transform.DORotate(new Vector3(0, 360, 0), 1f,RotateMode.FastBeyond360).SetRelative())
+                sequenceA.Append(anubis.transform.DORotate(new Vector3(0, 360, 0), 1f,RotateMode.FastBeyond360).SetRelative().SetEase(Ease.Linear))
+                    .Append(anubis.transform.DORotate(new Vector3(0, 360, 0), 1f,RotateMode.FastBeyond360).SetRelative().SetEase(Ease.Linear))
+                    .Append(anubis.transform.DORotate(new Vector3(0, 360, 0), 1f,RotateMode.FastBeyond360).SetRelative().SetEase(Ease.Linear))
                     .OnComplete(() =>
                     {
                         anubisCar.ConnectCar();
@@ -398,6 +420,43 @@ public class HarmManager : Singleton<HarmManager>
                 kaliShield.SetActive(true);
                 isKaliShielded = true;
                 break;
+        }
+    }
+
+    public void RestoreSpeedByWater(float time, int speedReduced)
+    {
+        if (!isAnubisRecovering)
+        {
+            StartCoroutine(RecoverSpeedTimerCoroutine(God.Type.Kali, time, speedReduced));
+        }
+
+        if (!isThorRecovering)
+        {
+            StartCoroutine(RecoverSpeedTimerCoroutine(God.Type.Thor, time, speedReduced));
+        }
+
+        if (!isKaliRecovering)
+        {
+            StartCoroutine(RecoverSpeedTimerCoroutine(God.Type.Kali, time, speedReduced));
+        }
+    }
+
+    public void ActivateThunder(God.Type god)
+    {
+        switch (god)
+        {
+            case God.Type.Anubis:
+                anubisCar.transform.Find("Thunder").gameObject.SetActive(true);
+                break;
+            
+            case God.Type.Poseidon:
+                poseidonCar.transform.Find("Thunder").gameObject.SetActive(true);
+                break;
+            
+            case God.Type.Kali:
+                kaliCar.transform.Find("Thunder").gameObject.SetActive(true);
+                break;
+            
         }
     }
 

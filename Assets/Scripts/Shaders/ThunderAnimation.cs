@@ -21,7 +21,6 @@ public class ThunderAnimation : MonoBehaviour
 
     IEnumerator Animation()
     {
-        yield return new WaitForSeconds(0.5f);
         float time = expandCloudTime;
         float step = 1 / expandCloudTime;
         float amount;

@@ -13,7 +13,7 @@ public class DaggerBehaviourAlone : MonoBehaviour
     public DaggerSkillAlone daggerSkillAlone;
 
     private int direction;
-    private int kaliIndex;
+    private int kaliIndex = 2;
     private int targetIndex;
     private int closestCheckpointIndex;
     private Transform godTarget;
@@ -22,7 +22,6 @@ public class DaggerBehaviourAlone : MonoBehaviour
 
     public void Init()
     {
-        kaliIndex = 0;
         ChooseTarget();
         ChooseDirectionAndCheckpoint();
     }
@@ -38,7 +37,6 @@ public class DaggerBehaviourAlone : MonoBehaviour
     {
         float distance = Mathf.Infinity;
         targetIndex = 0;
-        kaliIndex = LapsManager.Instance.godRaceInfoList.FindIndex(x => x.god.CompareTag("Kali"));
 
         for (int i = 0; i < LapsManager.Instance.godRaceInfoList.Count; i++)
         {
@@ -59,6 +57,7 @@ public class DaggerBehaviourAlone : MonoBehaviour
 
     private void ChooseDirectionAndCheckpoint()
     {
+        Debug.Log(targetIndex + "   " + kaliIndex);
         //Si la posición de kali es mejor que la del target es porque va mejor en la carrera (va adelantada)
         if (LapsManager.Instance.racePosition[kaliIndex] < LapsManager.Instance.racePosition[targetIndex])
         {
@@ -78,8 +77,6 @@ public class DaggerBehaviourAlone : MonoBehaviour
             direction = 1;
         }
 
-        Debug.Log(closestCheckpointIndex);
-        
         currentTarget = closestCheckpoint;
     }
 

@@ -33,6 +33,7 @@ public class BandageBehaviour : MonoBehaviour
                 {
                     HarmManager.Instance.ModifySpeedTemporally(God.Type.Anubis,speedAmountIncreased,speedIncreasedTime);
                     HarmManager.Instance.ModifySpeedTemporally(God.Type.Poseidon,speedAmountDecreased,speedDecreasedTime);
+                    bandageThrow.FinishEffect();
                 }
                 
                 break;
@@ -49,6 +50,7 @@ public class BandageBehaviour : MonoBehaviour
                 {
                     HarmManager.Instance.ModifySpeedTemporally(God.Type.Anubis,speedAmountIncreased,speedIncreasedTime);
                     HarmManager.Instance.ModifySpeedTemporally(God.Type.Kali,speedAmountDecreased,speedDecreasedTime);
+                    bandageThrow.FinishEffect();
                 }
                 
                 break;
@@ -65,6 +67,7 @@ public class BandageBehaviour : MonoBehaviour
                 {
                     HarmManager.Instance.ModifySpeedTemporally(God.Type.Anubis,speedAmountIncreased,speedIncreasedTime);
                     HarmManager.Instance.ModifySpeedTemporally(God.Type.Thor,speedAmountDecreased,speedDecreasedTime);
+                    bandageThrow.FinishEffect();
                 }
                 
                 break;

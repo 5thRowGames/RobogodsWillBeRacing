@@ -30,7 +30,7 @@ public class ExplosionBehaviour : MonoBehaviour
                 else if(!HarmManager.Instance.isAnubisStunned)
                     HarmManager.Instance.StunGod(God.Type.Anubis);
 
-                    break;
+                break;
             
             case "Poseidon":
 

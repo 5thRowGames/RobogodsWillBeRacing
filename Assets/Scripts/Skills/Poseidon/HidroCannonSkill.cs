@@ -26,6 +26,7 @@ public class HidroCannonSkill : SkillBase
     {
         scaleTween.Kill();
         isFinished = true;
+        
         gameObject.SetActive(false);
     }
 

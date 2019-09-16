@@ -9,10 +9,17 @@ public class DaggerSkillAlone : SkillBase
 {
     public Transform daggerSpawn;
     public Transform dagger;
-    public DaggerBehaviourAlone daggerBehaviorAlone;
+    
+    private DaggerBehaviourAlone daggerBehaviorAlone;
+
+    private void Awake()
+    {
+        daggerBehaviorAlone = dagger.GetComponent<DaggerBehaviourAlone>();
+    }
 
     public override void Effect()
     {
+        ResetSkill();
         daggerBehaviorAlone.Init();
         gameObject.SetActive(true);
         dagger.gameObject.SetActive(true);
@@ -23,11 +30,11 @@ public class DaggerSkillAlone : SkillBase
     {
         dagger.gameObject.SetActive(false);
         gameObject.SetActive(false);
-        ResetSkill();
     }
 
     public override void ResetSkill()
     {
         dagger.position = daggerSpawn.position;
+        dagger.rotation = daggerSpawn.rotation;
     }
 }

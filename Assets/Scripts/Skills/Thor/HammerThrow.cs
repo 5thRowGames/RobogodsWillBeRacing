@@ -13,7 +13,7 @@ public class HammerThrow : SkillBase
 
     private void OnEnable()
     {
-        transform.position = spawnPoint.position;
+        ResetSkill();
     }
 
     private void Update()
@@ -35,6 +35,7 @@ public class HammerThrow : SkillBase
     public override void ResetSkill()
     {
         transform.position = spawnPoint.position;
+        transform.rotation = spawnPoint.rotation;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -50,6 +51,7 @@ public class HammerThrow : SkillBase
                 else
                 {
                     HarmManager.Instance.DisableSkid(God.Type.Anubis, skidAmount, recoverTime);
+                    HarmManager.Instance.ActivateThunder(God.Type.Anubis);
                 }
                 
                 FinishEffect();
@@ -64,6 +66,7 @@ public class HammerThrow : SkillBase
                 else
                 {
                     HarmManager.Instance.DisableSkid(God.Type.Poseidon, skidAmount, recoverTime);
+                    HarmManager.Instance.ActivateThunder(God.Type.Poseidon);
                 }
                 
                 FinishEffect();
@@ -78,6 +81,7 @@ public class HammerThrow : SkillBase
                 else
                 {
                     HarmManager.Instance.DisableSkid(God.Type.Kali, skidAmount, recoverTime);
+                    HarmManager.Instance.ActivateThunder(God.Type.Kali);
                 }
                 
                 FinishEffect();

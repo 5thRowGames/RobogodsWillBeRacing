@@ -10,11 +10,20 @@ public class HidroCannonBehaviour : MonoBehaviour
     public float recoverSpeedTime;
     public HidroCannonSkill hidroCannonSkill;
 
-    private bool effectCanceled;
+    private bool anubisEffectCanceled;
+    private bool thorEffectCanceled;
+    private bool kaliEffectCanceled;
 
     private void OnEnable()
     {
-        effectCanceled = false;
+        anubisEffectCanceled = false;
+        thorEffectCanceled = false;
+        kaliEffectCanceled = false;
+    }
+
+    private void OnDisable()
+    {
+        HarmManager.Instance.RestoreSpeedByWater(0,speedAmount);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -27,7 +36,7 @@ public class HidroCannonBehaviour : MonoBehaviour
                 if (HarmManager.Instance.isAnubisShielded)
                 {
                     HarmManager.Instance.RemoveShield(God.Type.Anubis);
-                    effectCanceled = true;
+                    anubisEffectCanceled = true;
                     hidroCannonSkill.FinishEffect();
                 }
                 else
@@ -42,7 +51,6 @@ public class HidroCannonBehaviour : MonoBehaviour
                         HarmManager.Instance.isAnubisWet = true;
                     }
                 }
-                    
                 
                 break;
             
@@ -51,7 +59,7 @@ public class HidroCannonBehaviour : MonoBehaviour
                 if (HarmManager.Instance.isKaliShielded)
                 {
                     HarmManager.Instance.RemoveShield(God.Type.Kali);
-                    effectCanceled = true;
+                    kaliEffectCanceled = true;
                     hidroCannonSkill.FinishEffect();
                 }
                 else
@@ -74,7 +82,7 @@ public class HidroCannonBehaviour : MonoBehaviour
                 if (HarmManager.Instance.isThorShielded)
                 {
                     HarmManager.Instance.RemoveShield(God.Type.Thor);
-                    effectCanceled = true;
+                    thorEffectCanceled = true;
                     hidroCannonSkill.FinishEffect();
                 }
                 else
@@ -99,18 +107,24 @@ public class HidroCannonBehaviour : MonoBehaviour
         switch (other.tag)
         {
             case "Anubis":
-                if(!effectCanceled)
+                if (!anubisEffectCanceled)
+                {
                     HarmManager.Instance.RecoverSpeedTimer(God.Type.Anubis,recoverSpeedTime,speedAmount);
+                }
                 break;
             
             case "Kali":
-                if(!effectCanceled)
+                if(!kaliEffectCanceled)
+                {
                     HarmManager.Instance.RecoverSpeedTimer(God.Type.Kali,recoverSpeedTime,speedAmount);
+                }
                 break;
             
             case "Thor":
-                if(!effectCanceled)
+                if(!thorEffectCanceled)
+                {
                     HarmManager.Instance.RecoverSpeedTimer(God.Type.Thor,recoverSpeedTime,speedAmount);
+                }
                 break;
         }
     }

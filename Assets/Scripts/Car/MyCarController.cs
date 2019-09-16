@@ -119,7 +119,6 @@ public class MyCarController : MonoBehaviour, IControllable
             carUnderControl = true;
             GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
             Core.Input.AssignControllable(GetComponent<IncontrolProvider>(),this);
-            Core.Input.AssignControllable(GetComponent<IncontrolProvider>(),GetComponent<PlayerSkillManager>());
         } 
     }
 

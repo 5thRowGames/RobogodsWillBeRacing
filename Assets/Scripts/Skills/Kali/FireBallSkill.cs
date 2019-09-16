@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireBallSkill : SkillBase
+public class FireBallSkill : SkillBase, IControllable
 {
+    public IncontrolProvider inControlProvider;
     public Transform spawnPosition;
     public List<GameObject> ballPool;
     public List<GameObject> kaliBalls;
@@ -12,38 +13,48 @@ public class FireBallSkill : SkillBase
 
     //Si es la primera que que se activa la habilidad, solo debe activar la rotación de las bolas
     private bool firstActivate = true;
-    private bool reactivateSkill;
+    private bool reactivateSkill = true;
+    
 
-    private void Update()
+    public void Control(IDevice controller)
     {
-        transform.Rotate(0,rotationSpeedY,0);
+        transform.Rotate(Time.deltaTime * rotationSpeedY * Vector3.up);
+        
+        if(controller.State.Special.IsPressed)
+            Effect();
     }
 
     public override void Effect()
     {
-        if (firstActivate)
+
+        if (reactivateSkill)
         {
-            gameObject.SetActive(true);
-            firstActivate = false;
-            StartCoroutine(PressAgain(0.5f));
-        }
-        else
-        {
-            if (EnoughBalls())
+            if (firstActivate)
             {
-                GameObject ball = GetBall();
-                ball.SetActive(true);
-                ball.transform.position = spawnPosition.position;
-                ball.transform.rotation = spawnPosition.rotation;
+                gameObject.SetActive(true);
+                firstActivate = false;
+                StartCoroutine(PressAgain(0.5f));
+                ConnectSkillControl();
             }
             else
-                FinishEffect();
+            {
+                if (EnoughBalls())
+                {
+                    GameObject ball = GetBall();
+                    ball.SetActive(true);
+                    ball.transform.position = spawnPosition.position;
+                    ball.transform.rotation = spawnPosition.rotation;
+                }
+                else
+                    FinishEffect();
+            }
         }
     }
 
     public override void FinishEffect()
     {
         gameObject.SetActive(false);
+        DisconnectSkillControl();
     }
 
     public override void ResetSkill()
@@ -52,14 +63,20 @@ public class FireBallSkill : SkillBase
         {
             kaliBall.SetActive(true);
         }
-
-        firstActivate = true;
+        
         isFinished = true;
     }
 
     private void OnEnable()
     {
         ResetSkill();
+        
+    }
+
+    private void OnDisable()
+    {
+        reactivateSkill = true;
+        firstActivate = true;
     }
 
     private GameObject GetBall()
@@ -85,5 +102,15 @@ public class FireBallSkill : SkillBase
         reactivateSkill = false;
         yield return new WaitForSeconds(time);
         reactivateSkill = true;
+    }
+
+    private void ConnectSkillControl()
+    {
+        Core.Input.AssignControllable(inControlProvider,this);
+    }
+
+    private void DisconnectSkillControl()
+    {
+        Core.Input.UnassignControllable(inControlProvider,this);
     }
 }

@@ -35,11 +35,11 @@ public class AwakeRace : MonoBehaviour
     {
         mainCamera.transform.position = path1[0];
         ShowMap();
+        MinimapControl.Instance.Init();
     }
 
     private void ShowMap()
     {
-
         mainCamera.transform.position = path1[0];
         mainCamera.transform.rotation = path1List[0].rotation;
         

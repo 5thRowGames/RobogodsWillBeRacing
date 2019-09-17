@@ -15,6 +15,7 @@ public class StartRace : MonoBehaviour
 
     public List<GameObject> cameras;
 
+    public Canvas globalMinimapCanvas;
     public GameObject anubisCanvas;
     public GameObject poseidonCanvas;
     public GameObject kaliCanvas;
@@ -81,6 +82,9 @@ public class StartRace : MonoBehaviour
                     break;
             }
         }
+
+        if (StoreGodInfo.Instance.players > 2)
+            globalMinimapCanvas.enabled = true;
     }
 
     private void SetCameraAndControl()

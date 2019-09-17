@@ -1,6 +1,4 @@
-﻿using System;
-using InControl;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class OpenPauseMenu : MonoBehaviour
 {

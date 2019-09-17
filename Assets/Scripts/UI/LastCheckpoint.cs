@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LastCheckpoint : MonoBehaviour
+public class LastCheckpoint : Checkpoint
 {
     private void OnTriggerEnter(Collider other)
     {
-        other.GetComponent<MinimapControl>().Reset();
+        MinimapControl.Instance.Reset(other.tag);
     }
 }

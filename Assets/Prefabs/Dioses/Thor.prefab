@@ -195,7 +195,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1861443327679592615}
   m_Material: {fileID: 13400000, guid: 6667dca808adca94eb261550203ba334, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.19
   m_Height: 1.28
   m_Direction: 0
@@ -222,7 +222,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1861443327679592615}
   m_Material: {fileID: 13400000, guid: 6667dca808adca94eb261550203ba334, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.19
   m_Height: 1.28
   m_Direction: 0
@@ -242,7 +242,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 2
 --- !u!114 &1861443327679592608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,14 +256,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeDevice: 1
-  speedForce: 140
+  speedForce: 120
   instantSpeedForce: 10
   alwaysAccelerate: 0
   minAcceleration: 0.2
   boostMultiplier: 2
   carUnderControl: 0
   deaccelerationTime: 2
-  turnSpeed: 50
+  turnSpeed: 30
   speedThreshold: 15
   steeringThreshold: 0.2
   steeringReductionFactor: 0.8
@@ -284,7 +284,8 @@ MonoBehaviour:
   exraHeightToNoGrounded: 1
   airLateralShiftFactor: 0.008
   wheelHeight: 1
-  downForce: 6
+  downForce: 5
+  additiveDownForce: 1
   upForce: 40
   jumpForce: 20
   useSimpleSuspension: 0
@@ -334,8 +335,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e02c871179d1f24fa7fbaf675f45db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myVelocity: {x: 0, y: 0, z: 0}
-  collisionAngle: 0
+  downForce: 50
+  maxAngle: 15
+  maxFrontalAngle: 35
+  maxSpeed: 30
+  reductionSpeedFactor: 0.4
 --- !u!114 &5801939578819351298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,13 +352,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da747e8ef7c3c584fbf64d88c25844d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRotationX: 30
-  minRotationX: -30
-  maxRotationZ: 30
-  minRotationZ: -30
+  maxRotationX: 40
+  minRotationX: -40
+  maxRotationZ: 40
+  minRotationZ: -40
   groundLayer:
     serializedVersion: 2
     m_Bits: 1024
+  maxHeightAllowed: 3
+  timeToMaxHeight: 1
   myCarController: {fileID: 1861443327679592608}
   rb: {fileID: 1861443327679592611}
 --- !u!114 &1861443327679592614
@@ -532,7 +538,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7407539500139552719}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 0.25, y: 0.2, z: 0.33333334}
   m_Children: []
   m_Father: {fileID: 1861443327679592623}

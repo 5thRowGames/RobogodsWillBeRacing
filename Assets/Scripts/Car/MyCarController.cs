@@ -45,6 +45,7 @@ public class MyCarController : MonoBehaviour, IControllable
     [SerializeField] [Tooltip("Factor por el que multiplicar el giro y la velocidad cuando el coche está en el aire")] private float airLateralShiftFactor = 0.01f;
     [SerializeField] [Tooltip("Longitud de los rayos desde las esquinas del coche al suelo")] private float wheelHeight = 1f;
     [SerializeField] [Tooltip("Fuerza hacia el suelo a aplicar al vehículo cuando está en el aire")] private float downForce = 6f;
+    [Tooltip("Fuerza hacia abajo añadida cuando se supera la altura máxima")] public float additiveDownForce = 1f;
     [SerializeField] [Tooltip("Fuerza vertical que se aplica desde las esquinas del coche hacia arriba. Sirve para mantenerlo flotando en el aire")] private float upForce = 20f;
     [SerializeField] [Tooltip("Fuerza de salto vertical")] private float jumpForce = 20f;
     [SerializeField] [Tooltip("Tipo de suspension: Verdadero = usar una fuerza desde el centro del coche; Falso = usar una fuerza desde cada esquina del coche")] private bool useSimpleSuspension = false;
@@ -77,6 +78,20 @@ public class MyCarController : MonoBehaviour, IControllable
     [SerializeField] [Tooltip("Magnitud de la velocidad del coche")] public float velocityMagnitude;
     [SerializeField] [Tooltip("Vector de velocidad local del coche")] public Vector3 velocity;
     [SerializeField] public bool IsGrounded { get; private set; }
+    public float DistanceToGround
+    {
+        get
+        {
+            RaycastHit hitInfo;
+            if (Physics.Raycast(transform.position, -transform.up, out hitInfo))
+            {
+                //Debug.Log($"Distancia al suelo = {hitInfo.distance}");
+                return hitInfo.distance;
+            }
+            else
+                return -1f;
+        }
+    }
     public bool IsBeingTeleported = false;
 
     [Header("Helper")]
@@ -222,7 +237,7 @@ public class MyCarController : MonoBehaviour, IControllable
         else
             accelerationInput *= boostMultiplier;
 
-        if (rb.velocity.magnitude < speedThreshold) accelerationInput *= instantSpeedForce;
+        //if (rb.velocity.magnitude < speedThreshold) accelerationInput *= instantSpeedForce;
 
         //ShaderPruebas.blurAmount = rb.velocity.magnitude / 100; //Borrar, solo era para pruebas
 
@@ -244,11 +259,12 @@ public class MyCarController : MonoBehaviour, IControllable
         }
         else // El coche está en el aire
         {
+            Debug.Log("Car not grounded");
             rb.drag = airDrag;
             rb.angularDrag = airAngularDrag;
 
             if (helper != null)
-                rb.AddForce(-helper.transform.up * downForce, ForceMode.Impulse);
+                rb.AddForce(-helper.transform.up * (downForce + additiveDownForce), ForceMode.Impulse);
             if (jumpInput)
                 Accelerate();
         }

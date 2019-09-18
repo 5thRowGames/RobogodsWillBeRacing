@@ -11,11 +11,15 @@ public class StabilityController : MonoBehaviour
     [SerializeField] [Tooltip("Grados mínimos de rotación en Z")] private float minRotationZ = -40f;
     [SerializeField] [Tooltip("Tiempo para poner a 0 las rotaciones en X y Z cuando se llega a sus máximos")] private readonly float timeToIdentityRotation = 1f;
     [Tooltip("Layer para ignorar todo lo que no sea el suelo")] public LayerMask groundLayer;
+    [Tooltip("Máxima altura permittida para el coche")]public float maxHeightAllowed = 3f;
+    [Tooltip("Tiempo para bajar hasta la altura máxima permitida para el coche")] public float timeToMaxHeight;
+    private float timeToMaxHeightTimer;
     #endregion
 
     #region Properties
     [SerializeField] public bool IsUpsideDown { get; private set; } // Indica si el vehículo está boca abajo
     [SerializeField] public bool IsRotatingToIdentity { get; private set; }
+
 
     #endregion
 
@@ -32,6 +36,7 @@ public class StabilityController : MonoBehaviour
         if(!myCarController.IsBeingTeleported)
             ClampRotation();
         CheckUpsideDown();
+        ClampHeight();
     }
 
     #endregion
@@ -83,7 +88,7 @@ public class StabilityController : MonoBehaviour
         Quaternion fromRotation = new Quaternion(rb.rotation.x, rb.rotation.y, rb.rotation.z, rb.rotation.w);
         Quaternion toRotation = new Quaternion();
 
-        while (timeCount <= timeToIdentityRotation)
+        while (timeCount <= 0.3f)
         {
             toRotation = Quaternion.Euler(0f, rb.rotation.eulerAngles.y, 0f);
             rb.MoveRotation(Quaternion.Slerp(fromRotation, toRotation, timeCount));
@@ -93,4 +98,29 @@ public class StabilityController : MonoBehaviour
         IsRotatingToIdentity = false;
         Debug.Log("Finished rotating to identity");
     }
+
+    private void ClampHeight()
+    {
+        var distance = myCarController.DistanceToGround;
+        if (distance > maxHeightAllowed)
+        {
+            myCarController.additiveDownForce = distance / maxHeightAllowed;
+        }
+        else
+            myCarController.additiveDownForce = 1f;
+    }
+
+    private IEnumerator HeightToMaxAllowed()
+    {
+        float timeCount = 0;
+        float yVelocity = rb.velocity.y;
+        while (timeCount < timeToMaxHeight)
+        {
+            var y = Mathf.Lerp(yVelocity, 0f, timeCount);
+            rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
+            timeCount += Time.deltaTime;
+            yield return null;
+        }
+    }
+
 }

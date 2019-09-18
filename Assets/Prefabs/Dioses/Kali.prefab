@@ -256,14 +256,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeDevice: 1
-  speedForce: 140
+  speedForce: 120
   instantSpeedForce: 10
   alwaysAccelerate: 0
   minAcceleration: 0.2
   boostMultiplier: 2
   carUnderControl: 0
   deaccelerationTime: 2
-  turnSpeed: 50
+  turnSpeed: 30
   speedThreshold: 15
   steeringThreshold: 0.2
   steeringReductionFactor: 0.8
@@ -285,6 +285,7 @@ MonoBehaviour:
   airLateralShiftFactor: 0.008
   wheelHeight: 1
   downForce: 6
+  additiveDownForce: 1
   upForce: 40
   jumpForce: 20
   useSimpleSuspension: 0
@@ -319,7 +320,7 @@ MonoBehaviour:
   velocityMagnitude: 0
   velocity: {x: 0, y: 0, z: 0}
   IsBeingTeleported: 0
-  helper: {fileID: 0}
+  helper: {fileID: 8696988089105519588}
   pruebaSonido: 0
   startingPositions: []
 --- !u!114 &3463158760392872671
@@ -334,8 +335,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e02c871179d1f24fa7fbaf675f45db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myVelocity: {x: 0, y: 0, z: 0}
-  collisionAngle: 0
+  downForce: 50
+  maxAngle: 15
+  maxFrontalAngle: 35
+  maxSpeed: 30
+  reductionSpeedFactor: 0.4
 --- !u!114 &8584054329157395999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,13 +352,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da747e8ef7c3c584fbf64d88c25844d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRotationX: 30
-  minRotationX: -30
-  maxRotationZ: 30
-  minRotationZ: -30
+  maxRotationX: 40
+  minRotationX: -40
+  maxRotationZ: 40
+  minRotationZ: -4
   groundLayer:
     serializedVersion: 2
     m_Bits: 1024
+  maxHeightAllowed: 3
+  timeToMaxHeight: 1
   myCarController: {fileID: 551719142430012554}
   rb: {fileID: 551719142430012553}
 --- !u!114 &551719142430012556

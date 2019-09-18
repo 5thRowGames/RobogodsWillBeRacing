@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3898015896612793491
 Transform:
   m_ObjectHideFlags: 0
@@ -48,7 +48,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3898015896612793490}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -201,7 +201,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 5260619960850091002}
   m_Material: {fileID: 13400000, guid: 6667dca808adca94eb261550203ba334, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.19
   m_Height: 1.28
   m_Direction: 0
@@ -228,7 +228,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 5260619960850091002}
   m_Material: {fileID: 13400000, guid: 6667dca808adca94eb261550203ba334, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.19
   m_Height: 1.28
   m_Direction: 0
@@ -262,14 +262,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeDevice: 1
-  speedForce: 140
+  speedForce: 120
   instantSpeedForce: 10
   alwaysAccelerate: 0
   minAcceleration: 0.2
   boostMultiplier: 2
   carUnderControl: 0
   deaccelerationTime: 2
-  turnSpeed: 50
+  turnSpeed: 30
   speedThreshold: 15
   steeringThreshold: 0.2
   steeringReductionFactor: 0.8
@@ -290,7 +290,8 @@ MonoBehaviour:
   exraHeightToNoGrounded: 1
   airLateralShiftFactor: 0.008
   wheelHeight: 1
-  downForce: 6
+  downForce: 5
+  additiveDownForce: 1
   upForce: 40
   jumpForce: 20
   useSimpleSuspension: 0
@@ -325,7 +326,7 @@ MonoBehaviour:
   velocityMagnitude: 0
   velocity: {x: 0, y: 0, z: 0}
   IsBeingTeleported: 0
-  helper: {fileID: 0}
+  helper: {fileID: 3898015896612793491}
   pruebaSonido: 0
   startingPositions: []
 --- !u!114 &678410904188480926
@@ -340,8 +341,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e02c871179d1f24fa7fbaf675f45db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myVelocity: {x: 0, y: 0, z: 0}
-  collisionAngle: 0
+  downForce: 50
+  maxAngle: 15
+  maxFrontalAngle: 35
+  maxSpeed: 30
+  reductionSpeedFactor: 0.4
 --- !u!114 &8473246653801415278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,13 +358,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da747e8ef7c3c584fbf64d88c25844d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRotationX: 30
-  minRotationX: -30
-  maxRotationZ: 30
-  minRotationZ: -30
+  maxRotationX: 40
+  minRotationX: -40
+  maxRotationZ: 40
+  minRotationZ: -40
   groundLayer:
     serializedVersion: 2
     m_Bits: 1024
+  maxHeightAllowed: 3
+  timeToMaxHeight: 1
   myCarController: {fileID: 5260619960850091005}
   rb: {fileID: 5260619960850091006}
 --- !u!114 &5260619960850091003

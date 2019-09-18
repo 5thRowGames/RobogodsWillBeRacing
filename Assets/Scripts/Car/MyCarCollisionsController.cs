@@ -7,8 +7,13 @@ public class MyCarCollisionsController : MonoBehaviour
     private Rigidbody rb; // Rigidbody de este coche
     private int portalLayer; // Layer de los portales
     private RigidbodyConstraints priorConstraints; // Restricciones del rigidbody antes de chocar con otro coche
-    [SerializeField] private Vector3 myVelocity;
-    [SerializeField] private float collisionAngle;
+    private Vector3 myVelocity;
+    private float collisionAngle;
+    [SerializeField][Tooltip("Fuerza que se ejerce sobre el coche en los choques frontales")] private float downForce = 50f;
+    [SerializeField][Tooltip("Ángulo máximo de choque para reducir velocidad")] private float maxAngle = 8f;
+    [SerializeField][Tooltip("Ángulo máximo para considerar choque frontal")] private float maxFrontalAngle = 30f;
+    [SerializeField][Tooltip("Velocidad máxima")] private float maxSpeed = 30f;
+    [SerializeField][Tooltip("Factor de reducción de velocidad en choque frontal")][Range(0.01f, 1f)] private float reductionSpeedFactor = 0.4f;
 
     #region UnityEvents
 
@@ -16,7 +21,7 @@ public class MyCarCollisionsController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         portalLayer = LayerMask.NameToLayer("Portal");
-        Debug.Log($"Portal layer = {portalLayer}");
+        //Debug.Log($"Portal layer = {portalLayer}");
     }
 
     private void FixedUpdate()
@@ -26,17 +31,17 @@ public class MyCarCollisionsController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("MyCarCollisionsController Collision");
+        //Debug.Log("MyCarCollisionsController Collision");
         int otherLayer = collision.gameObject.layer;
 
         AkSoundEngine.PostEvent("Impactos_In", gameObject);
 
         if (otherLayer != portalLayer) // Si no choco contra un portal
         {
-            Debug.Log(collision.gameObject.name);
+            //Debug.Log(collision.gameObject.name);
             priorConstraints = rb.constraints; // Guardo las restricciones previas al choque
             rb.constraints = RigidbodyConstraints.FreezeRotation; // Congelo la rotación para evitar que el coche cambie su dirección
-            Debug.Log($"Restricciones al colisionar: {rb.constraints.ToString()}");
+            //Debug.Log($"Restricciones al colisionar: {rb.constraints.ToString()}");
             CheckFrontCollision(collision);
         }
         else Debug.Log($"He entrado en el portal {collision.gameObject.GetComponent<Portal>().index}");
@@ -46,10 +51,10 @@ public class MyCarCollisionsController : MonoBehaviour
     {
         if (collision.gameObject.layer != portalLayer)
         {
-            Debug.Log($"Saliendo de una colisión");
+            //Debug.Log($"Saliendo de una colisión");
             rb.constraints = priorConstraints;
             //rb.constraints = RigidbodyConstraints.None;
-            Debug.Log($"Restricciones tras salir de colisión: {rb.constraints.ToString()}");
+            //Debug.Log($"Restricciones tras salir de colisión: {rb.constraints.ToString()}");
         }
         else Debug.Log($"He salido del portal {collision.gameObject.GetComponent<Portal>().index}");
     }
@@ -61,6 +66,18 @@ public class MyCarCollisionsController : MonoBehaviour
         Vector3 normal = collision.contacts[0].normal;
         collisionAngle = (Vector3.Angle(myVelocity, -normal));
         Debug.Log("Collision Angle:" + collisionAngle);
-        //if (myVelocity) ;
+        if (collisionAngle > -maxFrontalAngle && collisionAngle < maxFrontalAngle) // Choque frontal
+        {
+            if(collisionAngle > -maxAngle && collisionAngle < maxAngle && rb.velocity.magnitude > maxSpeed)
+            {
+                Debug.Log("¡Reducción de velocidad!");
+                rb.angularVelocity *= reductionSpeedFactor * (1.0f - (collisionAngle / maxAngle));
+                rb.velocity *= reductionSpeedFactor;
+            }
+            
+            Debug.Log("¡Fuerza hacia abajo!");
+            rb.AddForce(-rb.transform.up * downForce, ForceMode.Force);
+        }
+        
     }
 }

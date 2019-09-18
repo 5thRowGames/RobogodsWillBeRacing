@@ -11,7 +11,7 @@ public class Checkpoint : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     { 
         MinimapControl.Instance.UpdateMinimapControl(other.tag, index);
-        LapsManager.Instance.UpdateCheckPoint(other.gameObject, index);
+        LapsManager.Instance.UpdateCheckPoint(other.tag, index);
     }
     
     

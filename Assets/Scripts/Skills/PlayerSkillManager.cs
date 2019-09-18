@@ -80,8 +80,7 @@ public class PlayerSkillManager : MonoBehaviour, IControllable
         if (device.State.Special.IsPressed && activateReligionSkill && Mana >= religionSkill.mana)
         {
             activateReligionSkill = false;
-            //Mana -= religionSkill.mana;
-            Debug.Log("Entro");
+            Mana -= religionSkill.mana;
             religionSkill.Effect();
 
             if (!religionSkill.instant)
@@ -161,6 +160,8 @@ public class PlayerSkillManager : MonoBehaviour, IControllable
                 activateReligionSkill = true;
             }
         }
+        
+        HUDManager.Instance.StartSecondarySkillTimer(god,religionSkill.coldown);
     }
 
     public void ConnectSkill()

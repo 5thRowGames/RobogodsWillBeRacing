@@ -6,12 +6,12 @@ public class LocustPlague : SkillBase
 {
     public override void Effect()
     {
-        HarmManager.Instance.StartLocustPlagueDelegate();
+        //HarmManager.Instance.StartLocustPlagueDelegate();
     }
 
     public override void FinishEffect()
     {
-        HarmManager.Instance.FinishLocustPlagueDelegate();
+       //HarmManager.Instance.FinishLocustPlagueDelegate();
     }
 
     public override void ResetSkill()

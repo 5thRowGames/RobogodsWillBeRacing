@@ -127,8 +127,6 @@ public class ItemManager : MonoBehaviour, IControllable
             }
                 
         }
-        
-        Debug.Log(itemNumber+"   "+random+"   "+amount+"   "+itemChosen+"   "+(Item.Type)itemChosen);
 
         yield return HUDManager.Instance.ChooseItemUI(god,itemChosen);
         currentItemID = itemChosen;

@@ -10,6 +10,16 @@ public class MyCarController : MonoBehaviour, IControllable
     
     #region Members
 
+    public float turboRechargeMultiplier;
+    public float turboConsumeMultiplier;
+    private float turbo;
+
+    public float Turbo
+    {
+        get => turbo;
+        set => turbo = Mathf.Clamp(value, 0, 1);
+    }
+
     [Header("*Car Specs*")]
      [Tooltip("Fuerza aplicada al acelerar")] public float speedForce = 50f;
     [SerializeField] [Tooltip("Impulso al acelerar con velocidad inferior a speedThreshold")] private float instantSpeedForce = 3f;
@@ -101,6 +111,7 @@ public class MyCarController : MonoBehaviour, IControllable
     private void Awake()
     {
         Name = gameObject.name;
+        turbo = 0;
     }
 
     private void Start()
@@ -217,16 +228,24 @@ public class MyCarController : MonoBehaviour, IControllable
 
         if (alwaysAccelerate && accelerationInput < minAcceleration) accelerationInput = minAcceleration;
 
-        if (!boostInput)
-            isBoosting = false;
-        else
+        if (boostInput && turbo > 1)
+        {
+            turbo -= turboRechargeMultiplier * Time.deltaTime;
             accelerationInput *= boostMultiplier;
+            isBoosting = true;
+        }
+        else
+        {
+            turbo += turboRechargeMultiplier * Time.deltaTime;
+            isBoosting = false;
+        }
 
         if (rb.velocity.magnitude < speedThreshold) accelerationInput *= instantSpeedForce;
 
         //ShaderPruebas.blurAmount = rb.velocity.magnitude / 100; //Borrar, solo era para pruebas
 
-        speedUnderThreshold = rb.velocity.magnitude < speedThreshold ? true : false;
+        speedUnderThreshold = rb.velocity.magnitude < speedThreshold;
+
     }
 
     public void Move()
@@ -338,13 +357,13 @@ public class MyCarController : MonoBehaviour, IControllable
             if (handBrakeTimer >= handBrakeTurboTime) // Turbo
             {
                 Debug.Log("Turbo!");
-                Turbo();
+                StartTurbo();
             }
             handBrakeTimer = 0f; // Reset del timer
         }
     }
 
-    private void Turbo()
+    private void StartTurbo()
     {
         StartCoroutine(TurboCoroutine(handBrakeBoostWait));
     }

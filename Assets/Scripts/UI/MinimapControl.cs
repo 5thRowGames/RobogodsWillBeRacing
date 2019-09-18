@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class MinimapControl : Singleton<MinimapControl>
 {
     public GameObject globalMinimap;
+    public List<GameObject> karts;
+    
     public List<GameObject> individualMinimaps;
 
     public List<float> currentPercentageList;
@@ -46,7 +48,7 @@ public class MinimapControl : Singleton<MinimapControl>
 
     private void CalculateDistance(int id)
     {
-        distanceBetweenPoints = (LapsManager.Instance.checkPoints[lastCheckpointList[id]].transform.position - individualMinimaps[id].transform.position).magnitude;
+        distanceBetweenPoints = (LapsManager.Instance.checkPoints[lastCheckpointList[id]].transform.position - karts[id].transform.position).magnitude;
         
         currentPercentageList[id] = (currentAmountList[id] + distanceBetweenPoints) / totalLength;
     }
@@ -135,32 +137,11 @@ public class MinimapControl : Singleton<MinimapControl>
         }
     }
 
-    public void Reset(string tag)
+    public void Reset(int id_)
     {
-        int id = 0;
-        
-        switch (tag)
-        {
-            case "Anubis":
-                id = 0;
-                break;
-            
-            case "Poseidon":
-                id = 1;
-                break;
-            
-            case "Kali":
-                id = 2;
-                break;
-            
-            case "Thor":
-                id = 3;
-                break;
-        }
-        
-        checkLastChekpoint[id] = 0;
-        currentAmountList[id] = 0;
-        checkLastChekpoint[id] = 0;
+        checkLastChekpoint[id_] = 0;
+        currentAmountList[id_] = 0;
+        checkLastChekpoint[id_] = 0;
 
     }
 

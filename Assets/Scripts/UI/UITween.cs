@@ -36,7 +36,8 @@ public class UITween : MonoBehaviour
 
     public void Rotate()
     {
-        rotateTween = gear.DOLocalRotate(new Vector3(0, 0, -360), rotateDuration, RotateMode.FastBeyond360).SetEase(Ease.Linear).SetLoops(-1);
+        rotateTween = gear.DOLocalRotate(new Vector3(0, 0, -360), rotateDuration, RotateMode.FastBeyond360).SetEase(Ease.Linear).SetUpdate(true).SetLoops(-1);
+        rotateTween.Play();
     }
 
     public void StopRotate()

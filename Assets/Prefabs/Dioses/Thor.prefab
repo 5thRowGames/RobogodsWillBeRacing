@@ -626,6 +626,7 @@ GameObject:
   - component: {fileID: 903767436933202061}
   - component: {fileID: 3313344535617684435}
   - component: {fileID: 3313344535617684432}
+  - component: {fileID: 1205042336095377471}
   m_Layer: 0
   m_Name: Thor
   m_TagString: Untagged
@@ -775,6 +776,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeDevice: 0
+  turboRechargeMultiplier: 0
+  turboConsumeMultiplier: 0
   speedForce: 140
   instantSpeedForce: 10
   alwaysAccelerate: 0
@@ -938,6 +941,20 @@ MonoBehaviour:
   god: 3
   godSkill: {fileID: 0}
   religionSkill: {fileID: 550391772}
+--- !u!114 &1205042336095377471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3313344535617684437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc073359105dd9c4592879f79d7d0cf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myCarController: {fileID: 8884517709100184768}
+  turbo: {fileID: 0}
 --- !u!1 &3313344535642428537
 GameObject:
   m_ObjectHideFlags: 0
@@ -947,7 +964,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3313344535642428518}
-  - component: {fileID: 3313344535642428519}
+  - component: {fileID: 1205042336095377474}
   m_Layer: 0
   m_Name: PrimarySkill
   m_TagString: Untagged
@@ -970,7 +987,7 @@ Transform:
   m_Father: {fileID: 3313344535320096351}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3313344535642428519
+--- !u!114 &1205042336095377474
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -979,16 +996,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 3313344535642428537}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f94ea302b31dd02499d3831a366b87d1, type: 3}
+  m_Script: {fileID: 11500000, guid: befd9f1297a657d4eafd2909a575392c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   executionDuration: 0
   coldown: 0
   mana: 0
   isFinished: 0
-  instant: 0
-  spawnPosition: {fileID: 3313344536001714250}
-  bandage: {fileID: 0}
+  instant: 1
+  skidAmount: 30
+  recoverTime: 5
+  spawnPoint: {fileID: 3313344536001714250}
+  hammerSpeed: 15
 --- !u!1 &3313344535862370832
 GameObject:
   m_ObjectHideFlags: 0

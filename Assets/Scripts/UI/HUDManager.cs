@@ -98,7 +98,7 @@ public class HUDManager : Singleton<HUDManager>
 
     public void UpdateManaBar(God.Type god, int amount)
     {
-        hudDictionary[god].manaBar.fillAmount += Mathf.Clamp(hudDictionary[god].manaBar.fillAmount + (amount/100f), 0, 1);
+        hudDictionary[god].manaBar.fillAmount = Mathf.Clamp((hudDictionary[god].manaBar.fillAmount + (amount/100f)), 0, 1);
 
         if (hudDictionary[god].manaBar.fillAmount == 1)
         {
@@ -110,7 +110,7 @@ public class HUDManager : Singleton<HUDManager>
         }
     }
 
-    public void StartSecondarySkillTimer(God.Type god,float time)
+    public void StartGodSkillTimer(God.Type god,float time)
     {
         StartCoroutine(Timer(god, time));
     }
@@ -130,7 +130,7 @@ public class HUDManager : Singleton<HUDManager>
         while (hudDictionary[god].Time > 0)
         {
             hudDictionary[god].Time -= Time.deltaTime;
-            text.text = hudDictionary[god].Time.ToString();
+            text.text = String.Format("{0:00}",hudDictionary[god].Time);
             yield return null;
         }
 

@@ -26,8 +26,8 @@ public class PlayerSkillManager : MonoBehaviour, IControllable
         set => godSkillTime = value;
     }
 
-    private float mana;
-    public float Mana
+    private int mana;
+    public int Mana
     {
         get => mana;
         set => mana = Mathf.Clamp(value, 0, 100);
@@ -71,16 +71,24 @@ public class PlayerSkillManager : MonoBehaviour, IControllable
             activateGodSkill = false;
             godSkill.Effect();
 
-            if (!godSkill.instant)
+            if (godSkill.instant)
+            {
+                StartCoroutine(GodSkillTimer());
+            }
+            else
+            {
                 godSkill.isFinished = false;
-
-            StartCoroutine(GodTimeSkillTimer(godSkill.executionDuration, godSkill.instant));
+                StartCoroutine(GodTimeSkillExecution()); 
+            }
         }
-        
+
         if (device.State.Special.IsPressed && activateReligionSkill && Mana >= religionSkill.mana)
         {
             activateReligionSkill = false;
             Mana -= religionSkill.mana;
+            
+            HUDManager.Instance.UpdateManaBar(god, -religionSkill.mana);
+            
             religionSkill.Effect();
 
             if (!religionSkill.instant)
@@ -91,46 +99,43 @@ public class PlayerSkillManager : MonoBehaviour, IControllable
         }
     }
 
-    private IEnumerator GodTimeSkillTimer(float duration, bool instantSkill)
+    private IEnumerator GodTimeSkillExecution()
     {
-
-        if (!instantSkill)
+        float timer = godSkill.executionDuration;
+        
+        while (timer > 0)
         {
-            float timer = duration;
+            timer -= Time.deltaTime;
+            yield return null;
 
-            while (timer > 0)
+            if (godSkill.isFinished)
             {
-                timer -= Time.deltaTime;
-                yield return null;
-
-                if (godSkill.isFinished)
-                {
-                    timer = 0;
-                    StartCoroutine(GodTimeSkillTimer(godSkill.coldown, true));
-                    godSkill.FinishEffect();
-                }
-            }
-
-            //En caso de que pase el tiempo antes de que la habilidad termine
-            if (!godSkill.isFinished)
-            {
-                StartCoroutine(GodTimeSkillTimer(godSkill.coldown, true));
+                timer = 0;
+                StartCoroutine(GodTimeSkillExecution());
                 godSkill.FinishEffect();
             }
         }
-        else
+        
+        if (!godSkill.isFinished)
         {
-            godSkillTime = duration;
-            //HUDManager.Instance.StartSecondarySkillTime(god,duration);
-            
-            while (godSkillTime > 0)
-            {
-                godSkillTime -= Time.deltaTime;
-                yield return null;
-            }
-            activateGodSkill = true;
             godSkill.FinishEffect();
+            StartCoroutine(GodSkillTimer());
         }
+
+    }
+
+    private IEnumerator GodSkillTimer()
+    {
+        float timer = godSkill.coldown;
+        
+        HUDManager.Instance.StartGodSkillTimer(god,timer);
+
+        while (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+        activateGodSkill = true;
     }
 
     //Si la religion va por mana hay que quitarle el coldown a esto
@@ -160,8 +165,6 @@ public class PlayerSkillManager : MonoBehaviour, IControllable
                 activateReligionSkill = true;
             }
         }
-        
-        HUDManager.Instance.StartSecondarySkillTimer(god,religionSkill.coldown);
     }
 
     public void ConnectSkill()

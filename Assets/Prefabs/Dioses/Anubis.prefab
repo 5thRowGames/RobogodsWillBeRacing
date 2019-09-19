@@ -780,7 +780,7 @@ GameObject:
   - component: {fileID: 4414221229278402506}
   - component: {fileID: 4414221229278402507}
   m_Layer: 0
-  m_Name: SecondarySkill
+  m_Name: ReligionSkill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -812,7 +812,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74457aacd13c40a458193c1a704dd14b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  executionDuration: 0
+  executionDuration: 5
   coldown: 0
   mana: 0
   isFinished: 0
@@ -858,7 +858,7 @@ GameObject:
   - component: {fileID: 4414221230556037218}
   - component: {fileID: 4414221230556037219}
   m_Layer: 0
-  m_Name: PrimarySkill
+  m_Name: GodSkill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -892,7 +892,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   executionDuration: 5
-  coldown: 0
+  coldown: 10
   mana: 0
   isFinished: 0
   instant: 1
@@ -1056,7 +1056,7 @@ GameObject:
   - component: {fileID: 2032240727887254665}
   - component: {fileID: 4414221230866716631}
   - component: {fileID: 4414221230866716628}
-  - component: {fileID: 2044952356}
+  - component: {fileID: 2044952357}
   m_Layer: 0
   m_Name: Anubis
   m_TagString: Untagged
@@ -1207,6 +1207,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeDevice: 0
+  turboRechargeMultiplier: 0
+  turboConsumeMultiplier: 0
   speedForce: 140
   instantSpeedForce: 10
   alwaysAccelerate: 0
@@ -1370,7 +1372,7 @@ MonoBehaviour:
   god: 0
   godSkill: {fileID: 4414221230556037219}
   religionSkill: {fileID: 4414221229278402507}
---- !u!114 &2044952356
+--- !u!114 &2044952357
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1379,16 +1381,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4414221230866716625}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea95e692e0d678f49975c2c19e189397, type: 3}
+  m_Script: {fileID: 11500000, guid: fc073359105dd9c4592879f79d7d0cf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerIcon: {fileID: 0}
-  start: {fileID: 0}
-  finish: {fileID: 0}
-  currentAmount: 0
-  distanceBetweenPoints: 0
-  totalLength: 0
-  currentPercentage: 0
+  myCarController: {fileID: 7779139695855820996}
+  turbo: {fileID: 0}
 --- !u!1 &4414221231105604186
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,7 +16,7 @@ public class ItemManager : MonoBehaviour, IControllable
 
     [Header("Item resources")] 
     public float coldownReduced;
-    public float manaStolen;
+    public int manaStolen;
     public float turboRecharged;
 
     private Dictionary<int, List<int>> itemPercentageDictionary;

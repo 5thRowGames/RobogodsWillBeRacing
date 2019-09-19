@@ -16,13 +16,6 @@ public class RaceEventManager : Singleton<RaceEventManager>
     public GameObject finishRace;
     public GameObject pauseSettingsMenu;
 
-    private int players;
-
-    private void Awake()
-    {
-        players = 0;
-    }
-
     public void ChangeRaceEvent(RaceEvents.Race raceEvent)
     {
         switch (raceEvent)

@@ -74,14 +74,15 @@ public class PauseMenu : Singleton<PauseMenu>
         EventSystem.current.SetSelectedGameObject(null);
         RaceEventManager.Instance.inControlInputModule.enabled = false;
         
-        asyncLoadNextScene = SceneManager.LoadSceneAsync(0);
+        asyncLoadNextScene = SceneManager.LoadSceneAsync(1);
         asyncLoadNextScene.allowSceneActivation = false;
         
         Sequence sequence = DOTween.Sequence();
-        sequence.Append(fade.DOFade(1, fadeDuration)).SetUpdate(true).OnComplete(() =>
+        sequence.Append(pauseMenuPanel.DOScale(new Vector3(0, 0, 0), scaleDuration).SetUpdate(true))
+            .Append(fade.DOFade(1, fadeDuration)).SetUpdate(true).OnComplete(() =>
         {
-            asyncLoadNextScene.allowSceneActivation = true;
             Time.timeScale = 1f;
+            asyncLoadNextScene.allowSceneActivation = true;
             gameObject.SetActive(false);
         });
     }

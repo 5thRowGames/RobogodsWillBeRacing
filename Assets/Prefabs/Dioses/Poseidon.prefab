@@ -1317,7 +1317,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6699086875797421694}
   m_Layer: 0
-  m_Name: SecondarySkill
+  m_Name: ReligionSkill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1464,6 +1464,7 @@ GameObject:
   - component: {fileID: 9045056520799092029}
   - component: {fileID: 6699086876303572579}
   - component: {fileID: 6699086876303572576}
+  - component: {fileID: 7040681850973016893}
   m_Layer: 0
   m_Name: Poseidon
   m_TagString: Untagged
@@ -1614,6 +1615,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeDevice: 0
+  turboRechargeMultiplier: 0
+  turboConsumeMultiplier: 0
   speedForce: 140
   instantSpeedForce: 10
   alwaysAccelerate: 0
@@ -1777,6 +1780,20 @@ MonoBehaviour:
   god: 1
   godSkill: {fileID: 5180651665975925140}
   religionSkill: {fileID: 5180651665975925140}
+--- !u!114 &7040681850973016893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6699086876303572581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc073359105dd9c4592879f79d7d0cf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myCarController: {fileID: 738740427894688112}
+  turbo: {fileID: 0}
 --- !u!1 &6699086876550829038
 GameObject:
   m_ObjectHideFlags: 0
@@ -1819,7 +1836,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6699086876932155862}
   m_Layer: 0
-  m_Name: PrimarySkill
+  m_Name: GodSkill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1272,6 +1272,7 @@ GameObject:
   - component: {fileID: 8468241389433589548}
   - component: {fileID: 6121713865260682354}
   - component: {fileID: 6121713865260682353}
+  - component: {fileID: 7617491881552262938}
   m_Layer: 0
   m_Name: Kali
   m_TagString: Untagged
@@ -1422,6 +1423,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeDevice: 0
+  turboRechargeMultiplier: 0
+  turboConsumeMultiplier: 0
   speedForce: 140
   instantSpeedForce: 10
   alwaysAccelerate: 0
@@ -1564,7 +1567,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   god: 0
-  positionInList: 0
+  positionInList: 2
   playerSkillManager: {fileID: 6121713865260682353}
   coldownReduced: 20
   manaStolen: 30
@@ -1585,6 +1588,20 @@ MonoBehaviour:
   god: 2
   godSkill: {fileID: 1942756257}
   religionSkill: {fileID: 1584518877}
+--- !u!114 &7617491881552262938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6121713865260682356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc073359105dd9c4592879f79d7d0cf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myCarController: {fileID: 163197038951824225}
+  turbo: {fileID: 0}
 --- !u!1 &6121713865391410053
 GameObject:
   m_ObjectHideFlags: 0
@@ -1794,7 +1811,7 @@ GameObject:
   - component: {fileID: 6121713866242644935}
   - component: {fileID: 1942756257}
   m_Layer: 0
-  m_Name: PrimarySkill
+  m_Name: GodSkill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1844,7 +1861,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6121713866840640623}
   m_Layer: 0
-  m_Name: SecondarySkill
+  m_Name: ReligionSkill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2278,15 +2295,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0bfde621d3fe76f4484eec791fdeccf9, type: 3}
---- !u!4 &5427189532213546305 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5427189532393446182, guid: 0bfde621d3fe76f4484eec791fdeccf9,
-    type: 3}
-  m_PrefabInstance: {fileID: 189339239}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5427189532213546304 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5427189532393446183, guid: 0bfde621d3fe76f4484eec791fdeccf9,
+    type: 3}
+  m_PrefabInstance: {fileID: 189339239}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5427189532213546305 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5427189532393446182, guid: 0bfde621d3fe76f4484eec791fdeccf9,
     type: 3}
   m_PrefabInstance: {fileID: 189339239}
   m_PrefabAsset: {fileID: 0}

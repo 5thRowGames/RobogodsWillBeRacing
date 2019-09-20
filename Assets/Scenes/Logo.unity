@@ -4909,7 +4909,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseLogo: {fileID: 2029987803}
-  numberLogo: {fileID: 2029987802}
   topLeftScrew: {fileID: 2029987801}
   topRightScrew: {fileID: 2029987800}
   botLeftScrew: {fileID: 2029987799}
@@ -4947,6 +4946,7 @@ GameObject:
   - component: {fileID: 1716344609}
   - component: {fileID: 1716344611}
   - component: {fileID: 1716344608}
+  - component: {fileID: 1716344612}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5046,6 +5046,31 @@ MonoBehaviour:
     positionOffset: {x: 0, y: 0, z: 0}
   m_posOffsetData: {fileID: 0}
   listenerMask: 1
+--- !u!114 &1716344612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716344607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57dfaf9177b0f82448c058c29ae2d743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerList: ae8d9d44f7e1664c
+  useOtherObject: 0
+  data:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: f2d3762441ed93f42a084de7c5073df9,
+      type: 2}
+  decodeBank: 0
+  loadAsynchronous: 0
+  saveDecodedBank: 0
+  unloadTriggerList: 958ca0ea
+  bankNameInternal: 
+  valueGuidInternal: 
 --- !u!1 &1814595491
 GameObject:
   m_ObjectHideFlags: 0
@@ -5225,12 +5250,6 @@ GameObject:
 --- !u!1 &2029987801 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100014, guid: 98192f16b69d5cd48a139db686446b5a,
-    type: 3}
-  m_PrefabInstance: {fileID: 2029987796}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2029987802 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100002, guid: 98192f16b69d5cd48a139db686446b5a,
     type: 3}
   m_PrefabInstance: {fileID: 2029987796}
   m_PrefabAsset: {fileID: 0}

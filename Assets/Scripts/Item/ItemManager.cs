@@ -182,6 +182,9 @@ public class ItemManager : MonoBehaviour, IControllable
         {
             isItemChosen = true;
             StartCoroutine(ChooseItemCoroutine());
+            
+            //Sonido: Elección de un objeto
+            AkSoundEngine.PostEvent("Caja_Random_In", gameObject);
         }
     }
 

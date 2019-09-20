@@ -16,6 +16,8 @@ public class RaceEventManager : Singleton<RaceEventManager>
     public GameObject finishRace;
     public GameObject pauseSettingsMenu;
 
+    private bool countdown;
+
     public void ChangeRaceEvent(RaceEvents.Race raceEvent)
     {
         switch (raceEvent)
@@ -41,8 +43,26 @@ public class RaceEventManager : Singleton<RaceEventManager>
                 break;
             
             case RaceEvents.Race.ContinueRace:
+
                 openPauseMenu.enabled = true;
                 break;
+                
+            case RaceEvents.Race.CountdownFinished:
+
+                if (!countdown)
+                {
+                    ConnectDisconnectManager.InitCamera();
+                    ConnectDisconnectManager.ConnectCarControllerDelegate();
+                    ConnectDisconnectManager.ConnectItemManagerDelegate();
+                    ConnectDisconnectManager.ConnectSkillManagerDelegate(); 
+                    ConnectDisconnectManager.ConnectCarSoundManager();
+
+                    AkSoundEngine.PostEvent("Musica_Limbo", gameObject);
+
+                    countdown = true;
+                }
+                break;
+            
         }
     }
 }

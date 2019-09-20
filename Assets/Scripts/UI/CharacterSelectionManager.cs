@@ -214,6 +214,8 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
        EventSystem.current.SetSelectedGameObject(null);
        EventSystem.current.firstSelectedGameObject = null;
        
+       //Sonido de cerrar el menú
+       AkSoundEngine.PostEvent("UI_Start_In", gameObject);
        
        fade.DOFade(1, 0.5f).OnComplete(() =>
        {

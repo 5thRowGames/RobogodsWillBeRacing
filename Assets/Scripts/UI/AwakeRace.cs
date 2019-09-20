@@ -36,6 +36,9 @@ public class AwakeRace : MonoBehaviour
         mainCamera.transform.position = path1[0];
         ShowMap();
         MinimapControl.Instance.Init();
+        
+        //Sonido: Recorrido del circuito mostrándolos con la cámara
+        AkSoundEngine.PostEvent("Inicio_Carrea_In", gameObject);
     }
 
     private void ShowMap()

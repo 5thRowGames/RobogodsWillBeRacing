@@ -36,6 +36,8 @@ public class LogoAnimation : MonoBehaviour
 
     private void Animation()
     {
+        AkSoundEngine.PostEvent("Sonic_Logo_In", gameObject);
+        
         Sequence seq = DOTween.Sequence();
         seq.Insert(0,baseLogo.transform.DOLocalMoveY(0,baseAnimationTime).SetEase(Ease.Linear));
         seq.Insert(0.1f + baseAnimationTime, topLeftScrew.transform.DOMoveY(0, screwAnimationTime).SetEase(Ease.Linear));

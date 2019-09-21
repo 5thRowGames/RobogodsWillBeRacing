@@ -1,6 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{3726896C-2E59-4545-98D2-470C8572299B}" SchemaVersion="94">
 	<InteractiveMusic>
-		<WorkUnit Name="Default Work Unit" ID="{3726896C-2E59-4545-98D2-470C8572299B}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{3726896C-2E59-4545-98D2-470C8572299B}" PersistMode="Standalone">
+			<ChildrenList>
+				<MusicPlaylistContainer Name="Musica_UI" ID="{81E3008F-916A-4277-9819-E0A8A1532452}" ShortID="525995070">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-20</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<MusicSegment Name="Robo_Gods_UI_Music_Loop" ID="{1889AFE4-DB65-4C70-8840-4EE37EB43727}" ShortID="1070043481">
+							<PropertyList>
+								<Property Name="EndPosition" Type="Real64" Value="30967.7097505669"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicTrack Name="Robo_Gods_UI_Music_Loop" ID="{45C4E5B9-9756-4B30-A4E6-89DBBE0B7335}" ShortID="544990830">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Robo_Gods_UI_Music_Loop" ID="{D043A6EE-EB10-4A3F-8CF5-01D554D5637E}" ShortID="727143311">
+											<Language>SFX</Language>
+											<AudioFile>Robo_Gods_UI_Music_Loop.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<TransitionList>
+										<MusicTransition Name="Root" ID="{1E47C23A-042A-4336-A91C-E678C9EF048C}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</TransitionList>
+									<SequenceList>
+										<MusicTrackSequence Name="" ID="{06C8B33A-A0E1-41E3-BC66-BEA2EF6B0948}">
+											<ClipList>
+												<MusicClip Name="Robo_Gods_UI_Music_Loop" ID="{7607AB71-0658-4CD6-9121-47EC3C84F5BC}">
+													<PropertyList>
+														<Property Name="EndTrimOffset" Type="Real64" Value="30967.7097505669"/>
+														<Property Name="FadeInMode" Type="int16" Value="0"/>
+														<Property Name="FadeOutMode" Type="int16" Value="0"/>
+													</PropertyList>
+													<AudioSourceRef Name="Robo_Gods_UI_Music_Loop" ID="{D043A6EE-EB10-4A3F-8CF5-01D554D5637E}"/>
+												</MusicClip>
+											</ClipList>
+										</MusicTrackSequence>
+									</SequenceList>
+								</MusicTrack>
+							</ChildrenList>
+							<CueList>
+								<MusicCue Name="Entry Cue" ID="{3F8A37FD-13B8-4131-AADF-8DE777E52E68}"/>
+								<MusicCue Name="Exit Cue" ID="{5D5FEB45-2AC4-4131-8EA6-815E2545FD8B}">
+									<PropertyList>
+										<Property Name="CueType" Type="int16" Value="1"/>
+										<Property Name="TimeMs" Type="Real64" Value="30967.7097505669"/>
+									</PropertyList>
+								</MusicCue>
+							</CueList>
+						</MusicSegment>
+					</ChildrenList>
+					<TransitionList>
+						<MusicTransition Name="Root" ID="{86863D5E-CD84-4C98-AC60-CCE820F48249}">
+							<PropertyList>
+								<Property Name="IsFolder" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<MusicTransition Name="Transition" ID="{8E120A64-1ADE-4128-9A3D-76493D7A6F11}">
+									<TransitionInfo/>
+								</MusicTransition>
+							</ChildrenList>
+							<TransitionInfo/>
+						</MusicTransition>
+					</TransitionList>
+					<Playlist>
+						<MusicPlaylistItem Name="" ID="{530DA6FB-3B3A-42AC-9D5C-0FDD07B3770A}" ShortID="930140046">
+							<ChildrenList>
+								<MusicPlaylistItem Name="" ID="{E4338989-86D3-4AFB-9FFF-D5B1395EACA2}" ShortID="184545054">
+									<PropertyList>
+										<Property Name="LoopCount" Type="int16" Value="0"/>
+										<Property Name="PlaylistItemType" Type="int16" Value="1"/>
+									</PropertyList>
+									<SegmentRef Name="Robo_Gods_UI_Music_Loop" ID="{1889AFE4-DB65-4C70-8840-4EE37EB43727}"/>
+								</MusicPlaylistItem>
+							</ChildrenList>
+						</MusicPlaylistItem>
+					</Playlist>
+				</MusicPlaylistContainer>
+			</ChildrenList>
+		</WorkUnit>
 	</InteractiveMusic>
 </WwiseDocument>

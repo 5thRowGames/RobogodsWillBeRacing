@@ -13,11 +13,7 @@ namespace AK
 {
     namespace EVENTS
     {
-        static const AkUniqueID BASCULA_COMPRESOR_IN = 3763551383U;
-        static const AkUniqueID BASCULA_COMPRESOR_OUT = 3004065450U;
         static const AkUniqueID CAJA_RANDOM_IN = 3240997650U;
-        static const AkUniqueID COCHE_1_FRENO_OUT = 2410551647U;
-        static const AkUniqueID FRENO_IN = 2731896591U;
         static const AkUniqueID IMPACTOS_IN = 2345257581U;
         static const AkUniqueID INICIO_CARRERA_IN = 3586400535U;
         static const AkUniqueID MUSICA_LIMBO = 4092793509U;

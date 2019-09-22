@@ -107,6 +107,516 @@
 						</MusicPlaylistItem>
 					</Playlist>
 				</MusicPlaylistContainer>
+				<MusicSwitchContainer Name="Portal_y_Musica" ID="{54C7FC1C-17E3-4796-A187-7ABFDE48103E}" ShortID="831705128">
+					<PropertyList>
+						<Property Name="GridFrequencyPreset" Type="int16" Value="53"/>
+						<Property Name="GridOffsetPreset" Type="int16" Value="53"/>
+						<Property Name="Tempo" Type="Real64" Value="124"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<MusicPlaylistContainer Name="Musica_Inicio" ID="{F130C2CD-A4AD-4BB4-A254-F5DD672F75A0}" ShortID="189743302">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicSegment Name="Robo_Gods_Musica_Limbo_LOOP" ID="{5DF1E385-4DD3-416D-A5C6-A7EF502146B5}" ShortID="777506830">
+									<PropertyList>
+										<Property Name="EndPosition" Type="Real64" Value="96771.9274376417"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<MusicTrack Name="Robo_Gods_Musica_Limbo_LOOP" ID="{3E560AF3-012E-4F22-A000-ACE062330F41}" ShortID="338503866">
+											<ReferenceList>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Robo_Gods_Musica_Limbo_LOOP" ID="{B35B719D-AC85-40BB-9DDC-D8B408CD1CA9}" ShortID="461788358">
+													<Language>SFX</Language>
+													<AudioFile>Robo_Gods_Musica_Limbo_LOOP.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<TransitionList>
+												<MusicTransition Name="Root" ID="{D52289D0-8A54-41E6-9E03-08B11B1516D4}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</TransitionList>
+											<SequenceList>
+												<MusicTrackSequence Name="" ID="{F42F8B4A-0765-4740-80AB-DB8516ABCB87}">
+													<ClipList>
+														<MusicClip Name="Robo_Gods_Musica_Limbo_LOOP" ID="{5C0C8240-D6B7-424B-ACE5-B99C5C531BBE}">
+															<PropertyList>
+																<Property Name="EndTrimOffset" Type="Real64" Value="96771.9274376417"/>
+																<Property Name="FadeInMode" Type="int16" Value="0"/>
+																<Property Name="FadeOutMode" Type="int16" Value="0"/>
+															</PropertyList>
+															<AudioSourceRef Name="Robo_Gods_Musica_Limbo_LOOP" ID="{B35B719D-AC85-40BB-9DDC-D8B408CD1CA9}"/>
+														</MusicClip>
+													</ClipList>
+												</MusicTrackSequence>
+											</SequenceList>
+										</MusicTrack>
+									</ChildrenList>
+									<CueList>
+										<MusicCue Name="Entry Cue" ID="{5841ABF4-E09D-4461-B520-EF5F66DC3DD4}"/>
+										<MusicCue Name="Exit Cue" ID="{C2604707-96BE-496F-9A7D-AB4241846059}">
+											<PropertyList>
+												<Property Name="CueType" Type="int16" Value="1"/>
+												<Property Name="TimeMs" Type="Real64" Value="96771.9274376417"/>
+											</PropertyList>
+										</MusicCue>
+									</CueList>
+								</MusicSegment>
+							</ChildrenList>
+							<TransitionList>
+								<MusicTransition Name="Root" ID="{3FA0CABF-37F4-4D00-B058-258BB11B7539}">
+									<PropertyList>
+										<Property Name="IsFolder" Type="bool" Value="True"/>
+									</PropertyList>
+									<ChildrenList>
+										<MusicTransition Name="Transition" ID="{0738EAC3-2A20-44DB-8AFB-E84B81AEE6BB}">
+											<TransitionInfo/>
+										</MusicTransition>
+									</ChildrenList>
+									<TransitionInfo/>
+								</MusicTransition>
+							</TransitionList>
+							<Playlist>
+								<MusicPlaylistItem Name="" ID="{9B2B6064-CE21-408D-8E69-21001BC2201D}" ShortID="714421987">
+									<ChildrenList>
+										<MusicPlaylistItem Name="" ID="{EEC754F2-18A6-4BD1-9C0B-3FB6E6892ECD}" ShortID="654750957">
+											<PropertyList>
+												<Property Name="LoopCount" Type="int16" Value="0"/>
+												<Property Name="PlaylistItemType" Type="int16" Value="1"/>
+											</PropertyList>
+											<SegmentRef Name="Robo_Gods_Musica_Limbo_LOOP" ID="{5DF1E385-4DD3-416D-A5C6-A7EF502146B5}"/>
+										</MusicPlaylistItem>
+									</ChildrenList>
+								</MusicPlaylistItem>
+							</Playlist>
+						</MusicPlaylistContainer>
+						<MusicPlaylistContainer Name="Musica_Limbo" ID="{772D6A7D-5793-49C7-B0D4-83B52A501DA7}" ShortID="9209203">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicSegment Name="Robo_Gods_Musica_Limbo_LOOP" ID="{55A44E8C-B926-4324-8B18-8CF0069A4740}" ShortID="5380805">
+									<PropertyList>
+										<Property Name="EndPosition" Type="Real64" Value="96771.9274376417"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<MusicTrack Name="Robo_Gods_Musica_Limbo_LOOP" ID="{D3551B47-1825-4B82-AB6D-E209A0B8EFDA}" ShortID="336718579">
+											<ReferenceList>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Robo_Gods_Musica_Limbo_LOOP" ID="{D0BB34D2-0A1F-4715-AC04-82DC0BEDC6AF}" ShortID="66111174">
+													<Language>SFX</Language>
+													<AudioFile>Robo_Gods_Musica_Limbo_LOOP.wav</AudioFile>
+													<ConvertedFileIDList>
+														<File ID="461788358"/>
+													</ConvertedFileIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<TransitionList>
+												<MusicTransition Name="Root" ID="{C23CBE21-84D7-4B66-A133-D465F2280234}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</TransitionList>
+											<SequenceList>
+												<MusicTrackSequence Name="" ID="{44464902-F40B-47EE-BED5-B38B27019135}">
+													<ClipList>
+														<MusicClip Name="Robo_Gods_Musica_Limbo_LOOP" ID="{3AF879BF-E73B-4809-8D95-C00E652B56E6}">
+															<PropertyList>
+																<Property Name="EndTrimOffset" Type="Real64" Value="96771.9274376417"/>
+																<Property Name="FadeInMode" Type="int16" Value="0"/>
+																<Property Name="FadeOutMode" Type="int16" Value="0"/>
+															</PropertyList>
+															<AudioSourceRef Name="Robo_Gods_Musica_Limbo_LOOP" ID="{D0BB34D2-0A1F-4715-AC04-82DC0BEDC6AF}"/>
+														</MusicClip>
+													</ClipList>
+												</MusicTrackSequence>
+											</SequenceList>
+										</MusicTrack>
+									</ChildrenList>
+									<CueList>
+										<MusicCue Name="Entry Cue" ID="{5CF98066-E5D7-44E2-9DBC-3F01358301CF}"/>
+										<MusicCue Name="Exit Cue" ID="{5B4BD5D4-3B49-423C-9C80-30F49E0290C3}">
+											<PropertyList>
+												<Property Name="CueType" Type="int16" Value="1"/>
+												<Property Name="TimeMs" Type="Real64" Value="96771.9274376417"/>
+											</PropertyList>
+										</MusicCue>
+									</CueList>
+								</MusicSegment>
+								<MusicSegment Name="Robo_Gods_Portal_Limbo_INTRO_Start" ID="{9E340194-DF5C-461A-ACE6-B09F71DEAADE}" ShortID="364775866">
+									<PropertyList>
+										<Property Name="EndPosition" Type="Real64" Value="5806.30385487528"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<MusicTrack Name="Robo_Gods_Portal_Limbo_INTRO_Start" ID="{E6558062-52F8-4C66-9654-324EB43C9206}" ShortID="524877591">
+											<ReferenceList>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Robo_Gods_Portal_Limbo_INTRO_Start" ID="{2F7AC314-6C8C-4D90-9C8B-BC9662B6F89C}" ShortID="324862907">
+													<Language>SFX</Language>
+													<AudioFile>Robo_Gods_Portal_Limbo_INTRO_Start.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<TransitionList>
+												<MusicTransition Name="Root" ID="{C44DAD27-F6AB-47FF-B9A0-22F73543FC7D}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</TransitionList>
+											<SequenceList>
+												<MusicTrackSequence Name="" ID="{FB6F875D-97B6-49C7-B0F4-7750DCD816B1}">
+													<ClipList>
+														<MusicClip Name="Robo_Gods_Portal_Limbo_INTRO_Start" ID="{0B7ECB7B-D454-451B-945B-CF61D9B074C7}">
+															<PropertyList>
+																<Property Name="EndTrimOffset" Type="Real64" Value="5806.30385487528"/>
+																<Property Name="FadeInMode" Type="int16" Value="0"/>
+																<Property Name="FadeOutMode" Type="int16" Value="0"/>
+															</PropertyList>
+															<AudioSourceRef Name="Robo_Gods_Portal_Limbo_INTRO_Start" ID="{2F7AC314-6C8C-4D90-9C8B-BC9662B6F89C}"/>
+														</MusicClip>
+													</ClipList>
+												</MusicTrackSequence>
+											</SequenceList>
+										</MusicTrack>
+									</ChildrenList>
+									<CueList>
+										<MusicCue Name="Entry Cue" ID="{18E7D2CD-CB03-4E72-9781-048985E39C6F}"/>
+										<MusicCue Name="Exit Cue" ID="{28649E0C-8291-456B-99F5-1A88F36D129F}">
+											<PropertyList>
+												<Property Name="CueType" Type="int16" Value="1"/>
+												<Property Name="TimeMs" Type="Real64" Value="5806.30385487528"/>
+											</PropertyList>
+										</MusicCue>
+									</CueList>
+								</MusicSegment>
+							</ChildrenList>
+							<TransitionList>
+								<MusicTransition Name="Root" ID="{38EBEAC1-C20B-4A25-8E0D-BFDD5497ED3C}">
+									<PropertyList>
+										<Property Name="IsFolder" Type="bool" Value="True"/>
+									</PropertyList>
+									<ChildrenList>
+										<MusicTransition Name="Transition" ID="{406F7228-6C1F-400C-B0F3-7FC60886881A}">
+											<TransitionInfo/>
+										</MusicTransition>
+									</ChildrenList>
+									<TransitionInfo/>
+								</MusicTransition>
+							</TransitionList>
+							<Playlist>
+								<MusicPlaylistItem Name="" ID="{349BD5E6-01F1-476C-91E6-7FAE96670994}" ShortID="199013087">
+									<ChildrenList>
+										<MusicPlaylistItem Name="" ID="{2467AE99-6224-4093-A1A3-71CDD7A24B75}" ShortID="701819263">
+											<PropertyList>
+												<Property Name="PlaylistItemType" Type="int16" Value="1"/>
+											</PropertyList>
+											<SegmentRef Name="Robo_Gods_Portal_Limbo_INTRO_Start" ID="{9E340194-DF5C-461A-ACE6-B09F71DEAADE}"/>
+										</MusicPlaylistItem>
+										<MusicPlaylistItem Name="" ID="{02767D8D-3048-4A8B-B84F-F63ABEAA4EF3}" ShortID="643986697">
+											<PropertyList>
+												<Property Name="LoopCount" Type="int16" Value="0"/>
+												<Property Name="PlaylistItemType" Type="int16" Value="1"/>
+											</PropertyList>
+											<SegmentRef Name="Robo_Gods_Musica_Limbo_LOOP" ID="{55A44E8C-B926-4324-8B18-8CF0069A4740}"/>
+										</MusicPlaylistItem>
+									</ChildrenList>
+								</MusicPlaylistItem>
+							</Playlist>
+						</MusicPlaylistContainer>
+						<MusicPlaylistContainer Name="Musica_Egipto" ID="{D8D5EAAC-48AF-4282-91B5-0A6B1C8B28FE}" ShortID="720641537">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicSegment Name="Robo_Gods_Portal_Anubits_INTRO_Start" ID="{2D1871B8-2386-4772-B8EB-57D17FA0C284}" ShortID="466012768">
+									<PropertyList>
+										<Property Name="EndPosition" Type="Real64" Value="5827.34693877551"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<MusicTrack Name="Robo_Gods_Portal_Anubits_INTRO_Start" ID="{7B248F98-9882-4041-8396-750B10CE7D57}" ShortID="744727599">
+											<ReferenceList>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Robo_Gods_Portal_Anubits_INTRO_Start" ID="{CE6D4F70-3C4C-4BEA-8FEF-094BB1BBF4BA}" ShortID="845837214">
+													<Language>SFX</Language>
+													<AudioFile>Robo_Gods_Portal_Anubits_INTRO_Start.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<TransitionList>
+												<MusicTransition Name="Root" ID="{26719046-DD73-429C-AE3F-344B077EEDAF}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</TransitionList>
+											<SequenceList>
+												<MusicTrackSequence Name="" ID="{78C178A5-705C-4AD1-81DC-76EF842568A2}">
+													<ClipList>
+														<MusicClip Name="Robo_Gods_Portal_Anubits_INTRO_Start" ID="{448927D2-60B3-4891-B67D-44E784F95787}">
+															<PropertyList>
+																<Property Name="EndTrimOffset" Type="Real64" Value="5827.34693877551"/>
+																<Property Name="FadeInMode" Type="int16" Value="0"/>
+																<Property Name="FadeOutMode" Type="int16" Value="0"/>
+															</PropertyList>
+															<AudioSourceRef Name="Robo_Gods_Portal_Anubits_INTRO_Start" ID="{CE6D4F70-3C4C-4BEA-8FEF-094BB1BBF4BA}"/>
+														</MusicClip>
+													</ClipList>
+												</MusicTrackSequence>
+											</SequenceList>
+										</MusicTrack>
+									</ChildrenList>
+									<CueList>
+										<MusicCue Name="Entry Cue" ID="{0CC4E804-D9E3-4A5C-8C9A-FA943FBC857D}"/>
+										<MusicCue Name="Exit Cue" ID="{C4CA37BF-12FF-4C2C-A1B5-A65A28AEE60B}">
+											<PropertyList>
+												<Property Name="CueType" Type="int16" Value="1"/>
+												<Property Name="TimeMs" Type="Real64" Value="5827.34693877551"/>
+											</PropertyList>
+										</MusicCue>
+									</CueList>
+								</MusicSegment>
+								<MusicSegment Name="Robo_Gods_Musica_Egipto_LOOP" ID="{CA62C651-74AA-4F43-8798-34876B1E20B2}" ShortID="152666116">
+									<PropertyList>
+										<Property Name="EndPosition" Type="Real64" Value="78741.3151927438"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<MusicTrack Name="Robo_Gods_Musica_Egipto_LOOP" ID="{EC046DB8-7465-4DF3-B797-A976ED0AF4D7}" ShortID="535351569">
+											<ReferenceList>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Robo_Gods_Musica_Egipto_LOOP" ID="{AE246061-BAB4-4F99-89B3-EF58CB786DFC}" ShortID="126769554">
+													<Language>SFX</Language>
+													<AudioFile>Robo_Gods_Musica_Egipto_LOOP.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<TransitionList>
+												<MusicTransition Name="Root" ID="{EBE0F3AF-8764-472F-BA1C-8F238046410B}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</TransitionList>
+											<SequenceList>
+												<MusicTrackSequence Name="" ID="{C8E57699-EB62-4E95-95E7-5BDE82D37A10}">
+													<ClipList>
+														<MusicClip Name="Robo_Gods_Musica_Egipto_LOOP" ID="{F8765C36-BAB8-4E8D-9362-3478A1CC947E}">
+															<PropertyList>
+																<Property Name="EndTrimOffset" Type="Real64" Value="77417.5416666667"/>
+																<Property Name="FadeInMode" Type="int16" Value="0"/>
+																<Property Name="FadeOutMode" Type="int16" Value="0"/>
+															</PropertyList>
+															<AudioSourceRef Name="Robo_Gods_Musica_Egipto_LOOP" ID="{AE246061-BAB4-4F99-89B3-EF58CB786DFC}"/>
+														</MusicClip>
+													</ClipList>
+												</MusicTrackSequence>
+											</SequenceList>
+										</MusicTrack>
+									</ChildrenList>
+									<CueList>
+										<MusicCue Name="Entry Cue" ID="{CC7A7E0B-5295-4641-BD89-50E4081A62A0}"/>
+										<MusicCue Name="Exit Cue" ID="{17EAD695-5C2B-4F58-855A-8584F0D47E62}">
+											<PropertyList>
+												<Property Name="CueType" Type="int16" Value="1"/>
+												<Property Name="TimeMs" Type="Real64" Value="77417.5416666667"/>
+											</PropertyList>
+										</MusicCue>
+									</CueList>
+								</MusicSegment>
+							</ChildrenList>
+							<TransitionList>
+								<MusicTransition Name="Root" ID="{6B6892E8-1E45-440A-9C76-E66742FE3919}">
+									<PropertyList>
+										<Property Name="IsFolder" Type="bool" Value="True"/>
+									</PropertyList>
+									<ChildrenList>
+										<MusicTransition Name="Transition" ID="{E663029F-8BC2-4C2B-A82F-B56CDB2E1DA2}">
+											<TransitionInfo/>
+										</MusicTransition>
+									</ChildrenList>
+									<TransitionInfo/>
+								</MusicTransition>
+							</TransitionList>
+							<Playlist>
+								<MusicPlaylistItem Name="" ID="{1E2ACFCA-6C02-451A-AEE0-1603BDC3C199}" ShortID="158818943">
+									<ChildrenList>
+										<MusicPlaylistItem Name="" ID="{8A779534-058E-4575-AA83-F3A71F3732C0}" ShortID="606719604">
+											<PropertyList>
+												<Property Name="PlaylistItemType" Type="int16" Value="1"/>
+											</PropertyList>
+											<SegmentRef Name="Robo_Gods_Portal_Anubits_INTRO_Start" ID="{2D1871B8-2386-4772-B8EB-57D17FA0C284}"/>
+										</MusicPlaylistItem>
+										<MusicPlaylistItem Name="" ID="{638B1E11-5C9C-4036-8871-5D73009D93C8}" ShortID="278007472">
+											<PropertyList>
+												<Property Name="LoopCount" Type="int16" Value="0"/>
+												<Property Name="PlaylistItemType" Type="int16" Value="1"/>
+											</PropertyList>
+											<SegmentRef Name="Robo_Gods_Musica_Egipto_LOOP" ID="{CA62C651-74AA-4F43-8798-34876B1E20B2}"/>
+										</MusicPlaylistItem>
+									</ChildrenList>
+								</MusicPlaylistItem>
+							</Playlist>
+						</MusicPlaylistContainer>
+					</ChildrenList>
+					<TransitionList>
+						<MusicTransition Name="Root" ID="{20A86B4B-4240-41D9-BBE9-B61DDB3DD2CA}">
+							<PropertyList>
+								<Property Name="IsFolder" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<MusicTransition Name="Transition" ID="{9922841E-C6E5-440C-B4F7-A84A69AAF38C}">
+									<PropertyList>
+										<Property Name="ExitSourceAt" Type="int16" Value="1"/>
+									</PropertyList>
+									<TransitionInfo/>
+								</MusicTransition>
+							</ChildrenList>
+							<TransitionInfo/>
+						</MusicTransition>
+					</TransitionList>
+					<ArgumentList>
+						<ArgumentRef Name="State_Portal_y_Musica" ID="{CA7C473E-440B-465A-8B9F-F8DF036206D6}"/>
+					</ArgumentList>
+					<EntryList>
+						<Entry>
+							<Path>
+								<PathElementRef Name="State_Musica_Egipto" ID="{B792C861-8B54-4244-88F0-1EB0B0BAB964}"/>
+							</Path>
+							<AudioNodeInfo>
+								<AudioNodeRef Name="Musica_Egipto" ID="{D8D5EAAC-48AF-4282-91B5-0A6B1C8B28FE}" WorkUnitID="{3726896C-2E59-4545-98D2-470C8572299B}" Platform="Linked"/>
+							</AudioNodeInfo>
+						</Entry>
+						<Entry>
+							<Path>
+								<PathElementRef Name="State_Musica_Inicio" ID="{AEEF3056-8259-4471-B866-F126BDB54A10}"/>
+							</Path>
+							<AudioNodeInfo>
+								<AudioNodeRef Name="Musica_Inicio" ID="{F130C2CD-A4AD-4BB4-A254-F5DD672F75A0}" WorkUnitID="{3726896C-2E59-4545-98D2-470C8572299B}" Platform="Linked"/>
+							</AudioNodeInfo>
+						</Entry>
+						<Entry>
+							<Path>
+								<PathElementRef Name="State_Musica_India" ID="{72A69BAF-8E94-4A0E-BAB5-2A2F86DB440F}"/>
+							</Path>
+							<AudioNodeInfo>
+								<NoObject Platform="Linked"/>
+							</AudioNodeInfo>
+						</Entry>
+						<Entry>
+							<Path>
+								<PathElementRef Name="State_Musica_Nordica" ID="{CEA756D9-9516-4A31-B740-F30DB531C2C7}"/>
+							</Path>
+							<AudioNodeInfo>
+								<NoObject Platform="Linked"/>
+							</AudioNodeInfo>
+						</Entry>
+						<Entry>
+							<Path>
+								<PathElementRef Name="State_Musica_Agua" ID="{22866400-E702-421F-8B19-0A4F7793696C}"/>
+							</Path>
+							<AudioNodeInfo>
+								<NoObject Platform="Linked"/>
+							</AudioNodeInfo>
+						</Entry>
+						<Entry>
+							<Path>
+								<PathElementRef Name="State_Musica_Limbo" ID="{59DF591F-349D-46F1-A127-9088E074CDAE}"/>
+							</Path>
+							<AudioNodeInfo>
+								<AudioNodeRef Name="Musica_Limbo" ID="{772D6A7D-5793-49C7-B0D4-83B52A501DA7}" WorkUnitID="{3726896C-2E59-4545-98D2-470C8572299B}" Platform="Linked"/>
+							</AudioNodeInfo>
+						</Entry>
+					</EntryList>
+				</MusicSwitchContainer>
 			</ChildrenList>
 		</WorkUnit>
 	</InteractiveMusic>

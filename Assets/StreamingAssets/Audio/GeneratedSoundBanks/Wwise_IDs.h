@@ -16,8 +16,6 @@ namespace AK
         static const AkUniqueID CAJA_RANDOM_IN = 3240997650U;
         static const AkUniqueID IMPACTOS_IN = 2345257581U;
         static const AkUniqueID INICIO_CARRERA_IN = 3586400535U;
-        static const AkUniqueID MUSICA_LIMBO = 4092793509U;
-        static const AkUniqueID MUSICA_UI = 3809333196U;
         static const AkUniqueID NAVE_1_ACELERAR_IN = 2922585971U;
         static const AkUniqueID NAVE_1_ACELERAR_OUT = 2792057870U;
         static const AkUniqueID NAVE_1_ARRANQUE = 3689912771U;
@@ -35,6 +33,24 @@ namespace AK
         static const AkUniqueID TURBO_OUT = 2234672166U;
         static const AkUniqueID UI_START_IN = 2335810608U;
     } // namespace EVENTS
+
+    namespace STATES
+    {
+        namespace STATE_PORTAL_Y_MUSICA
+        {
+            static const AkUniqueID GROUP = 1682584490U;
+
+            namespace STATE
+            {
+                static const AkUniqueID STATE_MUSICA_AGUA = 1532029634U;
+                static const AkUniqueID STATE_MUSICA_EGIPTO = 1932523280U;
+                static const AkUniqueID STATE_MUSICA_INDIA = 3791646481U;
+                static const AkUniqueID STATE_MUSICA_LIMBO = 1667331795U;
+                static const AkUniqueID STATE_MUSICA_NORDICA = 3912365808U;
+            } // namespace STATE
+        } // namespace STATE_PORTAL_Y_MUSICA
+
+    } // namespace STATES
 
     namespace GAME_PARAMETERS
     {

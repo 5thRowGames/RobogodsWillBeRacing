@@ -546,6 +546,168 @@
 								</MusicPlaylistItem>
 							</Playlist>
 						</MusicPlaylistContainer>
+						<MusicPlaylistContainer Name="Musica_Nordica" ID="{E23D4C49-E81D-4582-95FA-7E1A53137123}" ShortID="1011398592">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicSegment Name="Robo_Gods_Musica_Nordica_LOOP" ID="{0C49433C-B63B-46FF-A25A-304D23AC12B7}" ShortID="1056475726">
+									<PropertyList>
+										<Property Name="EndPosition" Type="Real64" Value="77417.5283446712"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<MusicTrack Name="Robo_Gods_Musica_Nordica_LOOP" ID="{8D8A160B-EE2F-4882-8E24-7AEFD2804147}" ShortID="1039958338">
+											<ReferenceList>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Robo_Gods_Musica_Nordica_LOOP" ID="{90FDE940-5D78-460B-A680-487EF3171AFA}" ShortID="810567043">
+													<Language>SFX</Language>
+													<AudioFile>Robo_Gods_Musica_Nordica_LOOP.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<TransitionList>
+												<MusicTransition Name="Root" ID="{15D4B5F8-1DCB-4779-9B65-BAEE19F9D8C2}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</TransitionList>
+											<SequenceList>
+												<MusicTrackSequence Name="" ID="{61853F2B-9F44-4380-921D-EEA7D2C7C814}">
+													<ClipList>
+														<MusicClip Name="Robo_Gods_Musica_Nordica_LOOP" ID="{780820E8-FF48-478D-9717-BBAFAE49EF4B}">
+															<PropertyList>
+																<Property Name="EndTrimOffset" Type="Real64" Value="77417.5283446712"/>
+																<Property Name="FadeInMode" Type="int16" Value="0"/>
+																<Property Name="FadeOutMode" Type="int16" Value="0"/>
+															</PropertyList>
+															<AudioSourceRef Name="Robo_Gods_Musica_Nordica_LOOP" ID="{90FDE940-5D78-460B-A680-487EF3171AFA}"/>
+														</MusicClip>
+													</ClipList>
+												</MusicTrackSequence>
+											</SequenceList>
+										</MusicTrack>
+									</ChildrenList>
+									<CueList>
+										<MusicCue Name="Entry Cue" ID="{B1E5BE45-1D5F-426F-AA32-FF4BF159E48E}"/>
+										<MusicCue Name="Exit Cue" ID="{14E5ED20-BF83-4B8D-B16B-D8A97FEC6B8C}">
+											<PropertyList>
+												<Property Name="CueType" Type="int16" Value="1"/>
+												<Property Name="TimeMs" Type="Real64" Value="77417.5283446712"/>
+											</PropertyList>
+										</MusicCue>
+									</CueList>
+								</MusicSegment>
+								<MusicSegment Name="Robo_Gods_Portal_Thor_INTRO_Start" ID="{7C24C54F-3F16-4ADF-AFD3-25CBD3C4A652}" ShortID="14386700">
+									<PropertyList>
+										<Property Name="EndPosition" Type="Real64" Value="5827.34693877551"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<MusicTrack Name="Robo_Gods_Portal_Thor_INTRO_Start" ID="{A9834685-A12F-4390-A65A-73248617251D}" ShortID="824514549">
+											<ReferenceList>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Robo_Gods_Portal_Thor_INTRO_Start" ID="{880AB341-5B94-472D-95E1-CE36A2E26445}" ShortID="175707137">
+													<Language>SFX</Language>
+													<AudioFile>Robo_Gods_Portal_Thor_INTRO_Start.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<TransitionList>
+												<MusicTransition Name="Root" ID="{DB78905E-4775-4933-9E9D-B75A48E9BEE7}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</TransitionList>
+											<SequenceList>
+												<MusicTrackSequence Name="" ID="{0E7C7BB6-E0C6-4EC6-A097-9AAEEED30F0A}">
+													<ClipList>
+														<MusicClip Name="Robo_Gods_Portal_Thor_INTRO_Start" ID="{70DA0AFD-1A29-47FE-B8B3-21F018F1D5DA}">
+															<PropertyList>
+																<Property Name="EndTrimOffset" Type="Real64" Value="5827.34693877551"/>
+																<Property Name="FadeInMode" Type="int16" Value="0"/>
+																<Property Name="FadeOutMode" Type="int16" Value="0"/>
+															</PropertyList>
+															<AudioSourceRef Name="Robo_Gods_Portal_Thor_INTRO_Start" ID="{880AB341-5B94-472D-95E1-CE36A2E26445}"/>
+														</MusicClip>
+													</ClipList>
+												</MusicTrackSequence>
+											</SequenceList>
+										</MusicTrack>
+									</ChildrenList>
+									<CueList>
+										<MusicCue Name="Entry Cue" ID="{4452ABBF-4039-4963-8D31-9ACC9670255D}"/>
+										<MusicCue Name="Exit Cue" ID="{72460B00-29B1-41D5-B09F-12893951E093}">
+											<PropertyList>
+												<Property Name="CueType" Type="int16" Value="1"/>
+												<Property Name="TimeMs" Type="Real64" Value="5827.34693877551"/>
+											</PropertyList>
+										</MusicCue>
+									</CueList>
+								</MusicSegment>
+							</ChildrenList>
+							<TransitionList>
+								<MusicTransition Name="Root" ID="{5BFA172E-A73F-4157-AB23-86536B5AC766}">
+									<PropertyList>
+										<Property Name="IsFolder" Type="bool" Value="True"/>
+									</PropertyList>
+									<ChildrenList>
+										<MusicTransition Name="Transition" ID="{645542BD-27EA-4F02-963A-114B412CF573}">
+											<TransitionInfo/>
+										</MusicTransition>
+									</ChildrenList>
+									<TransitionInfo/>
+								</MusicTransition>
+							</TransitionList>
+							<Playlist>
+								<MusicPlaylistItem Name="" ID="{DEB34F41-4DCA-4147-AD87-C8A458A600EC}" ShortID="610081711">
+									<ChildrenList>
+										<MusicPlaylistItem Name="" ID="{F549501D-433E-4038-85B3-CE8934D3D82A}" ShortID="666667197">
+											<PropertyList>
+												<Property Name="PlaylistItemType" Type="int16" Value="1"/>
+											</PropertyList>
+											<SegmentRef Name="Robo_Gods_Portal_Thor_INTRO_Start" ID="{7C24C54F-3F16-4ADF-AFD3-25CBD3C4A652}"/>
+										</MusicPlaylistItem>
+										<MusicPlaylistItem Name="" ID="{67269363-1192-43B3-8C18-483F4A0EDD59}" ShortID="476748943">
+											<PropertyList>
+												<Property Name="LoopCount" Type="int16" Value="0"/>
+												<Property Name="PlaylistItemType" Type="int16" Value="1"/>
+											</PropertyList>
+											<SegmentRef Name="Robo_Gods_Musica_Nordica_LOOP" ID="{0C49433C-B63B-46FF-A25A-304D23AC12B7}"/>
+										</MusicPlaylistItem>
+									</ChildrenList>
+								</MusicPlaylistItem>
+							</Playlist>
+						</MusicPlaylistContainer>
 					</ChildrenList>
 					<TransitionList>
 						<MusicTransition Name="Root" ID="{20A86B4B-4240-41D9-BBE9-B61DDB3DD2CA}">
@@ -596,7 +758,7 @@
 								<PathElementRef Name="State_Musica_Nordica" ID="{CEA756D9-9516-4A31-B740-F30DB531C2C7}"/>
 							</Path>
 							<AudioNodeInfo>
-								<NoObject Platform="Linked"/>
+								<AudioNodeRef Name="Musica_Nordica" ID="{E23D4C49-E81D-4582-95FA-7E1A53137123}" WorkUnitID="{3726896C-2E59-4545-98D2-470C8572299B}" Platform="Linked"/>
 							</AudioNodeInfo>
 						</Entry>
 						<Entry>

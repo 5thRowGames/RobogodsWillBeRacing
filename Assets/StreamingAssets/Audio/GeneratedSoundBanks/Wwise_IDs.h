@@ -16,6 +16,7 @@ namespace AK
         static const AkUniqueID CAJA_RANDOM_IN = 3240997650U;
         static const AkUniqueID IMPACTOS_IN = 2345257581U;
         static const AkUniqueID INICIO_CARRERA_IN = 3586400535U;
+        static const AkUniqueID MUSICA_UI = 3809333196U;
         static const AkUniqueID NAVE_1_ACELERAR_IN = 2922585971U;
         static const AkUniqueID NAVE_1_ACELERAR_OUT = 2792057870U;
         static const AkUniqueID NAVE_1_ARRANQUE = 3689912771U;

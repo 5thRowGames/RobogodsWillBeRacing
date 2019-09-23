@@ -33,7 +33,6 @@ public class PlayerSkillManager : MonoBehaviour, IControllable
         set => mana = Mathf.Clamp(value, 0, 100);
     }
 
-
     private void Awake()
     {
         activateGodSkill = true;
@@ -126,7 +125,7 @@ public class PlayerSkillManager : MonoBehaviour, IControllable
 
     private IEnumerator GodSkillTimer()
     {
-        float timer = godSkill.coldown;
+        /*float timer = godSkill.coldown;
         
         HUDManager.Instance.StartGodSkillTimer(god,timer);
 
@@ -135,6 +134,15 @@ public class PlayerSkillManager : MonoBehaviour, IControllable
             timer -= Time.deltaTime;
             yield return null;
         }
+        activateGodSkill = true;*/
+        
+        HUDManager.Instance.StartGodSkillTimer(god,godSkill.coldown);
+
+        while (HUDManager.Instance.hudDictionary[god].Time > 0)
+        {
+            yield return null;
+        }
+
         activateGodSkill = true;
     }
 

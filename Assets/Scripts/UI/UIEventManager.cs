@@ -1,4 +1,5 @@
-﻿using InControl;
+﻿using System.Collections;
+using InControl;
 using UnityEngine;
 
 public class UIEventManager : Singleton<UIEventManager>

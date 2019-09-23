@@ -133,7 +133,7 @@ public class HUDManager : Singleton<HUDManager>
             text.text = String.Format("{0:00}",hudDictionary[god].Time);
             yield return null;
         }
-
+        
         hudDictionary[god].secondarySkillIcon.sprite = hudDictionary[god].secondarySkillEnabledSprite;
         text.text = "";
     }

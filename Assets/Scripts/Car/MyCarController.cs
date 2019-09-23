@@ -12,7 +12,7 @@ public class MyCarController : MonoBehaviour, IControllable
 
     public float turboRechargeMultiplier;
     public float turboConsumeMultiplier;
-    private float turbo;
+    [SerializeField]private float turbo;
 
     public float Turbo
     {
@@ -228,15 +228,15 @@ public class MyCarController : MonoBehaviour, IControllable
 
         if (alwaysAccelerate && accelerationInput < minAcceleration) accelerationInput = minAcceleration;
 
-        if (boostInput && turbo > 1)
+        if (boostInput)
         {
-            turbo -= turboRechargeMultiplier * Time.deltaTime;
+            Turbo -= turboRechargeMultiplier * Time.deltaTime;
             accelerationInput *= boostMultiplier;
             isBoosting = true;
         }
         else
         {
-            turbo += turboRechargeMultiplier * Time.deltaTime;
+            Turbo += turboRechargeMultiplier * Time.deltaTime;
             isBoosting = false;
         }
 

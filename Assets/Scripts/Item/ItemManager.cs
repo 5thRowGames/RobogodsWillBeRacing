@@ -22,6 +22,8 @@ public class ItemManager : MonoBehaviour, IControllable
     private Dictionary<int, List<int>> itemPercentageDictionary;
     private bool isItemChosen;
 
+    public int itemToChooser = 0;
+
     private void Awake()
     {
         playerSkillManager = GetComponent<PlayerSkillManager>();
@@ -73,7 +75,9 @@ public class ItemManager : MonoBehaviour, IControllable
     {
         HUDManager.Instance.RemoveCurrentItem(god);
         isItemChosen = false;
-        
+
+        Debug.Log(currentItemID);
+
         switch (currentItemID)
         {
             //Reloj de arena
@@ -135,12 +139,13 @@ public class ItemManager : MonoBehaviour, IControllable
     private void ReduceColdown()
     {
         HUDManager.Instance.ReduceTime(god,coldownReduced);
-        playerSkillManager.GodSkillTime -= coldownReduced;
     }
 
     private void IncreaseMana()
     {
         playerSkillManager.Mana += manaStolen;
+        
+        HUDManager.Instance.UpdateManaBar(god,manaStolen);
 
         float distance = Mathf.Infinity;
         int index = LapsManager.Instance.godRaceInfoList.FindIndex(x => x.god == gameObject);
@@ -164,11 +169,30 @@ public class ItemManager : MonoBehaviour, IControllable
         }
 
         LapsManager.Instance.godRaceInfoList[enemyIndex].god.GetComponent<PlayerSkillManager>().Mana -= manaStolen;
+        
+        HUDManager.Instance.UpdateManaBar((God.Type)enemyIndex,manaStolen);
     }
 
     private void RechargeTurbo()
     {
-        //carController.TurboAmount += turboRecharged;
+        switch (god)
+        {
+            case God.Type.Anubis:
+                HarmManager.Instance.anubisCar.Turbo += turboRecharged;
+                break;
+            
+            case God.Type.Poseidon:
+                HarmManager.Instance.poseidonCar.Turbo += turboRecharged;
+                break;
+            
+            case God.Type.Kali:
+                HarmManager.Instance.kaliCar.Turbo += turboRecharged;
+                break;
+            
+            case God.Type.Thor:
+                HarmManager.Instance.thorCar.Turbo += turboRecharged;
+                break;
+        }
     }
 
     private void ActivateShield()

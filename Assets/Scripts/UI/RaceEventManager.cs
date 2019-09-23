@@ -57,8 +57,6 @@ public class RaceEventManager : Singleton<RaceEventManager>
                     ConnectDisconnectManager.ConnectSkillManagerDelegate(); 
                     ConnectDisconnectManager.ConnectCarSoundManager();
 
-                    AkSoundEngine.PostEvent("Musica_Limbo", gameObject);
-
                     countdown = true;
                 }
                 break;

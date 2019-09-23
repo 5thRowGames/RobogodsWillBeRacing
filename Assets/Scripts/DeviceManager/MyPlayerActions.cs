@@ -99,8 +99,8 @@ public class MyPlayerActions : PlayerActionSet
         myPlayerActions.Action.AddDefaultBinding(Key.Key3);
         myPlayerActions.Special.AddDefaultBinding(Key.Key2);
 
-        myPlayerActions.LeftBumper.AddDefaultBinding(Key.S);
-        myPlayerActions.RightBumper.AddDefaultBinding(Key.F);
+        myPlayerActions.LeftBumper.AddDefaultBinding(Key.F);
+        myPlayerActions.RightBumper.AddDefaultBinding(Key.S);
         myPlayerActions.LeftTrigger.AddDefaultBinding(Key.G);
         myPlayerActions.RightTrigger.AddDefaultBinding(Key.W);
 

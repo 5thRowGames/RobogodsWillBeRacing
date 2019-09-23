@@ -33,10 +33,10 @@ public class StabilityController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(!myCarController.IsBeingTeleported)
+        //if(!myCarController.IsBeingTeleported)
             ClampRotation();
         CheckUpsideDown();
-        ClampHeight();
+        //ClampHeight();
     }
 
     #endregion

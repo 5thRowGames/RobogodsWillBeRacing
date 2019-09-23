@@ -263,18 +263,18 @@ MonoBehaviour:
   boostMultiplier: 2
   carUnderControl: 0
   deaccelerationTime: 2
-  turnSpeed: 30
+  turnSpeed: 60
   speedThreshold: 15
   steeringThreshold: 0.2
   steeringReductionFactor: 0.8
   minZVelocityToReverseSteering: -0.8
-  angularVelocityReductionFactor: 1
-  maxAngularSpeed: 20
-  brakeForce: 40
+  angularVelocityReductionFactor: 0.95
+  maxAngularSpeed: 30
+  brakeForce: 50
   brakeToReverseTime: 0.5
   isGoingBackwards: 0
   speedUnderThreshold: 0
-  handBrakeForce: 30
+  handBrakeForce: 50
   handBrakeBrakeFactor: 2
   handBrakeTurboTime: 3
   handBrakeTimer: 0
@@ -284,9 +284,9 @@ MonoBehaviour:
   exraHeightToNoGrounded: 1
   airLateralShiftFactor: 0.008
   wheelHeight: 1
-  downForce: 6
+  downForce: 5
   additiveDownForce: 1
-  upForce: 40
+  upForce: 50
   jumpForce: 20
   useSimpleSuspension: 0
   groundDrag: 2
@@ -339,7 +339,7 @@ MonoBehaviour:
   maxAngle: 15
   maxFrontalAngle: 35
   maxSpeed: 30
-  reductionSpeedFactor: 0.4
+  reductionSpeedFactor: 0.8
 --- !u!114 &8584054329157395999
 MonoBehaviour:
   m_ObjectHideFlags: 0

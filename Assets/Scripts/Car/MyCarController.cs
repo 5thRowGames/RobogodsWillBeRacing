@@ -25,7 +25,7 @@ public class MyCarController : MonoBehaviour, IControllable
     [SerializeField] [Tooltip("Umbral de giro. Se considera que no se está girando si el valor de giro es menor a este")] [Range(0f, 1f)] private float steeringThreshold = 0.1f;
     [SerializeField] [Tooltip("Factor de reducción de la velocidad angular en cada FixedUpdate si no se está girando")] [Range(0f, 1f)] private float steeringReductionFactor = 0.9f;
     [SerializeField] [Tooltip("Velocidad mínima del forward del coche para invertir la dirección de giro (marcha atrás)")] private float minZVelocityToReverseSteering = -1f;
-    [SerializeField] [Tooltip("Reducción de velocidad angular constante")] private float angularVelocityReductionFactor = 0.95f;
+    [SerializeField] [Tooltip("Reducción de velocidad angular constante")][Range(0f, 1f)] private float angularVelocityReductionFactor = 0.95f;
     [SerializeField] [Tooltip("Velocidad angular máxima")] private float maxAngularSpeed = 20f;
     [SerializeField] [Tooltip("Fuerza del freno")] private float brakeForce = 20f;
     [SerializeField] [Tooltip("Tiempo necesario para pasar de frenar a ir marcha atrás")] private float brakeToReverseTime = 0.5f;
@@ -262,11 +262,11 @@ public class MyCarController : MonoBehaviour, IControllable
             Debug.Log("Car not grounded");
             rb.drag = airDrag;
             rb.angularDrag = airAngularDrag;
-
+            //Brake();
             if (helper != null)
                 rb.AddForce(-helper.transform.up * (downForce + additiveDownForce), ForceMode.Impulse);
-            if (jumpInput)
-                Accelerate();
+            //if (jumpInput)
+            //    Accelerate();
         }
 
         Steering(); // Según el coche esté en el suelo o en el aire, el giro será normal o lateral
@@ -287,7 +287,8 @@ public class MyCarController : MonoBehaviour, IControllable
         if (accelerationInput > 0f)
         {
             //rb.AddForceAtPosition(groundForward * accelerationInput * speedForce, accelPoint.position, ForceMode.Acceleration);
-            rb.AddForce(groundForward * accelerationInput * speedForce, ForceMode.Acceleration);
+            var force = IsGrounded ? accelerationInput : accelerationInput / 4f;
+            rb.AddForce(groundForward * force * speedForce, ForceMode.Acceleration);
             deaccelerationTimer = deaccelerationTime;
         }
         else

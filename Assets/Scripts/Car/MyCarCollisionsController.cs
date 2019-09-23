@@ -68,13 +68,13 @@ public class MyCarCollisionsController : MonoBehaviour
         Debug.Log("Collision Angle:" + collisionAngle);
         if (collisionAngle > -maxFrontalAngle && collisionAngle < maxFrontalAngle) // Choque frontal
         {
-            if(collisionAngle > -maxAngle && collisionAngle < maxAngle && rb.velocity.magnitude > maxSpeed)
+            if (collisionAngle > -maxAngle && collisionAngle < maxAngle && rb.velocity.magnitude > maxSpeed)
             {
                 Debug.Log("¡Reducción de velocidad!");
                 rb.angularVelocity *= reductionSpeedFactor * (1.0f - (collisionAngle / maxAngle));
                 rb.velocity *= reductionSpeedFactor;
             }
-            
+
             Debug.Log("¡Fuerza hacia abajo!");
             rb.AddForce(-rb.transform.up * downForce, ForceMode.Force);
         }

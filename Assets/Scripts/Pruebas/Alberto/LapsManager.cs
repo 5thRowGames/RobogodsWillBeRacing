@@ -9,16 +9,20 @@ public class LapsManager : MonoBehaviour
     public class GodRaceInfo
     {
         public GameObject god;
+        public Rigidbody rb;
         public int currentLap;
         public int currentCheckPoint;
         public float distanceToNextCheckPoint;
         public int racePosition;
         public bool raceFinished;
+        public int uiIndex;
 
-        public GodRaceInfo(GameObject god)
+        public GodRaceInfo(GameObject god, int uiIndex)
         {
             this.god = god;
             raceFinished = false;
+            this.uiIndex = uiIndex;
+            rb = god.GetComponent<Rigidbody>();
         }
 
     }
@@ -52,6 +56,7 @@ public class LapsManager : MonoBehaviour
     public List<Text> lapsText;
     public List<Text> checkPointsText;
     public GameObject raceOverPanel;
+    public List<Text> speedsText;
 
     private void Awake()
     {
@@ -75,6 +80,7 @@ public class LapsManager : MonoBehaviour
         godRaceInfoList.Sort(CompareRacePositions);
         for (int i = 0; i < godRaceInfoList.Count; i++)
             godRaceInfoList[i].racePosition = i;
+        UpdateSpeedsText();
     }
 
     private void OnEnable()
@@ -89,7 +95,8 @@ public class LapsManager : MonoBehaviour
 
     private void OnGodSpawned(GameObject god)
     {
-        godRaceInfoList.Add(new GodRaceInfo(god));
+        int index = godRaceInfoList.Count;
+        godRaceInfoList.Add(new GodRaceInfo(god,  index));
         Debug.Log($"{god.name} registered");
     }
 
@@ -100,8 +107,9 @@ public class LapsManager : MonoBehaviour
         var players = FindObjectsOfType<MyCarController>();
         foreach (var player in players)
         {
+            int index = godRaceInfoList.Count;
             Debug.Log($"Hello, I'm {player.Name}");
-            godRaceInfoList.Add(new GodRaceInfo(player.gameObject));
+            godRaceInfoList.Add(new GodRaceInfo(player.gameObject, index));
         }
     }
 
@@ -195,12 +203,12 @@ public class LapsManager : MonoBehaviour
         }
     }
 
-    // Revisar porque un mismo coche actualiza ambos textos, no a la vez
     public void UpdateCheckPoint(GameObject god, int checkpoint)
     {
         GodRaceInfo gri = godRaceInfoList.Find(g => g.god == god);
         //int index = godRaceInfoList.FindIndex(g => g.god == god);
-        int index = godRaceInfoList.IndexOf(gri);
+        //int index = godRaceInfoList.IndexOf(gri);
+        int index = gri.uiIndex;
         
         if (gri == null)
             return;
@@ -307,6 +315,14 @@ public class LapsManager : MonoBehaviour
         else
         {
             return A + AB * distance;
+        }
+    }
+
+    public void UpdateSpeedsText()
+    {
+        foreach(var gri in godRaceInfoList)
+        {
+            speedsText[gri.uiIndex].text = Mathf.Floor(gri.rb.velocity.magnitude).ToString();
         }
     }
 }

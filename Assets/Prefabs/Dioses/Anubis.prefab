@@ -201,7 +201,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 5260619960850091002}
   m_Material: {fileID: 13400000, guid: 6667dca808adca94eb261550203ba334, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.19
   m_Height: 1.28
   m_Direction: 0
@@ -228,7 +228,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 5260619960850091002}
   m_Material: {fileID: 13400000, guid: 6667dca808adca94eb261550203ba334, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.19
   m_Height: 1.28
   m_Direction: 0
@@ -269,18 +269,18 @@ MonoBehaviour:
   boostMultiplier: 2
   carUnderControl: 0
   deaccelerationTime: 2
-  turnSpeed: 30
+  turnSpeed: 60
   speedThreshold: 15
   steeringThreshold: 0.2
   steeringReductionFactor: 0.8
   minZVelocityToReverseSteering: -0.8
-  angularVelocityReductionFactor: 1
-  maxAngularSpeed: 20
-  brakeForce: 40
+  angularVelocityReductionFactor: 0.95
+  maxAngularSpeed: 30
+  brakeForce: 50
   brakeToReverseTime: 0.5
   isGoingBackwards: 0
   speedUnderThreshold: 0
-  handBrakeForce: 30
+  handBrakeForce: 50
   handBrakeBrakeFactor: 2
   handBrakeTurboTime: 3
   handBrakeTimer: 0
@@ -292,7 +292,7 @@ MonoBehaviour:
   wheelHeight: 1
   downForce: 5
   additiveDownForce: 1
-  upForce: 40
+  upForce: 50
   jumpForce: 20
   useSimpleSuspension: 0
   groundDrag: 2
@@ -345,7 +345,7 @@ MonoBehaviour:
   maxAngle: 15
   maxFrontalAngle: 35
   maxSpeed: 30
-  reductionSpeedFactor: 0.4
+  reductionSpeedFactor: 0.8
 --- !u!114 &8473246653801415278
 MonoBehaviour:
   m_ObjectHideFlags: 0

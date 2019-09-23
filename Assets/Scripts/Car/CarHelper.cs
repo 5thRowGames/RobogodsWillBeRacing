@@ -12,13 +12,15 @@ public class CarHelper : MonoBehaviour
 
     void Start()
     {
-        hitSomething = false;
-        hitInfo = new RaycastHit();
+        
+        //hitInfo = new RaycastHit();
     }
 
     void Update()
     {
         if (car == null) return;
+
+        hitSomething = Physics.Raycast(transform.position, -transform.up, out hitInfo, Mathf.Infinity, layerMask);
 
         transform.position = car.position + Vector3.up; // Sigue al coche una unidad por encima del mismo
         transform.rotation = Quaternion.identity;

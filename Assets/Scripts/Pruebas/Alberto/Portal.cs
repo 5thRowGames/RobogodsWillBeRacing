@@ -12,7 +12,8 @@ public class Portal : MonoBehaviour
     public LayerMask playerLayer; // la layer de los coches
     private Vector3 teleportPoint; // punto donde teletransportar a los coches
     public float zOffset = 8f; // desplazamiento hacia delante respecto del punto de teletransporte
-    private readonly float exitPortalSpeed = 60f;
+    private readonly float exitPortalSpeedMagnitude = 80f;
+    private float portalEnterSpeedMagnitude;
     public Queue<Collider> carColliders; // Colliders de los coches que están esperando para ser teletransportados
 
     #region Unity Events
@@ -29,6 +30,7 @@ public class Portal : MonoBehaviour
             
             if(myCarController != null)
             {
+                portalEnterSpeedMagnitude = other.attachedRigidbody.velocity.magnitude;
                 myCarController.IsBeingTeleported = true;
                 myCarController.StopAllCoroutines();
             }
@@ -103,9 +105,9 @@ public class Portal : MonoBehaviour
 
         //rb.useGravity = true;
         //rb.isKinematic = false;
-
+        var speed = portalEnterSpeedMagnitude < exitPortalSpeedMagnitude ? exitPortalSpeedMagnitude : portalEnterSpeedMagnitude;
         rb.rotation = targetPortal.rotation;
-        rb.velocity = targetPortal.forward.normalized * exitPortalSpeed;
+        rb.velocity = targetPortal.forward.normalized * speed;
 
         //rb.WakeUp();
     }

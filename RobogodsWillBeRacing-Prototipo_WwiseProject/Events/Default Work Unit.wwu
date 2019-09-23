@@ -570,6 +570,67 @@
 						</Event>
 					</ChildrenList>
 				</Folder>
+				<Folder Name="Portal" ID="{9F302AC1-FC78-465C-9245-4B879E525090}" ShortID="842673637">
+					<ChildrenList>
+						<Event Name="Portal_In" ID="{BA8DC80F-5032-43C8-986B-F06A0CD4F292}">
+							<ChildrenList>
+								<Action Name="" ID="{3F147CEE-B001-42C8-A75A-166B994BD806}" ShortID="513460022">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="11"/>
+										<Property Name="Volume" Type="Real64" Value="-96"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="MOTOR_1_3_BUS" ID="{9FF035E0-4086-4A9F-BA0A-49D983130EFC}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{7C398F13-0955-4F04-BD2D-FB53AA8B422A}" ShortID="938482701">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="11"/>
+										<Property Name="Volume" Type="Real64" Value="-96"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="MOTOR_2_4_BUS" ID="{E9AC9E29-EE0A-4D0C-919A-F41E20AF4276}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{21AA157C-83CD-4C42-B350-633DE7E0ECCF}" ShortID="458973032">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="11"/>
+										<Property Name="Volume" Type="Real64" Value="-96"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="SFX_BUS" ID="{06504896-303E-4D3A-BC83-BAE0A55A7391}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Portal_Out" ID="{E22EC4F6-D6BC-44E4-8B79-8A2AB3CB4570}">
+							<ChildrenList>
+								<Action Name="" ID="{2DC1B1F0-D42B-407D-A8A2-3D3FA5F6F2BB}" ShortID="523153972">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="15"/>
+										<Property Name="Delay" Type="Real64" Value="3"/>
+									</PropertyList>
+									<ReferenceList/>
+									<ChildrenList>
+										<EventActionException Name="" ID="{A3B8084E-49A7-4E33-BB49-F86C617DE2B0}">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="MUSICA_BUS" ID="{6C684514-A741-4BF9-B1F1-2BE3F140C499}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+												</Reference>
+											</ReferenceList>
+										</EventActionException>
+									</ChildrenList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

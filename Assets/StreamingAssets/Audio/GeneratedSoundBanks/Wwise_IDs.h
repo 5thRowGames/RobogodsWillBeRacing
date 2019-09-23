@@ -28,6 +28,8 @@ namespace AK
         static const AkUniqueID NAVE_4_ACELERAR_IN = 2760755186U;
         static const AkUniqueID NAVE_4_ACELERAR_OUT = 3895169229U;
         static const AkUniqueID NAVE_4_ARRANQUE = 1038650524U;
+        static const AkUniqueID PORTAL_IN = 3540114379U;
+        static const AkUniqueID PORTAL_OUT = 4292740166U;
         static const AkUniqueID SONIC_LOGO_IN = 3032635407U;
         static const AkUniqueID TURBO_IN = 706776875U;
         static const AkUniqueID TURBO_OUT = 2234672166U;
@@ -45,6 +47,7 @@ namespace AK
                 static const AkUniqueID STATE_MUSICA_AGUA = 1532029634U;
                 static const AkUniqueID STATE_MUSICA_EGIPTO = 1932523280U;
                 static const AkUniqueID STATE_MUSICA_INDIA = 3791646481U;
+                static const AkUniqueID STATE_MUSICA_INICIO = 1904332521U;
                 static const AkUniqueID STATE_MUSICA_LIMBO = 1667331795U;
                 static const AkUniqueID STATE_MUSICA_NORDICA = 3912365808U;
             } // namespace STATE

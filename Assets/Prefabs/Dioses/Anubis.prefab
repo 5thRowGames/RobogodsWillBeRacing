@@ -322,7 +322,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 1025
-  hitSomething: 0
+  hitSomething: 1
   carYRotation: 0
 --- !u!1 &2795419575546021311
 GameObject:
@@ -814,7 +814,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   executionDuration: 5
   coldown: 0
-  mana: 0
+  mana: 25
   isFinished: 0
   instant: 0
 --- !u!1 &4414221230180666441
@@ -892,7 +892,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   executionDuration: 5
-  coldown: 10
+  coldown: 15
   mana: 0
   isFinished: 0
   instant: 1
@@ -1187,8 +1187,8 @@ Rigidbody:
   m_GameObject: {fileID: 4414221230866716625}
   serializedVersion: 2
   m_Mass: 6
-  m_Drag: 0.5
-  m_AngularDrag: 0.5
+  m_Drag: 2
+  m_AngularDrag: 1.5
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -1209,6 +1209,7 @@ MonoBehaviour:
   activeDevice: 0
   turboRechargeMultiplier: 0
   turboConsumeMultiplier: 0
+  turbo: 0
   speedForce: 140
   instantSpeedForce: 10
   alwaysAccelerate: 0
@@ -1356,6 +1357,7 @@ MonoBehaviour:
   coldownReduced: 20
   manaStolen: 30
   turboRecharged: 40
+  itemToChooser: 0
 --- !u!114 &4414221230866716628
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,7 +6,10 @@ using UnityEngine.UI;
 
 public class CharacterSelectionController : MonoBehaviour,IControllable
 {
+    public int player;
     public List<Image> images;
+    public Sprite lampOff;
+    public Sprite lampOn;
 
     private int position;
     private bool confirm;
@@ -37,7 +40,7 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
         {
             if (controller.State.Submit.IsPressed && !confirmed)
             {
-                CharacterSelectionManager.Instance.ConfirmConfirmation();
+                CharacterSelectionManager.Instance.ConfirmConfirmation(player);
             }
             else if (controller.State.Cancel.IsPressed)
             {
@@ -45,6 +48,7 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
                 CharacterSelectionManager.Instance.DeselectCharacter(robogodPicked);
                 robogodPicked = God.Type.None;
                 canChooseGod = true;
+                images[position].sprite = lampOff;
             }
         }
         else
@@ -70,13 +74,20 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
                 }
 
 
-                if(controller.State.Submit.IsPressed)
+                if (controller.State.Submit.IsPressed)
+                {
+                    images[position].sprite = lampOn;
                     ChooseGod();
+                }
             }
             else
             {
-                if(controller.State.Cancel.IsPressed)
+                if (controller.State.Cancel.IsPressed)
+                {
+                    images[position].sprite = lampOff;
                     DeselectGod();
+                }
+                    
             }
         }
         

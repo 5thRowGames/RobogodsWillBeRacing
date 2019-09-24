@@ -28,6 +28,8 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
    public float buttonPositionY;
    
    public Image fade;
+   public List<Sprite> lightOff;
+   public List<Sprite> lightOn;
    public List<Image> confirmPlayerIcons;
    public List<GameObject> players;
 
@@ -162,11 +164,11 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
         }
     }
 
-    public void ConfirmConfirmation()
+    public void ConfirmConfirmation(int player)
     {
-        playersConfirmed++; 
-        
-        //confirmPlayerIcons[playerID - 1].color = confirmedColor;
+        playersConfirmed++;
+
+        confirmPlayerIcons[player].sprite = lightOn[player];
         
         playersNumberConfirmedText.text = playersConfirmed + "/" + StoreGodInfo.Instance.players;
 
@@ -194,10 +196,7 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
         
         EventSystem.current.SetSelectedGameObject(null);
 
-        /*for (int i = 0; i < confirmPlayerIcons.Count; i++)
-        {
-            confirmPlayerIcons[i].color = deniedColor;
-        }*/
+        ResetConfirCharacterSelectionLights();
 
         foreach (var player in players)
         {
@@ -279,6 +278,14 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
        thorButton.anchoredPosition = new Vector2(0,buttonPositionY);
        infoPanel.anchoredPosition = new Vector2(panelPositionX, 0);
        characterSelectionTitlePanel.anchoredPosition = new Vector2(-panelPositionX, 0);
+   }
+
+   private void ResetConfirCharacterSelectionLights()
+   {
+       for (int i = 0; i < confirmPlayerIcons.Count; i++)
+       {
+           confirmPlayerIcons[i].sprite = lightOff[i];
+       }
    }
    
    #endregion

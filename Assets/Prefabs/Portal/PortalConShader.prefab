@@ -4815,9 +4815,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 296297445355305059}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.31005913, y: 3.41, z: -5.35}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 9.34286, y: 9.34286, z: 9.34286}
   m_Children:
   - {fileID: 4032618775557575319}
   - {fileID: 296297444700791435}
@@ -4882,8 +4882,9 @@ GameObject:
   - component: {fileID: 3304341240389191924}
   - component: {fileID: 2128536857761687974}
   - component: {fileID: 1232551733892150958}
+  - component: {fileID: 657019116}
   m_Layer: 0
-  m_Name: PortalExample
+  m_Name: Portal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4957,11 +4958,29 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3807929498681324742}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &657019116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3807929498681324742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd759855747fc854ab59ab6aa715d730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPortal: {fileID: 0}
+  index: 0
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 16896
+  zOffset: 8
 --- !u!1001 &646798208512403046
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4969,15 +4988,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 296297445355529283}
     m_Modifications:
-    - target: {fileID: 929231910825377767, guid: cf0a72bc29b968349b04582dd7b932ee,
-        type: 3}
-      propertyPath: m_Name
-      value: PortalAura
-      objectReference: {fileID: 0}
     - target: {fileID: 929231910825377768, guid: cf0a72bc29b968349b04582dd7b932ee,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.049940884
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 929231910825377768, guid: cf0a72bc29b968349b04582dd7b932ee,
         type: 3}
@@ -4987,7 +5001,7 @@ PrefabInstance:
     - target: {fileID: 929231910825377768, guid: cf0a72bc29b968349b04582dd7b932ee,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.91799974
+      value: 0.92
       objectReference: {fileID: 0}
     - target: {fileID: 929231910825377768, guid: cf0a72bc29b968349b04582dd7b932ee,
         type: 3}
@@ -5028,6 +5042,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 929231910825377768, guid: cf0a72bc29b968349b04582dd7b932ee,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 69.295364
+      objectReference: {fileID: 0}
+    - target: {fileID: 929231910825377768, guid: cf0a72bc29b968349b04582dd7b932ee,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 69.295364
+      objectReference: {fileID: 0}
+    - target: {fileID: 929231910825377768, guid: cf0a72bc29b968349b04582dd7b932ee,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 69.295364
+      objectReference: {fileID: 0}
+    - target: {fileID: 929231910825377767, guid: cf0a72bc29b968349b04582dd7b932ee,
+        type: 3}
+      propertyPath: m_Name
+      value: PortalAura
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf0a72bc29b968349b04582dd7b932ee, type: 3}

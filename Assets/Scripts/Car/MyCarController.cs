@@ -6,14 +6,14 @@ using InControl;
 
 public class MyCarController : MonoBehaviour, IControllable
 {
-    public bool activeDevice;
-    
+    public bool activeDevice; //Para prueba solo
+
     #region Members
 
     public float turboRechargeMultiplier;
     public float turboConsumeMultiplier;
     [SerializeField]private float turbo;
-
+     
     public float Turbo
     {
         get => turbo;
@@ -21,7 +21,7 @@ public class MyCarController : MonoBehaviour, IControllable
     }
 
     [Header("*Car Specs*")]
-     [Tooltip("Fuerza aplicada al acelerar")] public float speedForce = 50f;
+    [Tooltip("Fuerza aplicada al acelerar")] public float speedForce = 50f;
     [SerializeField] [Tooltip("Impulso al acelerar con velocidad inferior a speedThreshold")] private float instantSpeedForce = 3f;
     [SerializeField] [Tooltip("¿Siempre aplicar la aceleración mínima?")] private bool alwaysAccelerate = true;
     [SerializeField] [Tooltip("Aceleración mínima aplicada en cada momento")] [Range(0f, 1f)] private float minAcceleration = 0.2f;
@@ -35,7 +35,7 @@ public class MyCarController : MonoBehaviour, IControllable
     [SerializeField] [Tooltip("Umbral de giro. Se considera que no se está girando si el valor de giro es menor a este")] [Range(0f, 1f)] private float steeringThreshold = 0.1f;
     [SerializeField] [Tooltip("Factor de reducción de la velocidad angular en cada FixedUpdate si no se está girando")] [Range(0f, 1f)] private float steeringReductionFactor = 0.9f;
     [SerializeField] [Tooltip("Velocidad mínima del forward del coche para invertir la dirección de giro (marcha atrás)")] private float minZVelocityToReverseSteering = -1f;
-    [SerializeField] [Tooltip("Reducción de velocidad angular constante")] private float angularVelocityReductionFactor = 0.95f;
+    [SerializeField] [Tooltip("Reducción de velocidad angular constante")][Range(0f, 1f)] private float angularVelocityReductionFactor = 0.95f;
     [SerializeField] [Tooltip("Velocidad angular máxima")] private float maxAngularSpeed = 20f;
     [SerializeField] [Tooltip("Fuerza del freno")] private float brakeForce = 20f;
     [SerializeField] [Tooltip("Tiempo necesario para pasar de frenar a ir marcha atrás")] private float brakeToReverseTime = 0.5f;
@@ -55,6 +55,7 @@ public class MyCarController : MonoBehaviour, IControllable
     [SerializeField] [Tooltip("Factor por el que multiplicar el giro y la velocidad cuando el coche está en el aire")] private float airLateralShiftFactor = 0.01f;
     [SerializeField] [Tooltip("Longitud de los rayos desde las esquinas del coche al suelo")] private float wheelHeight = 1f;
     [SerializeField] [Tooltip("Fuerza hacia el suelo a aplicar al vehículo cuando está en el aire")] private float downForce = 6f;
+    [Tooltip("Fuerza hacia abajo añadida cuando se supera la altura máxima")] public float additiveDownForce = 1f;
     [SerializeField] [Tooltip("Fuerza vertical que se aplica desde las esquinas del coche hacia arriba. Sirve para mantenerlo flotando en el aire")] private float upForce = 20f;
     [SerializeField] [Tooltip("Fuerza de salto vertical")] private float jumpForce = 20f;
     [SerializeField] [Tooltip("Tipo de suspension: Verdadero = usar una fuerza desde el centro del coche; Falso = usar una fuerza desde cada esquina del coche")] private bool useSimpleSuspension = false;
@@ -87,6 +88,20 @@ public class MyCarController : MonoBehaviour, IControllable
     [SerializeField] [Tooltip("Magnitud de la velocidad del coche")] public float velocityMagnitude;
     [SerializeField] [Tooltip("Vector de velocidad local del coche")] public Vector3 velocity;
     [SerializeField] public bool IsGrounded { get; private set; }
+    public float DistanceToGround
+    {
+        get
+        {
+            RaycastHit hitInfo;
+            if (Physics.Raycast(transform.position, -transform.up, out hitInfo))
+            {
+                //Debug.Log($"Distancia al suelo = {hitInfo.distance}");
+                return hitInfo.distance;
+            }
+            else
+                return -1f;
+        }
+    }
     public bool IsBeingTeleported = false;
 
     [Header("Helper")]
@@ -94,11 +109,15 @@ public class MyCarController : MonoBehaviour, IControllable
 
     private List<RaycastHit> hitList;
 
+
+
     //Para sonidos
     private bool isBoosting;
     private bool isBraking;
     private bool isHorizontal;
-    
+
+    public int pruebaSonido;
+
     //Posiciones de parrilla de salida
     [SerializeField] private List<Transform> startingPositions;
 
@@ -130,7 +149,7 @@ public class MyCarController : MonoBehaviour, IControllable
             carUnderControl = true;
             GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
             Core.Input.AssignControllable(GetComponent<IncontrolProvider>(),this);
-        } 
+        }
     }
 
     private void OnEnable()
@@ -193,6 +212,7 @@ public class MyCarController : MonoBehaviour, IControllable
         Gizmos.DrawLine(transform.position, transform.position - transform.up);
         Gizmos.DrawCube(rb.position + rb.centerOfMass, 0.3f * Vector3.one);
         Gizmos.DrawLine(transform.position, transform.position - (transform.forward * accelerationInput));
+
         Gizmos.color = Color.blue;
         Gizmos.DrawSphere(accelPoint.position, 0.2f);
         Gizmos.DrawSphere(handBrakePoint.position, 0.15f);
@@ -230,22 +250,22 @@ public class MyCarController : MonoBehaviour, IControllable
 
         if (boostInput)
         {
-            Turbo -= turboRechargeMultiplier * Time.deltaTime;
+            Turbo -= turboConsumeMultiplier * Time.deltaTime;
             accelerationInput *= boostMultiplier;
+ 
             isBoosting = true;
         }
         else
         {
             Turbo += turboRechargeMultiplier * Time.deltaTime;
             isBoosting = false;
-        }
+        }   
 
-        if (rb.velocity.magnitude < speedThreshold) accelerationInput *= instantSpeedForce;
+        //if (rb.velocity.magnitude < speedThreshold) accelerationInput *= instantSpeedForce;
 
         //ShaderPruebas.blurAmount = rb.velocity.magnitude / 100; //Borrar, solo era para pruebas
 
-        speedUnderThreshold = rb.velocity.magnitude < speedThreshold;
-
+        speedUnderThreshold = rb.velocity.magnitude < speedThreshold ? true : false;
     }
 
     public void Move()
@@ -263,13 +283,14 @@ public class MyCarController : MonoBehaviour, IControllable
         }
         else // El coche está en el aire
         {
+            Debug.Log("Car not grounded");
             rb.drag = airDrag;
             rb.angularDrag = airAngularDrag;
-
+            //Brake();
             if (helper != null)
-                rb.AddForce(-helper.transform.up * downForce, ForceMode.Impulse);
-            if (jumpInput)
-                Accelerate();
+                rb.AddForce(-helper.transform.up * (downForce + additiveDownForce), ForceMode.Impulse);
+            //if (jumpInput)
+            //    Accelerate();
         }
 
         Steering(); // Según el coche esté en el suelo o en el aire, el giro será normal o lateral
@@ -286,11 +307,12 @@ public class MyCarController : MonoBehaviour, IControllable
         {
             groundForward = transform.forward;
         }
-        
+
         if (accelerationInput > 0f)
         {
             //rb.AddForceAtPosition(groundForward * accelerationInput * speedForce, accelPoint.position, ForceMode.Acceleration);
-            rb.AddForce(groundForward * accelerationInput * speedForce, ForceMode.Acceleration);
+            var force = IsGrounded ? accelerationInput : accelerationInput / 4f;
+            rb.AddForce(groundForward * force * speedForce, ForceMode.Acceleration);
             deaccelerationTimer = deaccelerationTime;
         }
         else
@@ -405,19 +427,6 @@ public class MyCarController : MonoBehaviour, IControllable
         {
             rb.MovePosition(transform.position + (transform.right * steeringInput * velocityMagnitude * airLateralShiftFactor));
         }
-        
-        if (Mathf.Abs(steeringInput) < steeringThreshold) // No se está girando
-        {
-            rb.angularVelocity *= steeringReductionFactor; // Reducir velocidad angular
-        }
-        else
-        {
-            if (velocity.z >= minZVelocityToReverseSteering)
-                rb.AddRelativeTorque(0f, steeringInput * turnSpeed, 0f);
-            else
-                rb.AddRelativeTorque(0f, -steeringInput * turnSpeed, 0f);
-        }
-        
         rb.angularVelocity *= angularVelocityReductionFactor;
     }
 

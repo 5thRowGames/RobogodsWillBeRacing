@@ -22,8 +22,6 @@ public class ItemManager : MonoBehaviour, IControllable
     private Dictionary<int, List<int>> itemPercentageDictionary;
     private bool isItemChosen;
 
-    public int itemToChooser = 0;
-
     private void Awake()
     {
         playerSkillManager = GetComponent<PlayerSkillManager>();

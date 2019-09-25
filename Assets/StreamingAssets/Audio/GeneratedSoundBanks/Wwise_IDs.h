@@ -39,6 +39,11 @@ namespace AK
         static const AkUniqueID SONIC_LOGO_IN = 3032635407U;
         static const AkUniqueID TURBO_IN = 706776875U;
         static const AkUniqueID TURBO_OUT = 2234672166U;
+        static const AkUniqueID UI_CORTINILLA_IN = 1394534473U;
+        static const AkUniqueID UI_CURSOR_IN = 3671726430U;
+        static const AkUniqueID UI_PANEL_IN = 3828487486U;
+        static const AkUniqueID UI_SELECT = 2774129122U;
+        static const AkUniqueID UI_SERVOS_IN = 118634594U;
         static const AkUniqueID UI_START_IN = 2335810608U;
     } // namespace EVENTS
 

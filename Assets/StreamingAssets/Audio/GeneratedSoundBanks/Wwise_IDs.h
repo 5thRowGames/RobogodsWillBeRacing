@@ -16,6 +16,12 @@ namespace AK
         static const AkUniqueID CAJA_RANDOM_IN = 3240997650U;
         static const AkUniqueID IMPACTOS_IN = 2345257581U;
         static const AkUniqueID INICIO_CARRERA_IN = 3586400535U;
+        static const AkUniqueID MUSICA_AGUA = 4189311852U;
+        static const AkUniqueID MUSICA_EGIPTO = 3469764390U;
+        static const AkUniqueID MUSICA_INDIA = 17450743U;
+        static const AkUniqueID MUSICA_INICIO = 1563092195U;
+        static const AkUniqueID MUSICA_LIMBO = 4092793509U;
+        static const AkUniqueID MUSICA_NORDICA = 912508314U;
         static const AkUniqueID MUSICA_UI = 3809333196U;
         static const AkUniqueID NAVE_1_ACELERAR_IN = 2922585971U;
         static const AkUniqueID NAVE_1_ACELERAR_OUT = 2792057870U;
@@ -29,7 +35,6 @@ namespace AK
         static const AkUniqueID NAVE_4_ACELERAR_IN = 2760755186U;
         static const AkUniqueID NAVE_4_ACELERAR_OUT = 3895169229U;
         static const AkUniqueID NAVE_4_ARRANQUE = 1038650524U;
-        static const AkUniqueID PORTAL_IN = 3540114379U;
         static const AkUniqueID PORTAL_OUT = 4292740166U;
         static const AkUniqueID SONIC_LOGO_IN = 3032635407U;
         static const AkUniqueID TURBO_IN = 706776875U;

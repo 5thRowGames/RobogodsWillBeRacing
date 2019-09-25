@@ -570,11 +570,36 @@
 						</Event>
 					</ChildrenList>
 				</Folder>
-				<Folder Name="Portal" ID="{9F302AC1-FC78-465C-9245-4B879E525090}" ShortID="842673637">
+				<Folder Name="Musica_UI" ID="{FB3D9BDE-E4C9-4669-9AB1-9A526368EE17}" ShortID="811720716">
 					<ChildrenList>
-						<Event Name="Portal_In" ID="{BA8DC80F-5032-43C8-986B-F06A0CD4F292}">
+						<Event Name="Musica_UI" ID="{30E48C9B-F762-42B5-AB9B-4B3B90B6610A}">
 							<ChildrenList>
-								<Action Name="" ID="{3F147CEE-B001-42C8-A75A-166B994BD806}" ShortID="513460022">
+								<Action Name="" ID="{CB78C738-59BF-4C9A-828F-E3CCD2D7E499}" ShortID="986790628">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Musica_UI" ID="{81E3008F-916A-4277-9819-E0A8A1532452}" WorkUnitID="{3726896C-2E59-4545-98D2-470C8572299B}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="Musica_Portales" ID="{760BD160-ECEA-43BA-A007-412220CB7D51}" ShortID="205805705">
+					<ChildrenList>
+						<Event Name="Musica_Inicio" ID="{D97FEC87-2E50-4148-BA6B-F98A115CF755}">
+							<ChildrenList>
+								<Action Name="" ID="{B90B44CF-4354-442E-84EE-942DB73360A9}" ShortID="592548504">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="22"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="State_Musica_Inicio" ID="{AEEF3056-8259-4471-B866-F126BDB54A10}" WorkUnitID="{60148A15-2FAC-4DA2-B6F3-8B93BFB329E3}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{E153B388-A13A-4752-AB8A-1D6805F6639C}" ShortID="611863211">
 									<PropertyList>
 										<Property Name="ActionType" Type="int16" Value="11"/>
 										<Property Name="Volume" Type="Real64" Value="-96"/>
@@ -585,7 +610,7 @@
 										</Reference>
 									</ReferenceList>
 								</Action>
-								<Action Name="" ID="{7C398F13-0955-4F04-BD2D-FB53AA8B422A}" ShortID="938482701">
+								<Action Name="" ID="{AD910564-762E-4662-B893-27C575498A24}" ShortID="814449450">
 									<PropertyList>
 										<Property Name="ActionType" Type="int16" Value="11"/>
 										<Property Name="Volume" Type="Real64" Value="-96"/>
@@ -596,7 +621,242 @@
 										</Reference>
 									</ReferenceList>
 								</Action>
-								<Action Name="" ID="{21AA157C-83CD-4C42-B350-633DE7E0ECCF}" ShortID="458973032">
+								<Action Name="" ID="{52A45300-6EA9-4FC8-A080-EF0E8C0F4CDB}" ShortID="505171409">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="11"/>
+										<Property Name="Volume" Type="Real64" Value="-96"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="SFX_BUS" ID="{06504896-303E-4D3A-BC83-BAE0A55A7391}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Musica_Limbo" ID="{0373C2C1-1B2D-4A7B-8F66-5FF004E88141}">
+							<ChildrenList>
+								<Action Name="" ID="{1E8F54A6-FF0F-49DD-88F5-E654327EDB85}" ShortID="1066924154">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="22"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="State_Musica_Limbo" ID="{59DF591F-349D-46F1-A127-9088E074CDAE}" WorkUnitID="{60148A15-2FAC-4DA2-B6F3-8B93BFB329E3}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{E37E4C95-7CD5-4D45-98E6-B0CBBDC7428C}" ShortID="1002511219">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="11"/>
+										<Property Name="Volume" Type="Real64" Value="-96"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="MOTOR_1_3_BUS" ID="{9FF035E0-4086-4A9F-BA0A-49D983130EFC}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{85D13A78-07F5-4CD1-9C79-F703FA9B1141}" ShortID="362608425">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="11"/>
+										<Property Name="Volume" Type="Real64" Value="-96"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="MOTOR_2_4_BUS" ID="{E9AC9E29-EE0A-4D0C-919A-F41E20AF4276}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{9A3FB6F7-A2AC-480A-B3C8-05A080B9129F}" ShortID="1057140357">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="11"/>
+										<Property Name="Volume" Type="Real64" Value="-96"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="SFX_BUS" ID="{06504896-303E-4D3A-BC83-BAE0A55A7391}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Musica_Egipto" ID="{03208056-AC0D-4694-BA37-9E7DAFD66952}">
+							<ChildrenList>
+								<Action Name="" ID="{030D775D-C5C3-4926-8897-3B6CEDAB6721}" ShortID="1055975656">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="22"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="State_Musica_Egipto" ID="{B792C861-8B54-4244-88F0-1EB0B0BAB964}" WorkUnitID="{60148A15-2FAC-4DA2-B6F3-8B93BFB329E3}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{76F9A9EE-5A1F-4AEF-9C2B-6A937ECF4FEB}" ShortID="360128219">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="11"/>
+										<Property Name="Volume" Type="Real64" Value="-96"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="MOTOR_1_3_BUS" ID="{9FF035E0-4086-4A9F-BA0A-49D983130EFC}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{8A5A2277-95DE-4E7F-A49C-5E4488673B43}" ShortID="198214836">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="11"/>
+										<Property Name="Volume" Type="Real64" Value="-96"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="MOTOR_2_4_BUS" ID="{E9AC9E29-EE0A-4D0C-919A-F41E20AF4276}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{BDC5C059-52CC-4054-9F10-F5B36CD9DD41}" ShortID="1018866079">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="11"/>
+										<Property Name="Volume" Type="Real64" Value="-96"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="SFX_BUS" ID="{06504896-303E-4D3A-BC83-BAE0A55A7391}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Musica_Nordica" ID="{CC7BC88F-D72C-4BAC-A2F8-A3EEFA37B9F5}">
+							<ChildrenList>
+								<Action Name="" ID="{B908F5DE-378B-4D77-B1A4-8F0C47F33A04}" ShortID="496131758">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="22"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="State_Musica_Nordica" ID="{CEA756D9-9516-4A31-B740-F30DB531C2C7}" WorkUnitID="{60148A15-2FAC-4DA2-B6F3-8B93BFB329E3}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{31433703-21CE-489F-9C71-67E369CD2BA2}" ShortID="408034669">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="11"/>
+										<Property Name="Volume" Type="Real64" Value="-96"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="MOTOR_1_3_BUS" ID="{9FF035E0-4086-4A9F-BA0A-49D983130EFC}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{506DE33F-07D2-437E-BA1D-CCBD8F32936F}" ShortID="409020743">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="11"/>
+										<Property Name="Volume" Type="Real64" Value="-96"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="MOTOR_2_4_BUS" ID="{E9AC9E29-EE0A-4D0C-919A-F41E20AF4276}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{55EEC25E-7AE4-4EAB-BC4A-03266330D12D}" ShortID="923655240">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="11"/>
+										<Property Name="Volume" Type="Real64" Value="-96"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="SFX_BUS" ID="{06504896-303E-4D3A-BC83-BAE0A55A7391}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Musica_India" ID="{9BFEF9FA-1539-4FAB-B9DB-5B8A3D558BC9}">
+							<ChildrenList>
+								<Action Name="" ID="{4F57176A-8C8C-474F-8FC4-1440BA1CF060}" ShortID="415921550">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="22"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="State_Musica_India" ID="{72A69BAF-8E94-4A0E-BAB5-2A2F86DB440F}" WorkUnitID="{60148A15-2FAC-4DA2-B6F3-8B93BFB329E3}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{20FC212D-08C5-4FF5-81A4-7591A47E5BC8}" ShortID="682079848">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="11"/>
+										<Property Name="Volume" Type="Real64" Value="-96"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="MOTOR_1_3_BUS" ID="{9FF035E0-4086-4A9F-BA0A-49D983130EFC}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{7386A6AB-F5C2-470E-840C-5B8F0C5871E6}" ShortID="421873004">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="11"/>
+										<Property Name="Volume" Type="Real64" Value="-96"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="MOTOR_2_4_BUS" ID="{E9AC9E29-EE0A-4D0C-919A-F41E20AF4276}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{447E031B-37B1-4121-B000-AEE6CFE1477F}" ShortID="851586791">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="11"/>
+										<Property Name="Volume" Type="Real64" Value="-96"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="SFX_BUS" ID="{06504896-303E-4D3A-BC83-BAE0A55A7391}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Musica_Agua" ID="{0253FADB-74DB-4570-B517-BFCC0FA198C7}">
+							<ChildrenList>
+								<Action Name="" ID="{355EC5A4-8EB4-43EF-982D-A115140EB42B}" ShortID="1052277148">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="22"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="State_Musica_Inicio" ID="{AEEF3056-8259-4471-B866-F126BDB54A10}" WorkUnitID="{60148A15-2FAC-4DA2-B6F3-8B93BFB329E3}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{12AC8C1F-C047-4043-9DCC-F5719EEC63C8}" ShortID="687998211">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="11"/>
+										<Property Name="Volume" Type="Real64" Value="-96"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="MOTOR_1_3_BUS" ID="{9FF035E0-4086-4A9F-BA0A-49D983130EFC}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{2E84D41A-E147-44AD-B6FC-B7A7D66A492C}" ShortID="657055613">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="11"/>
+										<Property Name="Volume" Type="Real64" Value="-96"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="MOTOR_2_4_BUS" ID="{E9AC9E29-EE0A-4D0C-919A-F41E20AF4276}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{614CE632-096F-4B6C-9E80-FA90BF34B1E1}" ShortID="319783763">
 									<PropertyList>
 										<Property Name="ActionType" Type="int16" Value="11"/>
 										<Property Name="Volume" Type="Real64" Value="-96"/>
@@ -626,21 +886,6 @@
 											</ReferenceList>
 										</EventActionException>
 									</ChildrenList>
-								</Action>
-							</ChildrenList>
-						</Event>
-					</ChildrenList>
-				</Folder>
-				<Folder Name="Musica_UI" ID="{FB3D9BDE-E4C9-4669-9AB1-9A526368EE17}" ShortID="811720716">
-					<ChildrenList>
-						<Event Name="Musica_UI" ID="{30E48C9B-F762-42B5-AB9B-4B3B90B6610A}">
-							<ChildrenList>
-								<Action Name="" ID="{CB78C738-59BF-4C9A-828F-E3CCD2D7E499}" ShortID="986790628">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="Musica_UI" ID="{81E3008F-916A-4277-9819-E0A8A1532452}" WorkUnitID="{3726896C-2E59-4545-98D2-470C8572299B}"/>
-										</Reference>
-									</ReferenceList>
 								</Action>
 							</ChildrenList>
 						</Event>

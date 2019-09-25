@@ -47,25 +47,6 @@ namespace AK
         static const AkUniqueID UI_START_IN = 2335810608U;
     } // namespace EVENTS
 
-    namespace STATES
-    {
-        namespace STATE_PORTAL_Y_MUSICA
-        {
-            static const AkUniqueID GROUP = 1682584490U;
-
-            namespace STATE
-            {
-                static const AkUniqueID STATE_MUSICA_AGUA = 1532029634U;
-                static const AkUniqueID STATE_MUSICA_EGIPTO = 1932523280U;
-                static const AkUniqueID STATE_MUSICA_INDIA = 3791646481U;
-                static const AkUniqueID STATE_MUSICA_INICIO = 1904332521U;
-                static const AkUniqueID STATE_MUSICA_LIMBO = 1667331795U;
-                static const AkUniqueID STATE_MUSICA_NORDICA = 3912365808U;
-            } // namespace STATE
-        } // namespace STATE_PORTAL_Y_MUSICA
-
-    } // namespace STATES
-
     namespace GAME_PARAMETERS
     {
         static const AkUniqueID PLAYER_VELOCIDAD = 2235079496U;

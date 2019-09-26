@@ -206,7 +206,7 @@ public class ItemManager : MonoBehaviour, IControllable
             StartCoroutine(ChooseItemCoroutine());
             
             //Sonido: Elección de un objeto
-            AkSoundEngine.PostEvent("Caja_Random_In", gameObject);
+            SoundManager.Instance.PlayFx(SoundManager.Fx.CajaRandom);
         }
     }
 

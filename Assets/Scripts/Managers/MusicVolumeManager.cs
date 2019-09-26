@@ -48,8 +48,14 @@ public class MusicVolumeManager : SettingsBase
         fillImage.fillAmount += amountFilled;
 
         if (fillImage.fillAmount > 1)
+        {
             fillImage.fillAmount = 1;
-        
+        }
+        else
+        {
+            SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Cambio_Volumen_In);
+        }
+
     }
 
     private void DecreaseVolume()
@@ -59,6 +65,12 @@ public class MusicVolumeManager : SettingsBase
         fillImage.fillAmount -= amountFilled;
 
         if (fillImage.fillAmount < 0)
+        {
             fillImage.fillAmount = 0;
+        }
+        else
+        {
+            SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Cambio_Volumen_In);
+        }
     }
 }

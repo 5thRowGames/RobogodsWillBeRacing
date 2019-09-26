@@ -44,6 +44,8 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
             }
             else if (controller.State.Cancel.IsPressed)
             {
+                SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Cambio_Volumen_In);
+                
                 CharacterSelectionManager.Instance.DenyConfirmation();
                 CharacterSelectionManager.Instance.DeselectCharacter(robogodPicked);
                 robogodPicked = God.Type.None;
@@ -60,22 +62,26 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
                     if (controller.State.Horizontal.Value < -0.3)
                     {
                         MoveMark(true);
+                        SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Cursor_Holograma_In);
                     }
                     else if(controller.State.Horizontal.Value > 0.3)
                     {
                         MoveMark(false);
+                        SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Cursor_Holograma_In);
                     }
                 }
 
                 if (controller.State.Cancel.IsPressed)
-                {
-                   CharacterSelectionManager.Instance.ReturnMainMenuTween();
-                   CancelCharacterSelection();
+                { 
+                    SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Cambio_Volumen_In);
+                    CharacterSelectionManager.Instance.ReturnMainMenuTween();
+                    CancelCharacterSelection();
                 }
 
 
                 if (controller.State.Submit.IsPressed)
                 {
+                    SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Select_Holograma_In);
                     images[position].sprite = lampOn;
                     ChooseGod();
                 }

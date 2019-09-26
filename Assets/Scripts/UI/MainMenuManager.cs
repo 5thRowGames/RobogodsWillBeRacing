@@ -71,6 +71,8 @@ public class MainMenuManager : MonoBehaviour
     {
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.firstSelectedGameObject = raceButton.gameObject;
+        
+        SoundManager.Instance.PlayFx((int) SoundManager.Fx.UI_Panel_In);
 
         Sequence sequence = DOTween.Sequence();
             sequence.Insert(0f, raceButton.DOAnchorPosX(0, movementDuration, true))
@@ -95,6 +97,8 @@ public class MainMenuManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
         UIEventManager.Instance.inControlInputModule.enabled = false;
         
+        SoundManager.Instance.PlayFx((int) SoundManager.Fx.UI_Panel_In);
+        
         Sequence sequence = DOTween.Sequence();
         sequence.Insert((movementDuration/2f), raceButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
             .Insert((movementDuration/2f),settingsButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
@@ -115,6 +119,8 @@ public class MainMenuManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
         UIEventManager.Instance.inControlInputModule.enabled = false;
         
+        SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Servos_In);
+
         Sequence sequence = DOTween.Sequence();
         sequence.Append(industrialArmRace[0].DOAnchorPosX(0, 0.5f))
             .Insert(0.5f, industrialArmRace[1].DORotate(new Vector3(0, 0, -60), 0.3f))
@@ -128,6 +134,8 @@ public class MainMenuManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
         UIEventManager.Instance.inControlInputModule.enabled = false;
         
+        SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Servos_In);
+
         Sequence sequence = DOTween.Sequence();
         sequence.Append(industrialArmSettings[0].DOAnchorPosX(0, 0.5f))
             .Insert(0.5f, industrialArmSettings[1].DORotate(new Vector3(0, 0, -60), 0.3f))
@@ -140,6 +148,8 @@ public class MainMenuManager : MonoBehaviour
     {
         EventSystem.current.SetSelectedGameObject(null);
         UIEventManager.Instance.inControlInputModule.enabled = false;
+        
+        SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Servos_In);
 
         Sequence sequence = DOTween.Sequence();
         sequence.Append(industrialArmCredits[0].DOAnchorPosX(0, 0.5f))
@@ -154,6 +164,8 @@ public class MainMenuManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
         UIEventManager.Instance.inControlInputModule.enabled = false;
         
+        SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Servos_In);
+
         Sequence sequence = DOTween.Sequence();
         sequence.Append(industrialArmExit[0].DOAnchorPosX(0, 0.5f))
             .Insert(0.5f, industrialArmExit[1].DORotate(new Vector3(0, 0, -60), 0.3f))
@@ -164,6 +176,8 @@ public class MainMenuManager : MonoBehaviour
 
     private void HideMenuNoRace()
     {
+        SoundManager.Instance.PlayFx((int) SoundManager.Fx.UI_Panel_In);
+        
         Sequence sequence = DOTween.Sequence();
          sequence.Insert((movementDuration/2f),settingsButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
             .Insert((movementDuration/2f), creditsButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
@@ -180,6 +194,8 @@ public class MainMenuManager : MonoBehaviour
     
     private void HideMenuNoSettings()
     {
+        SoundManager.Instance.PlayFx((int) SoundManager.Fx.UI_Panel_In);
+        
         Sequence sequence = DOTween.Sequence();
             sequence.Insert((movementDuration/2f), raceButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
                 .Insert((movementDuration/2f), creditsButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
@@ -196,6 +212,8 @@ public class MainMenuManager : MonoBehaviour
     
     private void HideMenuNoCredits()
     {
+        SoundManager.Instance.PlayFx((int) SoundManager.Fx.UI_Panel_In);
+        
         Sequence sequence = DOTween.Sequence();
         sequence.Insert((movementDuration/2f),raceButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
             .Insert((movementDuration/2f), settingsButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
@@ -212,6 +230,8 @@ public class MainMenuManager : MonoBehaviour
     
     private void HideMenuNoExit()
     {
+        SoundManager.Instance.PlayFx((int) SoundManager.Fx.UI_Panel_In);
+        
         Sequence sequence = DOTween.Sequence();
         sequence.Insert((movementDuration/2f),raceButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
             .Insert((movementDuration/2f),settingsButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))

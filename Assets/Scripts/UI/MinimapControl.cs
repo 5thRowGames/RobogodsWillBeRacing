@@ -57,7 +57,10 @@ public class MinimapControl : Singleton<MinimapControl>
     {
         for (int i = 0; i < LapsManager.Instance.checkPoints.Count - 1; i++)
         {
-            totalLength += (LapsManager.Instance.checkPoints[i].transform.position - LapsManager.Instance.checkPoints[i + 1].transform.position).magnitude;
+            if (!LapsManager.Instance.checkPoints[i].firstPortal)
+            {
+                totalLength += (LapsManager.Instance.checkPoints[i].transform.position - LapsManager.Instance.checkPoints[i + 1].transform.position).magnitude;
+            }
         }
         
         //Borrar, como vamos a dividir el mapa no podemoss cerrar el circuito de primeras

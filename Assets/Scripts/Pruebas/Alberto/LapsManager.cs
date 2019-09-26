@@ -210,7 +210,7 @@ public class LapsManager : Singleton<LapsManager>
         portals[portals.Count - 1].index = portals.Count - 1;
     }
 
-    private void AddCheckpoints()
+    /*private void AddCheckpoints()
     {
         Checkpoint lastCheckpoint = null;
         if (circuitSections != null)
@@ -259,5 +259,5 @@ public class LapsManager : Singleton<LapsManager>
                 }
             }
         }
-    }
+    }*/
 }

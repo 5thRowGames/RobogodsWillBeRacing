@@ -47,6 +47,8 @@ public class CreditsManager : MonoBehaviour
     {
         EventSystem.current.SetSelectedGameObject(null);
         //UIEventManager.Instance.inControlInputModule.enabled = false;
+        
+        SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Panel_In);
 
         Sequence seq = DOTween.Sequence();
         seq.Insert(0f, title.DOAnchorPosX(0f,titleTweenDuration))
@@ -60,6 +62,8 @@ public class CreditsManager : MonoBehaviour
     public void HideCredits()
     {
         UIEventManager.Instance.inControlInputModule.enabled = false;
+        
+        SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Panel_In);
 
         Sequence seq = DOTween.Sequence();
         seq.Insert(0f, title.DOAnchorPosX(-topBotInitialX,titleTweenDuration))

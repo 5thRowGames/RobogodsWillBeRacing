@@ -42,6 +42,8 @@ public class SettingsManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.firstSelectedGameObject = volumeSlider.gameObject;
 
+        SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Panel_In);
+        
         Sequence sequence = DOTween.Sequence();
         sequence.Insert(0f, volumeSlider.DOAnchorPosX(0, movementDuration, true))
             .Insert(0f, soundEffectsSlider.DOAnchorPosX(0, movementDuration, true))
@@ -59,6 +61,8 @@ public class SettingsManager : MonoBehaviour
     public void HideSettings()
     {
         EventSystem.current.SetSelectedGameObject(null);
+        
+        SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Panel_In);
         
         Sequence sequence = DOTween.Sequence();
             sequence.Insert(0.3f, volumeSlider.DOAnchorPosY(metalSheetPosition.y, movementDuration, true))

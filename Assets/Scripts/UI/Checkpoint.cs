@@ -6,7 +6,14 @@ using UnityEngine;
 public class Checkpoint : MonoBehaviour
 {
     public int index;
-    public bool lastCheckpoint = false;
+
+    private void Awake()
+    {
+        index = transform.GetSiblingIndex();
+    }
+
+    //Esta variable nos dirá si es el primer checkpoint en una portal así no sumará esta distancia
+    public bool firstPortal;
 
     private void OnTriggerEnter(Collider other)
     { 

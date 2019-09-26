@@ -13,7 +13,7 @@ public class TitleScreenManager : MonoBehaviour
     private Tween firstTween;
     private bool controlSubmit;
     private bool initialTweenComplete;
-    
+
     private void OnEnable()
     {
         UIEventManager.Instance.inControlInputModule.enabled = true;
@@ -21,6 +21,10 @@ public class TitleScreenManager : MonoBehaviour
         controlSubmit = false;
         initialTweenComplete = false;
         TitleTween();
+        
+        //Sonido de la entrada de "Pulsa A"
+        SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Cortinilla_In);
+        SoundManager.Instance.PlayLoop(SoundManager.Music.UI);
     }
 
     private void OnDisable()

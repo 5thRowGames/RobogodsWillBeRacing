@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class HologramToNormal : MonoBehaviour
 {
+    [Header("0 Anubis - 1 Poseidon - 2 Kali - 3 Thor")]
+    public int index;
     public Renderer meshRenderer;
     private Material material;
 
@@ -25,6 +27,8 @@ public class HologramToNormal : MonoBehaviour
     public void TransformIntoHologram()
     {
         StopAllCoroutines();
+        SoundManager.Instance.StopFxHologram(index);
+        SoundManager.Instance.PlayFxHologram(SoundManager.Fx.UI_Conversion_In,index);
         StartCoroutine(IncreaseMaterial());
     }
 
@@ -36,11 +40,14 @@ public class HologramToNormal : MonoBehaviour
             material.SetFloat("_LerpController",progression);
             yield return null;
         }
+        SoundManager.Instance.StopFxHologram(index);
     }
 
     public void TransformIntoNormal()
     {
         StopAllCoroutines();
+        SoundManager.Instance.StopFxHologram(index);
+        SoundManager.Instance.PlayFxHologram(SoundManager.Fx.UI_Conversion_In,index);
         StartCoroutine(DecreaseMaterial());
 
     }
@@ -53,6 +60,7 @@ public class HologramToNormal : MonoBehaviour
             material.SetFloat("_LerpController",progression);
             yield return null;
         }
+        SoundManager.Instance.StopFxHologram(index);
     }
 
     private void OnDisable()

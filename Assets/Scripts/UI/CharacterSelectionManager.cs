@@ -214,7 +214,10 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
        EventSystem.current.firstSelectedGameObject = null;
 
        //Sonido de cerrar el menú
-       AkSoundEngine.PostEvent("UI_Start_In", gameObject);
+       SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Start_In);
+       
+       //Se para la música de la UI
+       SoundManager.Instance.StopLoop(SoundManager.Music.UI);
        
        fade.DOFade(1, 0.5f).OnComplete(() =>
        {
@@ -228,17 +231,23 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
       EventSystem.current.SetSelectedGameObject(null);
       EventSystem.current.firstSelectedGameObject = null;
       
+      SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Transicion_Holograma);
+      
       Sequence tweenSequence = DOTween.Sequence();
       tweenSequence.Append(anubisBackground.DOAnchorPosY(0, 1f, true))
-         .Insert(0f, poseidonBackground.DOAnchorPosY(0, 1f, true))
-         .Insert(0f, kaliBackground.DOAnchorPosY(0, 1f, true))
-         .Insert(0f, thorBackground.DOAnchorPosY(0, 1f, true))
-         .Insert(0f, anubisButton.DOAnchorPosY(0, 1f, true))
-         .Insert(0f, poseidonButton.DOAnchorPosY(0, 1f, true))
-         .Insert(0f, kaliButton.DOAnchorPosY(0, 1f, true))
-         .Insert(0f, thorButton.DOAnchorPosY(0, 1f, true))
-         .Insert(0.6f, characterSelectionTitlePanel.DOAnchorPosX(0, 0.6f, true))
-         .Insert(0.6f, infoPanel.DOAnchorPosX(0, 0.6f, true));
+          .Insert(0f, poseidonBackground.DOAnchorPosY(0, 1f, true))
+          .Insert(0f, kaliBackground.DOAnchorPosY(0, 1f, true))
+          .Insert(0f, thorBackground.DOAnchorPosY(0, 1f, true))
+          .Insert(0f, anubisButton.DOAnchorPosY(0, 1f, true))
+          .Insert(0f, poseidonButton.DOAnchorPosY(0, 1f, true))
+          .Insert(0f, kaliButton.DOAnchorPosY(0, 1f, true))
+          .Insert(0f, thorButton.DOAnchorPosY(0, 1f, true))
+          .Insert(0.6f, characterSelectionTitlePanel.DOAnchorPosX(0, 0.6f, true))
+          .Insert(0.6f, infoPanel.DOAnchorPosX(0, 0.6f, true)).OnComplete(() =>
+          {
+              SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Holograma_Base_In);
+              SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Holograma_Up_In);
+          });
    }
 
    //TODO

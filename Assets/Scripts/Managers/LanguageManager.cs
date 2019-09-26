@@ -11,11 +11,13 @@ public class LanguageManager : SettingsBase
         {
             if (inputModule.MoveAction.Left.IsPressed)
             {
+                SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Cambio_Volumen_In);
                 LocalizationManager.Instance.ChangeLanguageType(true);
                 StartCoroutine(TimeBetweenInputs());
             }
             else if (inputModule.MoveAction.Right.IsPressed)
             {
+                SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Cambio_Volumen_In);
                 LocalizationManager.Instance.ChangeLanguageType(false);
                 StartCoroutine(TimeBetweenInputs());
             }

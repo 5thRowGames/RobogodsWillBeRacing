@@ -597,6 +597,84 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Event Name="UI_Cambio_Volumen_In" ID="{CAD47572-AF1F-4590-BDD9-FFD8C5593C13}">
+							<ChildrenList>
+								<Action Name="" ID="{EF893EC2-75E6-48C9-9177-22A61F0A6848}" ShortID="780584230">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="UI_Cambio_Volumen" ID="{B5D19C81-19BF-4BEF-BB48-27A8545163F8}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="UI_Transicion" ID="{1C88799A-597C-4A59-9D9A-75A23FEECFA3}">
+							<ChildrenList>
+								<Action Name="" ID="{B89621EF-150A-47F8-AA49-FD67EA0CAC38}" ShortID="697105976">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="UI_Transicion" ID="{8A44372D-E505-4B1C-9C3E-093D80A7F53D}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{DD8B362A-20F3-4037-ADF8-979EDEF9AAE5}" ShortID="125275819">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="12"/>
+										<Property Name="FadeInCurve" Type="int16" Value="5"/>
+										<Property Name="FadeTime" Type="Real64" Value="2"/>
+										<Property Name="Volume" Type="Real64" Value="-7"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Musica_UI" ID="{81E3008F-916A-4277-9819-E0A8A1532452}" WorkUnitID="{3726896C-2E59-4545-98D2-470C8572299B}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="UI_Holograma_Base_In" ID="{B578B200-B414-4E35-80E6-F3A2E625AC35}">
+							<ChildrenList>
+								<Action Name="" ID="{3F0DF445-A8C6-4CE5-A589-CFCEDB4951C5}" ShortID="443057878">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="UI_Holograma_Base" ID="{65216336-4A29-4CB2-A3C6-9BF04916DF5F}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="UI_Holaograma_Up_In" ID="{D0D5AB78-E86B-49A2-A0E8-62DF0439C4B4}">
+							<ChildrenList>
+								<Action Name="" ID="{B58BAF42-C3EA-4778-9B73-AF296E226F34}" ShortID="104510653">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="UI_Holograma_Up" ID="{3F622636-112E-4344-B835-3F7AEAA4C9ED}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="UI_Conversion_In" ID="{C4706277-3343-497F-B777-5BA3CD9FD03A}">
+							<ChildrenList>
+								<Action Name="" ID="{15D39152-26EB-4032-A567-8D72EA4B04F7}" ShortID="75451500">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="UI_Conversion" ID="{9E706AD1-5A70-48C5-BBC9-06ED3D431782}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{A372425F-AE19-4E2E-AD70-D19FCC083461}" ShortID="37888127">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="UI_Holograma_Up" ID="{3F622636-112E-4344-B835-3F7AEAA4C9ED}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Cinematicas" ID="{43552626-EED4-4B1D-BED2-462D5ABA07D7}" ShortID="328158002">

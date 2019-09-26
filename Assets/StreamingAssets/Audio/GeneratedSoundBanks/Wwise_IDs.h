@@ -39,12 +39,17 @@ namespace AK
         static const AkUniqueID SONIC_LOGO_IN = 3032635407U;
         static const AkUniqueID TURBO_IN = 706776875U;
         static const AkUniqueID TURBO_OUT = 2234672166U;
+        static const AkUniqueID UI_CAMBIO_VOLUMEN_IN = 166515904U;
+        static const AkUniqueID UI_CONVERSION_IN = 835425904U;
         static const AkUniqueID UI_CORTINILLA_IN = 1394534473U;
         static const AkUniqueID UI_CURSOR_IN = 3671726430U;
+        static const AkUniqueID UI_HOLAOGRAMA_UP_IN = 3854442985U;
+        static const AkUniqueID UI_HOLOGRAMA_BASE_IN = 466994934U;
         static const AkUniqueID UI_PANEL_IN = 3828487486U;
         static const AkUniqueID UI_SELECT = 2774129122U;
         static const AkUniqueID UI_SERVOS_IN = 118634594U;
         static const AkUniqueID UI_START_IN = 2335810608U;
+        static const AkUniqueID UI_TRANSICION = 2196402010U;
     } // namespace EVENTS
 
     namespace GAME_PARAMETERS

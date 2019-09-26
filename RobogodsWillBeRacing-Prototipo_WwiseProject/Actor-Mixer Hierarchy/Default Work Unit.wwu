@@ -2264,29 +2264,16 @@
 								</Sound>
 							</ChildrenList>
 						</RandomSequenceContainer>
-						<RandomSequenceContainer Name="UI_Holograma_Base" ID="{65216336-4A29-4CB2-A3C6-9BF04916DF5F}" ShortID="1049543247">
-							<PropertyList>
-								<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
-								<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
-								<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="4"/>
-								<Property Name="PlayMechanismSpecialTransitionsValue" Type="Real64" Value="1.5"/>
-								<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
-								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>-9</Value>
-									</ValueList>
-								</Property>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
-								</Reference>
-							</ReferenceList>
+						<Folder Name="UI_Holograma" ID="{B5EF6264-5CE1-4D17-B95C-0854EC6587C3}" ShortID="941927091">
 							<ChildrenList>
-								<Sound Name="Robo_Gods_UI_Holograma_Base_Loop" ID="{A5EDFA37-0037-477A-A870-D42978851983}" ShortID="565764863">
+								<RandomSequenceContainer Name="Cursor_Holograma" ID="{36933D45-B5F8-41EE-BFF6-0C5B52A8A7CA}" ShortID="1057513315">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-13</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
@@ -2296,40 +2283,28 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="Robo_Gods_UI_Holograma_Base_Loop" ID="{8EC2CF61-568E-4127-806D-E33947A5B404}" ShortID="348621704">
-											<Language>SFX</Language>
-											<AudioFile>Robo_Gods_UI_Holograma_Base_Loop.wav</AudioFile>
-										</AudioFileSource>
+										<Sound Name="Robo_Gods_UI_Cursor_Holograma_Start" ID="{665F44F3-37D6-48AC-A25C-2D40A450C7DD}" ShortID="971422723">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Robo_Gods_UI_Cursor_Holograma_Start" ID="{09215AD6-EE1B-4AA6-BC2F-4045F51E5A5A}" ShortID="1048959228">
+													<Language>SFX</Language>
+													<AudioFile>Robo_Gods_UI_Cursor_Holograma_Start.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Robo_Gods_UI_Cursor_Holograma_Start" ID="{09215AD6-EE1B-4AA6-BC2F-4045F51E5A5A}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
 									</ChildrenList>
-									<ActiveSourceList>
-										<ActiveSource Name="Robo_Gods_UI_Holograma_Base_Loop" ID="{8EC2CF61-568E-4127-806D-E33947A5B404}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-							</ChildrenList>
-						</RandomSequenceContainer>
-						<RandomSequenceContainer Name="UI_Holograma_Up" ID="{3F622636-112E-4344-B835-3F7AEAA4C9ED}" ShortID="343360674">
-							<PropertyList>
-								<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
-								<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
-								<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="4"/>
-								<Property Name="PlayMechanismSpecialTransitionsValue" Type="Real64" Value="0.25"/>
-								<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
-								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>-16</Value>
-									</ValueList>
-								</Property>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<Sound Name="Robo_Gods_UI_Holograma_Up_Loop" ID="{EDC57006-D4A4-4EE1-8F39-D49CCF7522B3}" ShortID="334796955">
+								</RandomSequenceContainer>
+								<RandomSequenceContainer Name="Select_Holograma" ID="{8C9812C6-07D7-4BF5-B851-859658586072}" ShortID="648776302">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
@@ -2339,35 +2314,40 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="Robo_Gods_UI_Holograma_Up_Loop" ID="{8940E7AD-1ABB-4168-83DD-7F6B08918020}" ShortID="1045149496">
-											<Language>SFX</Language>
-											<AudioFile>Robo_Gods_UI_Holograma_Up_Loop.wav</AudioFile>
-										</AudioFileSource>
+										<Sound Name="Robo_Gods_UI_Select_Holograma_Start" ID="{3F7A8FCF-4E20-4B52-9915-078D61811431}" ShortID="35807377">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Robo_Gods_UI_Select_Holograma_Start" ID="{770DCA04-7413-4BB7-A456-98014E2177FD}" ShortID="926328014">
+													<Language>SFX</Language>
+													<AudioFile>Robo_Gods_UI_Select_Holograma_Start.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Robo_Gods_UI_Select_Holograma_Start" ID="{770DCA04-7413-4BB7-A456-98014E2177FD}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
 									</ChildrenList>
-									<ActiveSourceList>
-										<ActiveSource Name="Robo_Gods_UI_Holograma_Up_Loop" ID="{8940E7AD-1ABB-4168-83DD-7F6B08918020}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-							</ChildrenList>
-						</RandomSequenceContainer>
-						<RandomSequenceContainer Name="UI_Conversion" ID="{9E706AD1-5A70-48C5-BBC9-06ED3D431782}" ShortID="715692734">
-							<PropertyList>
-								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>-10</Value>
-									</ValueList>
-								</Property>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<Sound Name="Robo_Gods_UI_Holograma_Conversion_Start" ID="{6B3A59A0-7DD5-403E-9057-FC82EAA5C923}" ShortID="1055456107">
+								</RandomSequenceContainer>
+								<RandomSequenceContainer Name="UI_Holograma_Base" ID="{65216336-4A29-4CB2-A3C6-9BF04916DF5F}" ShortID="1049543247">
+									<PropertyList>
+										<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+										<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
+										<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="4"/>
+										<Property Name="PlayMechanismSpecialTransitionsValue" Type="Real64" Value="1.5"/>
+										<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-9</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
@@ -2377,35 +2357,40 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="Robo_Gods_UI_Holograma_Conversion_Start" ID="{51C54434-8F53-4C79-A216-0EC175AAB843}" ShortID="117307108">
-											<Language>SFX</Language>
-											<AudioFile>Robo_Gods_UI_Holograma_Conversion_Start.wav</AudioFile>
-										</AudioFileSource>
+										<Sound Name="Robo_Gods_UI_Holograma_Base_Loop" ID="{A5EDFA37-0037-477A-A870-D42978851983}" ShortID="565764863">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Robo_Gods_UI_Holograma_Base_Loop" ID="{8EC2CF61-568E-4127-806D-E33947A5B404}" ShortID="348621704">
+													<Language>SFX</Language>
+													<AudioFile>Robo_Gods_UI_Holograma_Base_Loop.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Robo_Gods_UI_Holograma_Base_Loop" ID="{8EC2CF61-568E-4127-806D-E33947A5B404}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
 									</ChildrenList>
-									<ActiveSourceList>
-										<ActiveSource Name="Robo_Gods_UI_Holograma_Conversion_Start" ID="{51C54434-8F53-4C79-A216-0EC175AAB843}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-							</ChildrenList>
-						</RandomSequenceContainer>
-						<RandomSequenceContainer Name="Cursor_Holograma" ID="{36933D45-B5F8-41EE-BFF6-0C5B52A8A7CA}" ShortID="1057513315">
-							<PropertyList>
-								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>-13</Value>
-									</ValueList>
-								</Property>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<Sound Name="Robo_Gods_UI_Cursor_Holograma_Start" ID="{665F44F3-37D6-48AC-A25C-2D40A450C7DD}" ShortID="971422723">
+								</RandomSequenceContainer>
+								<RandomSequenceContainer Name="UI_Holograma_Up" ID="{3F622636-112E-4344-B835-3F7AEAA4C9ED}" ShortID="343360674">
+									<PropertyList>
+										<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+										<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
+										<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="4"/>
+										<Property Name="PlayMechanismSpecialTransitionsValue" Type="Real64" Value="0.25"/>
+										<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-16</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
@@ -2415,28 +2400,35 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="Robo_Gods_UI_Cursor_Holograma_Start" ID="{09215AD6-EE1B-4AA6-BC2F-4045F51E5A5A}" ShortID="1048959228">
-											<Language>SFX</Language>
-											<AudioFile>Robo_Gods_UI_Cursor_Holograma_Start.wav</AudioFile>
-										</AudioFileSource>
+										<Sound Name="Robo_Gods_UI_Holograma_Up_Loop" ID="{EDC57006-D4A4-4EE1-8F39-D49CCF7522B3}" ShortID="334796955">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Robo_Gods_UI_Holograma_Up_Loop" ID="{8940E7AD-1ABB-4168-83DD-7F6B08918020}" ShortID="1045149496">
+													<Language>SFX</Language>
+													<AudioFile>Robo_Gods_UI_Holograma_Up_Loop.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Robo_Gods_UI_Holograma_Up_Loop" ID="{8940E7AD-1ABB-4168-83DD-7F6B08918020}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
 									</ChildrenList>
-									<ActiveSourceList>
-										<ActiveSource Name="Robo_Gods_UI_Cursor_Holograma_Start" ID="{09215AD6-EE1B-4AA6-BC2F-4045F51E5A5A}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-							</ChildrenList>
-						</RandomSequenceContainer>
-						<RandomSequenceContainer Name="Select_Holograma" ID="{8C9812C6-07D7-4BF5-B851-859658586072}" ShortID="648776302">
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<Sound Name="Robo_Gods_UI_Select_Holograma_Start" ID="{3F7A8FCF-4E20-4B52-9915-078D61811431}" ShortID="35807377">
+								</RandomSequenceContainer>
+								<RandomSequenceContainer Name="UI_Conversion" ID="{9E706AD1-5A70-48C5-BBC9-06ED3D431782}" ShortID="715692734">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-10</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
@@ -2446,17 +2438,29 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="Robo_Gods_UI_Select_Holograma_Start" ID="{770DCA04-7413-4BB7-A456-98014E2177FD}" ShortID="926328014">
-											<Language>SFX</Language>
-											<AudioFile>Robo_Gods_UI_Select_Holograma_Start.wav</AudioFile>
-										</AudioFileSource>
+										<Sound Name="Robo_Gods_UI_Holograma_Conversion_Start" ID="{6B3A59A0-7DD5-403E-9057-FC82EAA5C923}" ShortID="1055456107">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Robo_Gods_UI_Holograma_Conversion_Start" ID="{51C54434-8F53-4C79-A216-0EC175AAB843}" ShortID="117307108">
+													<Language>SFX</Language>
+													<AudioFile>Robo_Gods_UI_Holograma_Conversion_Start.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Robo_Gods_UI_Holograma_Conversion_Start" ID="{51C54434-8F53-4C79-A216-0EC175AAB843}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
 									</ChildrenList>
-									<ActiveSourceList>
-										<ActiveSource Name="Robo_Gods_UI_Select_Holograma_Start" ID="{770DCA04-7413-4BB7-A456-98014E2177FD}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
+								</RandomSequenceContainer>
 							</ChildrenList>
-						</RandomSequenceContainer>
+						</Folder>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Cinematicas" ID="{9BF6691D-3807-499C-88BC-ECC64585EA72}" ShortID="543744037">

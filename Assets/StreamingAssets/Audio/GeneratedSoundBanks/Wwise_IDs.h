@@ -14,6 +14,7 @@ namespace AK
     namespace EVENTS
     {
         static const AkUniqueID CAJA_RANDOM_IN = 3240997650U;
+        static const AkUniqueID CURSOR_HOLOGRAMA_IN = 1958480246U;
         static const AkUniqueID IMPACTOS_IN = 2345257581U;
         static const AkUniqueID INICIO_CARRERA_IN = 3586400535U;
         static const AkUniqueID MUSICA_AGUA = 4189311852U;
@@ -36,6 +37,7 @@ namespace AK
         static const AkUniqueID NAVE_4_ACELERAR_OUT = 3895169229U;
         static const AkUniqueID NAVE_4_ARRANQUE = 1038650524U;
         static const AkUniqueID PORTAL_OUT = 4292740166U;
+        static const AkUniqueID SELECT_HOLOGRAMA_IN = 2561828332U;
         static const AkUniqueID SONIC_LOGO_IN = 3032635407U;
         static const AkUniqueID TURBO_IN = 706776875U;
         static const AkUniqueID TURBO_OUT = 2234672166U;

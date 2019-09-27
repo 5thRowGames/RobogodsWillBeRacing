@@ -2529,6 +2529,283 @@
 						</RandomSequenceContainer>
 					</ChildrenList>
 				</Folder>
+				<Folder Name="Musicas" ID="{37242D6F-870F-411C-8196-810558EAF935}" ShortID="636177357">
+					<ChildrenList>
+						<RandomSequenceContainer Name="Musica_Egipto" ID="{2D22EE76-764A-4367-A709-D91D0BBC6DD6}" ShortID="480046625">
+							<PropertyList>
+								<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+								<Property Name="RandomOrSequence" Type="int16" Value="0"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="MUSICA_BUS" ID="{6C684514-A741-4BF9-B1F1-2BE3F140C499}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="Robo_Gods_Musica_Egipto_LOOP" ID="{ED6CFAEB-7FD7-43CC-BB0F-CABFBDABDEED}" ShortID="589165054">
+									<PropertyList>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Robo_Gods_Musica_Egipto_LOOP" ID="{0C3E2F64-5562-4D5F-8692-BA04F49AA2DC}" ShortID="1019466894">
+											<Language>SFX</Language>
+											<AudioFile>Robo_Gods_Musica_Egipto_LOOP.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Robo_Gods_Musica_Egipto_LOOP" ID="{0C3E2F64-5562-4D5F-8692-BA04F49AA2DC}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Robo_Gods_Portal_Anubits_INTRO_Start" ID="{DCBA5060-4FC8-48C2-B15C-E18ED14F9F06}" ShortID="229105365">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Robo_Gods_Portal_Anubits_INTRO_Start" ID="{033D372E-4282-4A04-B812-42518C62EED2}" ShortID="748594471">
+											<Language>SFX</Language>
+											<AudioFile>Robo_Gods_Portal_Anubits_INTRO_Start.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Robo_Gods_Portal_Anubits_INTRO_Start" ID="{033D372E-4282-4A04-B812-42518C62EED2}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+							<Playlist>
+								<ItemRef Name="Robo_Gods_Portal_Anubits_INTRO_Start" ID="{DCBA5060-4FC8-48C2-B15C-E18ED14F9F06}"/>
+								<ItemRef Name="Robo_Gods_Musica_Egipto_LOOP" ID="{ED6CFAEB-7FD7-43CC-BB0F-CABFBDABDEED}"/>
+							</Playlist>
+						</RandomSequenceContainer>
+						<RandomSequenceContainer Name="Musica_Inicio" ID="{40BE8003-0657-4D1B-817C-947A1202C2A9}" ShortID="330134019">
+							<PropertyList>
+								<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+								<Property Name="RandomOrSequence" Type="int16" Value="0"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="MUSICA_BUS" ID="{6C684514-A741-4BF9-B1F1-2BE3F140C499}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="Robo_Gods_Musica_Limbo_LOOP" ID="{54A39843-8007-4406-8443-DC8C8A00EF2F}" ShortID="261787658">
+									<PropertyList>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Robo_Gods_Musica_Limbo_LOOP" ID="{895926EC-B5B9-4B02-A06B-585743BE7CEF}" ShortID="355093650">
+											<Language>SFX</Language>
+											<AudioFile>Robo_Gods_Musica_Limbo_LOOP.wav</AudioFile>
+											<ConvertedFileIDList>
+												<File ID="461788358"/>
+											</ConvertedFileIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Robo_Gods_Musica_Limbo_LOOP" ID="{895926EC-B5B9-4B02-A06B-585743BE7CEF}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+							<Playlist>
+								<ItemRef Name="Robo_Gods_Musica_Limbo_LOOP" ID="{54A39843-8007-4406-8443-DC8C8A00EF2F}"/>
+							</Playlist>
+						</RandomSequenceContainer>
+						<RandomSequenceContainer Name="Musica_Limbo" ID="{65781922-712B-439F-A16E-26786B4ACBFF}" ShortID="262616668">
+							<PropertyList>
+								<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+								<Property Name="RandomOrSequence" Type="int16" Value="0"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="Robo_Gods_Musica_Limbo_LOOP" ID="{803CB5E2-46C8-4698-BC8E-67D1E88083CD}" ShortID="805859926">
+									<PropertyList>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Robo_Gods_Musica_Limbo_LOOP" ID="{B03FEF57-B9DC-471F-9BC5-31B731426957}" ShortID="414622986">
+											<Language>SFX</Language>
+											<AudioFile>Robo_Gods_Musica_Limbo_LOOP.wav</AudioFile>
+											<ConvertedFileIDList>
+												<File ID="461788358"/>
+											</ConvertedFileIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Robo_Gods_Musica_Limbo_LOOP" ID="{B03FEF57-B9DC-471F-9BC5-31B731426957}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Robo_Gods_Portal_Limbo_INTRO_Start" ID="{E77E0636-552A-4090-82B2-34DC84C0775D}" ShortID="437615006">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Robo_Gods_Portal_Limbo_INTRO_Start" ID="{EF27CFA5-CCF7-4460-A2C3-B4BE1E5B19FD}" ShortID="624980158">
+											<Language>SFX</Language>
+											<AudioFile>Robo_Gods_Portal_Limbo_INTRO_Start.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Robo_Gods_Portal_Limbo_INTRO_Start" ID="{EF27CFA5-CCF7-4460-A2C3-B4BE1E5B19FD}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+							<Playlist>
+								<ItemRef Name="Robo_Gods_Portal_Limbo_INTRO_Start" ID="{E77E0636-552A-4090-82B2-34DC84C0775D}"/>
+								<ItemRef Name="Robo_Gods_Musica_Limbo_LOOP" ID="{803CB5E2-46C8-4698-BC8E-67D1E88083CD}"/>
+							</Playlist>
+						</RandomSequenceContainer>
+						<RandomSequenceContainer Name="Musica_Nordica" ID="{2BB04FCA-5329-477F-954E-4BE83E7CE54C}" ShortID="45386449">
+							<PropertyList>
+								<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+								<Property Name="RandomOrSequence" Type="int16" Value="0"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="MUSICA_BUS" ID="{6C684514-A741-4BF9-B1F1-2BE3F140C499}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="Robo_Gods_Portal_Thor_INTRO_Start" ID="{BE7CCB0B-8D8C-4726-8FD8-FBE17EB3CE2F}" ShortID="99331532">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Robo_Gods_Portal_Thor_INTRO_Start" ID="{76599551-5E36-4166-8A56-E3D94FED7F86}" ShortID="258313187">
+											<Language>SFX</Language>
+											<AudioFile>Robo_Gods_Portal_Thor_INTRO_Start.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Robo_Gods_Portal_Thor_INTRO_Start" ID="{76599551-5E36-4166-8A56-E3D94FED7F86}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Robo_Gods_Musica_Nordica_LOOP" ID="{607F67D5-517D-431C-83B2-42791CB4C747}" ShortID="863099160">
+									<PropertyList>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Robo_Gods_Musica_Nordica_LOOP" ID="{3CB4EBBF-D0D3-4827-83A8-7C553F5F8B1B}" ShortID="408212516">
+											<Language>SFX</Language>
+											<AudioFile>Robo_Gods_Musica_Nordica_LOOP.wav</AudioFile>
+											<ConvertedFileIDList>
+												<File ID="307119365"/>
+											</ConvertedFileIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Robo_Gods_Musica_Nordica_LOOP" ID="{3CB4EBBF-D0D3-4827-83A8-7C553F5F8B1B}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+							<Playlist>
+								<ItemRef Name="Robo_Gods_Portal_Thor_INTRO_Start" ID="{BE7CCB0B-8D8C-4726-8FD8-FBE17EB3CE2F}"/>
+								<ItemRef Name="Robo_Gods_Musica_Nordica_LOOP" ID="{607F67D5-517D-431C-83B2-42791CB4C747}"/>
+							</Playlist>
+						</RandomSequenceContainer>
+						<RandomSequenceContainer Name="Musica_UI" ID="{048D519C-F45A-4700-81FA-C03397E1B92B}" ShortID="943213769">
+							<PropertyList>
+								<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+								<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-14</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="Robo_Gods_UI_Music_Loop" ID="{59F0E12F-277D-44A3-8516-CC45F24963D5}" ShortID="252359296">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Robo_Gods_UI_Music_Loop" ID="{71101161-8E95-4B5F-8D07-C1217634B43C}" ShortID="420680693">
+											<Language>SFX</Language>
+											<AudioFile>Robo_Gods_UI_Music_Loop.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Robo_Gods_UI_Music_Loop" ID="{71101161-8E95-4B5F-8D07-C1217634B43C}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</RandomSequenceContainer>
+					</ChildrenList>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>

@@ -623,7 +623,7 @@
 										<Property Name="FadeInCurve" Type="int16" Value="5"/>
 										<Property Name="FadeTime" Type="Real64" Value="2"/>
 										<Property Name="Scope" Type="int16" Value="1"/>
-										<Property Name="Volume" Type="Real64" Value="-7"/>
+										<Property Name="Volume" Type="Real64" Value="-27"/>
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Target">
@@ -691,6 +691,7 @@
 										<Action Name="" ID="{A372425F-AE19-4E2E-AD70-D19FCC083461}" ShortID="37888127">
 											<PropertyList>
 												<Property Name="ActionType" Type="int16" Value="2"/>
+												<Property Name="Scope" Type="int16" Value="1"/>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Target">
@@ -702,6 +703,30 @@
 								</Event>
 							</ChildrenList>
 						</Folder>
+						<Event Name="UI_Back_In" ID="{F755BBD8-9950-42B3-9279-C5932FBBD84C}">
+							<ChildrenList>
+								<Action Name="" ID="{2FDD31EB-A1ED-4E6F-9890-EFC824F7AAFF}" ShortID="407272033">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="UI_Back" ID="{6AC7073B-CACB-463E-8C98-F37EE5207209}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{5B90A07D-5867-4165-8464-09D4473B20CF}" ShortID="360190565">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="16"/>
+										<Property Name="FadeOutCurve" Type="int16" Value="5"/>
+										<Property Name="FadeTime" Type="Real64" Value="2"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Musica_UI" ID="{048D519C-F45A-4700-81FA-C03397E1B92B}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Cinematicas" ID="{43552626-EED4-4B1D-BED2-462D5ABA07D7}" ShortID="328158002">
@@ -748,6 +773,10 @@
 						<Event Name="Musica_UI" ID="{30E48C9B-F762-42B5-AB9B-4B3B90B6610A}">
 							<ChildrenList>
 								<Action Name="" ID="{CB78C738-59BF-4C9A-828F-E3CCD2D7E499}" ShortID="986790628">
+									<PropertyList>
+										<Property Name="FadeInCurve" Type="int16" Value="5"/>
+										<Property Name="FadeTime" Type="Real64" Value="2"/>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="Musica_UI" ID="{048D519C-F45A-4700-81FA-C03397E1B92B}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>

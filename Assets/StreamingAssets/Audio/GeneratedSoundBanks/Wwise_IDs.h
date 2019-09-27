@@ -41,6 +41,7 @@ namespace AK
         static const AkUniqueID SONIC_LOGO_IN = 3032635407U;
         static const AkUniqueID TURBO_IN = 706776875U;
         static const AkUniqueID TURBO_OUT = 2234672166U;
+        static const AkUniqueID UI_BACK_IN = 349057203U;
         static const AkUniqueID UI_CAMBIO_VOLUMEN_IN = 166515904U;
         static const AkUniqueID UI_CONVERSION_IN = 835425904U;
         static const AkUniqueID UI_CORTINILLA_IN = 1394534473U;

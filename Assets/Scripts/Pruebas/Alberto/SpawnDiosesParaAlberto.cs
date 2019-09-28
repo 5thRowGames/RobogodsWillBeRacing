@@ -45,7 +45,9 @@ public class SpawnDiosesParaAlberto : MonoBehaviour
                     //dios.GetComponentInChildren<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
                     //dios.GetComponentInChildren<IncontrolProvider>().InputDevice = inputDevice;
                     //dios.GetComponentInChildren<MyCarController>().ConnectCar();
-                    cameras[playerOrder].GetComponent<CameraController>().target = dios;
+
+                    //cameras[playerOrder].GetComponent<CameraController>().target = dios;
+
                     playerOrder++;
 
                     if (dios != null && OnGodSpawned != null)
@@ -79,7 +81,7 @@ public class SpawnDiosesParaAlberto : MonoBehaviour
 
             if (joystickListener.Special.IsPressed || keyboardListener.Special.IsPressed)
             {
-                SplitScreen(playersToPlay);
+                //SplitScreen(playersToPlay);
             }
 
         }

@@ -10,6 +10,8 @@ public class MyCarController : MonoBehaviour, IControllable
 
     #region Members
 
+    public God.Type god;
+    
     public float turboRechargeMultiplier;
     public float turboConsumeMultiplier;
     [SerializeField]private float turbo;
@@ -263,9 +265,9 @@ public class MyCarController : MonoBehaviour, IControllable
 
         //if (rb.velocity.magnitude < speedThreshold) accelerationInput *= instantSpeedForce;
 
-        //ShaderPruebas.blurAmount = rb.velocity.magnitude / 100; //Borrar, solo era para pruebas
+        CameraPostProcessManager.Instance.blurAmount[(int)god] = rb.velocity.magnitude / 100; 
 
-        speedUnderThreshold = rb.velocity.magnitude < speedThreshold ? true : false;
+        speedUnderThreshold = rb.velocity.magnitude < speedThreshold;
     }
 
     public void Move()

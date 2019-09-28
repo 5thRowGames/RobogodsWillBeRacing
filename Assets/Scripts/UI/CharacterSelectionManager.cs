@@ -258,6 +258,8 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
        EventSystem.current.SetSelectedGameObject(null);
        EventSystem.current.firstSelectedGameObject = null;
        
+       SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Back);
+       
        Sequence tweenSequence = DOTween.Sequence();
        tweenSequence.Append(infoPanel.DOAnchorPosX(panelPositionX, 0.6f, true))
            .Insert(0f, characterSelectionTitlePanel.DOAnchorPosX(-panelPositionX, 0.6f, true))

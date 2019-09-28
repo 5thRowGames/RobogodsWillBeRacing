@@ -2,15 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShaderPruebas : MonoBehaviour
+public class CameraPostProcess : MonoBehaviour
 {
     public Material material;
-    public static float blurAmount = 0;
+    private int index;
 
     // Postprocess the image
     void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
-        material.SetFloat("_EffectAmount", blurAmount);
+        material.SetFloat("_EffectAmount", CameraPostProcessManager.Instance.blurAmount[index]);
         Graphics.Blit(source, destination, material);
+    }
+
+    public void AssignIndex(int _index)
+    {
+        index = _index;
     }
 }

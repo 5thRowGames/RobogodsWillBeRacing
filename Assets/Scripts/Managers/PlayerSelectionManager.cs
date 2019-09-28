@@ -37,6 +37,7 @@ public class PlayerSelectionManager : MonoBehaviour
                 playersInControl[playerOrder].InputDevice = inputDevice;
                 Core.Input.AssignControllable(playersInControl[playerOrder],playerSelectionController[playerOrder]);
                 playerSelectionController[playerOrder].JoinGamePressed();
+                SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Select);
                 playerOrder++;
             }
         }
@@ -52,6 +53,7 @@ public class PlayerSelectionManager : MonoBehaviour
                 playersInControl[playerOrder].myPlayerActions = keyboardListener;
                 Core.Input.AssignControllable(playersInControl[playerOrder],playerSelectionController[playerOrder]);
                 playerSelectionController[playerOrder].JoinGamePressed();
+                SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Select);
                 playerOrder++;
             }
         }

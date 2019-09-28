@@ -102,6 +102,9 @@ public class StartRace : MonoBehaviour
 
                     cameras[playerInfo.playerID].GetComponent<CameraController>().target = poseidonPlayer;
                     cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
+                    
+                    //Sigue el mismo orden que la UI
+                    cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().AssignIndex(1);
 
                     if (playerInfo.controlType == IncontrolProvider.ControlType.Gamepad)
                     {
@@ -127,6 +130,9 @@ public class StartRace : MonoBehaviour
                     anubisPlayer.GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
                     anubisPlayer.GetComponent<IncontrolProvider>().controlType = playerInfo.controlType;
                     anubisPlayer.GetComponent<IncontrolProvider>().playerID = playerInfo.playerID;
+                    
+                    //Sigue el mismo orden que la UI
+                    cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().AssignIndex(0);
 
                     cameras[playerInfo.playerID].GetComponent<CameraController>().target = anubisPlayer;
                     cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
@@ -157,6 +163,9 @@ public class StartRace : MonoBehaviour
 
                     cameras[playerInfo.playerID].GetComponent<CameraController>().target = thorPlayer;
                     cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
+                    
+                    //Sigue el mismo orden que la UI
+                    cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().AssignIndex(3);
 
                     if (playerInfo.controlType == IncontrolProvider.ControlType.Gamepad)
                     {
@@ -184,6 +193,9 @@ public class StartRace : MonoBehaviour
 
                     cameras[playerInfo.playerID].GetComponent<CameraController>().target = kaliPlayer;
                     cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
+                    
+                    //Sigue el mismo orden que la UI
+                    cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().AssignIndex(2);
 
                     if (playerInfo.controlType == IncontrolProvider.ControlType.Gamepad)
                     {

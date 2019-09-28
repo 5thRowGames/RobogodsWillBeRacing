@@ -20,6 +20,7 @@ public class SoundManager : Singleton<SoundManager>
         UI_Cursor_Holograma_In = 10,
         UI_Select_Holograma_In = 11,
         UI_Transicion_Holograma = 12,
+        UI_Back = 13,
         CajaRandom
     }
 
@@ -59,6 +60,7 @@ public class SoundManager : Singleton<SoundManager>
         fxDictionary.Add(Fx.UI_Cursor_Holograma_In,"Cursor_Holograma_In");
         fxDictionary.Add(Fx.UI_Select_Holograma_In,"UI_Conversion_In");
         fxDictionary.Add(Fx.UI_Transicion_Holograma,"UI_Transicion");
+        fxDictionary.Add(Fx.UI_Back,"UI_Back_In");
         fxDictionary.Add(Fx.CajaRandom,"Caja_Random_In");
         
         musicGameObjects = new Dictionary<Music, GameObject>();

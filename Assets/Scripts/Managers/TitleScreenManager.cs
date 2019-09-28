@@ -14,6 +14,11 @@ public class TitleScreenManager : MonoBehaviour
     private bool controlSubmit;
     private bool initialTweenComplete;
 
+    private void Start()
+    {
+        SoundManager.Instance.PlayLoop(SoundManager.Music.UI);
+    }
+
     private void OnEnable()
     {
         UIEventManager.Instance.inControlInputModule.enabled = true;
@@ -24,7 +29,6 @@ public class TitleScreenManager : MonoBehaviour
         
         //Sonido de la entrada de "Pulsa A"
         SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Cortinilla_In);
-        SoundManager.Instance.PlayLoop(SoundManager.Music.UI);
     }
 
     private void OnDisable()
@@ -52,6 +56,7 @@ public class TitleScreenManager : MonoBehaviour
         }
         
         pressToPlay.DOScale(Vector3.zero, 0.3f);
+        SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Select);
         yield return new WaitForSeconds(0.3f);
         UIEventManager.Instance.ChangeScreen(MenuType.Menu.MainMenu);
         gameObject.SetActive(false);

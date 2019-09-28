@@ -16,12 +16,45 @@ public class Portal : MonoBehaviour
     private float portalEnterSpeedMagnitude;
     public Queue<Collider> carColliders; // Colliders de los coches que están esperando para ser teletransportados
 
-    #region Unity Events
+    private bool isFirstCar;
+    public God.Type godReligion;
+
+    #region Unity EventsT
     private void OnTriggerEnter(Collider other)
     {
+        if (isFirstCar)
+        {
+            isFirstCar = false;
+            
+            switch (godReligion)
+            {
+                case God.Type.Anubis:
+                    SoundManager.Instance.PlayLoop(SoundManager.Music.Egipto);
+                    break;
+                
+                case God.Type.Poseidon:
+                    SoundManager.Instance.PlayLoop(SoundManager.Music.Griega);
+                    break;
+                
+                case God.Type.Kali:
+                    SoundManager.Instance.PlayLoop(SoundManager.Music.India);
+                    break;
+                
+                case God.Type.Thor:
+                    SoundManager.Instance.PlayLoop(SoundManager.Music.Nordica);
+                    break;
+                
+                case God.Type.None:
+                    SoundManager.Instance.PlayLoop(SoundManager.Music.Limbo);
+                    break;
+            }
+            
+            SoundManager.Instance.PlayLoop(SoundManager.Music.Portal_Out);
+        }
+
         Debug.Log("Portal trigger"); 
-        myCarController = other.GetComponent<MyCarController>();
-        stabilityController = other.GetComponent<StabilityController>();
+        myCarController = other.GetComponentInParent<MyCarController>();
+        stabilityController = other.GetComponentInParent<StabilityController>();
 
         if (myCarController != null)
         {
@@ -86,7 +119,7 @@ public class Portal : MonoBehaviour
         }
 
         SetCar(carColliders.Peek().attachedRigidbody);
-        var myCC = carColliders.Peek().GetComponent<MyCarController>();
+        var myCC = carColliders.Peek().GetComponentInParent<MyCarController>();
         if (myCC != null)
             myCC.IsBeingTeleported = false;
         //carColliders.Peek().GetComponent<MyCarController>().IsBeingTeleported = false;

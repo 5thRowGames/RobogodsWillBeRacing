@@ -27,9 +27,12 @@ public class SoundManager : Singleton<SoundManager>
     public enum Music
     {
         UI,
+        Portal_Out,
         Limbo,
         Egipto,
-        Nordica
+        Nordica,
+        India,
+        Griega
     }
 
     private Dictionary<Fx, string> fxDictionary;
@@ -68,6 +71,12 @@ public class SoundManager : Singleton<SoundManager>
 
         musicDictionary = new Dictionary<Music, string>();
         musicDictionary.Add(Music.UI, "Musica_UI");
+        musicDictionary.Add(Music.Portal_Out, "Portal_Out");
+        musicDictionary.Add(Music.Limbo, "Musica_Egipto");
+        musicDictionary.Add(Music.Egipto, "Musica_Egipto");
+        musicDictionary.Add(Music.India, "Musica_India");
+        musicDictionary.Add(Music.Nordica, "Musica_Nordica");
+        musicDictionary.Add(Music.Griega, "Musica_Agua");
 
 
     }

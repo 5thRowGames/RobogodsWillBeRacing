@@ -154,5 +154,10 @@ public class DaggerBehaviourAlone : MonoBehaviour
                 break;
         }
     }
+
+    public void SetClosestCheckpointIndex(int index)
+    {
+        closestCheckpointIndex = index;
+    }
     
 }

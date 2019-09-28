@@ -7,11 +7,6 @@ public class Checkpoint : MonoBehaviour
 {
     public int index;
 
-    private void Awake()
-    {
-        index = transform.GetSiblingIndex();
-    }
-
     //Esta variable nos dirá si es el primer checkpoint en una portal así no sumará esta distancia
     public bool firstPortal;
 
@@ -19,6 +14,12 @@ public class Checkpoint : MonoBehaviour
     { 
         MinimapControl.Instance.UpdateMinimapControl(other.tag, index);
         LapsManager.Instance.UpdateCheckPoint(other.tag, index);
+
+        if (firstPortal && other.CompareTag("Dagger"))
+        {
+            other.GetComponent<DaggerBehaviourAlone>().SetClosestCheckpointIndex(index);
+            other.transform.position = LapsManager.Instance.checkPoints[index + 1].transform.position;
+        }
     }
     
     

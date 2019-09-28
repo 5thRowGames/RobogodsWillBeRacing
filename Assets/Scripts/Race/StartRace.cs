@@ -14,6 +14,7 @@ public class StartRace : MonoBehaviour
     public GameObject kaliPlayer;
 
     public List<GameObject> cameras;
+    public List<Camera> UICameras;
 
     public Canvas globalMinimapCanvas;
     public GameObject anubisCanvas;
@@ -58,25 +59,25 @@ public class StartRace : MonoBehaviour
             switch (playerInfo.godType)
             {
                 case God.Type.Poseidon:
-                    poseidonCanvas.GetComponent<Canvas>().worldCamera = cameras[playerInfo.playerID].GetComponent<Camera>();
+                    poseidonCanvas.GetComponent<Canvas>().worldCamera = UICameras[playerInfo.playerID];
                     poseidonCanvas.GetComponent<Canvas>().planeDistance = 1;
                     poseidonCanvas.SetActive(true);
                     break;
                 
                 case God.Type.Anubis:
-                    anubisCanvas.GetComponent<Canvas>().worldCamera = cameras[playerInfo.playerID].GetComponent<Camera>();
+                    anubisCanvas.GetComponent<Canvas>().worldCamera = UICameras[playerInfo.playerID];
                     anubisCanvas.GetComponent<Canvas>().planeDistance = 1;
                     anubisCanvas.SetActive(true);
                     break;
                 
                 case God.Type.Kali:
-                    kaliCanvas.GetComponent<Canvas>().worldCamera = cameras[playerInfo.playerID].GetComponent<Camera>();
+                    kaliCanvas.GetComponent<Canvas>().worldCamera = UICameras[playerInfo.playerID];
                     kaliCanvas.GetComponent<Canvas>().planeDistance = 1;
                     kaliCanvas.SetActive(true);
                     break;
                 
                 case God.Type.Thor:
-                    thorCanvas.GetComponent<Canvas>().worldCamera = cameras[playerInfo.playerID].GetComponent<Camera>();
+                    thorCanvas.GetComponent<Canvas>().worldCamera = UICameras[playerInfo.playerID];
                     thorCanvas.GetComponent<Canvas>().planeDistance = 1;
                     thorCanvas.SetActive(true);
                     break;

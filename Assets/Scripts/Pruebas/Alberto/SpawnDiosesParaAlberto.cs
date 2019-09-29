@@ -45,7 +45,7 @@ public class SpawnDiosesParaAlberto : MonoBehaviour
                     //dios.GetComponentInChildren<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
                     //dios.GetComponentInChildren<IncontrolProvider>().InputDevice = inputDevice;
                     //dios.GetComponentInChildren<MyCarController>().ConnectCar();
-
+                    cameras.Add(dios.GetComponentInChildren<RacingCamera>().gameObject);
                     //cameras[playerOrder].GetComponent<CameraController>().target = dios;
 
                     playerOrder++;
@@ -71,7 +71,8 @@ public class SpawnDiosesParaAlberto : MonoBehaviour
                     //dios.GetComponentInChildren<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
                     //dios.GetComponentInChildren<IncontrolProvider>().InputDevice = null;
                     //dios.GetComponentInChildren<MyCarController>().ConnectCar();
-                    cameras[playerOrder].GetComponent<CameraController>().target = dios;
+                    cameras.Add(dios.GetComponentInChildren<RacingCamera>().gameObject);
+                    //cameras[playerOrder].GetComponent<CameraController>().target = dios;
                     playerOrder++;
 
                     if (dios != null && OnGodSpawned != null)
@@ -81,7 +82,7 @@ public class SpawnDiosesParaAlberto : MonoBehaviour
 
             if (joystickListener.Special.IsPressed || keyboardListener.Special.IsPressed)
             {
-                //SplitScreen(playersToPlay);
+                SplitScreen(playersToPlay);
             }
 
         }
@@ -95,57 +96,57 @@ public class SpawnDiosesParaAlberto : MonoBehaviour
         {
             case 1:
 
-                cameras[0].GetComponent<Camera>().rect = new Rect(0, 0, 1, 1);
+                cameras[0].GetComponentInChildren<Camera>().rect = new Rect(0, 0, 1, 1);
                 cameras[0].SetActive(true);
-                cameras[0].GetComponent<CameraController>().ConnectCamera();
+                cameras[0].GetComponentInChildren<RacingCamera>().ConnectCamera();
 
                 break;
 
             case 2:
 
-                cameras[0].GetComponent<Camera>().rect = new Rect(0, 0, 0.5f, 1);
+                cameras[0].GetComponentInChildren<Camera>().rect = new Rect(0, 0, 0.5f, 1);
                 cameras[0].SetActive(true);
-                cameras[0].GetComponent<CameraController>().ConnectCamera();
+                cameras[0].GetComponentInChildren<RacingCamera>().ConnectCamera();
 
-                cameras[1].GetComponent<Camera>().rect = new Rect(0.5f, 0, 0.5f, 1);
+                cameras[1].GetComponentInChildren<Camera>().rect = new Rect(0.5f, 0, 0.5f, 1);
                 cameras[1].SetActive(true);
-                cameras[1].GetComponent<CameraController>().ConnectCamera();
+                cameras[1].GetComponentInChildren<RacingCamera>().ConnectCamera();
                 
                 break;
 
             case 3:
 
-                cameras[0].GetComponent<Camera>().rect = new Rect(0, 0.5f, 0.5f, 0.5f);
+                cameras[0].GetComponentInChildren<Camera>().rect = new Rect(0, 0.5f, 0.5f, 0.5f);
                 cameras[0].SetActive(true);
-                cameras[0].GetComponent<CameraController>().ConnectCamera();
+                cameras[0].GetComponentInChildren<RacingCamera>().ConnectCamera();
 
-                cameras[1].GetComponent<Camera>().rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
+                cameras[1].GetComponentInChildren<Camera>().rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
                 cameras[1].SetActive(true);
-                cameras[1].GetComponent<CameraController>().ConnectCamera();
+                cameras[1].GetComponentInChildren<RacingCamera>().ConnectCamera();
 
-                cameras[2].GetComponent<Camera>().rect = new Rect(0, 0, 1f, 0.5f);
+                cameras[2].GetComponentInChildren<Camera>().rect = new Rect(0, 0, 1f, 0.5f);
                 cameras[2].SetActive(true);
-                cameras[2].GetComponent<CameraController>().ConnectCamera();
+                cameras[2].GetComponentInChildren<RacingCamera>().ConnectCamera();
                 
                 break;
 
             case 4:
 
-                cameras[0].GetComponent<Camera>().rect = new Rect(0, 0.5f, 0.5f, 0.5f);
+                cameras[0].GetComponentInChildren<Camera>().rect = new Rect(0, 0.5f, 0.5f, 0.5f);
                 cameras[0].SetActive(true);
-                cameras[0].GetComponent<CameraController>().ConnectCamera();
+                cameras[0].GetComponentInChildren<RacingCamera>().ConnectCamera();
 
-                cameras[1].GetComponent<Camera>().rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
+                cameras[1].GetComponentInChildren<Camera>().rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
                 cameras[1].SetActive(true);
-                cameras[1].GetComponent<CameraController>().ConnectCamera();
+                cameras[1].GetComponentInChildren<RacingCamera>().ConnectCamera();
 
-                cameras[2].GetComponent<Camera>().rect = new Rect(0, 0, 0.5f, 0.5f);
+                cameras[2].GetComponentInChildren<Camera>().rect = new Rect(0, 0, 0.5f, 0.5f);
                 cameras[2].SetActive(true);
-                cameras[2].GetComponent<CameraController>().ConnectCamera();
+                cameras[2].GetComponentInChildren<RacingCamera>().ConnectCamera();
 
-                cameras[3].GetComponent<Camera>().rect = new Rect(0.5f, 0, 0.5f, 0.5f);
+                cameras[3].GetComponentInChildren<Camera>().rect = new Rect(0.5f, 0, 0.5f, 0.5f);
                 cameras[3].SetActive(true);
-                cameras[3].GetComponent<CameraController>().ConnectCamera();
+                cameras[3].GetComponentInChildren<RacingCamera>().ConnectCamera();
                 
                 break;
         }

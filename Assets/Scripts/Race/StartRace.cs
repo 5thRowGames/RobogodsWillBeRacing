@@ -62,24 +62,32 @@ public class StartRace : MonoBehaviour
                     poseidonCanvas.GetComponent<Canvas>().worldCamera = UICameras[playerInfo.playerID];
                     poseidonCanvas.GetComponent<Canvas>().planeDistance = 1;
                     poseidonCanvas.SetActive(true);
+                    UICameras[playerInfo.playerID].gameObject.SetActive(false);
+                    UICameras[playerInfo.playerID].gameObject.SetActive(true);
                     break;
                 
                 case God.Type.Anubis:
                     anubisCanvas.GetComponent<Canvas>().worldCamera = UICameras[playerInfo.playerID];
                     anubisCanvas.GetComponent<Canvas>().planeDistance = 1;
                     anubisCanvas.SetActive(true);
+                    UICameras[playerInfo.playerID].gameObject.SetActive(false);
+                    UICameras[playerInfo.playerID].gameObject.SetActive(true);
                     break;
                 
                 case God.Type.Kali:
                     kaliCanvas.GetComponent<Canvas>().worldCamera = UICameras[playerInfo.playerID];
                     kaliCanvas.GetComponent<Canvas>().planeDistance = 1;
                     kaliCanvas.SetActive(true);
+                    UICameras[playerInfo.playerID].gameObject.SetActive(false);
+                    UICameras[playerInfo.playerID].gameObject.SetActive(true);
                     break;
                 
                 case God.Type.Thor:
                     thorCanvas.GetComponent<Canvas>().worldCamera = UICameras[playerInfo.playerID];
                     thorCanvas.GetComponent<Canvas>().planeDistance = 1;
                     thorCanvas.SetActive(true);
+                    UICameras[playerInfo.playerID].gameObject.SetActive(false);
+                    UICameras[playerInfo.playerID].gameObject.SetActive(true);
                     break;
             }
         }
@@ -106,7 +114,8 @@ public class StartRace : MonoBehaviour
 
                     //Sigue el mismo orden que la UI
                     cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().AssignIndex(1);
-                    cameras[playerInfo.playerID].GetComponent<SpeedParticles>().AssignIndex(1);
+                    //cameras[playerInfo.playerID].GetComponentInChildren<SpeedParticles>().AssignIndex(1);
+                    cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().enabled = true;
 
                     if (playerInfo.controlType == IncontrolProvider.ControlType.Gamepad)
                     {
@@ -135,7 +144,8 @@ public class StartRace : MonoBehaviour
                     
                     //Sigue el mismo orden que la UI
                     cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().AssignIndex(0);
-                    cameras[playerInfo.playerID].GetComponent<SpeedParticles>().AssignIndex(0);
+                    //cameras[playerInfo.playerID].GetComponentInChildren<SpeedParticles>().AssignIndex(0);
+                    cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().enabled = true;
 
                     cameras[playerInfo.playerID].GetComponent<CameraController>().target = anubisPlayer;
                     cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
@@ -165,11 +175,13 @@ public class StartRace : MonoBehaviour
                     thorPlayer.GetComponent<IncontrolProvider>().playerID = playerInfo.playerID;
 
                     cameras[playerInfo.playerID].GetComponent<CameraController>().target = thorPlayer;
-                    cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
+                    //cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
+                    cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().enabled = true;
 
                     //Sigue el mismo orden que la UI
                     cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().AssignIndex(3);
-                    cameras[playerInfo.playerID].GetComponent<SpeedParticles>().AssignIndex(3);
+                    cameras[playerInfo.playerID].GetComponentInChildren<SpeedParticles>().AssignIndex(3);
+                    cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().enabled = true;
 
                     if (playerInfo.controlType == IncontrolProvider.ControlType.Gamepad)
                     {
@@ -200,7 +212,8 @@ public class StartRace : MonoBehaviour
 
                     //Sigue el mismo orden que la UI
                     cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().AssignIndex(2);
-                    cameras[playerInfo.playerID].GetComponent<SpeedParticles>().AssignIndex(2);
+                    //cameras[playerInfo.playerID].GetComponentInChildren<SpeedParticles>().AssignIndex(2);
+                    cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().enabled = true;
 
                     if (playerInfo.controlType == IncontrolProvider.ControlType.Gamepad)
                     {

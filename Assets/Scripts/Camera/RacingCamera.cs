@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RacingCamera : MonoBehaviour, IControllable
+public class RacingCamera : MonoBehaviour
 {
     Transform rootNode;
-    public Transform car;
-    Rigidbody carPhysics;
+    Transform car;
+    Rigidbody rb;
+
+    private bool connect;
 
     [Tooltip("If car speed is below this value, then the camera will default to looking forwards.")]
     public float rotationThreshold = 1f;
@@ -22,7 +24,9 @@ public class RacingCamera : MonoBehaviour, IControllable
     void Awake()
     {
         rootNode = GetComponent<Transform>();
-        carPhysics = car.GetComponent<Rigidbody>();
+        car = rootNode.parent.GetComponent<Transform>();
+        rb = car.GetComponent<Rigidbody>();
+        connect = false;
     }
 
     void Start()
@@ -47,29 +51,32 @@ public class RacingCamera : MonoBehaviour, IControllable
 
     public void ConnectCamera()
     {
-        Core.Input.AssignControllable(GetComponent<IncontrolProvider>(), this);
+        connect = true;
     }
 
     public void DisconnectCamera()
     {
-        Core.Input.UnassignControllable(GetComponent<IncontrolProvider>(), this);
+        connect = false;
     }
 
-    public void Control(IDevice controller)
+    private void FixedUpdate()
     {
-        Quaternion look;
+        if (connect)
+        {
+            Quaternion look;
 
-        // Moves the camera to match the car's position.
-        rootNode.position = Vector3.Lerp(rootNode.position, car.position, cameraStickiness * Time.fixedDeltaTime);
+            // Moves the camera to match the car's position.
+            rootNode.position = Vector3.Lerp(rootNode.position, car.position, cameraStickiness * Time.fixedDeltaTime);
 
-        // If the car isn't moving, default to looking forwards. Prevents camera from freaking out with a zero velocity getting put into a Quaternion.LookRotation
-        if (carPhysics.velocity.magnitude < rotationThreshold)
-            look = Quaternion.LookRotation(car.forward);
-        else
-            look = Quaternion.LookRotation(carPhysics.velocity.normalized);
+            // If the car isn't moving, default to looking forwards. Prevents camera from freaking out with a zero velocity getting put into a Quaternion.LookRotation
+            if (rb.velocity.magnitude < rotationThreshold)
+                look = Quaternion.LookRotation(car.forward);
+            else
+                look = Quaternion.LookRotation(rb.velocity.normalized);
 
-        // Rotate the camera towards the velocity vector.
-        look = Quaternion.Slerp(rootNode.rotation, look, cameraRotationSpeed * Time.fixedDeltaTime);
-        rootNode.rotation = look;
+            // Rotate the camera towards the velocity vector.
+            look = Quaternion.Slerp(rootNode.rotation, look, cameraRotationSpeed * Time.fixedDeltaTime);
+            rootNode.rotation = look;
+        }
     }
 }

@@ -103,10 +103,7 @@ public class StartRace : MonoBehaviour
 
                     cameras[playerInfo.playerID].GetComponent<CameraController>().target = poseidonPlayer;
                     cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
-                    
-                    //Camara de Alberto
-                    cameras[playerInfo.playerID].GetComponent<RacingCamera>().car = poseidonPlayer.transform;
-                    
+
                     //Sigue el mismo orden que la UI
                     cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().AssignIndex(1);
                     cameras[playerInfo.playerID].GetComponent<SpeedParticles>().AssignIndex(1);
@@ -142,10 +139,7 @@ public class StartRace : MonoBehaviour
 
                     cameras[playerInfo.playerID].GetComponent<CameraController>().target = anubisPlayer;
                     cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
-                    
-                    //Camara de Alberto
-                    cameras[playerInfo.playerID].GetComponent<RacingCamera>().car = anubisPlayer.transform;
-                    
+
                     if (playerInfo.controlType == IncontrolProvider.ControlType.Gamepad)
                     {
                         anubisPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
@@ -172,10 +166,7 @@ public class StartRace : MonoBehaviour
 
                     cameras[playerInfo.playerID].GetComponent<CameraController>().target = thorPlayer;
                     cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
-                    
-                    //Camara de Alberto
-                    cameras[playerInfo.playerID].GetComponent<RacingCamera>().car = thorPlayer.transform;
-                    
+
                     //Sigue el mismo orden que la UI
                     cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().AssignIndex(3);
                     cameras[playerInfo.playerID].GetComponent<SpeedParticles>().AssignIndex(3);
@@ -206,10 +197,7 @@ public class StartRace : MonoBehaviour
 
                     cameras[playerInfo.playerID].GetComponent<CameraController>().target = kaliPlayer;
                     cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
-                    
-                    //Camara de Alberto
-                    cameras[playerInfo.playerID].GetComponent<RacingCamera>().car = kaliPlayer.transform;
-                    
+
                     //Sigue el mismo orden que la UI
                     cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().AssignIndex(2);
                     cameras[playerInfo.playerID].GetComponent<SpeedParticles>().AssignIndex(2);

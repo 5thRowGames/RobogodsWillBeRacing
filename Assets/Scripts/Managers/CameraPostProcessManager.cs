@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class CameraPostProcessManager : Singleton<CameraPostProcessManager>
 {
-    public List<float> blurAmount;
+    public List<float> speed;
 }

@@ -10,7 +10,7 @@ public class CameraPostProcess : MonoBehaviour
     // Postprocess the image
     void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
-        material.SetFloat("_EffectAmount", CameraPostProcessManager.Instance.blurAmount[index]);
+        material.SetFloat("_EffectAmount", CameraPostProcessManager.Instance.speed[index] / 100f);
         Graphics.Blit(source, destination, material);
     }
 

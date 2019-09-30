@@ -16,7 +16,7 @@ public class Portal : MonoBehaviour
     private float portalEnterSpeedMagnitude;
     public Queue<Collider> carColliders; // Colliders de los coches que están esperando para ser teletransportados
 
-    private bool isFirstCar;
+    private bool isFirstCar = true;
     public God.Type godReligion;
 
     #region Unity EventsT

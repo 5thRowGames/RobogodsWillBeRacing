@@ -210,6 +210,7 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
 
    private void StartRaceTween()
    {
+       SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Conversion_Out);
        EventSystem.current.SetSelectedGameObject(null);
        EventSystem.current.firstSelectedGameObject = null;
 

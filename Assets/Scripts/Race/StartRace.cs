@@ -136,8 +136,7 @@ public class StartRace : MonoBehaviour
                     break;
 
                 case God.Type.Anubis:
-
-                    Debug.Log(playerInfo.playerID + "   tt");
+                    
                     anubisPlayer.GetComponent<IncontrolProvider>().enabled = true;
                     anubisPlayer.GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
                     anubisPlayer.GetComponent<IncontrolProvider>().controlType = playerInfo.controlType;
@@ -181,7 +180,7 @@ public class StartRace : MonoBehaviour
 
                     //Sigue el mismo orden que la UI
                     cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().AssignIndex(3);
-                    cameras[playerInfo.playerID].GetComponentInChildren<SpeedParticles>().AssignIndex(3);
+                    //cameras[playerInfo.playerID].GetComponentInChildren<SpeedParticles>().AssignIndex(3);
                     cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().enabled = true;
 
                     if (playerInfo.controlType == IncontrolProvider.ControlType.Gamepad)
@@ -204,7 +203,6 @@ public class StartRace : MonoBehaviour
                 
                 case God.Type.Kali:
                     
-                    Debug.Log(playerInfo.playerID + "  qq");
                     kaliPlayer.GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice; 
                     kaliPlayer.GetComponent<IncontrolProvider>().controlType = playerInfo.controlType;
                     kaliPlayer.GetComponent<IncontrolProvider>().playerID = playerInfo.playerID;

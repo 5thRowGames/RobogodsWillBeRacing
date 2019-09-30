@@ -56,7 +56,7 @@ public class RaceEventManager : Singleton<RaceEventManager>
                     ConnectDisconnectManager.ConnectItemManagerDelegate();
                     ConnectDisconnectManager.ConnectSkillManagerDelegate(); 
                     ConnectDisconnectManager.ConnectCarSoundManager();
-                    SoundManager.Instance.PlayLoop(SoundManager.Music.Limbo);
+                    SoundManager.Instance.PlayLoop(SoundManager.Music.Inicio);
 
                     countdown = true;
                 }

@@ -21,6 +21,7 @@ public class SoundManager : Singleton<SoundManager>
         UI_Select_Holograma_In = 11,
         UI_Transicion_Holograma = 12,
         UI_Back = 13,
+        UI_Conversion_Out = 14,
         CajaRandom
     }
 
@@ -28,6 +29,7 @@ public class SoundManager : Singleton<SoundManager>
     {
         UI,
         Portal_Out,
+        Inicio,
         Limbo,
         Egipto,
         Nordica,
@@ -64,6 +66,7 @@ public class SoundManager : Singleton<SoundManager>
         fxDictionary.Add(Fx.UI_Select_Holograma_In,"UI_Conversion_In");
         fxDictionary.Add(Fx.UI_Transicion_Holograma,"UI_Transicion");
         fxDictionary.Add(Fx.UI_Back,"UI_Back_In");
+        fxDictionary.Add(Fx.UI_Conversion_Out,"UI_Conversion_Out");
         fxDictionary.Add(Fx.CajaRandom,"Caja_Random_In");
         
         musicGameObjects = new Dictionary<Music, GameObject>();
@@ -72,7 +75,8 @@ public class SoundManager : Singleton<SoundManager>
         musicDictionary = new Dictionary<Music, string>();
         musicDictionary.Add(Music.UI, "Musica_UI");
         musicDictionary.Add(Music.Portal_Out, "Portal_Out");
-        musicDictionary.Add(Music.Limbo, "Musica_Egipto");
+        musicDictionary.Add(Music.Inicio, "Musica_Inicio");
+        musicDictionary.Add(Music.Limbo, "Musica_Limbo");
         musicDictionary.Add(Music.Egipto, "Musica_Egipto");
         musicDictionary.Add(Music.India, "Musica_India");
         musicDictionary.Add(Music.Nordica, "Musica_Nordica");
@@ -103,7 +107,7 @@ public class SoundManager : Singleton<SoundManager>
 
     public void PlayLoop(Music music)
     {
-        AkSoundEngine.PostEvent(musicDictionary[music], musicGameObjects[music]);
+        AkSoundEngine.PostEvent(musicDictionary[music], musicGameObjects[0]);
     } 
 
     public void StopLoop(Music music)

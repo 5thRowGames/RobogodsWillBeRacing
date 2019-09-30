@@ -17,6 +17,7 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
     private bool canChooseGod;
 
     public God.Type robogodPicked;
+    
     private void OnEnable()
     {
         robogodPicked = God.Type.None;
@@ -24,16 +25,8 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
         confirm = false;
         confirmed = false;
         canChooseGod = false;
-        ConnectDisconnectManager.ConnectCharacterSelectionControllerDelegate += ConnectCharacterSelection;
-        ConnectDisconnectManager.DisconnectCarControllerDelegate += DisconnectCharacterSelection;
     }
-
-    private void OnDisable()
-    {
-        ConnectDisconnectManager.ConnectCharacterSelectionControllerDelegate -= ConnectCharacterSelection;
-        ConnectDisconnectManager.DisconnectCarControllerDelegate -= DisconnectCharacterSelection;
-    }
-
+    
     public void Control(IDevice controller)
     {
         if (confirm)

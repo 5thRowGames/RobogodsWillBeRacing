@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using InControl;
 using UnityEngine;
 
-public class PlayerSelectionManager : MonoBehaviour
+public class PlayerSelectionManager : Singleton<PlayerSelectionManager>
 {
     public List<IncontrolProvider> playersInControl;
     public List<CharacterSelectionController> playerSelectionController;

@@ -105,6 +105,17 @@ public class StartRace : MonoBehaviour
             {
                 case God.Type.Poseidon:
                     
+                    if (playerInfo.controlType == IncontrolProvider.ControlType.Gamepad)
+                    {
+                        poseidonPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
+                        cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
+                    }
+                    else
+                    {
+                        poseidonPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
+                        cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
+                    }
+                    
                     poseidonPlayer.GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
                     poseidonPlayer.GetComponent<IncontrolProvider>().controlType = playerInfo.controlType;
                     poseidonPlayer.GetComponent<IncontrolProvider>().playerID = playerInfo.playerID;
@@ -117,17 +128,6 @@ public class StartRace : MonoBehaviour
                     //cameras[playerInfo.playerID].GetComponentInChildren<SpeedParticles>().AssignIndex(1);
                     cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().enabled = true;
 
-                    if (playerInfo.controlType == IncontrolProvider.ControlType.Gamepad)
-                    {
-                        poseidonPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
-                        cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
-                    }
-                    else
-                    {
-                        poseidonPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
-                        cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
-                    }
-
                     poseidonPlayer.GetComponent<MyCarController>().enabled = true;
                     poseidonPlayer.GetComponent<PlayerSkillManager>().enabled = true;
                     poseidonPlayer.GetComponent<PlayerCarSoundManager>().enabled = true;
@@ -137,18 +137,7 @@ public class StartRace : MonoBehaviour
 
                 case God.Type.Anubis:
                     
-                    anubisPlayer.GetComponent<IncontrolProvider>().enabled = true;
-                    anubisPlayer.GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
-                    anubisPlayer.GetComponent<IncontrolProvider>().controlType = playerInfo.controlType;
-                    anubisPlayer.GetComponent<IncontrolProvider>().playerID = playerInfo.playerID;
-                    
-                    //Sigue el mismo orden que la UI
-                    cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().AssignIndex(0);
-                    //cameras[playerInfo.playerID].GetComponentInChildren<SpeedParticles>().AssignIndex(0);
-                    cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().enabled = true;
-
-                    cameras[playerInfo.playerID].GetComponent<CameraController>().target = anubisPlayer;
-                    cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
+                    //anubisPlayer.GetComponent<IncontrolProvider>().enabled = true;
 
                     if (playerInfo.controlType == IncontrolProvider.ControlType.Gamepad)
                     {
@@ -160,15 +149,38 @@ public class StartRace : MonoBehaviour
                         anubisPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
                         cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
                     }
-                    
-                    //anubisPlayer.GetComponent<MyCarController>().enabled = true;
+
+                    anubisPlayer.GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
+                    anubisPlayer.GetComponent<IncontrolProvider>().controlType = playerInfo.controlType;
+                    anubisPlayer.GetComponent<IncontrolProvider>().playerID = playerInfo.playerID;
+
+                    //Sigue el mismo orden que la UI
+                    cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().AssignIndex(0);
+                    //cameras[playerInfo.playerID].GetComponentInChildren<SpeedParticles>().AssignIndex(0);
+                    cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().enabled = true;
+
+                    cameras[playerInfo.playerID].GetComponent<CameraController>().target = anubisPlayer;
+                    cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
+
+                    anubisPlayer.GetComponent<MyCarController>().enabled = true;
                     anubisPlayer.GetComponent<PlayerSkillManager>().enabled = true;
                     anubisPlayer.GetComponent<PlayerCarSoundManager>().enabled = true;
                     anubisPlayer.GetComponent<ItemManager>().enabled = true;
-                    
+
                     break;
                 
                 case God.Type.Thor:
+                    
+                    if (playerInfo.controlType == IncontrolProvider.ControlType.Gamepad)
+                    {
+                        thorPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
+                        cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
+                    }
+                    else
+                    {
+                        thorPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
+                        cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
+                    }
                     
                     thorPlayer.GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
                     thorPlayer.GetComponent<IncontrolProvider>().controlType = playerInfo.controlType;
@@ -183,17 +195,6 @@ public class StartRace : MonoBehaviour
                     //cameras[playerInfo.playerID].GetComponentInChildren<SpeedParticles>().AssignIndex(3);
                     cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().enabled = true;
 
-                    if (playerInfo.controlType == IncontrolProvider.ControlType.Gamepad)
-                    {
-                        thorPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
-                        cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
-                    }
-                    else
-                    {
-                       thorPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
-                        cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
-                    }
-                    
                     thorPlayer.GetComponent<MyCarController>().enabled = true;
                     thorPlayer.GetComponent<PlayerSkillManager>().enabled = true;
                     thorPlayer.GetComponent<PlayerCarSoundManager>().enabled = true;
@@ -202,6 +203,17 @@ public class StartRace : MonoBehaviour
                     break;
                 
                 case God.Type.Kali:
+
+                    if (playerInfo.controlType == IncontrolProvider.ControlType.Gamepad)
+                    {
+                        kaliPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
+                        cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
+                    }
+                    else
+                    {
+                        kaliPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
+                        cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
+                    }
                     
                     kaliPlayer.GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice; 
                     kaliPlayer.GetComponent<IncontrolProvider>().controlType = playerInfo.controlType;
@@ -215,17 +227,7 @@ public class StartRace : MonoBehaviour
                     //cameras[playerInfo.playerID].GetComponentInChildren<SpeedParticles>().AssignIndex(2);
                     cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().enabled = true;
 
-                    if (playerInfo.controlType == IncontrolProvider.ControlType.Gamepad)
-                    {
-                        kaliPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
-                        cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
-                    }
-                    else
-                    {
-                        kaliPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
-                        cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
-                    }
-                    
+
                     kaliPlayer.GetComponent<MyCarController>().enabled = true;
                     kaliPlayer.GetComponent<PlayerSkillManager>().enabled = true;
                     kaliPlayer.GetComponent<PlayerCarSoundManager>().enabled = true;

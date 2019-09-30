@@ -57,7 +57,6 @@ public class DaggerBehaviourAlone : MonoBehaviour
 
     private void ChooseDirectionAndCheckpoint()
     {
-        Debug.Log(targetIndex + "   " + kaliIndex);
         //Si la posición de kali es mejor que la del target es porque va mejor en la carrera (va adelantada)
         if (LapsManager.Instance.racePosition[kaliIndex] < LapsManager.Instance.racePosition[targetIndex])
         {

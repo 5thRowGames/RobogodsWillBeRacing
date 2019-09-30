@@ -29,15 +29,17 @@ public class IncontrolProvider : MonoBehaviour, IDevice
     Guid guid = new Guid();
     public Guid Id { get { return guid; } }
 
-    private InputDevice inputDevice;
+    public InputDevice inputDevice;
 
     public InputDevice InputDevice
     {
         get => inputDevice;
         set
         {
-            if(myPlayerActions != null)
+            if (myPlayerActions != null)
+            {
                 myPlayerActions.Device = value;
+            }
             else
                 Debug.Log("Estoy seteando un inputDevice teniendo los playerActions a null");
             
@@ -59,7 +61,7 @@ public class IncontrolProvider : MonoBehaviour, IDevice
     DeviceState previousState;
 
     private void OnEnable()
-    {
+    { 
         inputDevice = null;
         controlType = ControlType.None;
         myPlayerActions = new MyPlayerActions();
@@ -81,7 +83,7 @@ public class IncontrolProvider : MonoBehaviour, IDevice
     {
         previousState = State;
         State = new DeviceState();
-        
+
         UpdateAxis(AxisType.Vertical, myPlayerActions.Vertical);
         UpdateAxis(AxisType.Horizontal, myPlayerActions.Horizontal);
         UpdateAxis(AxisType.Jump, myPlayerActions.Gas);

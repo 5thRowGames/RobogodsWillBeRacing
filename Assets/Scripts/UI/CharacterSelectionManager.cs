@@ -177,7 +177,7 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
             for (int i = 0; i < StoreGodInfo.Instance.players; i++)
             {
                 PlayerInfo playerInfo = new PlayerInfo();
-                playerInfo.inputDevice = players[i].GetComponent<IncontrolProvider>().InputDevice;
+                playerInfo.inputDevice = players[i].GetComponent<IncontrolProvider>().inputDevice;
                 playerInfo.godType = players[i].GetComponent<CharacterSelectionController>().robogodPicked;
                 playerInfo.controlType = players[i].GetComponent<IncontrolProvider>().controlType;
                 playerInfo.playerID = players[i].GetComponent<IncontrolProvider>().playerID;

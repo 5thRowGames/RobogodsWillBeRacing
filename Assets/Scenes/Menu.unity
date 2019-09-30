@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -119,6 +119,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1453884520}
     m_Modifications:
+    - target: {fileID: 3150378324177879518, guid: 9d4f44eca5b1bce4f9a54558973843b9,
+        type: 3}
+      propertyPath: m_Name
+      value: EffectsSlider
+      objectReference: {fileID: 0}
     - target: {fileID: 4140333371773540959, guid: 9d4f44eca5b1bce4f9a54558973843b9,
         type: 3}
       propertyPath: m_inputSource
@@ -238,11 +243,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3150378324177879518, guid: 9d4f44eca5b1bce4f9a54558973843b9,
-        type: 3}
-      propertyPath: m_Name
-      value: EffectsSlider
       objectReference: {fileID: 0}
     - target: {fileID: 5943374495013391137, guid: 9d4f44eca5b1bce4f9a54558973843b9,
         type: 3}
@@ -2443,7 +2443,7 @@ MonoBehaviour:
   logDebugInfo: 1
   invertYAxis: 0
   useFixedUpdate: 0
-  dontDestroyOnLoad: 0
+  dontDestroyOnLoad: 1
   suspendInBackground: 0
   enableICade: 0
   enableXInput: 0
@@ -4802,6 +4802,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1047660261}
     m_Modifications:
+    - target: {fileID: 263004130974968341, guid: 8d48290a9681de8418d1306fe0a1b1e1,
+        type: 3}
+      propertyPath: m_Name
+      value: ExitButton
+      objectReference: {fileID: 0}
     - target: {fileID: 263004130974968340, guid: 8d48290a9681de8418d1306fe0a1b1e1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4906,11 +4911,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 263004130974968341, guid: 8d48290a9681de8418d1306fe0a1b1e1,
-        type: 3}
-      propertyPath: m_Name
-      value: ExitButton
       objectReference: {fileID: 0}
     - target: {fileID: 8819489688108425450, guid: 8d48290a9681de8418d1306fe0a1b1e1,
         type: 3}
@@ -5658,6 +5658,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 229902743}
     m_Modifications:
+    - target: {fileID: 929231910825377767, guid: cf0a72bc29b968349b04582dd7b932ee,
+        type: 3}
+      propertyPath: m_Name
+      value: PortalAura
+      objectReference: {fileID: 0}
     - target: {fileID: 929231910825377768, guid: cf0a72bc29b968349b04582dd7b932ee,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5727,11 +5732,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.9918624
-      objectReference: {fileID: 0}
-    - target: {fileID: 929231910825377767, guid: cf0a72bc29b968349b04582dd7b932ee,
-        type: 3}
-      propertyPath: m_Name
-      value: PortalAura
       objectReference: {fileID: 0}
     - target: {fileID: 929231910825377769, guid: cf0a72bc29b968349b04582dd7b932ee,
         type: 3}
@@ -12470,7 +12470,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.18860418, y: 0.17744502}
   m_AnchorMax: {x: 0.8144375, y: 0.8091484}
-  m_AnchoredPosition: {x: -1682.0004, y: 0}
+  m_AnchoredPosition: {x: -1682.0005, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1042790914
@@ -28823,6 +28823,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1047660261}
     m_Modifications:
+    - target: {fileID: 263004130974968341, guid: 8d48290a9681de8418d1306fe0a1b1e1,
+        type: 3}
+      propertyPath: m_Name
+      value: CreditsButton
+      objectReference: {fileID: 0}
     - target: {fileID: 263004130974968340, guid: 8d48290a9681de8418d1306fe0a1b1e1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -28927,11 +28932,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 263004130974968341, guid: 8d48290a9681de8418d1306fe0a1b1e1,
-        type: 3}
-      propertyPath: m_Name
-      value: CreditsButton
       objectReference: {fileID: 0}
     - target: {fileID: 8819489688108425450, guid: 8d48290a9681de8418d1306fe0a1b1e1,
         type: 3}
@@ -29606,7 +29606,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 34.10006, y: -120.55028}
+  m_AnchoredPosition: {x: 34.100067, y: -120.55029}
   m_SizeDelta: {x: -328.6, y: -392.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1453884521
@@ -36921,6 +36921,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1047660261}
     m_Modifications:
+    - target: {fileID: 263004130974968341, guid: 8d48290a9681de8418d1306fe0a1b1e1,
+        type: 3}
+      propertyPath: m_Name
+      value: SettingsButton
+      objectReference: {fileID: 0}
     - target: {fileID: 263004130974968340, guid: 8d48290a9681de8418d1306fe0a1b1e1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -37025,11 +37030,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 263004130974968341, guid: 8d48290a9681de8418d1306fe0a1b1e1,
-        type: 3}
-      propertyPath: m_Name
-      value: SettingsButton
       objectReference: {fileID: 0}
     - target: {fileID: 8819489688108425450, guid: 8d48290a9681de8418d1306fe0a1b1e1,
         type: 3}
@@ -39431,7 +39431,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.11077778}
-  m_AnchoredPosition: {x: 536.76, y: -76.86522}
+  m_AnchoredPosition: {x: 536.76, y: -76.865234}
   m_SizeDelta: {x: 1073.52, y: 8.514923}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &2062600840
@@ -49689,7 +49689,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -617.7999, y: 0}
+  m_AnchoredPosition: {x: -617.79987, y: 0}
   m_SizeDelta: {x: -1235.6, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &375075983883601290
@@ -51106,6 +51106,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1453884520}
     m_Modifications:
+    - target: {fileID: 3150378324177879518, guid: 9d4f44eca5b1bce4f9a54558973843b9,
+        type: 3}
+      propertyPath: m_Name
+      value: Music volume
+      objectReference: {fileID: 0}
     - target: {fileID: 4140333371773540959, guid: 9d4f44eca5b1bce4f9a54558973843b9,
         type: 3}
       propertyPath: m_havePropertiesChanged
@@ -51220,11 +51225,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3150378324177879518, guid: 9d4f44eca5b1bce4f9a54558973843b9,
-        type: 3}
-      propertyPath: m_Name
-      value: Music volume
       objectReference: {fileID: 0}
     - target: {fileID: 5943374495013391137, guid: 9d4f44eca5b1bce4f9a54558973843b9,
         type: 3}
@@ -51560,6 +51560,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1453884520}
     m_Modifications:
+    - target: {fileID: 1939441590250359833, guid: 48487294ad0cb994cab00ad393574866,
+        type: 3}
+      propertyPath: m_Name
+      value: LanguageSlider
+      objectReference: {fileID: 0}
     - target: {fileID: 4338057419135738486, guid: 48487294ad0cb994cab00ad393574866,
         type: 3}
       propertyPath: m_Navigation.m_SelectOnUp
@@ -51674,11 +51679,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1939441590250359833, guid: 48487294ad0cb994cab00ad393574866,
-        type: 3}
-      propertyPath: m_Name
-      value: LanguageSlider
       objectReference: {fileID: 0}
     - target: {fileID: 7145303994287032038, guid: 48487294ad0cb994cab00ad393574866,
         type: 3}

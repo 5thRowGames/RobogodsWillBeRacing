@@ -44,6 +44,7 @@ namespace AK
         static const AkUniqueID UI_BACK_IN = 349057203U;
         static const AkUniqueID UI_CAMBIO_VOLUMEN_IN = 166515904U;
         static const AkUniqueID UI_CONVERSION_IN = 835425904U;
+        static const AkUniqueID UI_CONVERSION_OUT = 3129092183U;
         static const AkUniqueID UI_CORTINILLA_IN = 1394534473U;
         static const AkUniqueID UI_CURSOR_IN = 3671726430U;
         static const AkUniqueID UI_HOLAOGRAMA_UP_IN = 3854442985U;

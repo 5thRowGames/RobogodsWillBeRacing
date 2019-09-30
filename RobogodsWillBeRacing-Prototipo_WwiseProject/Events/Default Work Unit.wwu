@@ -540,6 +540,32 @@
 										</Reference>
 									</ReferenceList>
 								</Action>
+								<Action Name="" ID="{08DFB7C9-AADF-409E-A290-BDD1515F57BC}" ShortID="339649206">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="FadeOutCurve" Type="int16" Value="3"/>
+										<Property Name="FadeTime" Type="Real64" Value="2"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="UI_Holograma_Base" ID="{65216336-4A29-4CB2-A3C6-9BF04916DF5F}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{C83F8D04-F962-40B9-B879-69A68CF13DC2}" ShortID="563532339">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="FadeOutCurve" Type="int16" Value="3"/>
+										<Property Name="FadeTime" Type="Real64" Value="2"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="UI_Conversion" ID="{9E706AD1-5A70-48C5-BBC9-06ED3D431782}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
 							</ChildrenList>
 						</Event>
 						<Event Name="UI_Cortinilla_In" ID="{0553AC42-E9F4-4861-B895-19540C05ED92}">
@@ -623,7 +649,7 @@
 										<Property Name="FadeInCurve" Type="int16" Value="5"/>
 										<Property Name="FadeTime" Type="Real64" Value="2"/>
 										<Property Name="Scope" Type="int16" Value="1"/>
-										<Property Name="Volume" Type="Real64" Value="-27"/>
+										<Property Name="Volume" Type="Real64" Value="-25"/>
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Target">
@@ -699,6 +725,13 @@
 												</Reference>
 											</ReferenceList>
 										</Action>
+										<Action Name="" ID="{C43559BF-FD89-4E98-935B-4A0BC03DD65E}" ShortID="781249240">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Select_Holograma" ID="{8C9812C6-07D7-4BF5-B851-859658586072}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
 									</ChildrenList>
 								</Event>
 							</ChildrenList>
@@ -722,6 +755,30 @@
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="Musica_UI" ID="{048D519C-F45A-4700-81FA-C03397E1B92B}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{0A766E7A-52CC-47D6-B8CC-836B5F0D4198}" ShortID="307059585">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="FadeOutCurve" Type="int16" Value="3"/>
+										<Property Name="FadeTime" Type="Real64" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="UI_Holograma_Base" ID="{65216336-4A29-4CB2-A3C6-9BF04916DF5F}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{CFCF6C2C-0373-4FB0-B9C6-F8E9F24AD940}" ShortID="849127142">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="FadeOutCurve" Type="int16" Value="3"/>
+										<Property Name="FadeTime" Type="Real64" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="UI_Holograma_Up" ID="{3F622636-112E-4344-B835-3F7AEAA4C9ED}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>

@@ -190,6 +190,7 @@ public class MyPlayerActions : PlayerActionSet
         myPlayerActions.Fire.AddDefaultBinding(Key.S);
         myPlayerActions.RightTrigger.AddDefaultBinding(Key.W);
         myPlayerActions.Gas.AddDefaultBinding(Key.X);
+        myPlayerActions.Submit.AddDefaultBinding(Key.X);
 
         return myPlayerActions;
     }
@@ -203,6 +204,7 @@ public class MyPlayerActions : PlayerActionSet
         myPlayerActions.Fire.AddDefaultBinding(Key.J);
         myPlayerActions.RightTrigger.AddDefaultBinding(Key.U);
         myPlayerActions.Gas.AddDefaultBinding(Key.N);
+        myPlayerActions.Submit.AddDefaultBinding(Key.N);
 
         return myPlayerActions;
     }

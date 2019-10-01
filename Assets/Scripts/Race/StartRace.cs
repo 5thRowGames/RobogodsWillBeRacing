@@ -36,6 +36,7 @@ public class StartRace : MonoBehaviour
         
         SetCameraAndControl();
         SplitScreen(StoreGodInfo.Instance.players);
+        SplitScreenUI(StoreGodInfo.Instance.players);
         StartCoroutine(Init());
     }
     
@@ -62,32 +63,24 @@ public class StartRace : MonoBehaviour
                     poseidonCanvas.GetComponent<Canvas>().worldCamera = UICameras[playerInfo.playerID];
                     poseidonCanvas.GetComponent<Canvas>().planeDistance = 1;
                     poseidonCanvas.SetActive(true);
-                    UICameras[playerInfo.playerID].gameObject.SetActive(false);
-                    UICameras[playerInfo.playerID].gameObject.SetActive(true);
                     break;
                 
                 case God.Type.Anubis:
                     anubisCanvas.GetComponent<Canvas>().worldCamera = UICameras[playerInfo.playerID];
                     anubisCanvas.GetComponent<Canvas>().planeDistance = 1;
                     anubisCanvas.SetActive(true);
-                    UICameras[playerInfo.playerID].gameObject.SetActive(false);
-                    UICameras[playerInfo.playerID].gameObject.SetActive(true);
                     break;
                 
                 case God.Type.Kali:
                     kaliCanvas.GetComponent<Canvas>().worldCamera = UICameras[playerInfo.playerID];
                     kaliCanvas.GetComponent<Canvas>().planeDistance = 1;
                     kaliCanvas.SetActive(true);
-                    UICameras[playerInfo.playerID].gameObject.SetActive(false);
-                    UICameras[playerInfo.playerID].gameObject.SetActive(true);
                     break;
                 
                 case God.Type.Thor:
                     thorCanvas.GetComponent<Canvas>().worldCamera = UICameras[playerInfo.playerID];
                     thorCanvas.GetComponent<Canvas>().planeDistance = 1;
-                    thorCanvas.SetActive(true);
-                    UICameras[playerInfo.playerID].gameObject.SetActive(false);
-                    UICameras[playerInfo.playerID].gameObject.SetActive(true);
+                    thorCanvas.SetActive(true); ;
                     break;
             }
         }
@@ -180,6 +173,12 @@ public class StartRace : MonoBehaviour
                     {
                         thorPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
                         cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
+                        
+                        if (StoreGodInfo.Instance.eduardo)
+                        {
+                            thorPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo2();
+                            cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo2();
+                        }
                     }
                     
                     thorPlayer.GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
@@ -187,7 +186,7 @@ public class StartRace : MonoBehaviour
                     thorPlayer.GetComponent<IncontrolProvider>().playerID = playerInfo.playerID;
 
                     cameras[playerInfo.playerID].GetComponent<CameraController>().target = thorPlayer;
-                    //cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
+                    cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
                     cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().enabled = true;
 
                     //Sigue el mismo orden que la UI
@@ -213,6 +212,12 @@ public class StartRace : MonoBehaviour
                     {
                         kaliPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
                         cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
+                        
+                        if (StoreGodInfo.Instance.eduardo)
+                        {
+                            kaliPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo1();
+                            cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo1();
+                        }
                     }
                     
                     kaliPlayer.GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice; 
@@ -247,7 +252,6 @@ public class StartRace : MonoBehaviour
 
                 cameras[0].GetComponent<Camera>().rect = new Rect(0, 0, 1, 1);
                 cameras[0].SetActive(true);
-                
                 break;
 
             case 2:
@@ -257,7 +261,6 @@ public class StartRace : MonoBehaviour
 
                 cameras[1].GetComponent<Camera>().rect = new Rect(0.5f, 0, 0.5f, 1);
                 cameras[1].SetActive(true);
-                
                 break;
 
             case 3:
@@ -270,7 +273,6 @@ public class StartRace : MonoBehaviour
 
                 cameras[2].GetComponent<Camera>().rect = new Rect(0, 0, 1f, 0.5f);
                 cameras[2].SetActive(true);
-
                 break;
 
             case 4:
@@ -286,6 +288,69 @@ public class StartRace : MonoBehaviour
 
                 cameras[3].GetComponent<Camera>().rect = new Rect(0.5f, 0, 0.5f, 0.5f);
                 cameras[3].SetActive(true);
+                break;
+        }
+    }
+    
+    private void SplitScreenUI(int players)
+    {
+
+        switch (players)
+        {
+            case 1:
+
+                UICameras[0].gameObject.SetActive(false);
+                UICameras[0].gameObject.SetActive(true);
+                UICameras[0].GetComponent<Camera>().rect = new Rect(0, 0, 1, 1);
+
+                break;
+
+            case 2:
+
+                UICameras[0].gameObject.SetActive(false);
+                UICameras[1].gameObject.SetActive(false);
+
+                UICameras[0].gameObject.SetActive(true);
+                UICameras[1].gameObject.SetActive(true);
+
+                UICameras[0].GetComponent<Camera>().rect = new Rect(0, 0, 0.5f, 1);
+                UICameras[1].GetComponent<Camera>().rect = new Rect(0.5f, 0, 0.5f, 1);
+
+
+                break;
+
+            case 3:
+                
+                UICameras[0].gameObject.SetActive(false);
+                UICameras[1].gameObject.SetActive(false);
+                UICameras[2].gameObject.SetActive(false);
+
+                UICameras[0].gameObject.SetActive(true);
+                UICameras[1].gameObject.SetActive(true);
+                UICameras[2].gameObject.SetActive(true);
+
+                UICameras[0].GetComponent<Camera>().rect = new Rect(0, 0.5f, 0.5f, 0.5f);
+                UICameras[1].GetComponent<Camera>().rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
+                UICameras[2].GetComponent<Camera>().rect = new Rect(0, 0, 1f, 0.5f);
+
+                break;
+
+            case 4:
+                
+                UICameras[0].gameObject.SetActive(false);
+                UICameras[1].gameObject.SetActive(false);
+                UICameras[2].gameObject.SetActive(false);
+                UICameras[3].gameObject.SetActive(false);
+                
+                UICameras[0].gameObject.SetActive(true);
+                UICameras[1].gameObject.SetActive(true);
+                UICameras[2].gameObject.SetActive(true);
+                UICameras[3].gameObject.SetActive(true);
+
+                UICameras[0].GetComponent<Camera>().rect = new Rect(0, 0.5f, 0.5f, 0.5f);
+                UICameras[1].GetComponent<Camera>().rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
+                UICameras[2].GetComponent<Camera>().rect = new Rect(0, 0, 0.5f, 0.5f);
+                UICameras[3].GetComponent<Camera>().rect = new Rect(0.5f, 0, 0.5f, 0.5f);
                 
                 break;
         }

@@ -19,6 +19,9 @@ public class StoreGodInfo : Singleton<StoreGodInfo>
     public bool kaliIA;
     public bool thorIA;
 
+    //Borrar
+    public bool eduardo;
+
     public int players;
     public List<PlayerInfo> playerInfo = new List<PlayerInfo>();
     

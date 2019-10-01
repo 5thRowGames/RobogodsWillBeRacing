@@ -144,16 +144,6 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
                 break;
             
             case 1:
-                    
-                if (!CharacterSelectionManager.Instance.kaliChosen)
-                {
-                    CharacterSelectionManager.Instance.ChooseCharacter(God.Type.Kali);
-                    robogodPicked = God.Type.Kali;
-                    canChooseGod = false;
-                }
-                break;
-            
-            case 2:
                 
                 if (!CharacterSelectionManager.Instance.poseidonChosen)
                 {
@@ -162,6 +152,16 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
                     canChooseGod = false;
                 }
                 
+                break;
+            
+            case 2:
+
+                if (!CharacterSelectionManager.Instance.kaliChosen)
+                {
+                    CharacterSelectionManager.Instance.ChooseCharacter(God.Type.Kali);
+                    robogodPicked = God.Type.Kali;
+                    canChooseGod = false;
+                }
                 break;
             
             case 3:

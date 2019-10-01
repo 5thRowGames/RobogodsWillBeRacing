@@ -1373,7 +1373,7 @@
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-3</Value>
+										<Value>-1</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -2559,12 +2559,19 @@
 				<Folder Name="Cinematicas" ID="{9BF6691D-3807-499C-88BC-ECC64585EA72}" ShortID="543744037">
 					<ChildrenList>
 						<RandomSequenceContainer Name="Inicio_Carrera" ID="{2B4855C1-B716-4FB5-A3A4-3ECD3E2532B4}" ShortID="911105356">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>1</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
 								</Reference>
 								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+									<ObjectRef Name="MUSICA_BUS" ID="{6C684514-A741-4BF9-B1F1-2BE3F140C499}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
@@ -2739,7 +2746,7 @@
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
 								</Reference>
 								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+									<ObjectRef Name="MUSICA_BUS" ID="{6C684514-A741-4BF9-B1F1-2BE3F140C499}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
@@ -2863,7 +2870,7 @@
 								<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-19</Value>
+										<Value>-10</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>

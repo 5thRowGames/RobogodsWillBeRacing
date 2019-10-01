@@ -95,30 +95,27 @@
 							</DuckingList>
 						</Bus>
 						<Bus Name="MUSICA_BUS" ID="{6C684514-A741-4BF9-B1F1-2BE3F140C499}">
+							<PropertyList>
+								<Property Name="BusVolume" Type="Real64">
+									<ValueList>
+										<Value>-9</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+						</Bus>
+						<Bus Name="SFX_BUS" ID="{06504896-303E-4D3A-BC83-BAE0A55A7391}">
 							<DuckingList>
 								<DuckItem>
-									<BusRef Name="MOTOR_1_3_BUS" ID="{9FF035E0-4086-4A9F-BA0A-49D983130EFC}"/>
+									<BusRef Name="MUSICA_BUS" ID="{6C684514-A741-4BF9-B1F1-2BE3F140C499}"/>
 									<DuckingParam>
-										<Volume>-5</Volume>
+										<Volume>-2</Volume>
 										<FadeInTime>1</FadeInTime>
 										<FadeOutTime>1</FadeOutTime>
 										<FadeCurve>FadeInvSCurve</FadeCurve>
-										<TargetProp>BusVolume</TargetProp>
-									</DuckingParam>
-								</DuckItem>
-								<DuckItem>
-									<BusRef Name="MOTOR_2_4_BUS" ID="{E9AC9E29-EE0A-4D0C-919A-F41E20AF4276}"/>
-									<DuckingParam>
-										<Volume>-5</Volume>
-										<FadeInTime>1</FadeInTime>
-										<FadeOutTime>1</FadeOutTime>
-										<FadeCurve>FadeInvSCurve</FadeCurve>
-										<TargetProp>BusVolume</TargetProp>
 									</DuckingParam>
 								</DuckItem>
 							</DuckingList>
 						</Bus>
-						<Bus Name="SFX_BUS" ID="{06504896-303E-4D3A-BC83-BAE0A55A7391}"/>
 					</ChildrenList>
 				</Bus>
 			</ChildrenList>

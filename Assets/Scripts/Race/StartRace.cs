@@ -36,10 +36,9 @@ public class StartRace : MonoBehaviour
         
         SetCameraAndControl();
         SplitScreen(StoreGodInfo.Instance.players);
-        SplitScreenUI(StoreGodInfo.Instance.players);
         StartCoroutine(Init());
+        SplitScreenUI(StoreGodInfo.Instance.players);
     }
-    
 
     IEnumerator Init()
     {
@@ -63,30 +62,39 @@ public class StartRace : MonoBehaviour
                     poseidonCanvas.GetComponent<Canvas>().worldCamera = UICameras[playerInfo.playerID];
                     poseidonCanvas.GetComponent<Canvas>().planeDistance = 1;
                     poseidonCanvas.SetActive(true);
+                    poseidonCanvas.GetComponent<CameraCanvasScaler>().enabled = false;
+                    poseidonCanvas.GetComponent<CameraCanvasScaler>().enabled = true;
                     break;
                 
                 case God.Type.Anubis:
                     anubisCanvas.GetComponent<Canvas>().worldCamera = UICameras[playerInfo.playerID];
                     anubisCanvas.GetComponent<Canvas>().planeDistance = 1;
                     anubisCanvas.SetActive(true);
+                    anubisCanvas.GetComponent<CameraCanvasScaler>().enabled = false;
+                    anubisCanvas.GetComponent<CameraCanvasScaler>().enabled = true;
                     break;
                 
                 case God.Type.Kali:
                     kaliCanvas.GetComponent<Canvas>().worldCamera = UICameras[playerInfo.playerID];
                     kaliCanvas.GetComponent<Canvas>().planeDistance = 1;
                     kaliCanvas.SetActive(true);
+                    kaliCanvas.GetComponent<CameraCanvasScaler>().enabled = false;
+                    kaliCanvas.GetComponent<CameraCanvasScaler>().enabled = true;
                     break;
                 
                 case God.Type.Thor:
                     thorCanvas.GetComponent<Canvas>().worldCamera = UICameras[playerInfo.playerID];
                     thorCanvas.GetComponent<Canvas>().planeDistance = 1;
-                    thorCanvas.SetActive(true); ;
+                    thorCanvas.SetActive(true);
+                    thorCanvas.GetComponent<CameraCanvasScaler>().enabled = false;
+                    thorCanvas.GetComponent<CameraCanvasScaler>().enabled = true;
                     break;
             }
         }
 
         if (StoreGodInfo.Instance.players > 2)
             globalMinimapCanvas.enabled = true;
+        
     }
 
     private void SetCameraAndControl()
@@ -302,6 +310,8 @@ public class StartRace : MonoBehaviour
                 UICameras[0].gameObject.SetActive(false);
                 UICameras[0].gameObject.SetActive(true);
                 UICameras[0].GetComponent<Camera>().rect = new Rect(0, 0, 1, 1);
+                UICameras[0].gameObject.SetActive(false);
+                UICameras[0].gameObject.SetActive(true);
 
                 break;
 
@@ -313,8 +323,8 @@ public class StartRace : MonoBehaviour
                 UICameras[0].gameObject.SetActive(true);
                 UICameras[1].gameObject.SetActive(true);
 
-                UICameras[0].GetComponent<Camera>().rect = new Rect(0, 0, 0.5f, 1);
-                UICameras[1].GetComponent<Camera>().rect = new Rect(0.5f, 0, 0.5f, 1);
+                UICameras[0].GetComponent<Camera>().rect = new Rect(0, 0, 0.5f, 1f);
+                UICameras[1].GetComponent<Camera>().rect = new Rect(0.5f, 0, 0.5f, 1f);
 
 
                 break;

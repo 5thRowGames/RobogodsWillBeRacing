@@ -22,7 +22,8 @@ public class SoundManager : Singleton<SoundManager>
         UI_Transicion_Holograma = 12,
         UI_Back = 13,
         UI_Conversion_Out = 14,
-        CajaRandom
+        CajaRandom = 15,
+        Inicio_Carrera = 16
     }
 
     public enum Music
@@ -68,6 +69,7 @@ public class SoundManager : Singleton<SoundManager>
         fxDictionary.Add(Fx.UI_Back,"UI_Back_In");
         fxDictionary.Add(Fx.UI_Conversion_Out,"UI_Conversion_Out");
         fxDictionary.Add(Fx.CajaRandom,"Caja_Random_In");
+        fxDictionary.Add(Fx.Inicio_Carrera,"Inicio_Carrera_In");
         
         musicGameObjects = new Dictionary<Music, GameObject>();
         musicGameObjects.Add(Music.UI,gameObjectEvents[0]);

@@ -43,7 +43,7 @@ public class PlayerSelectionManager : Singleton<PlayerSelectionManager>
         }
         if (JoinButtonWasPressed(keyboardListener))
         {
-            /*if (StoreGodInfo.Instance.players < 4 && !keyboardSelected)
+            if (StoreGodInfo.Instance.players < 4 && !keyboardSelected)
             {
                 keyboardSelected = true;
                 StoreGodInfo.Instance.players++;
@@ -55,9 +55,9 @@ public class PlayerSelectionManager : Singleton<PlayerSelectionManager>
                 playerSelectionController[playerOrder].JoinGamePressed();
                 SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Select);
                 playerOrder++;
-            }*/
+            }
             
-            if (StoreGodInfo.Instance.players < 4 )
+            /*if (StoreGodInfo.Instance.players < 4 )
             {
                 if (playerOrder == 0)
                 {
@@ -87,7 +87,7 @@ public class PlayerSelectionManager : Singleton<PlayerSelectionManager>
                 }
                 
                 StoreGodInfo.Instance.eduardo = true;
-            }
+            }*/
             
             
         }

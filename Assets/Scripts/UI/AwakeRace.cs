@@ -36,9 +36,6 @@ public class AwakeRace : MonoBehaviour
         mainCamera.transform.position = path1[0];
         ShowMap();
         MinimapControl.Instance.Init();
-        
-        //Sonido: Recorrido del circuito mostrándolos con la cámara
-        AkSoundEngine.PostEvent("Inicio_Carrera_In", gameObject);
     }
 
     private void ShowMap()
@@ -46,9 +43,12 @@ public class AwakeRace : MonoBehaviour
         mainCamera.transform.position = path1[0];
         mainCamera.transform.rotation = path1List[0].rotation;
         
+        //Sonido: Recorrido del circuito mostrándolos con la cámara
+        SoundManager.Instance.PlayFx(SoundManager.Fx.Inicio_Carrera);
+        
         Sequence sequence = DOTween.Sequence();
         sequence.Append(fade.DOFade(0, fadeDuration));
-        sequence.Insert(fadeDuration-0.1f, mainCamera.transform.DOLocalPath(path1, 4f, PathType.CatmullRom, PathMode.Full3D, 5, Color.red)
+        sequence.Insert(fadeDuration-0.1f, mainCamera.transform.DOLocalPath(path1, 3.6f, PathType.CatmullRom, PathMode.Full3D, 5, Color.red)
             .OnWaypointChange(x => WayPointChanged(x, path1List)).OnComplete(() =>
                 {
                     mainCamera.transform.position = path2[0];

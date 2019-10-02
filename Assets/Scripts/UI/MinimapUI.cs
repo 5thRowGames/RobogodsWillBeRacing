@@ -35,5 +35,7 @@ public class MinimapUI : Singleton<MinimapUI>
         iconAnchoredPositionY = startLine.anchoredPosition.y;
         startLineAnchoredPositionX = startLine.anchoredPosition.x;
         finishLineAnchoredPositionX = endLine.anchoredPosition.x;
+        
+        Debug.Log(iconAnchoredPositionY+"   "+startLineAnchoredPositionX+"   "+finishLineAnchoredPositionX,gameObject);
     }
 }

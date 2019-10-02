@@ -64,6 +64,7 @@ public class StartRace : MonoBehaviour
                     poseidonCanvas.SetActive(true);
                     poseidonCanvas.GetComponent<CameraCanvasScaler>().enabled = false;
                     poseidonCanvas.GetComponent<CameraCanvasScaler>().enabled = true;
+
                     break;
                 
                 case God.Type.Anubis:
@@ -72,6 +73,7 @@ public class StartRace : MonoBehaviour
                     anubisCanvas.SetActive(true);
                     anubisCanvas.GetComponent<CameraCanvasScaler>().enabled = false;
                     anubisCanvas.GetComponent<CameraCanvasScaler>().enabled = true;
+
                     break;
                 
                 case God.Type.Kali:
@@ -80,6 +82,7 @@ public class StartRace : MonoBehaviour
                     kaliCanvas.SetActive(true);
                     kaliCanvas.GetComponent<CameraCanvasScaler>().enabled = false;
                     kaliCanvas.GetComponent<CameraCanvasScaler>().enabled = true;
+
                     break;
                 
                 case God.Type.Thor:
@@ -88,6 +91,7 @@ public class StartRace : MonoBehaviour
                     thorCanvas.SetActive(true);
                     thorCanvas.GetComponent<CameraCanvasScaler>().enabled = false;
                     thorCanvas.GetComponent<CameraCanvasScaler>().enabled = true;
+
                     break;
             }
         }

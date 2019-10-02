@@ -121,10 +121,31 @@ public class MinimapControl : Singleton<MinimapControl>
         {
             globalMinimap.SetActive(false);
             
-            for (int i = 0; i < StoreGodInfo.Instance.players; i++)
+            int index = 0;
+
+            foreach (var playerInfo in StoreGodInfo.Instance.playerInfo)
             {
-                individualMinimaps[i].GetComponent<MinimapUI>().Init();
-                individualMinimaps[i].SetActive(true);
+                switch (playerInfo.godType)
+                {
+                    case God.Type.Anubis:
+                        index = 0;
+                        break;
+                    
+                    case God.Type.Poseidon:
+                        index = 1;   
+                        break;
+
+                    case God.Type.Kali:
+                        index = 2;
+                        break;
+                
+                    case God.Type.Thor:
+                        index = 3;
+                        break;
+                }
+                
+                individualMinimaps[index].GetComponent<MinimapUI>().Init();
+                individualMinimaps[index].SetActive(true);
             }
         }
         else

@@ -311,17 +311,17 @@ public class MyCarController : MonoBehaviour, IControllable
     {
         if (brakeInput > 0f)
         {
-            if (rb.velocity.magnitude < speedThreshold)
+            if (rb.velocity.magnitude < speedThreshold || velocity.z < 0f)
             {
                 brakeToReverseTimer -= Time.deltaTime;
-                if (speedUnderThreshold && brakeToReverseTimer <= 0f)
+                if (brakeToReverseTimer <= 0f)
                 {
-                    rb.AddForceAtPosition(-transform.forward * brakeInput * brakeForce * instantSpeedForce, accelPoint.position, ForceMode.Acceleration);
+                    rb.AddForceAtPosition(-transform.forward * brakeInput * brakeForce * 2f, accelPoint.position, ForceMode.Acceleration);
                 }
-                else
-                {
-                    rb.velocity *= 0.8f;
-                }
+                //else
+                //{
+                //    rb.velocity *= 0.8f;
+                //}
             }
             else
             {

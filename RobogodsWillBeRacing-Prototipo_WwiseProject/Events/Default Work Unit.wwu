@@ -358,7 +358,7 @@
 										<Action Name="" ID="{0603794D-C0DE-4E84-BF2D-1E3C777A839A}" ShortID="300237963">
 											<PropertyList>
 												<Property Name="ActionType" Type="int16" Value="2"/>
-												<Property Name="FadeTime" Type="Real64" Value="0.5"/>
+												<Property Name="FadeTime" Type="Real64" Value="1.5"/>
 												<Property Name="Scope" Type="int16" Value="1"/>
 											</PropertyList>
 											<ReferenceList>
@@ -370,7 +370,7 @@
 										<Action Name="" ID="{BA0A751C-5564-4111-B29D-936699235DBD}" ShortID="776019164">
 											<PropertyList>
 												<Property Name="ActionType" Type="int16" Value="2"/>
-												<Property Name="FadeTime" Type="Real64" Value="2"/>
+												<Property Name="FadeTime" Type="Real64" Value="3"/>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Target">
@@ -479,6 +479,8 @@
 										<Action Name="" ID="{D9FD5B22-B4DD-418B-AD4E-E86201124B3C}" ShortID="222862574">
 											<PropertyList>
 												<Property Name="ActionType" Type="int16" Value="2"/>
+												<Property Name="FadeOutCurve" Type="int16" Value="3"/>
+												<Property Name="FadeTime" Type="Real64" Value="2"/>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Target">
@@ -870,39 +872,6 @@
 										</Reference>
 									</ReferenceList>
 								</Action>
-								<Action Name="" ID="{E153B388-A13A-4752-AB8A-1D6805F6639C}" ShortID="611863211">
-									<PropertyList>
-										<Property Name="ActionType" Type="int16" Value="11"/>
-										<Property Name="Volume" Type="Real64" Value="-96"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="MOTOR_1_3_BUS" ID="{9FF035E0-4086-4A9F-BA0A-49D983130EFC}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-								<Action Name="" ID="{AD910564-762E-4662-B893-27C575498A24}" ShortID="814449450">
-									<PropertyList>
-										<Property Name="ActionType" Type="int16" Value="11"/>
-										<Property Name="Volume" Type="Real64" Value="-96"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="MOTOR_2_4_BUS" ID="{E9AC9E29-EE0A-4D0C-919A-F41E20AF4276}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-								<Action Name="" ID="{52A45300-6EA9-4FC8-A080-EF0E8C0F4CDB}" ShortID="505171409">
-									<PropertyList>
-										<Property Name="ActionType" Type="int16" Value="11"/>
-										<Property Name="Volume" Type="Real64" Value="-96"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="SFX_BUS" ID="{06504896-303E-4D3A-BC83-BAE0A55A7391}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
 							</ChildrenList>
 						</Event>
 						<Event Name="Musica_Limbo" ID="{0373C2C1-1B2D-4A7B-8F66-5FF004E88141}">
@@ -917,6 +886,7 @@
 								<Action Name="" ID="{E37E4C95-7CD5-4D45-98E6-B0CBBDC7428C}" ShortID="1002511219">
 									<PropertyList>
 										<Property Name="ActionType" Type="int16" Value="11"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
 										<Property Name="Volume" Type="Real64" Value="-96"/>
 									</PropertyList>
 									<ReferenceList>
@@ -928,6 +898,7 @@
 								<Action Name="" ID="{85D13A78-07F5-4CD1-9C79-F703FA9B1141}" ShortID="362608425">
 									<PropertyList>
 										<Property Name="ActionType" Type="int16" Value="11"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
 										<Property Name="Volume" Type="Real64" Value="-96"/>
 									</PropertyList>
 									<ReferenceList>
@@ -939,6 +910,7 @@
 								<Action Name="" ID="{9A3FB6F7-A2AC-480A-B3C8-05A080B9129F}" ShortID="1057140357">
 									<PropertyList>
 										<Property Name="ActionType" Type="int16" Value="11"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
 										<Property Name="Volume" Type="Real64" Value="-96"/>
 									</PropertyList>
 									<ReferenceList>
@@ -983,6 +955,7 @@
 								<Action Name="" ID="{76F9A9EE-5A1F-4AEF-9C2B-6A937ECF4FEB}" ShortID="360128219">
 									<PropertyList>
 										<Property Name="ActionType" Type="int16" Value="11"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
 										<Property Name="Volume" Type="Real64" Value="-96"/>
 									</PropertyList>
 									<ReferenceList>
@@ -994,6 +967,7 @@
 								<Action Name="" ID="{8A5A2277-95DE-4E7F-A49C-5E4488673B43}" ShortID="198214836">
 									<PropertyList>
 										<Property Name="ActionType" Type="int16" Value="11"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
 										<Property Name="Volume" Type="Real64" Value="-96"/>
 									</PropertyList>
 									<ReferenceList>
@@ -1005,6 +979,7 @@
 								<Action Name="" ID="{BDC5C059-52CC-4054-9F10-F5B36CD9DD41}" ShortID="1018866079">
 									<PropertyList>
 										<Property Name="ActionType" Type="int16" Value="11"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
 										<Property Name="Volume" Type="Real64" Value="-96"/>
 									</PropertyList>
 									<ReferenceList>
@@ -1060,6 +1035,7 @@
 								<Action Name="" ID="{31433703-21CE-489F-9C71-67E369CD2BA2}" ShortID="408034669">
 									<PropertyList>
 										<Property Name="ActionType" Type="int16" Value="11"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
 										<Property Name="Volume" Type="Real64" Value="-96"/>
 									</PropertyList>
 									<ReferenceList>
@@ -1071,6 +1047,7 @@
 								<Action Name="" ID="{506DE33F-07D2-437E-BA1D-CCBD8F32936F}" ShortID="409020743">
 									<PropertyList>
 										<Property Name="ActionType" Type="int16" Value="11"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
 										<Property Name="Volume" Type="Real64" Value="-96"/>
 									</PropertyList>
 									<ReferenceList>
@@ -1082,6 +1059,7 @@
 								<Action Name="" ID="{55EEC25E-7AE4-4EAB-BC4A-03266330D12D}" ShortID="923655240">
 									<PropertyList>
 										<Property Name="ActionType" Type="int16" Value="11"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
 										<Property Name="Volume" Type="Real64" Value="-96"/>
 									</PropertyList>
 									<ReferenceList>
@@ -1204,7 +1182,8 @@
 								<Action Name="" ID="{2DC1B1F0-D42B-407D-A8A2-3D3FA5F6F2BB}" ShortID="523153972">
 									<PropertyList>
 										<Property Name="ActionType" Type="int16" Value="15"/>
-										<Property Name="Delay" Type="Real64" Value="3"/>
+										<Property Name="FadeOutCurve" Type="int16" Value="7"/>
+										<Property Name="FadeTime" Type="Real64" Value="8.5"/>
 										<Property Name="Scope" Type="int16" Value="1"/>
 									</PropertyList>
 									<ReferenceList/>

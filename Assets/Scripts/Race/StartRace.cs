@@ -8,10 +8,10 @@ using UnityEngine.UI;
 
 public class StartRace : MonoBehaviour
 {
-    public GameObject poseidonPlayer;
     public GameObject anubisPlayer;
-    public GameObject thorPlayer;
+    public GameObject poseidonPlayer;
     public GameObject kaliPlayer;
+    public GameObject thorPlayer;
 
     public List<Transform> parentCameras;
     public List<GameObject> cameras;
@@ -33,7 +33,6 @@ public class StartRace : MonoBehaviour
             cameras[i].SetActive(false);
         }
         
-        SetCameraParent();
         SetCameraAndControl();
         SplitScreen(StoreGodInfo.Instance.players);
         StartCoroutine(Init());
@@ -365,8 +364,8 @@ public class StartRace : MonoBehaviour
                 break;
         }
     }
-
-    private void SetCameraParent()
+    
+    public void SetCameraParent()
     {
         foreach (var playerInfo in StoreGodInfo.Instance.playerInfo)
         {
@@ -388,6 +387,14 @@ public class StartRace : MonoBehaviour
                     cameras[playerInfo.playerID].transform.parent = parentCameras[3];
                     break;
             }
+        }
+    }
+
+    public void ChangeCameraPosition()
+    {
+        for (int i = 0; i < cameras.Count; i++)
+        {
+            cameras[i].transform.localPosition = new Vector3(0,cameras[i].transform.localPosition.y,cameras[i].transform.localPosition.z);
         }
     }
 

@@ -8,8 +8,6 @@ public class MyCarController : MonoBehaviour, IControllable
 {
     public bool activeDevice; //Para prueba solo
 
-    #region Members
-
     public God.Type god;
     
     public float turboRechargeMultiplier;
@@ -22,8 +20,10 @@ public class MyCarController : MonoBehaviour, IControllable
         set => turbo = Mathf.Clamp(value, 0, 1);
     }
 
+    #region Members
+
     [Header("*Car Specs*")]
-    [Tooltip("Fuerza aplicada al acelerar")] public float speedForce = 50f;
+    [SerializeField] [Tooltip("Fuerza aplicada al acelerar")] public float speedForce = 50f;
     [SerializeField] [Tooltip("Impulso al acelerar con velocidad inferior a speedThreshold")] private float instantSpeedForce = 3f;
     [SerializeField] [Tooltip("¿Siempre aplicar la aceleración mínima?")] private bool alwaysAccelerate = true;
     [SerializeField] [Tooltip("Aceleración mínima aplicada en cada momento")] [Range(0f, 1f)] private float minAcceleration = 0.2f;
@@ -145,13 +145,6 @@ public class MyCarController : MonoBehaviour, IControllable
         rb.maxAngularVelocity = maxAngularSpeed;
         brakeToReverseTimer = brakeToReverseTime;
         deaccelerationTimer = deaccelerationTime;
-
-        if (activeDevice)
-        {
-            carUnderControl = true;
-            GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
-            Core.Input.AssignControllable(GetComponent<IncontrolProvider>(),this);
-        }
     }
 
     private void OnEnable()
@@ -261,13 +254,13 @@ public class MyCarController : MonoBehaviour, IControllable
         {
             Turbo += turboRechargeMultiplier * Time.deltaTime;
             isBoosting = false;
-        }   
+        } 
 
         //if (rb.velocity.magnitude < speedThreshold) accelerationInput *= instantSpeedForce;
 
-        //CameraPostProcessManager.Instance.speed[(int) god] = rb.velocity.magnitude;
+        //ShaderPruebas.blurAmount = rb.velocity.magnitude / 100; //Borrar, solo era para pruebas
 
-        speedUnderThreshold = rb.velocity.magnitude < speedThreshold;
+        speedUnderThreshold = rb.velocity.magnitude < speedThreshold ? true : false;
     }
 
     public void Move()
@@ -337,17 +330,17 @@ public class MyCarController : MonoBehaviour, IControllable
     {
         if (brakeInput > 0f)
         {
-            if (rb.velocity.magnitude < speedThreshold)
+            if (rb.velocity.magnitude < speedThreshold || velocity.z < 0f)
             {
                 brakeToReverseTimer -= Time.deltaTime;
-                if (speedUnderThreshold && brakeToReverseTimer <= 0f)
+                if (brakeToReverseTimer <= 0f)
                 {
-                    rb.AddForceAtPosition(-transform.forward * brakeInput * brakeForce * instantSpeedForce, accelPoint.position, ForceMode.Acceleration);
+                    rb.AddForceAtPosition(-transform.forward * brakeInput * brakeForce * 2f, accelPoint.position, ForceMode.Acceleration);
                 }
-                else
-                {
-                    rb.velocity *= 0.8f;
-                }
+                //else
+                //{
+                //    rb.velocity *= 0.8f;
+                //}
             }
             else
             {
@@ -387,7 +380,7 @@ public class MyCarController : MonoBehaviour, IControllable
         }
     }
 
-    private void StartTurbo()
+    public void StartTurbo()
     {
         StartCoroutine(TurboCoroutine(handBrakeBoostWait));
     }

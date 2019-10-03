@@ -9,11 +9,12 @@ public class MyCarCollisionsController : MonoBehaviour
     private RigidbodyConstraints priorConstraints; // Restricciones del rigidbody antes de chocar con otro coche
     private Vector3 myVelocity;
     private float collisionAngle;
-    [SerializeField][Tooltip("Fuerza que se ejerce sobre el coche en los choques frontales")] private float downForce = 50f;
+    [SerializeField][Tooltip("Fuerza que se ejerce sobre el coche en los choques frontales")] private float frontalForce = 10f;
     [SerializeField][Tooltip("Ángulo máximo de choque para reducir velocidad")] private float maxAngle = 8f;
     [SerializeField][Tooltip("Ángulo máximo para considerar choque frontal")] private float maxFrontalAngle = 30f;
     [SerializeField][Tooltip("Velocidad máxima")] private float maxSpeed = 30f;
     [SerializeField][Tooltip("Factor de reducción de velocidad en choque frontal")][Range(0.01f, 1f)] private float reductionSpeedFactor = 0.4f;
+    private float minSpeedForce = 10f;
 
     #region UnityEvents
 
@@ -34,7 +35,7 @@ public class MyCarCollisionsController : MonoBehaviour
         //Debug.Log("MyCarCollisionsController Collision");
         int otherLayer = collision.gameObject.layer;
 
-        //AkSoundEngine.PostEvent("Impactos_In", gameObject);
+        AkSoundEngine.PostEvent("Impactos_In", gameObject);
 
         if (otherLayer != portalLayer) // Si no choco contra un portal
         {
@@ -65,18 +66,24 @@ public class MyCarCollisionsController : MonoBehaviour
     {
         Vector3 normal = collision.contacts[0].normal;
         collisionAngle = (Vector3.Angle(myVelocity, -normal));
+        Debug.Log("Collision Angle:" + collisionAngle);
         if (collisionAngle > -maxFrontalAngle && collisionAngle < maxFrontalAngle) // Choque frontal
         {
-            if (collisionAngle > -maxAngle && collisionAngle < maxAngle && rb.velocity.magnitude > maxSpeed)
-            {
-                Debug.Log("¡Reducción de velocidad!");
-                rb.angularVelocity *= reductionSpeedFactor * (1.0f - (collisionAngle / maxAngle));
-                rb.velocity *= reductionSpeedFactor;
-            }
+            //    //if (collisionAngle > -maxAngle && collisionAngle < maxAngle && rb.velocity.magnitude > maxSpeed)
+            //    //{
+            //        Debug.Log("¡Reducción de velocidad!");
+            //        rb.angularVelocity *= reductionSpeedFactor * (1.0f - (collisionAngle / maxAngle));
+            //        rb.velocity *= reductionSpeedFactor;
+            //    //}
 
-            Debug.Log("¡Fuerza hacia abajo!");
-            rb.AddForce(-rb.transform.up * downForce, ForceMode.Force);
+            //    Debug.Log("¡Fuerza hacia abajo!");
+            var speedForce = rb.velocity.magnitude > minSpeedForce ? rb.velocity.magnitude : minSpeedForce;
+            rb.AddForce(rb.transform.InverseTransformDirection(normal) * frontalForce * speedForce, ForceMode.Force);
         }
-        
+        else
+        {
+            rb.AddForce(rb.transform.InverseTransformDirection(normal) * rb.velocity.magnitude, ForceMode.Force);
+        }
+
     }
 }

@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class AwakeRace : MonoBehaviour
 {
+    public StartRace startRace;
     public Image fade;
 
     public List<Transform> path1List;
@@ -33,6 +34,7 @@ public class AwakeRace : MonoBehaviour
 
     private void Start()
     {
+        startRace.SetCameraParent();
         mainCamera.transform.position = path1[0];
         ShowMap();
         MinimapControl.Instance.Init();
@@ -51,6 +53,7 @@ public class AwakeRace : MonoBehaviour
         sequence.Insert(fadeDuration-0.1f, mainCamera.transform.DOLocalPath(path1, 3.6f, PathType.CatmullRom, PathMode.Full3D, 5, Color.red)
             .OnWaypointChange(x => WayPointChanged(x, path1List)).OnComplete(() =>
                 {
+                    startRace.ChangeCameraPosition();
                     mainCamera.transform.position = path2[0];
                     mainCamera.transform.rotation = path2List[0].rotation;
                 }));

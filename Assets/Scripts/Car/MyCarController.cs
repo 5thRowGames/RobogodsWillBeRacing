@@ -258,7 +258,7 @@ public class MyCarController : MonoBehaviour, IControllable
 
         //if (rb.velocity.magnitude < speedThreshold) accelerationInput *= instantSpeedForce;
 
-        //ShaderPruebas.blurAmount = rb.velocity.magnitude / 100; //Borrar, solo era para pruebas
+        CameraPostProcessManager.Instance.speed[(int) god] = rb.velocity.magnitude; //Borrar, solo era para pruebas
 
         speedUnderThreshold = rb.velocity.magnitude < speedThreshold ? true : false;
     }

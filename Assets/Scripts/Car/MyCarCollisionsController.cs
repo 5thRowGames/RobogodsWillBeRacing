@@ -35,7 +35,7 @@ public class MyCarCollisionsController : MonoBehaviour
         //Debug.Log("MyCarCollisionsController Collision");
         int otherLayer = collision.gameObject.layer;
 
-        AkSoundEngine.PostEvent("Impactos_In", gameObject);
+        //AkSoundEngine.PostEvent("Impactos_In", gameObject);
 
         if (otherLayer != portalLayer) // Si no choco contra un portal
         {
@@ -57,7 +57,11 @@ public class MyCarCollisionsController : MonoBehaviour
             //rb.constraints = RigidbodyConstraints.None;
             //Debug.Log($"Restricciones tras salir de colisión: {rb.constraints.ToString()}");
         }
-        else Debug.Log($"He salido del portal {collision.gameObject.GetComponent<Portal>().index}");
+        else
+        {
+            Debug.Log("Game: "+collision.gameObject.name+"   "+collision.transform.parent.name);
+            Debug.Log($"He salido del portal {collision.gameObject.GetComponent<Portal>().index}");
+        }
     }
 
     #endregion

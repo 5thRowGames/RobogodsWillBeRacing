@@ -7,8 +7,7 @@ public class HologramToNormal : MonoBehaviour
 {
     [Header("0 Anubis - 1 Poseidon - 2 Kali - 3 Thor")]
     public int index;
-    public Renderer meshRenderer;
-    private Material material;
+    public Material material;
 
     public float transformationTime;
     public float min;
@@ -19,7 +18,7 @@ public class HologramToNormal : MonoBehaviour
 
     private void Start()
     {
-        material = meshRenderer.material;
+        material.SetFloat("_LerpController",max);
         progression = max;
         progressionPerTick = (max - min) / transformationTime;
     }

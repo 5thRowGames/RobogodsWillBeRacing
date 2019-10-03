@@ -72,7 +72,7 @@ public class FireBallBehaviour: MonoBehaviour
 
                 break;
             
-            case "Thor: ":
+            case "Thor":
 
                 if (!HarmManager.Instance.isThorShielded)
                 {

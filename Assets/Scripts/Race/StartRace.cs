@@ -13,6 +13,7 @@ public class StartRace : MonoBehaviour
     public GameObject thorPlayer;
     public GameObject kaliPlayer;
 
+    public List<Transform> parentCameras;
     public List<GameObject> cameras;
     public List<Camera> UICameras;
 
@@ -25,8 +26,6 @@ public class StartRace : MonoBehaviour
     public float rotateCameraTime;
     public float intervalTimeBetweenRotateAndCountdown;
 
-    //[Header("UI")]
-
     private void OnEnable()
     {
         for (int i = 0; i < cameras.Count; i++)
@@ -34,6 +33,7 @@ public class StartRace : MonoBehaviour
             cameras[i].SetActive(false);
         }
         
+        SetCameraParent();
         SetCameraAndControl();
         SplitScreen(StoreGodInfo.Instance.players);
         StartCoroutine(Init());
@@ -96,9 +96,9 @@ public class StartRace : MonoBehaviour
             }
         }
 
-        if (StoreGodInfo.Instance.players > 2)
+        if (playersNumber > 2)
             globalMinimapCanvas.enabled = true;
-        
+
     }
 
     private void SetCameraAndControl()
@@ -261,13 +261,11 @@ public class StartRace : MonoBehaviour
         switch (players)
         {
             case 1:
-
                 cameras[0].GetComponent<Camera>().rect = new Rect(0, 0, 1, 1);
                 cameras[0].SetActive(true);
                 break;
 
             case 2:
-
                 cameras[0].GetComponent<Camera>().rect = new Rect(0, 0, 0.5f, 1);
                 cameras[0].SetActive(true);
 
@@ -276,7 +274,6 @@ public class StartRace : MonoBehaviour
                 break;
 
             case 3:
-
                 cameras[0].GetComponent<Camera>().rect = new Rect(0, 0.5f, 0.5f, 0.5f);
                 cameras[0].SetActive(true);
 
@@ -288,7 +285,6 @@ public class StartRace : MonoBehaviour
                 break;
 
             case 4:
-
                 cameras[0].GetComponent<Camera>().rect = new Rect(0, 0.5f, 0.5f, 0.5f);
                 cameras[0].SetActive(true);
 
@@ -367,6 +363,31 @@ public class StartRace : MonoBehaviour
                 UICameras[3].GetComponent<Camera>().rect = new Rect(0.5f, 0, 0.5f, 0.5f);
                 
                 break;
+        }
+    }
+
+    private void SetCameraParent()
+    {
+        foreach (var playerInfo in StoreGodInfo.Instance.playerInfo)
+        {
+            switch (playerInfo.godType)
+            {
+                case God.Type.Anubis:
+                    cameras[playerInfo.playerID].transform.parent = parentCameras[0];
+                    break;
+                
+                case God.Type.Poseidon:
+                    cameras[playerInfo.playerID].transform.parent = parentCameras[1];
+                    break;
+
+                case God.Type.Kali:
+                    cameras[playerInfo.playerID].transform.parent = parentCameras[2];
+                    break;
+                
+                case God.Type.Thor:
+                    cameras[playerInfo.playerID].transform.parent = parentCameras[3];
+                    break;
+            }
         }
     }
 

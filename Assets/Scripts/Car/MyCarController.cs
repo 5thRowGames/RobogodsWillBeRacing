@@ -11,7 +11,7 @@ public class MyCarController : MonoBehaviour, IControllable
     #region Members
 
     [Header("*Car Specs*")]
-    [SerializeField] [Tooltip("Fuerza aplicada al acelerar")] private float speedForce = 50f;
+    [SerializeField] [Tooltip("Fuerza aplicada al acelerar")] public float speedForce = 50f;
     [SerializeField] [Tooltip("Impulso al acelerar con velocidad inferior a speedThreshold")] private float instantSpeedForce = 3f;
     [SerializeField] [Tooltip("¿Siempre aplicar la aceleración mínima?")] private bool alwaysAccelerate = true;
     [SerializeField] [Tooltip("Aceleración mínima aplicada en cada momento")] [Range(0f, 1f)] private float minAcceleration = 0.2f;
@@ -112,6 +112,18 @@ public class MyCarController : MonoBehaviour, IControllable
     [SerializeField] private List<Transform> startingPositions;
 
     public string Name { get; private set; }
+
+    //public God.Type god;
+
+    public float turboRechargeMultiplier;
+    public float turboConsumeMultiplier;
+    [SerializeField] private float turbo;
+
+    public float Turbo
+    {
+        get => turbo;
+        set => turbo = Mathf.Clamp(value, 0, 1);
+    }
 
     #endregion
 
@@ -232,10 +244,18 @@ public class MyCarController : MonoBehaviour, IControllable
 
         if (alwaysAccelerate && accelerationInput < minAcceleration) accelerationInput = minAcceleration;
 
-        if (!boostInput)
-            isBoosting = false;
-        else
+        if (boostInput)
+        {
+            Turbo -= turboConsumeMultiplier * Time.deltaTime;
             accelerationInput *= boostMultiplier;
+
+            isBoosting = true;
+        }
+        else
+        {
+            Turbo += turboRechargeMultiplier * Time.deltaTime;
+            isBoosting = false;
+        }
 
         //if (rb.velocity.magnitude < speedThreshold) accelerationInput *= instantSpeedForce;
 
@@ -355,13 +375,13 @@ public class MyCarController : MonoBehaviour, IControllable
             if (handBrakeTimer >= handBrakeTurboTime) // Turbo
             {
                 Debug.Log("Turbo!");
-                Turbo();
+                StartTurbo();
             }
             handBrakeTimer = 0f; // Reset del timer
         }
     }
 
-    private void Turbo()
+    public void StartTurbo()
     {
         StartCoroutine(TurboCoroutine(handBrakeBoostWait));
     }

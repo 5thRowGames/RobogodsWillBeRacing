@@ -11,13 +11,13 @@ public class RacingCamera : MonoBehaviour, IControllable
 
     [Tooltip("Umbral mínimo de velocidad para que la cámara siga al coche")]
     public float speedThreshold = 15f;
-
     [Tooltip("Cuán de cerca sigue la cámara al coche. Cuanto más bajo sea el valor, más retrasada irá la cámara")]
     public float cameraStickiness = 10.0f;
-
     [Tooltip("Cuán de cerca la cámara sigue el vector de velocidad del coche. Cuanto más bajo sea el valor, más suave será la rotación de la cámara " +
         "pero si es demasiado bajo, habrá momentos en los que no se vea hacia donde va el coche")]
     public float cameraRotationSpeed = 5.0f;
+    [Tooltip("Distancia máxima que la cámara permite que el coche se aleje sin seguirlo")]
+    public float maxDistance;
 
     #region Unity Events
 
@@ -31,7 +31,7 @@ public class RacingCamera : MonoBehaviour, IControllable
 
     void Start()
     {
-        // Detach the camera so that it can move freely on its own.
+        // Se saca el prefab con cámara de la jerarquía del coche para que pueda moverse libremente por su cuenta
         rootNode.parent = null;
     }
 
@@ -61,7 +61,7 @@ public class RacingCamera : MonoBehaviour, IControllable
 
     private void FixedUpdate()
     {
-        // Rotate the camera towards the velocity vector.
+        // Se rota la cámara hacia el vector de velocidad
         Quaternion look = Quaternion.LookRotation(rb.velocity.normalized);
 
         if (rb.velocity.magnitude > speedThreshold)
@@ -82,6 +82,10 @@ public class RacingCamera : MonoBehaviour, IControllable
             {                
                 look = Quaternion.Lerp(rootNode.rotation, look, cameraRotationSpeed * Time.fixedDeltaTime);
                 rootNode.rotation = look;
+            }
+            if(Vector3.Distance(rootNode.position, car.position) > maxDistance)
+            {
+
             }
         }
     }

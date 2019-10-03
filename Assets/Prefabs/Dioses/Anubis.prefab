@@ -277,11 +277,11 @@ MonoBehaviour:
   minZVelocityToReverseSteering: -0.8
   angularVelocityReductionFactor: 0.95
   maxAngularSpeed: 30
-  brakeForce: 30
+  brakeForce: 40
   brakeToReverseTime: 0.5
   isGoingBackwards: 0
   speedUnderThreshold: 0
-  handBrakeForce: 40
+  handBrakeForce: 100
   handBrakeBrakeFactor: 1.5
   handBrakeTurboTime: 3
   handBrakeTimer: 0
@@ -330,6 +330,9 @@ MonoBehaviour:
   helper: {fileID: 0}
   pruebaSonido: 0
   startingPositions: []
+  turboRechargeMultiplier: 0
+  turboConsumeMultiplier: 0
+  turbo: 0
 --- !u!114 &678410904188480926
 MonoBehaviour:
   m_ObjectHideFlags: 0

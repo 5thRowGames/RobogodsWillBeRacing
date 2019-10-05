@@ -13,7 +13,7 @@ public class LocalizationManager : SingletonDontDestroy<LocalizationManager>
 
     private void Awake()
     {
-
+        base.Awake();
         languagesNumber = Enum.GetValues(typeof(GameLanguage.Language)).Length;
         
         var file = Resources.Load<TextAsset>("Localization");

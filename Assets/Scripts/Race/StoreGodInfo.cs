@@ -28,7 +28,6 @@ public class StoreGodInfo : SingletonDontDestroy<StoreGodInfo>
 
     private void OnEnable()
     {
-
         Reset();
     }
 

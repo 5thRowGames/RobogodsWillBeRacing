@@ -50,6 +50,7 @@ public class SoundManager : SingletonDontDestroy<SoundManager>
     //TODO esto habrá que hacerlo mediante csv pero por ahora hacerlo a mano
     private void Awake()
     {
+        base.Awake();
         fxDictionary = new Dictionary<Fx, string>();
         fxDictionary.Add(Fx.UI_MetallicButtonFocus,"UI_Cursor_In");
         fxDictionary.Add(Fx.UI_Panel_In,"UI_Panel_In");

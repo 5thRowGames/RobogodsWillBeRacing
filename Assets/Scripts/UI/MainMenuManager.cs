@@ -36,6 +36,7 @@ public class MainMenuManager : MonoBehaviour
 
     private void OnEnable()
     {
+        StoreGodInfo.Instance.Reset();
         ResetMenu();
         BuildMainMenu();
     }

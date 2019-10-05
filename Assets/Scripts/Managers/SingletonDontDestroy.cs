@@ -1,10 +1,20 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SingletonDontDestroy<T> : MonoBehaviour where T : MonoBehaviour
 {
     protected static T m_instance;
+
+    //Hay que hacer el base.Awake() en aquellas clases que tengan un Awake propio
+    protected void Awake()
+    {
+        Debug.Log("Entro aqui y soy",gameObject);
+        
+        if (m_instance != null)
+            Destroy(gameObject);
+    }
 
     public static T Instance
     {

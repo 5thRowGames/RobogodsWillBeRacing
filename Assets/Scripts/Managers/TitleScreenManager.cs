@@ -41,7 +41,9 @@ public class TitleScreenManager : MonoBehaviour
     
     void Update()
     {
-        if (!controlSubmit && UIEventManager.Instance.inControlInputModule.SubmitAction.WasPressed)
+        InputDevice device = InputManager.ActiveDevice;
+        
+        if (!controlSubmit && (device.AnyButton.IsPressed || Input.anyKeyDown))
         {
             controlSubmit = true;
             StartCoroutine(ButtonPressedTween());

@@ -10,8 +10,6 @@ public class SingletonDontDestroy<T> : MonoBehaviour where T : MonoBehaviour
     //Hay que hacer el base.Awake() en aquellas clases que tengan un Awake propio
     protected void Awake()
     {
-        Debug.Log("Entro aqui y soy",gameObject);
-        
         if (m_instance != null)
             Destroy(gameObject);
     }

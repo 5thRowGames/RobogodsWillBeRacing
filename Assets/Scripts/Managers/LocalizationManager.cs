@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LocalizationManager : Singleton<LocalizationManager>
+public class LocalizationManager : SingletonDontDestroy<LocalizationManager>
 {
     public Action UpdateLanguage;
     

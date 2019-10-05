@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundManager : Singleton<SoundManager>
+public class SoundManager : SingletonDontDestroy<SoundManager>
 {
     public enum Fx
     {
@@ -50,8 +50,6 @@ public class SoundManager : Singleton<SoundManager>
     //TODO esto habrá que hacerlo mediante csv pero por ahora hacerlo a mano
     private void Awake()
     {
-        DontDestroyOnLoad(this);
-        
         fxDictionary = new Dictionary<Fx, string>();
         fxDictionary.Add(Fx.UI_MetallicButtonFocus,"UI_Cursor_In");
         fxDictionary.Add(Fx.UI_Panel_In,"UI_Panel_In");

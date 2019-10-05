@@ -50,7 +50,6 @@ public class PauseMenu : Singleton<PauseMenu>
         
         pauseMenuPanel.DOScale(new Vector3(0, 0, 0), scaleDuration).SetUpdate(true).OnComplete(() =>
         {
-            //Meter la continuación de la carrera
             Time.timeScale = 1f;
             RaceEventManager.Instance.ChangeRaceEvent(RaceEvents.Race.ContinueRace);
             gameObject.SetActive(false);
@@ -81,8 +80,8 @@ public class PauseMenu : Singleton<PauseMenu>
         sequence.Append(pauseMenuPanel.DOScale(new Vector3(0, 0, 0), scaleDuration).SetUpdate(true))
             .Append(fade.DOFade(1, fadeDuration)).SetUpdate(true).OnComplete(() =>
         {
-            Time.timeScale = 1f;
             asyncLoadNextScene.allowSceneActivation = true;
+            Time.timeScale = 1f;
             gameObject.SetActive(false);
         });
     }

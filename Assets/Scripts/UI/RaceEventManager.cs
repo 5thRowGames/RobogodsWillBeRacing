@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using InControl;
 using UnityEngine;
 
-public class RaceEventManager : Singleton<RaceEventManager>
+public class RaceEventManager : SingletonDontDestroy<RaceEventManager>
 {
     public InControlInputModule inControlInputModule;
-
+    
     [Header("Carrera")]
     public OpenPauseMenu openPauseMenu;
     public GameObject pauseMenu;

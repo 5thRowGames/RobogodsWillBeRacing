@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
+public class SingletonDontDestroy<T> : MonoBehaviour where T : MonoBehaviour
 {
     protected static T m_instance;
 
@@ -14,7 +14,10 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
             {
                 m_instance = (T) FindObjectOfType(typeof(T));
 
-                if (!m_instance && Application.isEditor) Debug.LogError("Instance of" + typeof(T) + " not found");
+                if (!m_instance && Application.isEditor)
+                    Debug.LogError("Instance of" + typeof(T) + " not found");
+                else
+                    DontDestroyOnLoad(m_instance);
                 
             }
 

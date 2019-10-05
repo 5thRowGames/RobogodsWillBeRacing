@@ -194,7 +194,6 @@ public class HUDManager : Singleton<HUDManager>
     private void UpdateKaliPosition()
     {
         hudDictionary[God.Type.Kali].racePositionText.text = (LapsManager.Instance.racePosition[(int)God.Type.Kali] + 1).ToString();
-        Debug.Log("Paso por aqui");
 
         switch (LapsManager.Instance.racePosition[(int)God.Type.Kali])
         {

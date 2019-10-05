@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using InControl;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ public class PlayerInfo
     public God.Type godType;
 }
 
-public class StoreGodInfo : Singleton<StoreGodInfo>
+public class StoreGodInfo : SingletonDontDestroy<StoreGodInfo>
 {
     public bool poseidonIA;
     public bool anubisIA;
@@ -24,9 +25,10 @@ public class StoreGodInfo : Singleton<StoreGodInfo>
 
     public int players;
     public List<PlayerInfo> playerInfo = new List<PlayerInfo>();
-    
+
     private void OnEnable()
     {
+
         Reset();
     }
 

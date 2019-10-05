@@ -78,9 +78,7 @@ public class LapsManager : Singleton<LapsManager>
 
     IEnumerator UpdateRacePositionCoroutine()
     {
-        float time = 0;
-
-        while (time == 0)
+        while (true)
         {
             yield return new WaitForSeconds(0.5f);
         
@@ -88,6 +86,7 @@ public class LapsManager : Singleton<LapsManager>
             UpdateRacePosition();
             HUDManager.Instance.UpdatePositionUI();
         }
+        
     }
     
     private void UpdateRacePosition()

@@ -13,11 +13,29 @@ public class MinimapControl : Singleton<MinimapControl>
 
     public List<float> currentPercentageList;
     
+    /// <summary>
+    /// Último checkpoint por el que ha pasado el jugador
+    /// </summary>
     private List<int> lastCheckpointList;
+    
+    /// <summary>
+    /// Distancia recorrida por el jugador sin contar la distancia entre el último checkpoint quue ha pasado el jugador y el siguiente que tiene que pasar
+    /// </summary>
     private List<float> currentAmountList;
+    
+    /// <summary>
+    /// Para comprobar si se ha saltado algún checkpoint
+    /// </summary>
     private List<int> checkLastChekpoint;
 
+    /// <summary>
+    /// Distancia entre los dos checkpoints entre los que los que se encuentra el jugador
+    /// </summary>
     private float distanceBetweenPoints;
+    
+    /// <summary>
+    /// Tamaño total de la pista (suma de checkpoints sin contar la distancia entre portales)
+    /// </summary>
     private float totalLength;
 
     private void Awake()
@@ -46,18 +64,21 @@ public class MinimapControl : Singleton<MinimapControl>
         CalculateDistance(3); //Thor
     }
 
+    /// <summary>
+    /// Calcula la distancia actual que lleva ell jugador y su porcentaje de pista recorrido
+    /// </summary>
+    /// <param name="id"></param>
     private void CalculateDistance(int id)
     {
         distanceBetweenPoints = (LapsManager.Instance.checkPoints[lastCheckpointList[id]].transform.position - karts[id].transform.position).magnitude;
-        
         currentPercentageList[id] = (currentAmountList[id] + distanceBetweenPoints) / totalLength;
     }
-
+    
     private void CalculateTotalLength()
     {
         for (int i = 0; i < LapsManager.Instance.checkPoints.Count - 1; i++)
         {
-            if (!LapsManager.Instance.checkPoints[i].firstPortal)
+            if (!LapsManager.Instance.checkPoints[i].exitPortal)
             {
                 totalLength += (LapsManager.Instance.checkPoints[i].transform.position - LapsManager.Instance.checkPoints[i + 1].transform.position).magnitude;
             }
@@ -67,6 +88,10 @@ public class MinimapControl : Singleton<MinimapControl>
         totalLength += (LapsManager.Instance.checkPoints[LapsManager.Instance.checkPoints.Count - 1].transform.position - LapsManager.Instance.checkPoints[0].transform.position).magnitude;
     }
 
+    /// <summary>
+    /// En caso de saltarse algún checkpoint te recalcula toda la distancia que llevas 
+    /// </summary>
+    /// <param name="id"></param>
     private void UpdateCurrentDistance(int id)
     {
         checkLastChekpoint[id]++;
@@ -78,14 +103,20 @@ public class MinimapControl : Singleton<MinimapControl>
             
             for (int i = 0; i < lastCheckpointList[id]; i++)
             {
-                amount += (LapsManager.Instance.checkPoints[i].transform.position - LapsManager.Instance.checkPoints[i + 1].transform.position).magnitude;
+                if (!LapsManager.Instance.checkPoints[i].exitPortal)
+                {
+                    
+                    amount += (LapsManager.Instance.checkPoints[i].transform.position - LapsManager.Instance.checkPoints[i + 1].transform.position).magnitude;
+                }
             }
 
+            Debug.Log(amount);
             currentAmountList[id] = amount;
         }
         else
         {
-            currentAmountList[id] += (LapsManager.Instance.checkPoints[lastCheckpointList[id]].transform.position - LapsManager.Instance.checkPoints[lastCheckpointList[id] - 1].transform.position).magnitude;
+            if(!LapsManager.Instance.checkPoints[lastCheckpointList[id]].exitPortal)
+                currentAmountList[id] += (LapsManager.Instance.checkPoints[lastCheckpointList[id]].transform.position - LapsManager.Instance.checkPoints[lastCheckpointList[id] - 1].transform.position).magnitude;
         }
     }
 
@@ -166,6 +197,7 @@ public class MinimapControl : Singleton<MinimapControl>
         checkLastChekpoint[id_] = 0;
         currentAmountList[id_] = 0;
         checkLastChekpoint[id_] = 0;
+        lastCheckpointList[id_] = 0;
 
     }
 

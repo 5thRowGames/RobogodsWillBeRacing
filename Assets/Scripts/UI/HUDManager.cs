@@ -145,9 +145,9 @@ public class HUDManager : Singleton<HUDManager>
 
     private void UpdateAnubisPosition()
     {
-        hudDictionary[God.Type.Anubis].racePositionText.text = (LapsManager.Instance.racePosition[0] + 1).ToString();
+        hudDictionary[God.Type.Anubis].racePositionText.text = (LapsManager.Instance.racePosition[(int)God.Type.Anubis] + 1).ToString();
 
-        switch (LapsManager.Instance.racePosition[0])
+        switch (LapsManager.Instance.racePosition[(int)God.Type.Anubis])
         {
             case 0:
                 hudDictionary[God.Type.Anubis].racePositionSuffixText.text = "st";
@@ -169,9 +169,9 @@ public class HUDManager : Singleton<HUDManager>
     
     private void UpdatePoseidonPosition()
     {
-        hudDictionary[God.Type.Poseidon].racePositionText.text = (LapsManager.Instance.racePosition[0] + 1).ToString();
+        hudDictionary[God.Type.Poseidon].racePositionText.text = (LapsManager.Instance.racePosition[(int)God.Type.Poseidon] + 1).ToString();
 
-        switch (LapsManager.Instance.racePosition[0])
+        switch (LapsManager.Instance.racePosition[(int)God.Type.Poseidon])
         {
             case 0:
                 hudDictionary[God.Type.Poseidon].racePositionSuffixText.text = "st";
@@ -193,9 +193,10 @@ public class HUDManager : Singleton<HUDManager>
     
     private void UpdateKaliPosition()
     {
-        hudDictionary[God.Type.Kali].racePositionText.text = (LapsManager.Instance.racePosition[0] + 1).ToString();
+        hudDictionary[God.Type.Kali].racePositionText.text = (LapsManager.Instance.racePosition[(int)God.Type.Kali] + 1).ToString();
+        Debug.Log("Paso por aqui");
 
-        switch (LapsManager.Instance.racePosition[0])
+        switch (LapsManager.Instance.racePosition[(int)God.Type.Kali])
         {
             case 0:
                 hudDictionary[God.Type.Kali].racePositionSuffixText.text = "st";
@@ -217,9 +218,9 @@ public class HUDManager : Singleton<HUDManager>
     
     private void UpdateThorPosition()
     {
-        hudDictionary[God.Type.Thor].racePositionText.text = (LapsManager.Instance.racePosition[0] + 1).ToString();
+        hudDictionary[God.Type.Thor].racePositionText.text = (LapsManager.Instance.racePosition[(int)God.Type.Thor] + 1).ToString();
 
-        switch (LapsManager.Instance.racePosition[0])
+        switch (LapsManager.Instance.racePosition[(int)God.Type.Thor])
         {
             case 0:
                 hudDictionary[God.Type.Thor].racePositionSuffixText.text = "st";

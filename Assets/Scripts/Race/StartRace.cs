@@ -13,6 +13,7 @@ public class StartRace : MonoBehaviour
     public GameObject kaliPlayer;
     public GameObject thorPlayer;
 
+    public List<GameObject> cinematicCameras; //0 Anubis 1 Poseidon 2 Kali 3 Thor
     public List<Transform> parentCameras;
     public List<GameObject> cameras;
     public List<Camera> UICameras;
@@ -43,11 +44,11 @@ public class StartRace : MonoBehaviour
     {
         int playersNumber = StoreGodInfo.Instance.players;
         
-        Tween tween = cameras[0].transform.parent.transform.DOLocalRotate(new Vector3(0, 180, 0), rotateCameraTime);
+        Tween tween = cinematicCameras[0].transform.parent.transform.DOLocalRotate(new Vector3(0, 180, 0), rotateCameraTime);
 
         for (int i = 1; i < playersNumber; i++)
         {
-            cameras[i].transform.parent.transform.DOLocalRotate(new Vector3(0, 180, 0), rotateCameraTime);
+            cinematicCameras[i].transform.parent.transform.DOLocalRotate(new Vector3(0, 180, 0), rotateCameraTime);
         }
 
         yield return tween.WaitForCompletion();
@@ -372,19 +373,19 @@ public class StartRace : MonoBehaviour
             switch (playerInfo.godType)
             {
                 case God.Type.Anubis:
-                    cameras[playerInfo.playerID].transform.parent = parentCameras[0];
+                    cinematicCameras[playerInfo.playerID].transform.parent = parentCameras[0];
                     break;
                 
                 case God.Type.Poseidon:
-                    cameras[playerInfo.playerID].transform.parent = parentCameras[1];
+                    cinematicCameras[playerInfo.playerID].transform.parent = parentCameras[1];
                     break;
 
                 case God.Type.Kali:
-                    cameras[playerInfo.playerID].transform.parent = parentCameras[2];
+                    cinematicCameras[playerInfo.playerID].transform.parent = parentCameras[2];
                     break;
                 
                 case God.Type.Thor:
-                    cameras[playerInfo.playerID].transform.parent = parentCameras[3];
+                    cinematicCameras[playerInfo.playerID].transform.parent = parentCameras[3];
                     break;
             }
         }
@@ -394,7 +395,7 @@ public class StartRace : MonoBehaviour
     {
         for (int i = 0; i < cameras.Count; i++)
         {
-            cameras[i].transform.localPosition = new Vector3(0,cameras[i].transform.localPosition.y,cameras[i].transform.localPosition.z);
+            cinematicCameras[i].transform.localPosition = new Vector3(0,cameras[i].transform.localPosition.y,cameras[i].transform.localPosition.z);
         }
     }
 

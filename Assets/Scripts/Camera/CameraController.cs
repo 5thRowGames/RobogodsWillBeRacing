@@ -38,19 +38,19 @@ public class CameraController : MonoBehaviour, IControllable
     {
         transform.position = new Vector3(transform.position.x, transform.position.y + currentHeight, transform.position.z);
         
-        if (activeDevice)
+        /*if (activeDevice)
         {
             GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
             Core.Input.AssignControllable(GetComponent<IncontrolProvider>(),this);
             InitCamera();
-        } 
+        } */
     }
 
     private void OnEnable()
     {
-        ConnectDisconnectManager.InitCamera += InitCamera;
-        ConnectDisconnectManager.ConnectCarControllerDelegate += ConnectCamera;
-        ConnectDisconnectManager.DisconnectCarControllerDelegate += DisconnectCamera;
+        //ConnectDisconnectManager.InitCamera += InitCamera;
+        //ConnectDisconnectManager.ConnectCarControllerDelegate += ConnectCamera;
+        //ConnectDisconnectManager.DisconnectCarControllerDelegate += DisconnectCamera;
     }
 
     public void InitCamera()
@@ -65,7 +65,7 @@ public class CameraController : MonoBehaviour, IControllable
         transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
         
         //Buscar un mejor sitio para esto o cuando cepa arregle lo del bindeo de los servicios comunes, cambiarlo
-        Atto.Bind<IInputService,OwnInputProvider>();
+        //Atto.Bind<IInputService,OwnInputProvider>();
 
         ConnectDisconnectManager.ConnectCarControllerDelegate += ConnectCamera;
         ConnectDisconnectManager.DisconnectCarControllerDelegate += DisconnectCamera;
@@ -73,8 +73,8 @@ public class CameraController : MonoBehaviour, IControllable
 
     private void OnDisable()
     {
-        ConnectDisconnectManager.ConnectCarControllerDelegate -= ConnectCamera;
-        ConnectDisconnectManager.DisconnectCarControllerDelegate -= DisconnectCamera;
+        //ConnectDisconnectManager.ConnectCarControllerDelegate -= ConnectCamera;
+        //ConnectDisconnectManager.DisconnectCarControllerDelegate -= DisconnectCamera;
     }
 
     public void Control(IDevice device)
@@ -196,11 +196,11 @@ public class CameraController : MonoBehaviour, IControllable
 
     public void ConnectCamera()
     {
-        Core.Input.AssignControllable(GetComponent<IncontrolProvider>(),this);
+        //Core.Input.AssignControllable(GetComponent<IncontrolProvider>(),this);
     }
 
     public void DisconnectCamera()
     {
-        Core.Input.UnassignControllable(GetComponent<IncontrolProvider>(),this);
+        //Core.Input.UnassignControllable(GetComponent<IncontrolProvider>(),this);
     }
 }

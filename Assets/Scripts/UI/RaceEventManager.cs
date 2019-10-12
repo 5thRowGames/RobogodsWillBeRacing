@@ -51,7 +51,6 @@ public class RaceEventManager : SingletonDontDestroy<RaceEventManager>
 
                 if (!countdown)
                 {
-                    ConnectDisconnectManager.InitCamera();
                     ConnectDisconnectManager.ConnectCarControllerDelegate();
                     ConnectDisconnectManager.ConnectItemManagerDelegate();
                     ConnectDisconnectManager.ConnectSkillManagerDelegate(); 

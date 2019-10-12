@@ -27,48 +27,50 @@ public class StartRace : MonoBehaviour
     public float rotateCameraTime;
     public float intervalTimeBetweenRotateAndCountdown;
 
+    private List<God.Type> cameraIndex;
+
     private void OnEnable()
     {
+        cameraIndex = new List<God.Type>(4);
+        
         for (int i = 0; i < cameras.Count; i++)
         {
             cameras[i].SetActive(false);
+            cinematicCameras[i].SetActive(false);
         }
         
         SetCameraAndControl();
         SplitScreen(StoreGodInfo.Instance.players);
         StartCoroutine(Init());
-        SplitScreenUI(StoreGodInfo.Instance.players);
     }
 
     IEnumerator Init()
     {
         int playersNumber = StoreGodInfo.Instance.players;
-        
-        Tween tween = cinematicCameras[0].transform.parent.transform.DOLocalRotate(new Vector3(0, 180, 0), rotateCameraTime);
 
-        for (int i = 1; i < playersNumber; i++)
+        for (int i = 0; i < playersNumber; i++)
         {
-            cinematicCameras[i].transform.parent.transform.DOLocalRotate(new Vector3(0, 180, 0), rotateCameraTime);
+            cinematicCameras[i].SetActive(true);
+                
+            Sequence seq = DOTween.Sequence();
+            seq.Append(cinematicCameras[i].transform.parent.transform.DOLocalRotate(new Vector3(0, 180, 0), rotateCameraTime))
+                .Append(cinematicCameras[i].transform.DOMove(cameras[(int)cameraIndex[i]].transform.position, 1.5f));
         }
 
-        yield return tween.WaitForCompletion();
-        yield return new WaitForSeconds(intervalTimeBetweenRotateAndCountdown);
+        yield return new WaitForSeconds(intervalTimeBetweenRotateAndCountdown + 1.5f + rotateCameraTime);
+
+        for (int i = 0; i < playersNumber; i++)
+        {
+            cinematicCameras[i].SetActive(false);
+        }
 
         foreach (var playerInfo in StoreGodInfo.Instance.playerInfo)
         {
             switch (playerInfo.godType)
             {
-                case God.Type.Poseidon:
-                    poseidonCanvas.GetComponent<Canvas>().worldCamera = UICameras[playerInfo.playerID];
-                    poseidonCanvas.GetComponent<Canvas>().planeDistance = 1;
-                    poseidonCanvas.SetActive(true);
-                    poseidonCanvas.GetComponent<CameraCanvasScaler>().enabled = false;
-                    poseidonCanvas.GetComponent<CameraCanvasScaler>().enabled = true;
-
-                    break;
-                
                 case God.Type.Anubis:
-                    anubisCanvas.GetComponent<Canvas>().worldCamera = UICameras[playerInfo.playerID];
+                    cameras[0].transform.parent.gameObject.SetActive(true);
+                    anubisCanvas.GetComponent<Canvas>().worldCamera = UICameras[(int) cameraIndex[playerInfo.playerID]];
                     anubisCanvas.GetComponent<Canvas>().planeDistance = 1;
                     anubisCanvas.SetActive(true);
                     anubisCanvas.GetComponent<CameraCanvasScaler>().enabled = false;
@@ -76,24 +78,47 @@ public class StartRace : MonoBehaviour
 
                     break;
                 
+                case God.Type.Poseidon:
+                    cameras[1].transform.parent.gameObject.SetActive(true);
+                    poseidonCanvas.GetComponent<Canvas>().worldCamera = UICameras[(int)cameraIndex[playerInfo.playerID]];
+                    Debug.Log(playerInfo.playerID);
+                    poseidonCanvas.GetComponent<Canvas>().planeDistance = 1;
+                    poseidonCanvas.SetActive(true);
+                    poseidonCanvas.GetComponent<CameraCanvasScaler>().enabled = false;
+                    poseidonCanvas.GetComponent<CameraCanvasScaler>().enabled = true;
+                    cameras[1].transform.parent.gameObject.SetActive(true);
+
+                    break;
+
                 case God.Type.Kali:
-                    kaliCanvas.GetComponent<Canvas>().worldCamera = UICameras[playerInfo.playerID];
+                    cameras[2].transform.parent.gameObject.SetActive(true);
+                    kaliCanvas.GetComponent<Canvas>().worldCamera = UICameras[(int) cameraIndex[playerInfo.playerID]];
                     kaliCanvas.GetComponent<Canvas>().planeDistance = 1;
                     kaliCanvas.SetActive(true);
                     kaliCanvas.GetComponent<CameraCanvasScaler>().enabled = false;
                     kaliCanvas.GetComponent<CameraCanvasScaler>().enabled = true;
+                    cameras[2].transform.parent.gameObject.SetActive(true);
 
                     break;
                 
                 case God.Type.Thor:
-                    thorCanvas.GetComponent<Canvas>().worldCamera = UICameras[playerInfo.playerID];
+                    cameras[3].transform.parent.gameObject.SetActive(true);
+                    thorCanvas.GetComponent<Canvas>().worldCamera = UICameras[(int) cameraIndex[playerInfo.playerID]];
                     thorCanvas.GetComponent<Canvas>().planeDistance = 1;
                     thorCanvas.SetActive(true);
                     thorCanvas.GetComponent<CameraCanvasScaler>().enabled = false;
                     thorCanvas.GetComponent<CameraCanvasScaler>().enabled = true;
+                    cameras[3].transform.parent.gameObject.SetActive(true);
 
                     break;
             }
+        }
+
+        //Es necesario este bucle unos segundos después de haber dividido el viewport rect ya que se buguean ambas cámaras y no aparece la UI 
+        for (int i = 0; i < playersNumber; i++)
+        {
+            UICameras[(int)cameraIndex[i]].gameObject.SetActive(false);
+            UICameras[(int)cameraIndex[i]].gameObject.SetActive(true);
         }
 
         if (playersNumber > 2)
@@ -108,141 +133,73 @@ public class StartRace : MonoBehaviour
         {
             switch (playerInfo.godType)
             {
-                case God.Type.Poseidon:
-                    
-                    if (playerInfo.controlType == IncontrolProvider.ControlType.Gamepad)
-                    {
-                        poseidonPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
-                        cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
-                    }
-                    else
-                    {
-                        poseidonPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
-                        cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
-                    }
-                    
-                    poseidonPlayer.GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
-                    poseidonPlayer.GetComponent<IncontrolProvider>().controlType = playerInfo.controlType;
-                    poseidonPlayer.GetComponent<IncontrolProvider>().playerID = playerInfo.playerID;
-
-                    cameras[playerInfo.playerID].GetComponent<CameraController>().target = poseidonPlayer;
-                    cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
-
-                    //Sigue el mismo orden que la UI
-                    cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().AssignIndex(1);
-                    //cameras[playerInfo.playerID].GetComponentInChildren<SpeedParticles>().AssignIndex(1);
-                    cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().enabled = true;
-
-                    poseidonPlayer.GetComponent<MyCarController>().enabled = true;
-                    poseidonPlayer.GetComponent<PlayerSkillManager>().enabled = true;
-                    poseidonPlayer.GetComponent<PlayerCarSoundManager>().enabled = true;
-                    poseidonPlayer.GetComponent<ItemManager>().enabled = true;
-                    
-                    break;
-
                 case God.Type.Anubis:
-                    
-                    //anubisPlayer.GetComponent<IncontrolProvider>().enabled = true;
 
                     if (playerInfo.controlType == IncontrolProvider.ControlType.Gamepad)
-                    {
                         anubisPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
-                        cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
-                    }
                     else
-                    {
                         anubisPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
-                        cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
-                    }
-
+                    
                     anubisPlayer.GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
                     anubisPlayer.GetComponent<IncontrolProvider>().controlType = playerInfo.controlType;
                     anubisPlayer.GetComponent<IncontrolProvider>().playerID = playerInfo.playerID;
 
-                    //Sigue el mismo orden que la UI
+                    /*//Sigue el mismo orden que la UI
                     cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().AssignIndex(0);
                     //cameras[playerInfo.playerID].GetComponentInChildren<SpeedParticles>().AssignIndex(0);
-                    cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().enabled = true;
-
-                    cameras[playerInfo.playerID].GetComponent<CameraController>().target = anubisPlayer;
-                    cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
+                    cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().enabled = true;*/
 
                     anubisPlayer.GetComponent<MyCarController>().enabled = true;
                     anubisPlayer.GetComponent<PlayerSkillManager>().enabled = true;
                     anubisPlayer.GetComponent<PlayerCarSoundManager>().enabled = true;
                     anubisPlayer.GetComponent<ItemManager>().enabled = true;
 
-                    break;
+                    //Sirve para dividir la pantalla de las cámaras, así se el orden en el que se han seleccionado los personajes
+                    //0 es porque es Anubis (mirar orden de los dioses)
+                    cameraIndex.Add(God.Type.Anubis);
+
+                    break;                
                 
-                case God.Type.Thor:
+                case God.Type.Poseidon:
                     
                     if (playerInfo.controlType == IncontrolProvider.ControlType.Gamepad)
-                    {
-                        thorPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
-                        cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
-                    }
+                        poseidonPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
                     else
-                    {
-                        thorPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
-                        cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
-                        
-                        if (StoreGodInfo.Instance.eduardo)
-                        {
-                            thorPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo2();
-                            cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo2();
-                        }
-                    }
+                        poseidonPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
                     
-                    thorPlayer.GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
-                    thorPlayer.GetComponent<IncontrolProvider>().controlType = playerInfo.controlType;
-                    thorPlayer.GetComponent<IncontrolProvider>().playerID = playerInfo.playerID;
+                    poseidonPlayer.GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
+                    poseidonPlayer.GetComponent<IncontrolProvider>().controlType = playerInfo.controlType;
+                    poseidonPlayer.GetComponent<IncontrolProvider>().playerID = playerInfo.playerID;
 
-                    cameras[playerInfo.playerID].GetComponent<CameraController>().target = thorPlayer;
-                    cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
-                    cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().enabled = true;
+                    /*//Sigue el mismo orden que la UI
+                    cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().AssignIndex(1);
+                    //cameras[playerInfo.playerID].GetComponentInChildren<SpeedParticles>().AssignIndex(1);
+                    cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().enabled = true;*/
 
-                    //Sigue el mismo orden que la UI
-                    cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().AssignIndex(3);
-                    //cameras[playerInfo.playerID].GetComponentInChildren<SpeedParticles>().AssignIndex(3);
-                    cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().enabled = true;
-
-                    thorPlayer.GetComponent<MyCarController>().enabled = true;
-                    thorPlayer.GetComponent<PlayerSkillManager>().enabled = true;
-                    thorPlayer.GetComponent<PlayerCarSoundManager>().enabled = true;
-                    thorPlayer.GetComponent<ItemManager>().enabled = true;
+                    poseidonPlayer.GetComponent<MyCarController>().enabled = true;
+                    poseidonPlayer.GetComponent<PlayerSkillManager>().enabled = true;
+                    poseidonPlayer.GetComponent<PlayerCarSoundManager>().enabled = true;
+                    poseidonPlayer.GetComponent<ItemManager>().enabled = true;
                     
+                    cameraIndex.Add(God.Type.Poseidon);
+
                     break;
                 
                 case God.Type.Kali:
 
                     if (playerInfo.controlType == IncontrolProvider.ControlType.Gamepad)
-                    {
                         kaliPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
-                        cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
-                    }
                     else
-                    {
                         kaliPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
-                        cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
-                        
-                        if (StoreGodInfo.Instance.eduardo)
-                        {
-                            kaliPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo1();
-                            cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo1();
-                        }
-                    }
                     
                     kaliPlayer.GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice; 
                     kaliPlayer.GetComponent<IncontrolProvider>().controlType = playerInfo.controlType;
                     kaliPlayer.GetComponent<IncontrolProvider>().playerID = playerInfo.playerID;
 
-                    cameras[playerInfo.playerID].GetComponent<CameraController>().target = kaliPlayer;
-                    cameras[playerInfo.playerID].GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
-
-                    //Sigue el mismo orden que la UI
+                    /*//Sigue el mismo orden que la UI
                     cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().AssignIndex(2);
                     //cameras[playerInfo.playerID].GetComponentInChildren<SpeedParticles>().AssignIndex(2);
-                    cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().enabled = true;
+                    cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().enabled = true;*/
 
 
                     kaliPlayer.GetComponent<MyCarController>().enabled = true;
@@ -250,6 +207,31 @@ public class StartRace : MonoBehaviour
                     kaliPlayer.GetComponent<PlayerCarSoundManager>().enabled = true;
                     kaliPlayer.GetComponent<ItemManager>().enabled = true;
                     
+                    cameraIndex.Add(God.Type.Kali);
+                    break;
+                
+                case God.Type.Thor:
+                    
+                    if (playerInfo.controlType == IncontrolProvider.ControlType.Gamepad)
+                        thorPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
+                    else
+                        thorPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
+                    
+                    thorPlayer.GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
+                    thorPlayer.GetComponent<IncontrolProvider>().controlType = playerInfo.controlType;
+                    thorPlayer.GetComponent<IncontrolProvider>().playerID = playerInfo.playerID;
+
+                    /*//Sigue el mismo orden que la UI
+                    cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().AssignIndex(3);
+                    //cameras[playerInfo.playerID].GetComponentInChildren<SpeedParticles>().AssignIndex(3);
+                    cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().enabled = true;*/
+
+                    thorPlayer.GetComponent<MyCarController>().enabled = true;
+                    thorPlayer.GetComponent<PlayerSkillManager>().enabled = true;
+                    thorPlayer.GetComponent<PlayerCarSoundManager>().enabled = true;
+                    thorPlayer.GetComponent<ItemManager>().enabled = true;
+                    
+                    cameraIndex.Add(God.Type.Thor);
                     break;
             }   
         }
@@ -261,111 +243,59 @@ public class StartRace : MonoBehaviour
         switch (players)
         {
             case 1:
-                cameras[0].GetComponent<Camera>().rect = new Rect(0, 0, 1, 1);
-                cameras[0].SetActive(true);
+                cameras[(int)cameraIndex[0]].GetComponent<Camera>().rect = new Rect(0, 0, 1, 1);
+                cameras[(int)cameraIndex[0]].SetActive(true);
+                
+                UICameras[(int)cameraIndex[0]].GetComponent<Camera>().rect = new Rect(0, 0, 1, 1);
                 break;
 
             case 2:
-                cameras[0].GetComponent<Camera>().rect = new Rect(0, 0, 0.5f, 1);
-                cameras[0].SetActive(true);
+                cameras[(int)cameraIndex[0]].GetComponent<Camera>().rect = new Rect(0, 0, 0.5f, 1);
+                cameras[(int)cameraIndex[0]].SetActive(true);
 
-                cameras[1].GetComponent<Camera>().rect = new Rect(0.5f, 0, 0.5f, 1);
-                cameras[1].SetActive(true);
+                cameras[(int)cameraIndex[1]].GetComponent<Camera>().rect = new Rect(0.5f, 0, 0.5f, 1);
+                cameras[(int)cameraIndex[1]].SetActive(true);
+                
+                UICameras[(int)cameraIndex[0]].GetComponent<Camera>().rect = new Rect(0, 0, 0.5f, 1f);
+                UICameras[(int)cameraIndex[1]].GetComponent<Camera>().rect = new Rect(0.5f, 0, 0.5f, 1f);
                 break;
 
             case 3:
-                cameras[0].GetComponent<Camera>().rect = new Rect(0, 0.5f, 0.5f, 0.5f);
-                cameras[0].SetActive(true);
+                cameras[(int)cameraIndex[0]].GetComponent<Camera>().rect = new Rect(0, 0.5f, 0.5f, 0.5f);
+                cameras[(int)cameraIndex[0]].SetActive(true);
 
-                cameras[1].GetComponent<Camera>().rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
-                cameras[1].SetActive(true);
+                cameras[(int)cameraIndex[1]].GetComponent<Camera>().rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
+                cameras[(int)cameraIndex[1]].SetActive(true);
 
-                cameras[2].GetComponent<Camera>().rect = new Rect(0, 0, 1f, 0.5f);
-                cameras[2].SetActive(true);
+                cameras[(int)cameraIndex[2]].GetComponent<Camera>().rect = new Rect(0, 0, 1f, 0.5f);
+                cameras[(int)cameraIndex[2]].SetActive(true);
+                
+                UICameras[(int)cameraIndex[0]].GetComponent<Camera>().rect = new Rect(0, 0.5f, 0.5f, 0.5f);
+                UICameras[(int)cameraIndex[1]].GetComponent<Camera>().rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
+                UICameras[(int) cameraIndex[2]].GetComponent<Camera>().rect = new Rect(0, 0, 1f, 0.5f);
                 break;
 
             case 4:
-                cameras[0].GetComponent<Camera>().rect = new Rect(0, 0.5f, 0.5f, 0.5f);
-                cameras[0].SetActive(true);
+                cameras[(int)cameraIndex[0]].GetComponent<Camera>().rect = new Rect(0, 0.5f, 0.5f, 0.5f);
+                cameras[(int)cameraIndex[0]].SetActive(true);
 
-                cameras[1].GetComponent<Camera>().rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
-                cameras[1].SetActive(true);
+                cameras[(int)cameraIndex[1]].GetComponent<Camera>().rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
+                cameras[(int)cameraIndex[1]].SetActive(true);
 
-                cameras[2].GetComponent<Camera>().rect = new Rect(0, 0, 0.5f, 0.5f);
-                cameras[2].SetActive(true);
+                cameras[(int)cameraIndex[2]].GetComponent<Camera>().rect = new Rect(0, 0, 0.5f, 0.5f);
+                cameras[(int)cameraIndex[2]].SetActive(true);
 
-                cameras[3].GetComponent<Camera>().rect = new Rect(0.5f, 0, 0.5f, 0.5f);
-                cameras[3].SetActive(true);
+                cameras[(int)cameraIndex[3]].GetComponent<Camera>().rect = new Rect(0.5f, 0, 0.5f, 0.5f);
+                cameras[(int)cameraIndex[3]].SetActive(true);
+                
+                UICameras[(int)cameraIndex[0]].GetComponent<Camera>().rect = new Rect(0, 0.5f, 0.5f, 0.5f);
+                UICameras[(int)cameraIndex[1]].GetComponent<Camera>().rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
+                UICameras[(int)cameraIndex[2]].GetComponent<Camera>().rect = new Rect(0, 0, 0.5f, 0.5f);
+                UICameras[(int)cameraIndex[3]].GetComponent<Camera>().rect = new Rect(0.5f, 0, 0.5f, 0.5f);
                 break;
         }
     }
-    
-    private void SplitScreenUI(int players)
-    {
 
-        switch (players)
-        {
-            case 1:
-
-                UICameras[0].gameObject.SetActive(false);
-                UICameras[0].gameObject.SetActive(true);
-                UICameras[0].GetComponent<Camera>().rect = new Rect(0, 0, 1, 1);
-                UICameras[0].gameObject.SetActive(false);
-                UICameras[0].gameObject.SetActive(true);
-
-                break;
-
-            case 2:
-
-                UICameras[0].gameObject.SetActive(false);
-                UICameras[1].gameObject.SetActive(false);
-
-                UICameras[0].gameObject.SetActive(true);
-                UICameras[1].gameObject.SetActive(true);
-
-                UICameras[0].GetComponent<Camera>().rect = new Rect(0, 0, 0.5f, 1f);
-                UICameras[1].GetComponent<Camera>().rect = new Rect(0.5f, 0, 0.5f, 1f);
-
-
-                break;
-
-            case 3:
-                
-                UICameras[0].gameObject.SetActive(false);
-                UICameras[1].gameObject.SetActive(false);
-                UICameras[2].gameObject.SetActive(false);
-
-                UICameras[0].gameObject.SetActive(true);
-                UICameras[1].gameObject.SetActive(true);
-                UICameras[2].gameObject.SetActive(true);
-
-                UICameras[0].GetComponent<Camera>().rect = new Rect(0, 0.5f, 0.5f, 0.5f);
-                UICameras[1].GetComponent<Camera>().rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
-                UICameras[2].GetComponent<Camera>().rect = new Rect(0, 0, 1f, 0.5f);
-
-                break;
-
-            case 4:
-                
-                UICameras[0].gameObject.SetActive(false);
-                UICameras[1].gameObject.SetActive(false);
-                UICameras[2].gameObject.SetActive(false);
-                UICameras[3].gameObject.SetActive(false);
-                
-                UICameras[0].gameObject.SetActive(true);
-                UICameras[1].gameObject.SetActive(true);
-                UICameras[2].gameObject.SetActive(true);
-                UICameras[3].gameObject.SetActive(true);
-
-                UICameras[0].GetComponent<Camera>().rect = new Rect(0, 0.5f, 0.5f, 0.5f);
-                UICameras[1].GetComponent<Camera>().rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
-                UICameras[2].GetComponent<Camera>().rect = new Rect(0, 0, 0.5f, 0.5f);
-                UICameras[3].GetComponent<Camera>().rect = new Rect(0.5f, 0, 0.5f, 0.5f);
-                
-                break;
-        }
-    }
-    
     public void SetCameraParent()
     {
         foreach (var playerInfo in StoreGodInfo.Instance.playerInfo)
@@ -395,7 +325,7 @@ public class StartRace : MonoBehaviour
     {
         for (int i = 0; i < cameras.Count; i++)
         {
-            cinematicCameras[i].transform.localPosition = new Vector3(0,cameras[i].transform.localPosition.y,cameras[i].transform.localPosition.z);
+            cinematicCameras[i].transform.localPosition = new Vector3(0,0,cinematicCameras[i].transform.localPosition.z);
         }
     }
 

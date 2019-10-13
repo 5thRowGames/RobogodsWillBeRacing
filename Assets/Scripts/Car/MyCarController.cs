@@ -16,6 +16,7 @@ public class MyCarController : MonoBehaviour, IControllable
     [SerializeField] [Tooltip("¿Siempre aplicar la aceleración mínima?")] private bool alwaysAccelerate = true;
     [SerializeField] [Tooltip("Aceleración mínima aplicada en cada momento")] [Range(0f, 1f)] private float minAcceleration = 0.2f;
     [SerializeField] [Tooltip("Incremento de la fuerza de aceleración cuando se usa el turbo")] private float boostMultiplier = 3f;
+    [SerializeField] [Tooltip("Decremento de la fuerza de aceleración cuando se activa el slowdown")] private float slowDownMultiplier = 2f;
     [SerializeField] [Tooltip("")] private bool carUnderControl = false;
     [SerializeField] [Tooltip("Tiempo desde que se suelta el acelerador hasta que deja de acelerar el coche")] private float deaccelerationTime = 2f;
     [Tooltip("Contador del tiempo desde que se suelta el acelerador")] private float deaccelerationTimer;
@@ -338,19 +339,14 @@ public class MyCarController : MonoBehaviour, IControllable
                 {
                     rb.AddForceAtPosition(-transform.forward * brakeInput * brakeForce * 2f, accelPoint.position, ForceMode.Acceleration);
                 }
-                //else
-                //{
-                //    rb.velocity *= 0.8f;
-                //}
             }
             else
             {
-
                 rb.AddForceAtPosition(-transform.forward * brakeInput * brakeForce, accelPoint.position, ForceMode.Acceleration);
             }
         }
-        else
-            brakeToReverseTimer = brakeToReverseTime;
+        //else
+        //    brakeToReverseTimer = brakeToReverseTime;
     }
 
     private void HandBrake()
@@ -358,7 +354,7 @@ public class MyCarController : MonoBehaviour, IControllable
         // Freno de mano
         if (handBrakeInput > 0f)
         {
-            if (rb.velocity.z > 0f)
+            if (rb.velocity.z > speedThreshold)
             {
                 rb.AddForceAtPosition(transform.right * handBrakeInput * handBrakeForce * -steeringInput, handBrakePoint.position);
                 // Freno del freno de mano
@@ -369,21 +365,65 @@ public class MyCarController : MonoBehaviour, IControllable
                 }
                 handBrakeTimer += Time.deltaTime; // Se va incrementando el tiempo que está el freno de mano pulsado
             }
+            else
+            {
+                brakeToReverseTimer -= Time.deltaTime;
+                if (brakeToReverseTimer <= 0f)
+                {
+                    rb.AddForceAtPosition(-transform.forward * handBrakeInput * brakeForce * 2f, accelPoint.position, ForceMode.Acceleration);
+                }
+            }
         }
         else
         {
-            if (handBrakeTimer >= handBrakeTurboTime) // Turbo
-            {
-                Debug.Log("Turbo!");
-                StartTurbo();
-            }
+            brakeToReverseTimer = brakeToReverseTime;
             handBrakeTimer = 0f; // Reset del timer
         }
+            //else
+            //{
+            //    rb.AddForceAtPosition(-transform.forward * brakeInput * brakeForce, accelPoint.position, ForceMode.Acceleration);
+            //}
+        //else
+        //{
+        //    if (handBrakeTimer >= handBrakeTurboTime) // Turbo
+        //    {
+        //        Debug.Log("Turbo!");
+        //        StartTurbo();
+        //    }
+        //    handBrakeTimer = 0f; // Reset del timer
+        //}
     }
 
     public void StartTurbo()
     {
         StartCoroutine(TurboCoroutine(handBrakeBoostWait));
+    }
+
+    public void StartTurbo(float waitBeforeBoost)
+    {
+        StartCoroutine(TurboCoroutine(waitBeforeBoost));
+    }
+
+    public void StartSlowDown()
+    {
+        StartCoroutine(SlowDownCoroutine());
+    }
+
+    private IEnumerator SlowDownCoroutine()
+    {
+
+        //AkSoundEngine.PostEvent("Turbo_In", gameObject);
+
+        float timer = handBrakeBoostTime;
+        while (timer >= 0f)
+        {
+            timer -= Time.deltaTime;
+            if(velocity.magnitude > speedThreshold)
+                rb.AddForceAtPosition(-groundForward * slowDownMultiplier * speedForce, accelPoint.position, ForceMode.Acceleration);
+            yield return null;
+        }
+
+        //AkSoundEngine.PostEvent("Turbo_Out", gameObject);
     }
 
     private IEnumerator TurboCoroutine(float seconds)

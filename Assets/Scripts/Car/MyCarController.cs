@@ -133,6 +133,13 @@ public class MyCarController : MonoBehaviour, IControllable
     {
         Name = gameObject.name;
         turbo = 0;
+
+        if (activeDevice)
+        {
+            GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
+            Core.Input.AssignControllable(GetComponent<IncontrolProvider>(), this);
+            carUnderControl = true;
+        }
     }
 
     private void Start()

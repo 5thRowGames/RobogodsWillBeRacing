@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 150697190997099869}
   - component: {fileID: 235688403376845820}
   - component: {fileID: 7996297863571689560}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: BeltWings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,7 +130,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 718864918012457163}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: AccelerationPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 8185950296280420787}
   - component: {fileID: 1175331159037630266}
   - component: {fileID: 2258791632337551401}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 4303809438958537080}
   - component: {fileID: 9008876691363335568}
   - component: {fileID: 3746168689053515808}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: ChestArmor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -316,7 +316,7 @@ GameObject:
   - component: {fileID: 2655431764109141887}
   - component: {fileID: 3170700439739638080}
   - component: {fileID: 2535822021007438666}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Belt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -391,7 +391,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6039123396522308161}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: BR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -422,7 +422,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3313344535032333262}
   - component: {fileID: 550391772}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: SecondarySkill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -476,7 +476,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3313344535320096351}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Skills
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -512,7 +512,7 @@ GameObject:
   - component: {fileID: 3313344535479059491}
   - component: {fileID: 3313344535479059490}
   - component: {fileID: 3313344535479059489}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -627,7 +627,7 @@ GameObject:
   - component: {fileID: 3313344535617684435}
   - component: {fileID: 3313344535617684432}
   - component: {fileID: 1205042336095377471}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Thor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -776,8 +776,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeDevice: 0
+  god: 0
   turboRechargeMultiplier: 0
   turboConsumeMultiplier: 0
+  turbo: 0
   speedForce: 140
   instantSpeedForce: 10
   alwaysAccelerate: 0
@@ -807,6 +809,7 @@ MonoBehaviour:
   airLateralShiftFactor: 0.008
   wheelHeight: 1
   downForce: 6
+  additiveDownForce: 1
   upForce: 40
   jumpForce: 20
   useSimpleSuspension: 0
@@ -842,6 +845,7 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   IsBeingTeleported: 0
   helper: {fileID: 3313344535617684434}
+  pruebaSonido: 0
   startingPositions: []
 --- !u!114 &6643546060550102277
 MonoBehaviour:
@@ -855,8 +859,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e02c871179d1f24fa7fbaf675f45db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myVelocity: {x: 0, y: 0, z: 0}
-  collisionAngle: 0
+  frontalForce: 10
+  maxAngle: 8
+  maxFrontalAngle: 30
+  maxSpeed: 30
+  reductionSpeedFactor: 0.4
 --- !u!114 &702772857911646721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -876,6 +883,8 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 1024
+  maxHeightAllowed: 3
+  timeToMaxHeight: 0
   myCarController: {fileID: 8884517709100184768}
   rb: {fileID: 773855299745352365}
 --- !u!114 &7942624402728049221
@@ -965,7 +974,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3313344535642428518}
   - component: {fileID: 1205042336095377474}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: PrimarySkill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1017,7 +1026,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3313344535862370833}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Items
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1048,7 +1057,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3313344536001714250}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: SpawnPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1080,7 +1089,7 @@ GameObject:
   - component: {fileID: 8926873102249070506}
   - component: {fileID: 7758477715700847760}
   - component: {fileID: 4783344832057341772}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: RightArmArmor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1158,7 +1167,7 @@ GameObject:
   - component: {fileID: 4824917031021465166}
   - component: {fileID: 395445640458569813}
   - component: {fileID: 7947255206925912965}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Helper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1253,7 +1262,7 @@ GameObject:
   - component: {fileID: 2035592589982635894}
   - component: {fileID: 3131262059505982177}
   - component: {fileID: 6875500901098479909}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: HeadLow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1330,7 +1339,7 @@ GameObject:
   - component: {fileID: 6550019334894662984}
   - component: {fileID: 8664949295971237789}
   - component: {fileID: 6387221231029582154}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: BodyLo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1405,7 +1414,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3698210735608900296}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: FR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1435,7 +1444,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4720235276124704814}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: FL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1467,7 +1476,7 @@ GameObject:
   - component: {fileID: 6873043682855545325}
   - component: {fileID: 1814387869139669042}
   - component: {fileID: 5151759069905922986}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Helmet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1542,7 +1551,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1873902696991646037}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: CenterOfMass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1575,7 +1584,7 @@ GameObject:
   - component: {fileID: 8257151065088401547}
   - component: {fileID: 8807284432345148548}
   - component: {fileID: 1041477083247719779}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Chariot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1671,7 +1680,7 @@ GameObject:
   - component: {fileID: 5836145718572903813}
   - component: {fileID: 654145547806470295}
   - component: {fileID: 3331393619362523234}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: ShoulderPad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1746,7 +1755,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8512424065456872269}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: BL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1778,7 +1787,7 @@ GameObject:
   - component: {fileID: 1183592548630277837}
   - component: {fileID: 8008411798939559768}
   - component: {fileID: 4775218557429987204}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: RightArmArmor2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1855,7 +1864,7 @@ GameObject:
   - component: {fileID: 256689110594232765}
   - component: {fileID: 5576437525676478772}
   - component: {fileID: 7300950095318598926}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Robes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1930,7 +1939,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6078704406703981222}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: HandBrakePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1962,7 +1971,7 @@ GameObject:
   - component: {fileID: 4472496829948965303}
   - component: {fileID: 7491697586051019913}
   - component: {fileID: 5236045637618405714}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Box001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2039,7 +2048,7 @@ GameObject:
   - component: {fileID: 5887794706558406816}
   - component: {fileID: 4773662748692539681}
   - component: {fileID: 6817586289349814917}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: ArmRopes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2114,7 +2123,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3094289907016535915}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Thordisc_3_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

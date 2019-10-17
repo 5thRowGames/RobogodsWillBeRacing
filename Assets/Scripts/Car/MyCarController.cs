@@ -28,6 +28,7 @@ public class MyCarController : MonoBehaviour, IControllable
     [SerializeField] [Tooltip("¿Siempre aplicar la aceleración mínima?")] private bool alwaysAccelerate = true;
     [SerializeField] [Tooltip("Aceleración mínima aplicada en cada momento")] [Range(0f, 1f)] private float minAcceleration = 0.2f;
     [SerializeField] [Tooltip("Incremento de la fuerza de aceleración cuando se usa el turbo")] private float boostMultiplier = 3f;
+    [SerializeField] [Tooltip("Decremento de la fuerza de aceleración cuando se usa el turbo")] private float slowDownMultiplier = 0.5f;
     [SerializeField] [Tooltip("")] private bool carUnderControl = false;
     [SerializeField] [Tooltip("Tiempo desde que se suelta el acelerador hasta que deja de acelerar el coche")] private float deaccelerationTime = 2f;
     [Tooltip("Contador del tiempo desde que se suelta el acelerador")] private float deaccelerationTimer;
@@ -381,15 +382,37 @@ public class MyCarController : MonoBehaviour, IControllable
             if (handBrakeTimer >= handBrakeTurboTime) // Turbo
             {
                 Debug.Log("Turbo!");
-                StartTurbo();
+                StartTurbo(handBrakeBoostWait);
             }
             handBrakeTimer = 0f; // Reset del timer
         }
     }
-
-    public void StartTurbo()
+    
+    public void StartSlowDown()
     {
-        StartCoroutine(TurboCoroutine(handBrakeBoostWait));
+        StartCoroutine(SlowDownCoroutine());
+    }
+
+    private IEnumerator SlowDownCoroutine()
+    {
+
+        //AkSoundEngine.PostEvent("Turbo_In", gameObject);
+
+        float timer = handBrakeBoostTime;
+        while (timer >= 0f)
+        {
+            timer -= Time.deltaTime;
+            if(velocity.magnitude > speedThreshold)
+                rb.AddForce(-groundForward * slowDownMultiplier * speedForce, ForceMode.Acceleration);
+            yield return null;
+        }
+
+        //AkSoundEngine.PostEvent("Turbo_Out", gameObject);
+    }
+
+    public void StartTurbo(float waitBeforeBoost)
+    {
+        StartCoroutine(TurboCoroutine(waitBeforeBoost));
     }
 
     private IEnumerator TurboCoroutine(float seconds)

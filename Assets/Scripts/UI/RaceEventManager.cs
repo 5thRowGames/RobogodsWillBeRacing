@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class RaceEventManager : SingletonDontDestroy<RaceEventManager>
 {
+    public GameObject positionUIManager;
     public InControlInputModule inControlInputModule;
     
     [Header("Carrera")]
@@ -51,6 +52,7 @@ public class RaceEventManager : SingletonDontDestroy<RaceEventManager>
 
                 if (!countdown)
                 {
+                    positionUIManager.SetActive(true);
                     ConnectDisconnectManager.ConnectCarControllerDelegate();
                     ConnectDisconnectManager.ConnectItemManagerDelegate();
                     ConnectDisconnectManager.ConnectSkillManagerDelegate(); 

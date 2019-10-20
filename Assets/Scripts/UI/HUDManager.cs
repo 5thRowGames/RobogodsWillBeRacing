@@ -21,6 +21,7 @@ public class HUDInfo
     public Sprite secondarySkillEnabledSprite;
     public Sprite secondarySkillDisabledSprite;
     public Image currentItem;
+    public TextMeshProUGUI timeTrial;
 
     private float time;
 
@@ -38,8 +39,12 @@ public class HUDManager : Singleton<HUDManager>
 
     public Action UpdatePositionUI;
 
+    private God.Type godTimeTrial;
+
     private void Awake()
     {
+        godTimeTrial = God.Type.None;
+        
         hudDictionary = new Dictionary<God.Type, HUDInfo>();
         
         foreach (var hud in hudInfo)
@@ -47,17 +52,80 @@ public class HUDManager : Singleton<HUDManager>
             hudDictionary.Add(hud.god, hud);
         }
 
+        //IA y numero de players
         if (!StoreGodInfo.Instance.anubisIA)
-            UpdatePositionUI += UpdateAnubisPosition;
-        
+        {
+            if (StoreGodInfo.Instance.players > 1)
+            {
+                UpdatePositionUI += UpdateAnubisPosition;
+                hudDictionary[God.Type.Anubis].timeTrial.gameObject.SetActive(false);
+                hudDictionary[God.Type.Anubis].racePositionText.gameObject.SetActive(true);
+                hudDictionary[God.Type.Anubis].racePositionSuffixText.gameObject.SetActive(true);
+            }
+            else
+            {
+                godTimeTrial = God.Type.Anubis;
+                hudDictionary[God.Type.Anubis].timeTrial.gameObject.SetActive(true);
+                hudDictionary[God.Type.Anubis].racePositionText.gameObject.SetActive(false);
+                hudDictionary[God.Type.Anubis].racePositionSuffixText.gameObject.SetActive(false);
+            }
+        }
+
+
         if (!StoreGodInfo.Instance.poseidonIA)
-            UpdatePositionUI += UpdatePoseidonPosition;
-        
+        {
+            if (StoreGodInfo.Instance.players > 1)
+            {
+                UpdatePositionUI += UpdatePoseidonPosition;
+                hudDictionary[God.Type.Poseidon].timeTrial.gameObject.SetActive(false);
+                hudDictionary[God.Type.Poseidon].racePositionText.gameObject.SetActive(true);
+                hudDictionary[God.Type.Poseidon].racePositionSuffixText.gameObject.SetActive(true);
+            }
+            else
+            {
+                godTimeTrial = God.Type.Poseidon;
+                hudDictionary[God.Type.Poseidon].timeTrial.gameObject.SetActive(true);
+                hudDictionary[God.Type.Poseidon].racePositionText.gameObject.SetActive(false);
+                hudDictionary[God.Type.Poseidon].racePositionSuffixText.gameObject.SetActive(false);
+            }
+        }
+
         if (!StoreGodInfo.Instance.kaliIA)
-            UpdatePositionUI += UpdateKaliPosition;
-        
+        {
+            if (StoreGodInfo.Instance.players > 1)
+            {
+                UpdatePositionUI += UpdateKaliPosition;
+                hudDictionary[God.Type.Kali].timeTrial.gameObject.SetActive(false);
+                hudDictionary[God.Type.Kali].racePositionText.gameObject.SetActive(true);
+                hudDictionary[God.Type.Kali].racePositionSuffixText.gameObject.SetActive(true);
+            }
+            else
+            {
+                godTimeTrial = God.Type.Kali;
+                hudDictionary[God.Type.Kali].timeTrial.gameObject.SetActive(true);
+                hudDictionary[God.Type.Kali].racePositionText.gameObject.SetActive(false);
+                hudDictionary[God.Type.Kali].racePositionSuffixText.gameObject.SetActive(false);
+            }
+        }
+
         if (!StoreGodInfo.Instance.thorIA)
-            UpdatePositionUI += UpdateThorPosition;
+        {
+            if (StoreGodInfo.Instance.players > 1)
+            {
+                UpdatePositionUI += UpdateThorPosition;
+                hudDictionary[God.Type.Thor].timeTrial.gameObject.SetActive(false);
+                hudDictionary[God.Type.Thor].racePositionText.gameObject.SetActive(true);
+                hudDictionary[God.Type.Thor].racePositionSuffixText.gameObject.SetActive(true);
+            }
+            else
+            {
+                godTimeTrial = God.Type.Thor;
+                hudDictionary[God.Type.Thor].timeTrial.gameObject.SetActive(true);
+                hudDictionary[God.Type.Thor].racePositionText.gameObject.SetActive(false);
+                hudDictionary[God.Type.Thor].racePositionSuffixText.gameObject.SetActive(false);
+            }
+        }
+           
     }
 
     private void OnDisable()
@@ -66,6 +134,14 @@ public class HUDManager : Singleton<HUDManager>
         UpdatePositionUI -= UpdatePoseidonPosition;
         UpdatePositionUI -= UpdateKaliPosition;
         UpdatePositionUI -= UpdateThorPosition;
+    }
+
+    private void Update()
+    {
+        if (StoreGodInfo.Instance.players == 1)
+        {
+            hudDictionary[godTimeTrial].timeTrial.text = String.Format("{0:00}",TimeTrial.Instance.seconds);
+        }
     }
 
     public float chooseItemTimer;

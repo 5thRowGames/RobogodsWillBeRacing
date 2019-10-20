@@ -33,10 +33,10 @@ public class StoreGodInfo : SingletonDontDestroy<StoreGodInfo>
 
     public void Reset()
     {
-        poseidonIA = false;
-        anubisIA = false;
-        kaliIA = false;
-        thorIA = false;
+        poseidonIA = true;
+        anubisIA = true;
+        kaliIA = true;
+        thorIA = true;
         players = 0;
         playerInfo.Clear();
     }

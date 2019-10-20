@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class AwakeRace : MonoBehaviour
 {
+    public PositionUIManager positionUIManager;
+    public TimeTrial timeTrialManager;
     public StartRace startRace;
     public Image fade;
 
@@ -34,6 +36,17 @@ public class AwakeRace : MonoBehaviour
 
     private void Start()
     {
+        if (StoreGodInfo.Instance.players > 1)
+        {
+            positionUIManager.enabled = true;
+            timeTrialManager.enabled = false;
+        }
+        else
+        {
+            positionUIManager.enabled = false;
+            timeTrialManager.enabled = true;
+        }
+        
         startRace.SetCameraParent();
         mainCamera.transform.position = path1[0];
         ShowMap();

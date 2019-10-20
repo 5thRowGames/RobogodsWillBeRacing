@@ -38,8 +38,12 @@ public class MinimapControl : Singleton<MinimapControl>
     /// </summary>
     private float totalLength;
 
+    private List<int> godsPlayingIndex;
+
     private void Awake()
     {
+        godsPlayingIndex = new List<int>();
+        
         lastCheckpointList = new List<int>();
         currentAmountList = new List<float>();
         checkLastChekpoint = new List<int>();
@@ -54,14 +58,32 @@ public class MinimapControl : Singleton<MinimapControl>
         totalLength = 0;
 
         CalculateTotalLength();
+
+        if (!StoreGodInfo.Instance.anubisIA)
+            godsPlayingIndex.Add(0);
+        else
+            karts[0].SetActive(false);
+        
+        if (!StoreGodInfo.Instance.poseidonIA)
+            godsPlayingIndex.Add(1);
+        else
+            karts[1].SetActive(false);
+
+        if (!StoreGodInfo.Instance.kaliIA)
+            godsPlayingIndex.Add(2);
+        else
+            karts[2].SetActive(false);
+
+        if (!StoreGodInfo.Instance.thorIA)
+            godsPlayingIndex.Add(3);
+        else
+            karts[3].SetActive(false);
     }
     
     void Update()
     {
-        CalculateDistance(0); //Anubis
-        CalculateDistance(1); //Poseidon
-        CalculateDistance(2); //Kali
-        CalculateDistance(3); //Thor
+         for(int i = 0; i < godsPlayingIndex.Count; i++)
+             CalculateDistance(godsPlayingIndex[i]);
     }
 
     /// <summary>

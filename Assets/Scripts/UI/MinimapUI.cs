@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MinimapUI : Singleton<MinimapUI>
@@ -15,13 +16,48 @@ public class MinimapUI : Singleton<MinimapUI>
     private float finishLineAnchoredPositionX;
     private float iconAnchoredPositionY;
 
+    private List<int> godsPlayingIndex;
+    private List<RectTransform> godsPlayingRectTransform;
+
+    private void Awake()
+    {
+        godsPlayingIndex = new List<int>();
+        godsPlayingRectTransform = new List<RectTransform>();
+
+        if (!StoreGodInfo.Instance.anubisIA)
+        {
+            anubisIcon.gameObject.SetActive(false);
+            godsPlayingIndex.Add(0);
+            godsPlayingRectTransform.Add(anubisIcon);
+        }
+
+        if (!StoreGodInfo.Instance.poseidonIA)
+        {
+            poseidonIcon.gameObject.SetActive(false);
+            godsPlayingIndex.Add(1);
+            godsPlayingRectTransform.Add(poseidonIcon);
+        }
+
+        if (!StoreGodInfo.Instance.kaliIA)
+        {
+            kaliIcon.gameObject.SetActive(false);
+            godsPlayingIndex.Add(2);
+            godsPlayingRectTransform.Add(kaliIcon);
+        }
+
+        if (!StoreGodInfo.Instance.thorIA)
+        {
+            thorIcon.gameObject.SetActive(false);
+            godsPlayingIndex.Add(3);
+            godsPlayingRectTransform.Add(thorIcon);
+        }
+    }
+
 
     void Update()
     {
-        UpdateIcons(anubisIcon,MinimapControl.Instance.currentPercentageList[0]);
-        UpdateIcons(poseidonIcon,MinimapControl.Instance.currentPercentageList[1]);
-        UpdateIcons(kaliIcon,MinimapControl.Instance.currentPercentageList[2]);
-        UpdateIcons(thorIcon,MinimapControl.Instance.currentPercentageList[3]);
+        for(int i = 0; i < godsPlayingIndex.Count; i++)
+            UpdateIcons(godsPlayingRectTransform[i],godsPlayingIndex[i]);
     }
 
     private void UpdateIcons(RectTransform icon, float percentage)

@@ -9,10 +9,19 @@ public class PlayerCarSoundManager : MonoBehaviour, IControllable
     public string unsharedSoundStart;
     public Rigidbody carRigidbody;
 
+    public bool Eduardo;
+
     private void OnEnable()
     {
-        ConnectDisconnectManager.ConnectCarSoundManager += ConnectSound;
-        ConnectDisconnectManager.DisconnectCarSoundManagerDelegate += DisconnectSound;
+        if (Eduardo)
+        {
+            Core.Input.AssignControllable(incontrolProvider, this);
+        }
+        else
+        {
+            ConnectDisconnectManager.ConnectCarSoundManager += ConnectSound;
+            ConnectDisconnectManager.DisconnectCarSoundManagerDelegate += DisconnectSound;
+        }
     }
 
     private void OnDisable()

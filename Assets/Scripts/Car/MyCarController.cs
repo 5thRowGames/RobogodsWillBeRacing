@@ -266,7 +266,7 @@ public class MyCarController : MonoBehaviour, IControllable
 
         //if (rb.velocity.magnitude < speedThreshold) accelerationInput *= instantSpeedForce;
 
-        CameraPostProcessManager.Instance.speed[(int) god] = rb.velocity.magnitude; //Borrar, solo era para pruebas
+        //CameraPostProcessManager.Instance.speed[(int) god] = rb.velocity.magnitude; //Borrar, solo era para pruebas
 
         speedUnderThreshold = rb.velocity.magnitude < speedThreshold ? true : false;
     }
@@ -286,7 +286,6 @@ public class MyCarController : MonoBehaviour, IControllable
         }
         else // El coche está en el aire
         {
-            Debug.Log("Car not grounded");
             rb.drag = airDrag;
             rb.angularDrag = airAngularDrag;
             //Brake();

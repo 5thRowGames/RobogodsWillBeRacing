@@ -12,6 +12,6 @@ public class TurboUIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        turbo.fillAmount = myCarController.Turbo;
+        //turbo.fillAmount = myCarController.Turbo;
     }
 }

@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PoseidonHologram
-  m_Shader: {fileID: 4800000, guid: 1dd322d6ffd90c64a9283c0eccb138e9, type: 3}
+  m_Name: TronWallDiagonal
+  m_Shader: {fileID: 4800000, guid: afbedad1299445440b293ee6ef7e5d49, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
@@ -19,14 +19,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _Albedo:
-        m_Texture: {fileID: 2800000, guid: 4160b4eaa85016a4482240cdc65c4a91, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Albedos:
-        m_Texture: {fileID: 2800000, guid: 4160b4eaa85016a4482240cdc65c4a91, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -51,15 +43,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Metallic:
-        m_Texture: {fileID: 2800000, guid: 404d5059ceafeef41a404f217de4cf40, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Normals:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -71,28 +55,12 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _ScanLines:
-        m_Texture: {fileID: 2800000, guid: 85aa5e7893ad16e46885b08126f5729e, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Texture0:
-        m_Texture: {fileID: 2800000, guid: 85aa5e7893ad16e46885b08126f5729e, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _TextureSample0:
-        m_Texture: {fileID: 2800000, guid: e28dc97a9541e3642a48c0e3886688c5, type: 3}
-        m_Scale: {x: 10, y: 10}
+        m_Texture: {fileID: 2800000, guid: c78d1d220b527f242801460561e58243, type: 3}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample1:
-        m_Texture: {fileID: 2800000, guid: 0fef5178c3706314e905e84f725d53d9, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _s:
-        m_Texture: {fileID: 2800000, guid: 404d5059ceafeef41a404f217de4cf40, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _sss:
-        m_Texture: {fileID: 2800000, guid: 4160b4eaa85016a4482240cdc65c4a91, type: 3}
+        m_Texture: {fileID: 2800000, guid: 420d83c7d344b374d9dac1893b476af5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
@@ -107,30 +75,17 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _LerpController: 2.6
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _PowerFresnel: 1.86
-    - _Rimpower: 0.84
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Thicknessnegativenumber: -0.015
-    - _Tiling: 4
     - _UVSec: 0
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Fresnelcolor: {r: 0, g: 0.760027, b: 1.4745098, a: 1}
-    - _LineColor: {r: 0, g: 1.0585212, b: 7.999999, a: 0}
-    - _MainColor: {r: 0, g: 0.5257993, b: 1, a: 0}
-    - _Maincolor: {r: 0, g: 0.5833228, b: 1, a: 1}
-    - _Rimcolor: {r: 0, g: 0, b: 0, a: 0}
-    - _Speed: {r: 0, g: 0.05, b: 0, a: 0}
-    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
-    - _UVSpeed: {r: 0, g: 0.005, b: 0, a: 0}
-    - _Vector0: {r: 1, g: 1, b: 0, a: 0}
+    - _SpeedDegragado: {r: 0, g: -1, b: 0, a: 0}

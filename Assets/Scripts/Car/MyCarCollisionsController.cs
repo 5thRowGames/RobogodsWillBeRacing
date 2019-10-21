@@ -35,7 +35,7 @@ public class MyCarCollisionsController : MonoBehaviour
         //Debug.Log("MyCarCollisionsController Collision");
         int otherLayer = collision.gameObject.layer;
 
-        //AkSoundEngine.PostEvent("Impactos_In", gameObject);
+        AkSoundEngine.PostEvent("Impactos_In", gameObject);
 
         if (otherLayer != portalLayer) // Si no choco contra un portal
         {

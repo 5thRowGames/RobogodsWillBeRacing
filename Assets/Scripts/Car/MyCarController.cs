@@ -29,6 +29,7 @@ public class MyCarController : MonoBehaviour, IControllable
     [SerializeField] [Tooltip("Aceleración mínima aplicada en cada momento")] [Range(0f, 1f)] private float minAcceleration = 0.2f;
     [SerializeField] [Tooltip("Incremento de la fuerza de aceleración cuando se usa el turbo")] private float boostMultiplier = 3f;
     [SerializeField] [Tooltip("Decremento de la fuerza de aceleración cuando se usa el turbo")] private float slowDownMultiplier = 0.5f;
+    [SerializeField] [Tooltip("Divisor de la aceleración cuando el coche está en el aire")] private float accelerationDividerOnAir = 4f;
     [SerializeField] [Tooltip("")] private bool carUnderControl = false;
     [SerializeField] [Tooltip("Tiempo desde que se suelta el acelerador hasta que deja de acelerar el coche")] private float deaccelerationTime = 2f;
     [Tooltip("Contador del tiempo desde que se suelta el acelerador")] private float deaccelerationTimer;
@@ -91,6 +92,10 @@ public class MyCarController : MonoBehaviour, IControllable
     [SerializeField] [Tooltip("Magnitud de la velocidad del coche")] public float velocityMagnitude;
     [SerializeField] [Tooltip("Vector de velocidad local del coche")] public Vector3 velocity;
     [SerializeField] public bool IsGrounded { get; private set; }
+    private List<bool> cornerIsGrounded;
+    [Tooltip("Nº de esquinas que deben estar en el suelo para considerar que el vehículo está en el suelo")]
+    public int neededCornersToBeGrounded = 2;
+
     public float DistanceToGround
     {
         get
@@ -111,8 +116,6 @@ public class MyCarController : MonoBehaviour, IControllable
     public Transform helper;
 
     private List<RaycastHit> hitList;
-
-
 
     //Para sonidos
     private bool isBoosting;
@@ -137,7 +140,7 @@ public class MyCarController : MonoBehaviour, IControllable
 
         if (activeDevice)
         {
-            GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
+            GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindBoth();
             Core.Input.AssignControllable(GetComponent<IncontrolProvider>(), this);
             carUnderControl = true;
         }
@@ -147,8 +150,12 @@ public class MyCarController : MonoBehaviour, IControllable
     {
         rb.centerOfMass = transform.InverseTransformPoint(centerOfMass.position);
         hitList = new List<RaycastHit>();
+        cornerIsGrounded = new List<bool>();
         for (int i = 0; i < carCorners.Count; i++)
+        {
             hitList.Add(new RaycastHit());
+            cornerIsGrounded.Add(false);
+        }
 
         rb.maxAngularVelocity = maxAngularSpeed;
         brakeToReverseTimer = brakeToReverseTime;
@@ -313,7 +320,7 @@ public class MyCarController : MonoBehaviour, IControllable
         if (accelerationInput > 0f)
         {
             //rb.AddForceAtPosition(groundForward * accelerationInput * speedForce, accelPoint.position, ForceMode.Acceleration);
-            var force = IsGrounded ? accelerationInput : accelerationInput / 4f;
+            var force = IsGrounded ? accelerationInput : accelerationInput / accelerationDividerOnAir;
             rb.AddForce(groundForward * force * speedForce, ForceMode.Acceleration);
             deaccelerationTimer = deaccelerationTime;
         }
@@ -364,7 +371,7 @@ public class MyCarController : MonoBehaviour, IControllable
         // Freno de mano
         if (handBrakeInput > 0f)
         {
-            if (rb.velocity.z > 0f)
+            if (rb.velocity.z > speedThreshold)
             {
                 rb.AddForceAtPosition(transform.right * handBrakeInput * handBrakeForce * -steeringInput, handBrakePoint.position);
                 // Freno del freno de mano
@@ -375,14 +382,18 @@ public class MyCarController : MonoBehaviour, IControllable
                 }
                 handBrakeTimer += Time.deltaTime; // Se va incrementando el tiempo que está el freno de mano pulsado
             }
+            else
+            {
+                brakeToReverseTimer -= Time.deltaTime;
+                if (brakeToReverseTimer <= 0f)
+                {
+                    rb.AddForceAtPosition(-transform.forward * handBrakeInput * brakeForce * 2f, accelPoint.position, ForceMode.Acceleration);
+                }
+            }
         }
         else
         {
-            if (handBrakeTimer >= handBrakeTurboTime) // Turbo
-            {
-                Debug.Log("Turbo!");
-                StartTurbo(handBrakeBoostWait);
-            }
+            brakeToReverseTimer = brakeToReverseTime;
             handBrakeTimer = 0f; // Reset del timer
         }
     }
@@ -488,6 +499,7 @@ public class MyCarController : MonoBehaviour, IControllable
     private void CheckGrounded()
     {
         IsGrounded = Physics.Raycast(transform.position, -transform.up, wheelHeight + exraHeightToNoGrounded, layerMask);
+        //IsGrounded = cornerIsGrounded.FindAll(corner => corner == true).Count >= neededCornersToBeGrounded;
     }
 
     public void ResetRacePosition()

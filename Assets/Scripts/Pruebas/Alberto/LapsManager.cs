@@ -14,21 +14,20 @@ public class LapsManager : Singleton<LapsManager>
         public int currentLap;
         public int currentCheckPoint;
         public float distanceToNextCheckPoint;
-        public bool raceFinished;
 
         public GodRaceInfo(GameObject god)
         {
             this.god = god;
-            raceFinished = false;
         }
 
         public void UpdateCurrentLap()
         {
             currentLap++;
 
-            if (currentLap > 3)
+            TimeTrial.Instance.ResetAndSaveTime(godType);
+            if (currentLap == 1)
             {
-                raceFinished = true;
+                Instance.UpdatePlayersFinished();
             }
             else
             {
@@ -37,6 +36,8 @@ public class LapsManager : Singleton<LapsManager>
         }
 
     }
+
+    private int playersFinished;
     
     public List<GameObject> road;
     public List<CircuitSection> circuitSections;
@@ -53,6 +54,7 @@ public class LapsManager : Singleton<LapsManager>
     
     private void Awake()
     {
+        playersFinished = 0;
         FirstUpdate();
         godAmount = godRaceInfoList.Count;
         UpdateGodPosition();
@@ -207,6 +209,27 @@ public class LapsManager : Singleton<LapsManager>
         }
         portals[portals.Count - 1].targetPortal = portalsExits[0];
         portals[portals.Count - 1].index = portals.Count - 1;
+    }
+
+    public int GetIndexPosition(int position)
+    {
+        for (int i = 0; i < racePosition.Count; i++)
+        {
+            if (position == racePosition[i])
+                return i;
+        }
+
+        return -1;
+    }
+
+    public void UpdatePlayersFinished()
+    {
+        playersFinished++;
+
+        if (playersFinished == StoreGodInfo.Instance.players)
+        {
+            RaceEventManager.Instance.ChangeRaceEvent(RaceEvents.Race.Finish);
+        }
     }
 
     /*private void AddCheckpoints()

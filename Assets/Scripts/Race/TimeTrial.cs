@@ -3,14 +3,20 @@ using UnityEngine;
 
 public class TimeTrial : Singleton<TimeTrial>
 {
-    private List<float> lapTimes;
-    
+
+    private Dictionary<God.Type, List<float>> godLapTimes;
+
     public float seconds;
-    public bool starTime;
 
     private void Awake()
     {
-        lapTimes = new List<float>();
+
+        godLapTimes = new Dictionary<God.Type, List<float>>();
+        godLapTimes.Add(God.Type.Anubis,new List<float>());
+        godLapTimes.Add(God.Type.Poseidon,new List<float>());
+        godLapTimes.Add(God.Type.Kali,new List<float>());
+        godLapTimes.Add(God.Type.Thor,new List<float>());
+        
         seconds = 0;
     }
 
@@ -19,8 +25,30 @@ public class TimeTrial : Singleton<TimeTrial>
         seconds += Time.deltaTime;
     }
 
-    public void ResetAndSaveTime()
+    public void ResetAndSaveTime(God.Type god)
     {
-        lapTimes.Add(seconds);
+        float time;
+
+        if (godLapTimes[god].Count == 0)
+        {
+            godLapTimes[god].Add(seconds);
+        }
+        else
+        {
+            time = godLapTimes[god][godLapTimes[god].Count - 1];
+            godLapTimes[god].Add(seconds - time);
+        }
+    }
+
+    public float GetTotalTime(God.Type god)
+    {
+        float amount = 0;
+        
+        for (int i = 0; i < godLapTimes[god].Count; i++)
+        {
+            amount += godLapTimes[god][i];
+        }
+
+        return amount;
     }
 }

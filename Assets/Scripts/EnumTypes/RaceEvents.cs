@@ -13,6 +13,7 @@ public class RaceEvents
         Start = 4,
         CountdownFinished = 5,
         SettingsPause = 6,
-        ContinueRace = 7
+        ContinueRace = 7,
+        LoadingScreen = 8
     }
 }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using InControl;
 using UnityEngine;
 
-[SerializeField]
 public class PlayerInfo
 {
 

@@ -16,6 +16,7 @@ public class RaceEventManager : SingletonDontDestroy<RaceEventManager>
     public GameObject awakeRace;
     public GameObject finishRace;
     public GameObject pauseSettingsMenu;
+    public GameObject loadingScreen;
 
     private bool countdown;
 
@@ -23,6 +24,10 @@ public class RaceEventManager : SingletonDontDestroy<RaceEventManager>
     {
         switch (raceEvent)
         {
+            case RaceEvents.Race.LoadingScreen:
+                loadingScreen.SetActive(true);
+                break;
+            
             case RaceEvents.Race.Awake:
                 awakeRace.SetActive(true);
                 break;

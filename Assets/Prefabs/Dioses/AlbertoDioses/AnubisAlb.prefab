@@ -689,7 +689,7 @@ MonoBehaviour:
   turboRechargeMultiplier: 0.04
   turboConsumeMultiplier: 0.07
   turbo: 0
-  speedForce: 200
+  speedForce: 300
   instantSpeedForce: 10
   alwaysAccelerate: 0
   minAcceleration: 0.2
@@ -698,18 +698,18 @@ MonoBehaviour:
   accelerationDividerOnAir: 4
   carUnderControl: 0
   deaccelerationTime: 2
-  turnSpeed: 35
+  turnSpeed: 40
   speedThreshold: 15
   steeringThreshold: 0.2
   steeringReductionFactor: 0.9
   minZVelocityToReverseSteering: -0.8
   angularVelocityReductionFactor: 0.95
-  maxAngularSpeed: 30
-  brakeForce: 40
+  maxAngularSpeed: 35
+  brakeForce: 50
   brakeToReverseTime: 0.5
   isGoingBackwards: 0
   speedUnderThreshold: 0
-  handBrakeForce: 40
+  handBrakeForce: 50
   handBrakeBrakeFactor: 1.5
   handBrakeTurboTime: 3
   handBrakeTimer: 0
@@ -718,7 +718,7 @@ MonoBehaviour:
   extraHeightToAllowMovement: 0.5
   exraHeightToNoGrounded: 1
   airLateralShiftFactor: 0.001
-  wheelHeight: 1
+  wheelHeight: 1.5
   downForce: 5
   additiveDownForce: 1
   upForce: 50
@@ -754,7 +754,7 @@ MonoBehaviour:
   rbAngularVelocity: {x: 0, y: 0, z: 0}
   velocityMagnitude: 0
   velocity: {x: 0, y: 0, z: 0}
-  neededCornersToBeGrounded: 2
+  neededCornersToBeGrounded: 0
   IsBeingTeleported: 0
   helper: {fileID: 3898015896612793491}
   pruebaSonido: 0
@@ -1207,12 +1207,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8555214956926856152, guid: 54d434ade8e6ac44abac35effdc5f3be,
-        type: 3}
-      propertyPath: m_Layer
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 8555214957094376552, guid: 54d434ade8e6ac44abac35effdc5f3be,
+    - target: {fileID: 8555214957887337579, guid: 54d434ade8e6ac44abac35effdc5f3be,
         type: 3}
       propertyPath: m_Layer
       value: 14
@@ -1222,17 +1217,22 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 14
       objectReference: {fileID: 0}
-    - target: {fileID: 8555214957887337579, guid: 54d434ade8e6ac44abac35effdc5f3be,
+    - target: {fileID: 8555214957094376552, guid: 54d434ade8e6ac44abac35effdc5f3be,
         type: 3}
       propertyPath: m_Layer
       value: 14
       objectReference: {fileID: 0}
-    - target: {fileID: 8555214958165194877, guid: 54d434ade8e6ac44abac35effdc5f3be,
+    - target: {fileID: 8555214956926856152, guid: 54d434ade8e6ac44abac35effdc5f3be,
         type: 3}
       propertyPath: m_Layer
       value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 8555214958501354799, guid: 54d434ade8e6ac44abac35effdc5f3be,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8555214958165194877, guid: 54d434ade8e6ac44abac35effdc5f3be,
         type: 3}
       propertyPath: m_Layer
       value: 14
@@ -1399,6 +1399,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5260619960850090994}
     m_Modifications:
+    - target: {fileID: 100000, guid: 9447ce042706efc469d24b3e7771ec4f, type: 3}
+      propertyPath: m_Name
+      value: Chariot
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 9447ce042706efc469d24b3e7771ec4f, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9447ce042706efc469d24b3e7771ec4f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1455,22 +1463,14 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.4600015
       objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 9447ce042706efc469d24b3e7771ec4f, type: 3}
-      propertyPath: m_Name
-      value: Chariot
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 9447ce042706efc469d24b3e7771ec4f, type: 3}
-      propertyPath: m_Layer
-      value: 14
+    - target: {fileID: 9500000, guid: 9447ce042706efc469d24b3e7771ec4f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 9447ce042706efc469d24b3e7771ec4f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: c755766124c4ba74daf446816bda5022, type: 2}
-    - target: {fileID: 9500000, guid: 9447ce042706efc469d24b3e7771ec4f, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9447ce042706efc469d24b3e7771ec4f, type: 3}
 --- !u!4 &6299741738391875788 stripped
@@ -1486,6 +1486,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5260619960850090994}
     m_Modifications:
+    - target: {fileID: 6980436502751801526, guid: 09a25234303692f468e81cfb9799bc24,
+        type: 3}
+      propertyPath: m_Name
+      value: RacingCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 6980436502751801526, guid: 09a25234303692f468e81cfb9799bc24,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6980436502751801526, guid: 09a25234303692f468e81cfb9799bc24,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 1803665508482419430, guid: 09a25234303692f468e81cfb9799bc24,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1541,27 +1556,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3329758394546415846, guid: 09a25234303692f468e81cfb9799bc24,
-        type: 3}
-      propertyPath: m_Layer
-      value: 14
-      objectReference: {fileID: 0}
     - target: {fileID: 6740845567252182291, guid: 09a25234303692f468e81cfb9799bc24,
         type: 3}
       propertyPath: maxDistance
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 6980436502751801526, guid: 09a25234303692f468e81cfb9799bc24,
-        type: 3}
-      propertyPath: m_Name
-      value: RacingCamera
-      objectReference: {fileID: 0}
-    - target: {fileID: 6980436502751801526, guid: 09a25234303692f468e81cfb9799bc24,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6980436502751801526, guid: 09a25234303692f468e81cfb9799bc24,
+    - target: {fileID: 3329758394546415846, guid: 09a25234303692f468e81cfb9799bc24,
         type: 3}
       propertyPath: m_Layer
       value: 14

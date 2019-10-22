@@ -15,6 +15,7 @@ public class MyCarCollisionsController : MonoBehaviour
     [SerializeField][Tooltip("Velocidad máxima")] private float maxSpeed = 30f;
     [SerializeField][Tooltip("Factor de reducción de velocidad en choque frontal")][Range(0.01f, 1f)] private float reductionSpeedFactor = 0.4f;
     private float minSpeedForce = 10f;
+    private float maxSpeedForce;
 
     #region UnityEvents
 
@@ -22,7 +23,7 @@ public class MyCarCollisionsController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         portalLayer = LayerMask.NameToLayer("Portal");
-        //Debug.Log($"Portal layer = {portalLayer}");
+        maxSpeedForce = GetComponent<MyCarController>().speedForce;
     }
 
     private void FixedUpdate()
@@ -45,23 +46,20 @@ public class MyCarCollisionsController : MonoBehaviour
             //Debug.Log($"Restricciones al colisionar: {rb.constraints.ToString()}");
             CheckFrontCollision(collision);
         }
-        else Debug.Log($"He entrado en el portal {collision.gameObject.GetComponent<Portal>().index}");
+        //else Debug.Log($"He entrado en el portal {collision.gameObject.GetComponent<Portal>().index}");
     }
 
     private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.layer != portalLayer)
         {
-            //Debug.Log($"Saliendo de una colisión");
             rb.constraints = priorConstraints;
-            //rb.constraints = RigidbodyConstraints.None;
-            //Debug.Log($"Restricciones tras salir de colisión: {rb.constraints.ToString()}");
         }
-        else
-        {
-            Debug.Log("Game: "+collision.gameObject.name+"   "+collision.transform.parent.name);
-            Debug.Log($"He salido del portal {collision.gameObject.GetComponent<Portal>().index}");
-        }
+        //else
+        //{
+        //    Debug.Log("Game: "+collision.gameObject.name+"   "+collision.transform.parent.name);
+        //    Debug.Log($"He salido del portal {collision.gameObject.GetComponent<Portal>().index}");
+        //}
     }
 
     #endregion
@@ -81,8 +79,10 @@ public class MyCarCollisionsController : MonoBehaviour
             //    //}
 
             //    Debug.Log("¡Fuerza hacia abajo!");
-            var speedForce = rb.velocity.magnitude > minSpeedForce ? rb.velocity.magnitude : minSpeedForce;
+            //var speedForce = rb.velocity.magnitude > minSpeedForce ? rb.velocity.magnitude : minSpeedForce;
+            var speedForce = Mathf.Clamp(rb.velocity.magnitude, minSpeedForce, maxSpeedForce);
             rb.AddForce(rb.transform.InverseTransformDirection(normal) * frontalForce * speedForce, ForceMode.Force);
+            rb.AddForce(-rb.transform.up * frontalForce * speedForce, ForceMode.Force);
         }
         else
         {

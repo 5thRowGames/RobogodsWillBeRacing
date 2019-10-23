@@ -103,10 +103,27 @@
 							<PropertyList>
 								<Property Name="BusVolume" Type="Real64">
 									<ValueList>
-										<Value>-10</Value>
+										<Value>-17</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Effect0">
+									<Custom>
+										<Effect Name="Wwise_Compressor_(Custom)" ID="{2CEBD2CD-97BF-4C02-A00E-AD09B3F2BC6E}" ShortID="656069607" PluginName="Wwise Compressor" CompanyID="0" PluginID="108" PluginType="3">
+											<PropertyList>
+												<Property Name="Threshold" Type="Real32">
+													<RTPCList>
+														<RTPC Name="" ID="{6F730996-20E5-4CA0-A0D3-97DF06CEAF54}" ShortID="1064114962">
+															<ReferenceList/>
+														</RTPC>
+													</RTPCList>
+												</Property>
+											</PropertyList>
+										</Effect>
+									</Custom>
+								</Reference>
+							</ReferenceList>
 						</Bus>
 						<Bus Name="SFX_BUS" ID="{06504896-303E-4D3A-BC83-BAE0A55A7391}">
 							<DuckingList>

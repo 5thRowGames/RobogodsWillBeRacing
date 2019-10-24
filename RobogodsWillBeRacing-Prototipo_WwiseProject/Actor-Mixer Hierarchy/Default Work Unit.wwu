@@ -7,18 +7,15 @@
 					<ChildrenList>
 						<Folder Name="Nave_2" ID="{EFFC4C87-D147-401C-A6C0-60F11B3601BC}" ShortID="345522852">
 							<ChildrenList>
-								<RandomSequenceContainer Name="Nave_2_Acelerar_Loop" ID="{1E494403-7AB2-4AA3-B246-74CA2AA8D22C}" ShortID="662135926">
+								<RandomSequenceContainer Name="Nave_2_Acelerar_Loop" ID="{B169637B-1737-4BD7-8370-1AC881AFB7BA}" ShortID="853900963">
 									<PropertyList>
-										<Property Name="HoldEmitterPositionOrientation" Type="bool" Value="True"/>
-										<Property Name="HoldListenerOrientation" Type="bool" Value="True"/>
-										<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
 										<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
 										<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="4"/>
 										<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
-										<Property Name="SpeakerPanning" Type="int16" Value="1"/>
+										<Property Name="RandomOrSequence" Type="int16" Value="0"/>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>-14</Value>
+												<Value>-13</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -27,11 +24,17 @@
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
 										</Reference>
 										<Reference Name="OutputBus">
-											<ObjectRef Name="MOTOR_2_4_BUS" ID="{E9AC9E29-EE0A-4D0C-919A-F41E20AF4276}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+											<ObjectRef Name="MOTOR_1_3_BUS" ID="{9FF035E0-4086-4A9F-BA0A-49D983130EFC}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<Sound Name="Robo_Gods_Coche_2_Motor_Move_SFX_Loop" ID="{815ED15C-1CE6-4FF1-AB4B-DA8866416DF3}" ShortID="71913276">
+										<RandomSequenceContainer Name="Motor_Loop" ID="{7EF8D28D-2AA7-40B4-A087-0E0191BB8210}" ShortID="709075831">
+											<PropertyList>
+												<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="4"/>
+												<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
@@ -41,24 +44,51 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="Robo_Gods_Coche_2_Motor_Move_SFX_Loop" ID="{241DCDEB-499D-4F6F-88D8-E1231A487119}" ShortID="773369396">
+												<Sound Name="Robo_Gods_Coche_2_Motor_SFX_Loop" ID="{6F2CA802-996A-4B43-982F-67CA7B8C6B5D}" ShortID="675943979">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="Robo_Gods_Coche_2_Motor_SFX_Loop" ID="{329F6EC7-991A-4DAF-9AEF-246232DE443A}" ShortID="793331046">
+															<Language>SFX</Language>
+															<AudioFile>Robo_Gods_Coche_2_Motor_SFX_Loop.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="Robo_Gods_Coche_2_Motor_SFX_Loop" ID="{329F6EC7-991A-4DAF-9AEF-246232DE443A}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+										</RandomSequenceContainer>
+										<Sound Name="Robo_Gods_Coche_2_Motor_Start_SFX_Start" ID="{8D444DDA-E62F-42FB-B72F-9E83F2EE6890}" ShortID="188937485">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="MOTOR_1_3_BUS" ID="{9FF035E0-4086-4A9F-BA0A-49D983130EFC}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Robo_Gods_Coche_2_Motor_Start_SFX_Start" ID="{A8690AA5-4AF1-4AD1-93DE-264C55886873}" ShortID="411783620">
 													<Language>SFX</Language>
-													<AudioFile>Robo_Gods_Coche_2_Motor_Move_SFX_Loop.wav</AudioFile>
+													<AudioFile>Robo_Gods_Coche_2_Motor_Start_SFX_Start.wav</AudioFile>
 												</AudioFileSource>
 											</ChildrenList>
 											<ActiveSourceList>
-												<ActiveSource Name="Robo_Gods_Coche_2_Motor_Move_SFX_Loop" ID="{241DCDEB-499D-4F6F-88D8-E1231A487119}" Platform="Linked"/>
+												<ActiveSource Name="Robo_Gods_Coche_2_Motor_Start_SFX_Start" ID="{A8690AA5-4AF1-4AD1-93DE-264C55886873}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
 									</ChildrenList>
-									<PositioningInfo>
-										<Panner Name="" ID="{54438B3D-5AF9-4C58-86DF-9ABE4D8237A3}">
-											<PropertyList>
-												<Property Name="PanX" Type="Real64" Value="33.489"/>
-											</PropertyList>
-										</Panner>
-										<Position Name="" ID="{2EF31069-EA74-474E-AABE-AE3A3D5F8474}"/>
-									</PositioningInfo>
+									<Playlist>
+										<ItemRef Name="Robo_Gods_Coche_2_Motor_Start_SFX_Start" ID="{8D444DDA-E62F-42FB-B72F-9E83F2EE6890}"/>
+										<ItemRef Name="Motor_Loop" ID="{7EF8D28D-2AA7-40B4-A087-0E0191BB8210}"/>
+									</Playlist>
 								</RandomSequenceContainer>
 							</ChildrenList>
 						</Folder>

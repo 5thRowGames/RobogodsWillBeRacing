@@ -6,7 +6,7 @@ public class PuertaCompuerta : MonoBehaviour
 {
     public float time;
     public Vector3 finalPosition;
-    private Compuerta compuerta;
+    private CompuertaActiva compuertaActiva;
 
     private Vector3 basePosition;
 
@@ -14,9 +14,13 @@ public class PuertaCompuerta : MonoBehaviour
 
     private void Awake()
     {
-        compuerta = transform.parent.GetComponent<Compuerta>();
-        compuerta.OpenDoor += OpenDoor;
-        compuerta.CloseDoor += CloseDoor;
+        compuertaActiva = transform.parent.GetComponent<CompuertaActiva>();
+
+        if (compuertaActiva != null)
+        {
+            compuertaActiva.OpenDoor += OpenDoor;
+            compuertaActiva.CloseDoor += CloseDoor;
+        }
     }
 
     private void Start()

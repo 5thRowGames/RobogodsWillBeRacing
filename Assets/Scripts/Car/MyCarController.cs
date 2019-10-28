@@ -308,9 +308,11 @@ public class MyCarController : MonoBehaviour, IControllable
     private void Accelerate()
     {
         // El vector no será el forward del coche, sino un forward paralelo al suelo
-        if (hitList[0].point != Vector3.zero && hitList[1].point != Vector3.zero)
+        //if (hitList[0].point != Vector3.zero && hitList[1].point != Vector3.zero)
+        if(helper != null)
         {
-            groundForward = Vector3.Cross(hitList[1].point - hitList[0].point, hitList[1].normal).normalized;
+            //groundForward = Vector3.Cross(hitList[1].point - hitList[0].point, hitList[1].normal).normalized;
+            groundForward = helper.forward;
         }
         else
         {

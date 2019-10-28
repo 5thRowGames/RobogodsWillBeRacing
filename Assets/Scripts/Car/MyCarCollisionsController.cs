@@ -16,6 +16,12 @@ public class MyCarCollisionsController : MonoBehaviour
     [SerializeField][Tooltip("Factor de reducción de velocidad en choque frontal")][Range(0.01f, 1f)] private float reductionSpeedFactor = 0.4f;
     private float minSpeedForce = 10f;
     private float maxSpeedForce;
+    public MyCarController myCarController;
+    public float force;
+    public float distance;
+    private int numberOfCorners;
+    private List<Transform> corners;
+    private List<RaycastHit> hitList;
 
     #region UnityEvents
 
@@ -24,11 +30,29 @@ public class MyCarCollisionsController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         portalLayer = LayerMask.NameToLayer("Portal");
         maxSpeedForce = GetComponent<MyCarController>().speedForce;
+        hitList = new List<RaycastHit>();
+
+        if (myCarController != null)
+        {
+            numberOfCorners = myCarController.carCorners.Count;
+            corners = myCarController.carCorners;
+            for (int i = 0; i < numberOfCorners; i++)
+                hitList.Add(new RaycastHit());
+        }
+
     }
 
     private void FixedUpdate()
     {
         myVelocity = rb.velocity;
+
+        //for(int i = 0; i < numberOfCorners; i++)
+        //{
+        //    if (i % 2 == 0) // par - izquierda
+        //        Suspension(corners[i], -transform.right, hitList[i]);
+        //    else // impar - derecha
+        //        Suspension(corners[i], transform.right, hitList[i]);
+        //}
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -42,11 +66,10 @@ public class MyCarCollisionsController : MonoBehaviour
         {
             //Debug.Log(collision.gameObject.name);
             priorConstraints = rb.constraints; // Guardo las restricciones previas al choque
-            rb.constraints = RigidbodyConstraints.FreezeRotation; // Congelo la rotación para evitar que el coche cambie su dirección
+            //rb.constraints = RigidbodyConstraints.FreezeRotation; // Congelo la rotación para evitar que el coche cambie su dirección
             //Debug.Log($"Restricciones al colisionar: {rb.constraints.ToString()}");
             CheckFrontCollision(collision);
         }
-        //else Debug.Log($"He entrado en el portal {collision.gameObject.GetComponent<Portal>().index}");
     }
 
     private void OnCollisionExit(Collision collision)
@@ -55,11 +78,6 @@ public class MyCarCollisionsController : MonoBehaviour
         {
             rb.constraints = priorConstraints;
         }
-        //else
-        //{
-        //    Debug.Log("Game: "+collision.gameObject.name+"   "+collision.transform.parent.name);
-        //    Debug.Log($"He salido del portal {collision.gameObject.GetComponent<Portal>().index}");
-        //}
     }
 
     #endregion
@@ -79,15 +97,26 @@ public class MyCarCollisionsController : MonoBehaviour
             //    //}
 
             //    Debug.Log("¡Fuerza hacia abajo!");
-            //var speedForce = rb.velocity.magnitude > minSpeedForce ? rb.velocity.magnitude : minSpeedForce;
+            //var speedForce = rb.velocity.magnitude > minSpeedForce ? rb.velocity.magnitude : minSpeedForce;      
             var speedForce = Mathf.Clamp(rb.velocity.magnitude, minSpeedForce, maxSpeedForce);
             rb.AddForce(rb.transform.InverseTransformDirection(normal) * frontalForce * speedForce, ForceMode.Force);
-            rb.AddForce(-rb.transform.up * frontalForce * speedForce, ForceMode.Force);
+            rb.AddForce(-rb.transform.up * frontalForce * speedForce, ForceMode.Force); // Fuerza hacia abajo para contener al coche en el suelo
         }
         else
         {
             rb.AddForce(rb.transform.InverseTransformDirection(normal) * rb.velocity.magnitude, ForceMode.Force);
         }
+    }
 
+    private void Suspension(Transform corner, Vector3 direction, RaycastHit hit) //, int index)
+    {
+        if (Physics.Raycast(corner.position, direction, out hit, distance, myCarController.layerMask))
+        {
+            //rb.velocity *= 0.9f;
+            rb.AddForceAtPosition(force * -direction * (1.0f - (hit.distance / distance)), corner.position);
+            Debug.Log($"Obstacle detected at {hit.distance} units.");
+        }
+
+        //hitList[index] = hit; // Guardo la información del impacto
     }
 }

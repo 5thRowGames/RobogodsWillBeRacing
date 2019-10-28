@@ -11,9 +11,9 @@ public class StabilityController : MonoBehaviour
     [SerializeField] [Tooltip("Grados mínimos de rotación en Z")] private float minRotationZ = -40f;
     [SerializeField] [Tooltip("Tiempo para poner a 0 las rotaciones en X y Z cuando se llega a sus máximos")] private readonly float timeToIdentityRotation = 1f;
     [Tooltip("Layer para ignorar todo lo que no sea el suelo")] public LayerMask groundLayer;
-    [Tooltip("Máxima altura permittida para el coche")]public float maxHeightAllowed = 3f;
-    [Tooltip("Tiempo para bajar hasta la altura máxima permitida para el coche")] public float timeToMaxHeight;
-    private float timeToMaxHeightTimer;
+    [Tooltip("Layer para comprobar el ángulo de inclinación del coche con respecto del suelo")] public LayerMask inclinationLayer;
+    public float pushToTheGroundForce;
+    public float angle;
     #endregion
 
     #region Properties
@@ -26,6 +26,7 @@ public class StabilityController : MonoBehaviour
     #region Components
     public MyCarController myCarController;
     public Rigidbody rb;
+    public Transform carHelper;
 
     #endregion
 
@@ -33,10 +34,9 @@ public class StabilityController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //if(!myCarController.IsBeingTeleported)
-            ClampRotation();
+        ClampRotation();
         CheckUpsideDown();
-        //ClampHeight();
+        PushToTheGround();
     }
 
     #endregion
@@ -99,28 +99,41 @@ public class StabilityController : MonoBehaviour
         Debug.Log("Finished rotating to identity");
     }
 
-    private void ClampHeight()
+    //private void ClampHeight()
+    //{
+    //    var distance = myCarController.DistanceToGround;
+    //    if (distance > maxHeightAllowed)
+    //    {
+    //        myCarController.additiveDownForce = distance / maxHeightAllowed;
+    //    }
+    //    else
+    //        myCarController.additiveDownForce = 1f;
+    //}
+
+    //private IEnumerator HeightToMaxAllowed()
+    //{
+    //    float timeCount = 0;
+    //    float yVelocity = rb.velocity.y;
+    //    while (timeCount < timeToMaxHeight)
+    //    {
+    //        var y = Mathf.Lerp(yVelocity, 0f, timeCount);
+    //        rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
+    //        timeCount += Time.deltaTime;
+    //        yield return null;
+    //    }
+    //}
+
+    private void PushToTheGround()
     {
-        var distance = myCarController.DistanceToGround;
-        if (distance > maxHeightAllowed)
+        if (Physics.Raycast(carHelper.position, -carHelper.up, out RaycastHit hitInfo, Mathf.Infinity, inclinationLayer))
         {
-            myCarController.additiveDownForce = distance / maxHeightAllowed;
-        }
+            var normal = hitInfo.normal;
+            var collisionAngle = (Vector3.Angle(carHelper.up, -normal));
+            Debug.Log($"Ángulo sobre el suelo = {collisionAngle}");
+            if (collisionAngle < angle || collisionAngle > -angle)
+                rb.AddForce(-rb.transform.up * pushToTheGroundForce, ForceMode.Acceleration);
+    }
         else
-            myCarController.additiveDownForce = 1f;
+            Debug.Log($"<StabilityController> No collision!");
     }
-
-    private IEnumerator HeightToMaxAllowed()
-    {
-        float timeCount = 0;
-        float yVelocity = rb.velocity.y;
-        while (timeCount < timeToMaxHeight)
-        {
-            var y = Mathf.Lerp(yVelocity, 0f, timeCount);
-            rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
-            timeCount += Time.deltaTime;
-            yield return null;
-        }
-    }
-
 }

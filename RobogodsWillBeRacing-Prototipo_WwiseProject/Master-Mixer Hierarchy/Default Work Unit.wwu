@@ -34,7 +34,7 @@
 							<PropertyList>
 								<Property Name="MaxSoundPerInstance" Type="int16">
 									<ValueList>
-										<Value>2</Value>
+										<Value>1</Value>
 									</ValueList>
 								</Property>
 								<Property Name="UseMaxSoundPerInstance" Type="bool">
@@ -48,7 +48,10 @@
 									<Custom>
 										<Effect Name="Wwise_Parametric_EQ_(Custom)" ID="{267E05F6-3403-4E9A-9F69-E93805156629}" ShortID="277477046" PluginName="Wwise Parametric EQ" CompanyID="0" PluginID="105" PluginType="3">
 											<PropertyList>
-												<Property Name="FrequencyBand2" Type="Real32" Value="562"/>
+												<Property Name="FilterTypeBand1" Type="int32" Value="1"/>
+												<Property Name="FilterTypeBand2" Type="int32" Value="4"/>
+												<Property Name="FrequencyBand1" Type="Real32" Value="175"/>
+												<Property Name="FrequencyBand2" Type="Real32" Value="232"/>
 												<Property Name="GainBand1" Type="Real32" Value="-2"/>
 												<Property Name="GainBand2" Type="Real32" Value="-2"/>
 												<Property Name="QFactorBand2" Type="Real32" Value="1.5"/>
@@ -78,7 +81,7 @@
 								</Property>
 								<Property Name="MaxSoundPerInstance" Type="int16">
 									<ValueList>
-										<Value>2</Value>
+										<Value>1</Value>
 									</ValueList>
 								</Property>
 								<Property Name="UseMaxSoundPerInstance" Type="bool">
@@ -87,6 +90,27 @@
 									</ValueList>
 								</Property>
 							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Effect0">
+									<Custom>
+										<Effect Name="Wwise_Parametric_EQ_(Custom)" ID="{DC929828-6530-4243-8CBD-98E11AD96D1C}" ShortID="1030622095" PluginName="Wwise Parametric EQ" CompanyID="0" PluginID="105" PluginType="3">
+											<PropertyList>
+												<Property Name="FilterTypeBand1" Type="int32" Value="1"/>
+												<Property Name="FilterTypeBand2" Type="int32" Value="4"/>
+												<Property Name="FilterTypeBand3" Type="int32" Value="6"/>
+												<Property Name="FrequencyBand1" Type="Real32" Value="175"/>
+												<Property Name="FrequencyBand2" Type="Real32" Value="376"/>
+												<Property Name="FrequencyBand3" Type="Real32" Value="433"/>
+												<Property Name="GainBand1" Type="Real32" Value="-2"/>
+												<Property Name="GainBand2" Type="Real32" Value="-2.5"/>
+												<Property Name="GainBand3" Type="Real32" Value="-2.5"/>
+												<Property Name="QFactorBand2" Type="Real32" Value="1.5"/>
+												<Property Name="QFactorBand3" Type="Real32" Value="14.6"/>
+											</PropertyList>
+										</Effect>
+									</Custom>
+								</Reference>
+							</ReferenceList>
 							<DuckingList>
 								<DuckItem>
 									<BusRef Name="SFX_BUS" ID="{06504896-303E-4D3A-BC83-BAE0A55A7391}"/>
@@ -114,9 +138,7 @@
 											<PropertyList>
 												<Property Name="Threshold" Type="Real32">
 													<RTPCList>
-														<RTPC Name="" ID="{6F730996-20E5-4CA0-A0D3-97DF06CEAF54}" ShortID="1064114962">
-															<ReferenceList/>
-														</RTPC>
+														<RTPC Name="" ID="{6F730996-20E5-4CA0-A0D3-97DF06CEAF54}" ShortID="1064114962"/>
 													</RTPCList>
 												</Property>
 											</PropertyList>

@@ -15,7 +15,7 @@
 										<Property Name="RandomOrSequence" Type="int16" Value="0"/>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>-13</Value>
+												<Value>-16</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -23,8 +23,18 @@
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
 										</Reference>
+										<Reference Name="Effect0">
+											<Custom>
+												<Effect Name="Wwise_Peak_Limiter_(Custom)" ID="{23EFCCE9-BD57-41F6-9D0C-2C766AD48A45}" ShortID="466289220" PluginName="Wwise Peak Limiter" CompanyID="0" PluginID="110" PluginType="3">
+													<PropertyList>
+														<Property Name="Ratio" Type="Real32" Value="9.3"/>
+														<Property Name="Threshold" Type="Real32" Value="-22.3"/>
+													</PropertyList>
+												</Effect>
+											</Custom>
+										</Reference>
 										<Reference Name="OutputBus">
-											<ObjectRef Name="MOTOR_1_3_BUS" ID="{9FF035E0-4086-4A9F-BA0A-49D983130EFC}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+											<ObjectRef Name="MOTOR_2_4_BUS" ID="{E9AC9E29-EE0A-4D0C-919A-F41E20AF4276}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
@@ -98,11 +108,12 @@
 									<PropertyList>
 										<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
 										<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="4"/>
+										<Property Name="PlayMechanismSpecialTransitionsValue" Type="Real64" Value="0.5"/>
 										<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
 										<Property Name="RandomOrSequence" Type="int16" Value="0"/>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>-9</Value>
+												<Value>-16</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -222,6 +233,7 @@
 								</RandomSequenceContainer>
 								<BlendContainer Name="Viento_Motor_Loop" ID="{A55280A5-6699-4E40-B582-AD1C1EBC2CB2}" ShortID="667979041">
 									<PropertyList>
+										<Property Name="BlendBehavior" Type="int16" Value="1"/>
 										<Property Name="Highpass" Type="int16">
 											<ValueList>
 												<Value>56</Value>
@@ -240,7 +252,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>6</Value>
+												<Value>2</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -252,10 +264,35 @@
 											<Custom>
 												<Effect Name="Wwise_Parametric_EQ_(Custom)" ID="{775CA1D7-3A26-4B10-B7BF-8149F24741DA}" ShortID="75238060" PluginName="Wwise Parametric EQ" CompanyID="0" PluginID="105" PluginType="3">
 													<PropertyList>
-														<Property Name="FrequencyBand1" Type="Real32" Value="275"/>
-														<Property Name="FrequencyBand2" Type="Real32" Value="433"/>
-														<Property Name="GainBand1" Type="Real32" Value="-2.5"/>
-														<Property Name="GainBand2" Type="Real32" Value="-3"/>
+														<Property Name="FilterTypeBand1" Type="int32" Value="1"/>
+														<Property Name="FilterTypeBand3" Type="int32" Value="0"/>
+														<Property Name="FrequencyBand1" Type="Real32" Value="505"/>
+														<Property Name="FrequencyBand2" Type="Real32" Value="1072"/>
+														<Property Name="FrequencyBand3" Type="Real32" Value="9828"/>
+														<Property Name="GainBand1" Type="Real32" Value="-3"/>
+														<Property Name="GainBand2" Type="Real32" Value="-2.5"/>
+														<Property Name="QFactorBand2" Type="Real32" Value="23"/>
+													</PropertyList>
+												</Effect>
+											</Custom>
+										</Reference>
+										<Reference Name="Effect1">
+											<Custom>
+												<Effect Name="Wwise_Parametric_EQ_(Custom)" ID="{3E4DD8BD-3382-48AB-9C44-737A9B1DCC79}" ShortID="953762945" PluginName="Wwise Parametric EQ" CompanyID="0" PluginID="105" PluginType="3">
+													<PropertyList>
+														<Property Name="FilterTypeBand1" Type="int32" Value="6"/>
+														<Property Name="FrequencyBand1" Type="Real32" Value="1789"/>
+														<Property Name="GainBand1" Type="Real32" Value="-2"/>
+														<Property Name="QFactorBand1" Type="Real32" Value="8.4"/>
+													</PropertyList>
+												</Effect>
+											</Custom>
+										</Reference>
+										<Reference Name="Effect2">
+											<Custom>
+												<Effect Name="Wwise_Peak_Limiter_(Custom)" ID="{A99F7EFE-2B55-43C2-9E32-64068EF88EAC}" ShortID="278749710" PluginName="Wwise Peak Limiter" CompanyID="0" PluginID="110" PluginType="3">
+													<PropertyList>
+														<Property Name="Threshold" Type="Real32" Value="-23.8"/>
 													</PropertyList>
 												</Effect>
 											</Custom>
@@ -275,7 +312,7 @@
 												</Property>
 												<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
 												<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
-												<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="4"/>
+												<Property Name="PlayMechanismSpecialTransitionsValue" Type="Real64" Value="1.5"/>
 												<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
 												<Property Name="UseMaxSoundPerInstance" Type="bool">
 													<ValueList>
@@ -679,6 +716,7 @@
 						</RandomSequenceContainer>
 						<RandomSequenceContainer Name="Impactos" ID="{E8D4391A-EC70-4CCC-840F-CB55A9CD2F88}" ShortID="901091049">
 							<PropertyList>
+								<Property Name="MaxReachedBehavior" Type="int16" Value="1"/>
 								<Property Name="MaxSoundPerInstance" Type="int16">
 									<ValueList>
 										<Value>1</Value>

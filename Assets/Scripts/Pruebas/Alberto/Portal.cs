@@ -49,7 +49,7 @@ public class Portal : MonoBehaviour
                     break;
             }
             
-            SoundManager.Instance.PlayLoop(SoundManager.Music.Portal_Out);
+            SoundManager.Instance.DelayPortalOutSound();
         }
 
         Debug.Log("Portal trigger"); 

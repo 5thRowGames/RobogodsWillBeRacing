@@ -23,7 +23,8 @@ public class SoundManager : SingletonDontDestroy<SoundManager>
         UI_Back = 13,
         UI_Conversion_Out = 14,
         CajaRandom = 15,
-        Inicio_Carrera = 16
+        Inicio_Carrera = 16,
+        Banda_Aceleracion = 17
     }
 
     public enum Music
@@ -41,6 +42,8 @@ public class SoundManager : SingletonDontDestroy<SoundManager>
     private Dictionary<Fx, string> fxDictionary;
     private Dictionary<Music, GameObject> musicGameObjects;
     private Dictionary<Music, string> musicDictionary;
+
+    private Coroutine portal_out = null;
 
     [Header("Orden: UI - Limbo - Egipto - Nordica")]
     public List<GameObject> gameObjectEvents;
@@ -69,6 +72,7 @@ public class SoundManager : SingletonDontDestroy<SoundManager>
         fxDictionary.Add(Fx.UI_Conversion_Out,"UI_Conversion_Out");
         fxDictionary.Add(Fx.CajaRandom,"Caja_Random_In");
         fxDictionary.Add(Fx.Inicio_Carrera,"Inicio_Carrera_In");
+        fxDictionary.Add(Fx.Banda_Aceleracion, "Aceleraciones_In");
         
         musicGameObjects = new Dictionary<Music, GameObject>();
         musicGameObjects.Add(Music.UI,gameObjectEvents[0]);
@@ -82,7 +86,6 @@ public class SoundManager : SingletonDontDestroy<SoundManager>
         musicDictionary.Add(Music.India, "Musica_India");
         musicDictionary.Add(Music.Nordica, "Musica_Nordica");
         musicDictionary.Add(Music.Griega, "Musica_Agua");
-
 
     }
 
@@ -114,5 +117,21 @@ public class SoundManager : SingletonDontDestroy<SoundManager>
     public void StopLoop(Music music)
     {
         musicGameObjects[music].GetComponent<AkEvent>().Stop(0);
+    }
+
+    //A petición de Eduardo hay que retrasar dos segundos la llamada
+    public void DelayPortalOutSound()
+    {
+        if (portal_out == null)
+        {
+            portal_out = StartCoroutine(DelayPortalOut());
+        }
+    }
+
+    IEnumerator DelayPortalOut()
+    {
+        yield return new WaitForSeconds(2f);
+        PlayLoop(Music.Portal_Out);
+        portal_out = null;
     }
 }

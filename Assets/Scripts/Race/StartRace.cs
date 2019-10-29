@@ -53,7 +53,7 @@ public class StartRace : MonoBehaviour
             cinematicCameras[i].SetActive(true);
                 
             Sequence seq = DOTween.Sequence();
-            seq.Append(cinematicCameras[i].transform.parent.transform.DOLocalRotate(new Vector3(0, 180, 0), rotateCameraTime))
+            seq.Append(cinematicCameras[i].transform.parent.transform.DORotate(new Vector3(0, -360, 0), rotateCameraTime))
                 .Append(cinematicCameras[i].transform.DOMove(cameras[(int)cameraIndex[i]].transform.position, 1.5f));
         }
 

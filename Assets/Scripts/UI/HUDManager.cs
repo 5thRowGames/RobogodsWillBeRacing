@@ -144,8 +144,9 @@ public class HUDManager : Singleton<HUDManager>
         }
     }
 
-    public float chooseItemTimer;
-    public List<Sprite> itemIcon;
+    //Se han vuelto privados al no ser usados por ahora
+    private float chooseItemTimer;
+    private List<Sprite> itemIcon;
 
     public IEnumerator ChooseItemUI(God.Type god,int itemChosen)
     {

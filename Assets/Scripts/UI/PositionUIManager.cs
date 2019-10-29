@@ -18,7 +18,7 @@ public class PositionUIManager : Singleton<PositionUIManager>
 
     private void Awake()
     {
-        godAmount = LapsManager.Instance.godRaceInfoList.Count;
+        /*godAmount = LapsManager.Instance.godRaceInfoList.Count;
         
         auxList = new List<int>(godAmount);
         staticPosition = new List<Vector2>();
@@ -28,7 +28,7 @@ public class PositionUIManager : Singleton<PositionUIManager>
             staticPosition.Add(position.anchoredPosition);
         }
 
-        lastUpdatePosition = new List<int>();
+        lastUpdatePosition = new List<int>();*/
     }
 
     private void OnEnable()

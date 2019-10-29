@@ -40,7 +40,7 @@ public class MinimapControl : Singleton<MinimapControl>
 
     private List<int> godsPlayingIndex;
 
-    private void Awake()
+    private void Start()
     {
         godsPlayingIndex = new List<int>();
         
@@ -131,8 +131,7 @@ public class MinimapControl : Singleton<MinimapControl>
                     amount += (LapsManager.Instance.checkPoints[i].transform.position - LapsManager.Instance.checkPoints[i + 1].transform.position).magnitude;
                 }
             }
-
-            Debug.Log(amount);
+            
             currentAmountList[id] = amount;
         }
         else

@@ -8,7 +8,7 @@
 						<Reference Name="AudioDevice">
 							<ObjectRef Name="System" ID="{1207ECC7-8F47-49F9-9652-58F9AF391F86}" WorkUnitID="{1FF15524-86AE-4661-83CD-A8C1F5312DDB}"/>
 						</Reference>
-						<Reference Name="Effect0">
+						<Reference Name="Effect1">
 							<Custom>
 								<Effect Name="Wwise_Compressor_(Custom)" ID="{F3779DEE-604E-4859-A201-345BCD8E0B41}" ShortID="807116299" PluginName="Wwise Compressor" CompanyID="0" PluginID="108" PluginType="3">
 									<PropertyList>
@@ -19,7 +19,7 @@
 								</Effect>
 							</Custom>
 						</Reference>
-						<Reference Name="Effect1">
+						<Reference Name="Effect2">
 							<Custom>
 								<Effect Name="Wwise_Peak_Limiter_(Custom)" ID="{8A565887-4D56-4938-A975-D156DA2CA70B}" ShortID="366448007" PluginName="Wwise Peak Limiter" CompanyID="0" PluginID="110" PluginType="3">
 									<PropertyList>
@@ -55,6 +55,29 @@
 												<Property Name="GainBand1" Type="Real32" Value="-2"/>
 												<Property Name="GainBand2" Type="Real32" Value="-2"/>
 												<Property Name="QFactorBand2" Type="Real32" Value="1.5"/>
+											</PropertyList>
+										</Effect>
+									</Custom>
+								</Reference>
+								<Reference Name="Effect1">
+									<Custom>
+										<Effect Name="Wwise_Matrix_Reverb_(Custom)" ID="{545D20E4-AE62-4052-9B33-69DDA53B65D8}" ShortID="771626979" PluginName="Wwise Matrix Reverb" CompanyID="0" PluginID="115" PluginType="3">
+											<PropertyList>
+												<Property Name="DryLevel" Type="Real32" Value="-0.3"/>
+												<Property Name="HFRatio" Type="Real32" Value="3"/>
+												<Property Name="ReverbTime" Type="Real32" Value="1"/>
+												<Property Name="WetLevel" Type="Real32" Value="-27"/>
+											</PropertyList>
+										</Effect>
+									</Custom>
+								</Reference>
+								<Reference Name="Effect2">
+									<Custom>
+										<Effect Name="Wwise_Compressor_(Custom)" ID="{8C927B50-1825-46A3-BA27-AAAB9335308F}" ShortID="1018769339" PluginName="Wwise Compressor" CompanyID="0" PluginID="108" PluginType="3">
+											<PropertyList>
+												<Property Name="AttackTime" Type="Real32" Value="0.19"/>
+												<Property Name="ReleaseTime" Type="Real32" Value="0.82"/>
+												<Property Name="Threshold" Type="Real32" Value="-24.3"/>
 											</PropertyList>
 										</Effect>
 									</Custom>
@@ -110,6 +133,30 @@
 										</Effect>
 									</Custom>
 								</Reference>
+								<Reference Name="Effect1">
+									<Custom>
+										<Effect Name="Wwise_Matrix_Reverb_(Custom)" ID="{A7C5CBB5-E3AE-44BD-A862-16FA4E606DB6}" ShortID="158227718" PluginName="Wwise Matrix Reverb" CompanyID="0" PluginID="115" PluginType="3">
+											<PropertyList>
+												<Property Name="DryLevel" Type="Real32" Value="-0.3"/>
+												<Property Name="HFRatio" Type="Real32" Value="3"/>
+												<Property Name="ReverbTime" Type="Real32" Value="1"/>
+												<Property Name="WetLevel" Type="Real32" Value="-30"/>
+											</PropertyList>
+										</Effect>
+									</Custom>
+								</Reference>
+								<Reference Name="Effect2">
+									<Custom>
+										<Effect Name="Wwise_Compressor_(Custom)" ID="{96FE114C-BC53-4C6A-9808-F25ED276F4BE}" ShortID="449943823" PluginName="Wwise Compressor" CompanyID="0" PluginID="108" PluginType="3">
+											<PropertyList>
+												<Property Name="AttackTime" Type="Real32" Value="0.18"/>
+												<Property Name="OutputGain" Type="Real32" Value="3"/>
+												<Property Name="ReleaseTime" Type="Real32" Value="0.67"/>
+												<Property Name="Threshold" Type="Real32" Value="-63.4"/>
+											</PropertyList>
+										</Effect>
+									</Custom>
+								</Reference>
 							</ReferenceList>
 							<DuckingList>
 								<DuckItem>
@@ -148,6 +195,32 @@
 							</ReferenceList>
 						</Bus>
 						<Bus Name="SFX_BUS" ID="{06504896-303E-4D3A-BC83-BAE0A55A7391}">
+							<ReferenceList>
+								<Reference Name="Effect0">
+									<Custom>
+										<Effect Name="Wwise_Matrix_Reverb_(Custom)" ID="{8A3158C9-5C5C-462C-854C-C240989C7482}" ShortID="554186941" PluginName="Wwise Matrix Reverb" CompanyID="0" PluginID="115" PluginType="3">
+											<PropertyList>
+												<Property Name="DryLevel" Type="Real32" Value="-0.3"/>
+												<Property Name="HFRatio" Type="Real32" Value="3"/>
+												<Property Name="ReverbTime" Type="Real32" Value="1"/>
+												<Property Name="WetLevel" Type="Real32" Value="-31"/>
+											</PropertyList>
+										</Effect>
+									</Custom>
+								</Reference>
+								<Reference Name="Effect1">
+									<Custom>
+										<Effect Name="Wwise_Compressor_(Custom)" ID="{57EA2BE6-50EC-43C4-BF72-3106958C2E42}" ShortID="1016982140" PluginName="Wwise Compressor" CompanyID="0" PluginID="108" PluginType="3">
+											<PropertyList>
+												<Property Name="AttackTime" Type="Real32" Value="0.44"/>
+												<Property Name="OutputGain" Type="Real32" Value="0.5"/>
+												<Property Name="ReleaseTime" Type="Real32" Value="0.99"/>
+												<Property Name="Threshold" Type="Real32" Value="-42.6"/>
+											</PropertyList>
+										</Effect>
+									</Custom>
+								</Reference>
+							</ReferenceList>
 							<DuckingList>
 								<DuckItem>
 									<BusRef Name="MUSICA_BUS" ID="{6C684514-A741-4BF9-B1F1-2BE3F140C499}"/>

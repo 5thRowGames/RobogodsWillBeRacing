@@ -680,7 +680,7 @@
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-1</Value>
+										<Value>-8</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -689,7 +689,7 @@
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
 								</Reference>
 								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+									<ObjectRef Name="SFX_BUS" ID="{06504896-303E-4D3A-BC83-BAE0A55A7391}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
@@ -739,7 +739,7 @@
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
 								</Reference>
 								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+									<ObjectRef Name="SFX_BUS" ID="{06504896-303E-4D3A-BC83-BAE0A55A7391}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
@@ -1225,12 +1225,20 @@
 							</Playlist>
 						</RandomSequenceContainer>
 						<RandomSequenceContainer Name="Aceleraciones" ID="{77C46A3A-D810-42FE-A207-CBDF839C5B34}" ShortID="678824087">
+							<PropertyList>
+								<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-8</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
 								</Reference>
 								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+									<ObjectRef Name="SFX_BUS" ID="{06504896-303E-4D3A-BC83-BAE0A55A7391}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
@@ -1314,7 +1322,7 @@
 									<PropertyList>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>4</Value>
+												<Value>-2</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -1387,6 +1395,13 @@
 									</ChildrenList>
 								</RandomSequenceContainer>
 								<RandomSequenceContainer Name="Nave_4_Acelerar_Shoots" ID="{09B99A9E-BEAA-4099-AA62-94F71E9889E6}" ShortID="684019882">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-5</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>

@@ -136,6 +136,8 @@ public class Portal : MonoBehaviour
 
         rb.position = teleportPoint;
 
+        carColliders.Peek().transform.parent.transform.forward = targetPortal.forward;
+
         //rb.useGravity = true;
         //rb.isKinematic = false;
         var speed = portalEnterSpeedMagnitude < exitPortalSpeedMagnitude ? exitPortalSpeedMagnitude : portalEnterSpeedMagnitude;

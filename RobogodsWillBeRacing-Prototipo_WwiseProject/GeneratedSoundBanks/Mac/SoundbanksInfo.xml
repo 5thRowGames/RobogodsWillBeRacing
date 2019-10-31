@@ -21,7 +21,7 @@
 			<ShortName>ROBO_SoundBank</ShortName>
 			<Path>ROBO_SoundBank.bnk</Path>
 			<IncludedEvents>
-				<Event Id="937046639" Name="Aceleraciones_In" ObjectPath="\Events\Default Work Unit\IG_SFX\Aceleraciones_In" DurationType="OneShot" DurationMin="3.750000" DurationMax="10.624989"/>
+				<Event Id="937046639" Name="Aceleraciones_In" ObjectPath="\Events\Default Work Unit\IG_SFX\Aceleraciones_In" DurationType="OneShot" DurationMin="3.750000" DurationMax="8.124989"/>
 				<Event Id="3240997650" Name="Caja_Random_In" ObjectPath="\Events\Default Work Unit\IG_SFX\Caja_Random_In" DurationType="OneShot" DurationMin="4.504127" DurationMax="4.504127"/>
 				<Event Id="1958480246" Name="Cursor_Holograma_In" ObjectPath="\Events\Default Work Unit\UI\UI_Holograma\Cursor_Holograma_In" DurationType="OneShot" DurationMin="0.363333" DurationMax="0.363333"/>
 				<Event Id="2345257581" Name="Impactos_In" ObjectPath="\Events\Default Work Unit\IG_SFX\Impactos_In" DurationType="OneShot" DurationMin="0.446527" DurationMax="4.038501"/>
@@ -41,10 +41,10 @@
 				<Event Id="693686188" Name="Nave_3_Acelerar_Out" ObjectPath="\Events\Default Work Unit\Naves\Nave_3\Nave_3_Acelerar_Out" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 				<Event Id="2760755186" Name="Nave_4_Acelerar_In" ObjectPath="\Events\Default Work Unit\Naves\Nave_4\Nave_4_Acelerar_In" DurationType="Infinite"/>
 				<Event Id="3895169229" Name="Nave_4_Acelerar_Out" ObjectPath="\Events\Default Work Unit\Naves\Nave_4\Nave_4_Acelerar_Out" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
-				<Event Id="4292740166" Name="Portal_Out" ObjectPath="\Events\Default Work Unit\Musica_Portales\Portal_Out" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
+				<Event Id="4292740166" Name="Portal_Out" ObjectPath="\Events\Default Work Unit\Musica_Portales\Portal_Out" DurationType="Infinite"/>
 				<Event Id="2561828332" Name="Select_Holograma_In" ObjectPath="\Events\Default Work Unit\UI\UI_Holograma\Select_Holograma_In" DurationType="OneShot" DurationMin="1.385601" DurationMax="1.385601"/>
 				<Event Id="3032635407" Name="Sonic_Logo_In" ObjectPath="\Events\Default Work Unit\Cinematicas\Sonic_Logo_In" DurationType="OneShot" DurationMin="4.773742" DurationMax="4.773742"/>
-				<Event Id="706776875" Name="Turbo_In" ObjectPath="\Events\Default Work Unit\Naves\Eventos_Compartdos\Turbo_In" DurationType="OneShot" DurationMin="7.656236" DurationMax="7.656236"/>
+				<Event Id="706776875" Name="Turbo_In" ObjectPath="\Events\Default Work Unit\Naves\Eventos_Compartdos\Turbo_In" DurationType="OneShot" DurationMin="7.239569" DurationMax="7.239569"/>
 				<Event Id="2234672166" Name="Turbo_Out" ObjectPath="\Events\Default Work Unit\Naves\Eventos_Compartdos\Turbo_Out" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 				<Event Id="349057203" Name="UI_Back_In" ObjectPath="\Events\Default Work Unit\UI\UI_Back_In" DurationType="OneShot" DurationMin="1.330635" DurationMax="1.330635"/>
 				<Event Id="166515904" Name="UI_Cambio_Volumen_In" ObjectPath="\Events\Default Work Unit\UI\UI_Cambio_Volumen_In" DurationType="OneShot" DurationMin="0.154717" DurationMax="0.154717"/>
@@ -149,10 +149,6 @@
 					<ShortName>Robo_Gods_Coche_2_Aceleracion_SFX_Start_1.wav</ShortName>
 					<Path>SFX\Robo_Gods_Coche_2_Aceleracion_SFX_Start_1_6296B0F9.wem</Path>
 				</File>
-				<File Id="568231466" Language="SFX">
-					<ShortName>Robo_Gods_Coche_1_Aceleracion_SFX_Start_1.wav</ShortName>
-					<Path>SFX\Robo_Gods_Coche_1_Aceleracion_SFX_Start_1_6296B0F9.wem</Path>
-				</File>
 				<File Id="582402073" Language="SFX">
 					<ShortName>Robo_Gods_Viento_SFX_Loop.wav</ShortName>
 					<Path>SFX\Robo_Gods_Viento_SFX_Loop_6296B0F9.wem</Path>
@@ -189,10 +185,6 @@
 					<ShortName>Robo_Gods_Coche_2_Motor_Move_SFX_Loop.wav</ShortName>
 					<Path>SFX\Robo_Gods_Coche_2_Motor_Move_SFX_Loop_6296B0F9.wem</Path>
 				</File>
-				<File Id="789879506" Language="SFX">
-					<ShortName>Robo_Gods_Coche_1_Aceleracion_SFX_Start_2.wav</ShortName>
-					<Path>SFX\Robo_Gods_Coche_1_Aceleracion_SFX_Start_2_6296B0F9.wem</Path>
-				</File>
 				<File Id="793331046" Language="SFX">
 					<ShortName>Robo_Gods_Coche_2_Motor_SFX_Loop.wav</ShortName>
 					<Path>SFX\Robo_Gods_Coche_2_Motor_SFX_Loop_6296B0F9.wem</Path>
@@ -220,10 +212,6 @@
 				<File Id="930814480" Language="SFX">
 					<ShortName>Robo_Gods_Coche_3_Aceleracion_SFX_Start_1.wav</ShortName>
 					<Path>SFX\Robo_Gods_Coche_3_Aceleracion_SFX_Start_1_6296B0F9.wem</Path>
-				</File>
-				<File Id="975519489" Language="SFX">
-					<ShortName>Robo_Gods_Coche_1_Aceleracion_SFX_Start_3.wav</ShortName>
-					<Path>SFX\Robo_Gods_Coche_1_Aceleracion_SFX_Start_3_6296B0F9.wem</Path>
 				</File>
 				<File Id="976691243" Language="SFX">
 					<ShortName>Robo_Gods_UI_Rueda_Dentada__Start_1.wav</ShortName>

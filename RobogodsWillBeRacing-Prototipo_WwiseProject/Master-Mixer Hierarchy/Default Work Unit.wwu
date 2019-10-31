@@ -32,9 +32,19 @@
 					<ChildrenList>
 						<Bus Name="MOTOR_1_3_BUS" ID="{9FF035E0-4086-4A9F-BA0A-49D983130EFC}">
 							<PropertyList>
+								<Property Name="BusVolume" Type="Real64">
+									<ValueList>
+										<Value>-3</Value>
+									</ValueList>
+								</Property>
 								<Property Name="MaxSoundPerInstance" Type="int16">
 									<ValueList>
 										<Value>2</Value>
+									</ValueList>
+								</Property>
+								<Property Name="OutputBusVolume" Type="Real64">
+									<ValueList>
+										<Value>-3</Value>
 									</ValueList>
 								</Property>
 								<Property Name="UseMaxSoundPerInstance" Type="bool">
@@ -64,9 +74,9 @@
 										<Effect Name="Wwise_Matrix_Reverb_(Custom)" ID="{545D20E4-AE62-4052-9B33-69DDA53B65D8}" ShortID="771626979" PluginName="Wwise Matrix Reverb" CompanyID="0" PluginID="115" PluginType="3">
 											<PropertyList>
 												<Property Name="DryLevel" Type="Real32" Value="-0.3"/>
-												<Property Name="HFRatio" Type="Real32" Value="3"/>
+												<Property Name="HFRatio" Type="Real32" Value="4.9"/>
 												<Property Name="ReverbTime" Type="Real32" Value="1"/>
-												<Property Name="WetLevel" Type="Real32" Value="-27"/>
+												<Property Name="WetLevel" Type="Real32" Value="-13"/>
 											</PropertyList>
 										</Effect>
 									</Custom>
@@ -99,12 +109,17 @@
 							<PropertyList>
 								<Property Name="BusVolume" Type="Real64">
 									<ValueList>
-										<Value>3</Value>
+										<Value>4</Value>
 									</ValueList>
 								</Property>
 								<Property Name="MaxSoundPerInstance" Type="int16">
 									<ValueList>
 										<Value>2</Value>
+									</ValueList>
+								</Property>
+								<Property Name="OutputBusVolume" Type="Real64">
+									<ValueList>
+										<Value>-3</Value>
 									</ValueList>
 								</Property>
 								<Property Name="UseMaxSoundPerInstance" Type="bool">
@@ -138,9 +153,9 @@
 										<Effect Name="Wwise_Matrix_Reverb_(Custom)" ID="{A7C5CBB5-E3AE-44BD-A862-16FA4E606DB6}" ShortID="158227718" PluginName="Wwise Matrix Reverb" CompanyID="0" PluginID="115" PluginType="3">
 											<PropertyList>
 												<Property Name="DryLevel" Type="Real32" Value="-0.3"/>
-												<Property Name="HFRatio" Type="Real32" Value="3"/>
+												<Property Name="HFRatio" Type="Real32" Value="4.8"/>
 												<Property Name="ReverbTime" Type="Real32" Value="1"/>
-												<Property Name="WetLevel" Type="Real32" Value="-30"/>
+												<Property Name="WetLevel" Type="Real32" Value="-19"/>
 											</PropertyList>
 										</Effect>
 									</Custom>
@@ -158,17 +173,6 @@
 									</Custom>
 								</Reference>
 							</ReferenceList>
-							<DuckingList>
-								<DuckItem>
-									<BusRef Name="SFX_BUS" ID="{06504896-303E-4D3A-BC83-BAE0A55A7391}"/>
-									<DuckingParam>
-										<Volume>-2</Volume>
-										<FadeInTime>1</FadeInTime>
-										<FadeOutTime>1</FadeOutTime>
-										<FadeCurve>FadeLinear</FadeCurve>
-									</DuckingParam>
-								</DuckItem>
-							</DuckingList>
 						</Bus>
 						<Bus Name="MUSICA_BUS" ID="{6C684514-A741-4BF9-B1F1-2BE3F140C499}">
 							<PropertyList>
@@ -195,6 +199,9 @@
 							</ReferenceList>
 						</Bus>
 						<Bus Name="SFX_BUS" ID="{06504896-303E-4D3A-BC83-BAE0A55A7391}">
+							<PropertyList>
+								<Property Name="RecoveryTime" Type="Real64" Value="0"/>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Effect0">
 									<Custom>
@@ -203,7 +210,7 @@
 												<Property Name="DryLevel" Type="Real32" Value="-0.3"/>
 												<Property Name="HFRatio" Type="Real32" Value="3"/>
 												<Property Name="ReverbTime" Type="Real32" Value="1"/>
-												<Property Name="WetLevel" Type="Real32" Value="-31"/>
+												<Property Name="WetLevel" Type="Real32" Value="-25"/>
 											</PropertyList>
 										</Effect>
 									</Custom>
@@ -213,7 +220,7 @@
 										<Effect Name="Wwise_Compressor_(Custom)" ID="{57EA2BE6-50EC-43C4-BF72-3106958C2E42}" ShortID="1016982140" PluginName="Wwise Compressor" CompanyID="0" PluginID="108" PluginType="3">
 											<PropertyList>
 												<Property Name="AttackTime" Type="Real32" Value="0.44"/>
-												<Property Name="OutputGain" Type="Real32" Value="0.5"/>
+												<Property Name="OutputGain" Type="Real32" Value="0.8"/>
 												<Property Name="ReleaseTime" Type="Real32" Value="0.99"/>
 												<Property Name="Threshold" Type="Real32" Value="-42.6"/>
 											</PropertyList>
@@ -225,10 +232,28 @@
 								<DuckItem>
 									<BusRef Name="MUSICA_BUS" ID="{6C684514-A741-4BF9-B1F1-2BE3F140C499}"/>
 									<DuckingParam>
-										<Volume>-2</Volume>
-										<FadeInTime>1</FadeInTime>
-										<FadeOutTime>1</FadeOutTime>
+										<Volume>-1</Volume>
+										<FadeInTime>0.5</FadeInTime>
+										<FadeOutTime>0.5</FadeOutTime>
 										<FadeCurve>FadeInvSCurve</FadeCurve>
+									</DuckingParam>
+								</DuckItem>
+								<DuckItem>
+									<BusRef Name="MOTOR_2_4_BUS" ID="{E9AC9E29-EE0A-4D0C-919A-F41E20AF4276}"/>
+									<DuckingParam>
+										<Volume>-1</Volume>
+										<FadeInTime>0.5</FadeInTime>
+										<FadeOutTime>0.5</FadeOutTime>
+										<FadeCurve>FadeInvSCurve</FadeCurve>
+									</DuckingParam>
+								</DuckItem>
+								<DuckItem>
+									<BusRef Name="MOTOR_1_3_BUS" ID="{9FF035E0-4086-4A9F-BA0A-49D983130EFC}"/>
+									<DuckingParam>
+										<Volume>-1</Volume>
+										<FadeInTime>0.5</FadeInTime>
+										<FadeOutTime>0.5</FadeOutTime>
+										<FadeCurve>FadeLinear</FadeCurve>
 									</DuckingParam>
 								</DuckItem>
 							</DuckingList>

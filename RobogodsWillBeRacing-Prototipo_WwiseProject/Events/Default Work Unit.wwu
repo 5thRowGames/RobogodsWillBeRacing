@@ -770,6 +770,17 @@
 										</Reference>
 									</ReferenceList>
 								</Action>
+								<Action Name="" ID="{887FADE6-B8B1-4650-BDAE-A863507A8DB3}" ShortID="533588">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Viento_Motor_Loop" ID="{A55280A5-6699-4E40-B582-AD1C1EBC2CB2}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
 							</ChildrenList>
 						</Event>
 						<Event Name="Musica_Nordica" ID="{CC7BC88F-D72C-4BAC-A2F8-A3EEFA37B9F5}">
@@ -945,6 +956,16 @@
 											</ReferenceList>
 										</EventActionException>
 									</ChildrenList>
+								</Action>
+								<Action Name="" ID="{45E01173-271B-4835-ACE5-BCD741949534}" ShortID="295640330">
+									<PropertyList>
+										<Property Name="FadeTime" Type="Real64" Value="8.5"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Viento_Motor_Loop" ID="{A55280A5-6699-4E40-B582-AD1C1EBC2CB2}" WorkUnitID="{075950EE-E459-4D6F-A0C1-815AFAAB4CA2}"/>
+										</Reference>
+									</ReferenceList>
 								</Action>
 							</ChildrenList>
 						</Event>

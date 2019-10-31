@@ -26,28 +26,28 @@ public class MinimapUI : Singleton<MinimapUI>
 
         if (!StoreGodInfo.Instance.anubisIA)
         {
-            anubisIcon.gameObject.SetActive(false);
+            anubisIcon.gameObject.SetActive(true);
             godsPlayingIndex.Add(0);
             godsPlayingRectTransform.Add(anubisIcon);
         }
 
         if (!StoreGodInfo.Instance.poseidonIA)
         {
-            poseidonIcon.gameObject.SetActive(false);
+            poseidonIcon.gameObject.SetActive(true);
             godsPlayingIndex.Add(1);
             godsPlayingRectTransform.Add(poseidonIcon);
         }
 
         if (!StoreGodInfo.Instance.kaliIA)
         {
-            kaliIcon.gameObject.SetActive(false);
+            kaliIcon.gameObject.SetActive(true);
             godsPlayingIndex.Add(2);
             godsPlayingRectTransform.Add(kaliIcon);
         }
 
         if (!StoreGodInfo.Instance.thorIA)
         {
-            thorIcon.gameObject.SetActive(false);
+            thorIcon.gameObject.SetActive(true);
             godsPlayingIndex.Add(3);
             godsPlayingRectTransform.Add(thorIcon);
         }
@@ -57,7 +57,7 @@ public class MinimapUI : Singleton<MinimapUI>
     void Update()
     {
         for(int i = 0; i < godsPlayingIndex.Count; i++)
-            UpdateIcons(godsPlayingRectTransform[i],godsPlayingIndex[i]);
+            UpdateIcons(godsPlayingRectTransform[i],MinimapControl.Instance.currentPercentageList[godsPlayingIndex[i]]);
     }
 
     private void UpdateIcons(RectTransform icon, float percentage)

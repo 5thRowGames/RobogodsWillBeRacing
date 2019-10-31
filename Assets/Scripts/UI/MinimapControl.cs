@@ -87,7 +87,7 @@ public class MinimapControl : Singleton<MinimapControl>
     }
 
     /// <summary>
-    /// Calcula la distancia actual que lleva ell jugador y su porcentaje de pista recorrido
+    /// Calcula la distancia actual que lleva el jugador y su porcentaje de pista recorrido
     /// </summary>
     /// <param name="id"></param>
     private void CalculateDistance(int id)

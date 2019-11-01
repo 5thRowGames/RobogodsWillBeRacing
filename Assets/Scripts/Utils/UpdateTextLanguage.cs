@@ -4,12 +4,18 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+[RequireComponent(typeof(TextMeshProUGUI))]
 public class UpdateTextLanguage : MonoBehaviour
 {
     public string localizationID;
-    public TextMeshProUGUI textMeshPro;
+    
+    private TextMeshProUGUI textMeshPro;
 
-    //Definitivo, pero para las pruebas no se puede poner primero porque se ejecuta antes que cuando se lee el diccionario
+    private void Awake()
+    {
+        textMeshPro = GetComponent<TextMeshProUGUI>();
+    }
+    
     private void Start()
     {
         LocalizationManager.Instance.UpdateLanguage += UpdateText;

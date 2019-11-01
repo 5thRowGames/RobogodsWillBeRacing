@@ -9,9 +9,8 @@ using UnityEngine.UI;
 public class HUDInfo
 {
     public God.Type god;
-    public TextMeshProUGUI racePositionText;
-    public TextMeshProUGUI racePositionSuffixText;
-    public TextMeshProUGUI lapText;
+    public Image racePositionImage;
+    public Image lapText;
     public Image manaBar;
     public Image mainSkillIcon;
     public Sprite mainSkillEnabledSprite;
@@ -34,6 +33,8 @@ public class HUDInfo
 
 public class HUDManager : Singleton<HUDManager>
 {
+    public List<Sprite> numbers;
+    public List<Sprite> positionImage;
     public List<HUDInfo> hudInfo;
     public Dictionary<God.Type, HUDInfo> hudDictionary; //0 anubis, 1 poseidon 2 kali 3 thor
 
@@ -59,15 +60,13 @@ public class HUDManager : Singleton<HUDManager>
             {
                 UpdatePositionUI += UpdateAnubisPosition;
                 hudDictionary[God.Type.Anubis].timeTrial.gameObject.SetActive(false);
-                hudDictionary[God.Type.Anubis].racePositionText.gameObject.SetActive(true);
-                hudDictionary[God.Type.Anubis].racePositionSuffixText.gameObject.SetActive(true);
+                hudDictionary[God.Type.Anubis].racePositionImage.gameObject.SetActive(true);
             }
             else
             {
                 godTimeTrial = God.Type.Anubis;
                 hudDictionary[God.Type.Anubis].timeTrial.gameObject.SetActive(true);
-                hudDictionary[God.Type.Anubis].racePositionText.gameObject.SetActive(false);
-                hudDictionary[God.Type.Anubis].racePositionSuffixText.gameObject.SetActive(false);
+                hudDictionary[God.Type.Anubis].racePositionImage.gameObject.SetActive(false);
             }
         }
 
@@ -78,15 +77,13 @@ public class HUDManager : Singleton<HUDManager>
             {
                 UpdatePositionUI += UpdatePoseidonPosition;
                 hudDictionary[God.Type.Poseidon].timeTrial.gameObject.SetActive(false);
-                hudDictionary[God.Type.Poseidon].racePositionText.gameObject.SetActive(true);
-                hudDictionary[God.Type.Poseidon].racePositionSuffixText.gameObject.SetActive(true);
+                hudDictionary[God.Type.Poseidon].racePositionImage.gameObject.SetActive(true);
             }
             else
             {
                 godTimeTrial = God.Type.Poseidon;
                 hudDictionary[God.Type.Poseidon].timeTrial.gameObject.SetActive(true);
-                hudDictionary[God.Type.Poseidon].racePositionText.gameObject.SetActive(false);
-                hudDictionary[God.Type.Poseidon].racePositionSuffixText.gameObject.SetActive(false);
+                hudDictionary[God.Type.Poseidon].racePositionImage.gameObject.SetActive(false);
             }
         }
 
@@ -96,15 +93,13 @@ public class HUDManager : Singleton<HUDManager>
             {
                 UpdatePositionUI += UpdateKaliPosition;
                 hudDictionary[God.Type.Kali].timeTrial.gameObject.SetActive(false);
-                hudDictionary[God.Type.Kali].racePositionText.gameObject.SetActive(true);
-                hudDictionary[God.Type.Kali].racePositionSuffixText.gameObject.SetActive(true);
+                hudDictionary[God.Type.Kali].racePositionImage.gameObject.SetActive(true);
             }
             else
             {
                 godTimeTrial = God.Type.Kali;
                 hudDictionary[God.Type.Kali].timeTrial.gameObject.SetActive(true);
-                hudDictionary[God.Type.Kali].racePositionText.gameObject.SetActive(false);
-                hudDictionary[God.Type.Kali].racePositionSuffixText.gameObject.SetActive(false);
+                hudDictionary[God.Type.Kali].racePositionImage.gameObject.SetActive(false);
             }
         }
 
@@ -114,15 +109,13 @@ public class HUDManager : Singleton<HUDManager>
             {
                 UpdatePositionUI += UpdateThorPosition;
                 hudDictionary[God.Type.Thor].timeTrial.gameObject.SetActive(false);
-                hudDictionary[God.Type.Thor].racePositionText.gameObject.SetActive(true);
-                hudDictionary[God.Type.Thor].racePositionSuffixText.gameObject.SetActive(true);
+                hudDictionary[God.Type.Thor].racePositionImage.gameObject.SetActive(true);
             }
             else
             {
                 godTimeTrial = God.Type.Thor;
                 hudDictionary[God.Type.Thor].timeTrial.gameObject.SetActive(true);
-                hudDictionary[God.Type.Thor].racePositionText.gameObject.SetActive(false);
-                hudDictionary[God.Type.Thor].racePositionSuffixText.gameObject.SetActive(false);
+                hudDictionary[God.Type.Thor].racePositionImage.gameObject.SetActive(false);
             }
         }
            
@@ -217,102 +210,26 @@ public class HUDManager : Singleton<HUDManager>
 
     public void UpdateLapText(God.Type god, int lap)
     {
-        hudDictionary[god].lapText.text = "Lap " + lap + "/3";
+        hudDictionary[god].lapText.sprite = numbers[lap - 1];
     }
 
     private void UpdateAnubisPosition()
     {
-        hudDictionary[God.Type.Anubis].racePositionText.text = (LapsManager.Instance.racePosition[(int)God.Type.Anubis] + 1).ToString();
-
-        switch (LapsManager.Instance.racePosition[(int)God.Type.Anubis])
-        {
-            case 0:
-                hudDictionary[God.Type.Anubis].racePositionSuffixText.text = "st";
-                break;
-            
-            case 1:
-                hudDictionary[God.Type.Anubis].racePositionSuffixText.text = "nd";
-                break;
-            
-            case 2:
-                hudDictionary[God.Type.Anubis].racePositionSuffixText.text = "rd";
-                break;
-            
-            case 3:
-                hudDictionary[God.Type.Anubis].racePositionSuffixText.text = "th";
-                break;
-        }
+        hudDictionary[God.Type.Anubis].racePositionImage.sprite = positionImage[LapsManager.Instance.racePosition[(int) God.Type.Anubis]];
     }
     
     private void UpdatePoseidonPosition()
     {
-        hudDictionary[God.Type.Poseidon].racePositionText.text = (LapsManager.Instance.racePosition[(int)God.Type.Poseidon] + 1).ToString();
-
-        switch (LapsManager.Instance.racePosition[(int)God.Type.Poseidon])
-        {
-            case 0:
-                hudDictionary[God.Type.Poseidon].racePositionSuffixText.text = "st";
-                break;
-            
-            case 1:
-                hudDictionary[God.Type.Poseidon].racePositionSuffixText.text = "nd";
-                break;
-            
-            case 2:
-                hudDictionary[God.Type.Poseidon].racePositionSuffixText.text = "rd";
-                break;
-            
-            case 3:
-                hudDictionary[God.Type.Poseidon].racePositionSuffixText.text = "th";
-                break;
-        }
+        hudDictionary[God.Type.Poseidon].racePositionImage.sprite = positionImage[LapsManager.Instance.racePosition[(int) God.Type.Poseidon]];
     }
     
     private void UpdateKaliPosition()
     {
-        hudDictionary[God.Type.Kali].racePositionText.text = (LapsManager.Instance.racePosition[(int)God.Type.Kali] + 1).ToString();
-
-        switch (LapsManager.Instance.racePosition[(int)God.Type.Kali])
-        {
-            case 0:
-                hudDictionary[God.Type.Kali].racePositionSuffixText.text = "st";
-                break;
-            
-            case 1:
-                hudDictionary[God.Type.Kali].racePositionSuffixText.text = "nd";
-                break;
-            
-            case 2:
-                hudDictionary[God.Type.Kali].racePositionSuffixText.text = "rd";
-                break;
-            
-            case 3:
-                hudDictionary[God.Type.Kali].racePositionSuffixText.text = "th";
-                break;
-        }
+        hudDictionary[God.Type.Kali].racePositionImage.sprite = positionImage[LapsManager.Instance.racePosition[(int) God.Type.Kali]];
     }
     
     private void UpdateThorPosition()
     {
-        hudDictionary[God.Type.Thor].racePositionText.text = (LapsManager.Instance.racePosition[(int)God.Type.Thor] + 1).ToString();
-
-        switch (LapsManager.Instance.racePosition[(int)God.Type.Thor])
-        {
-            case 0:
-                hudDictionary[God.Type.Thor].racePositionSuffixText.text = "st";
-                break;
-            
-            case 1:
-                hudDictionary[God.Type.Thor].racePositionSuffixText.text = "nd";
-                break;
-            
-            case 2:
-                hudDictionary[God.Type.Thor].racePositionSuffixText.text = "rd";
-                break;
-            
-            case 3:
-                hudDictionary[God.Type.Thor].racePositionSuffixText.text = "th";
-                break;
-        }
+        hudDictionary[God.Type.Thor].racePositionImage.sprite = positionImage[LapsManager.Instance.racePosition[(int) God.Type.Thor]];
     }
 }

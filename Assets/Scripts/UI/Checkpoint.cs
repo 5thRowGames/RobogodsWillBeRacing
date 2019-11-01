@@ -12,7 +12,7 @@ public class Checkpoint : MonoBehaviour
     /// </summary>
     public bool exitPortal;
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     { 
         MinimapControl.Instance.UpdateMinimapControl(other.tag, index);
         LapsManager.Instance.UpdateCheckPoint(other.tag, index);
@@ -22,7 +22,7 @@ public class Checkpoint : MonoBehaviour
             other.GetComponent<DaggerBehaviourAlone>().SetClosestCheckpointIndex(index);
             other.transform.position = LapsManager.Instance.checkPoints[index + 1].transform.position;
         }
-    }
+    }*/
     
     
 }

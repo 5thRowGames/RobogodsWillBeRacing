@@ -22,6 +22,7 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
    public RectTransform infoPanel;
    public RectTransform confirmCharacterSelectionPanel;
    public RectTransform characterSelectionTitlePanel;
+   public Image background;
 
    public float godPositionY;
    public float panelPositionX;
@@ -161,6 +162,7 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
             }
 
             EventSystem.current.SetSelectedGameObject(confirmCharacterSelectionPanel.gameObject);
+            confirmCharacterSelectionPanel.DOScale(Vector3.one, 0.4f).SetUpdate(true);
         }
     }
 
@@ -202,6 +204,8 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
         {
             player.GetComponent<CharacterSelectionController>().Disconfirm();
         }
+        
+        confirmCharacterSelectionPanel.DOScale(Vector3.zero, 0.4f).SetUpdate(true);
     }
    
    #endregion
@@ -231,7 +235,7 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
    {
       EventSystem.current.SetSelectedGameObject(null);
       EventSystem.current.firstSelectedGameObject = null;
-      
+
       SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Transicion_Holograma);
       
       Sequence tweenSequence = DOTween.Sequence();
@@ -243,6 +247,7 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
           .Insert(0f, poseidonButton.DOAnchorPosY(0, 1f, true))
           .Insert(0f, kaliButton.DOAnchorPosY(0, 1f, true))
           .Insert(0f, thorButton.DOAnchorPosY(0, 1f, true))
+          .Insert(0f, background.DOFade(1,0.6f))
           .Insert(0.6f, characterSelectionTitlePanel.DOAnchorPosX(0, 0.6f, true))
           .Insert(0.6f, infoPanel.DOAnchorPosX(0, 0.6f, true)).OnComplete(() =>
           {
@@ -250,20 +255,19 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
               SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Holograma_Up_In);
           });
    }
-
-   //TODO
+   
    //Proceso contrario a la construcción con matices
    public void ReturnMainMenuTween()
    {
-       ConnectDisconnectManager.DisconnectCarControllerDelegate();
        EventSystem.current.SetSelectedGameObject(null);
        EventSystem.current.firstSelectedGameObject = null;
-       
+
        SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Back);
        
        Sequence tweenSequence = DOTween.Sequence();
        tweenSequence.Append(infoPanel.DOAnchorPosX(panelPositionX, 0.6f, true))
            .Insert(0f, characterSelectionTitlePanel.DOAnchorPosX(-panelPositionX, 0.6f, true))
+           .Insert(0.6f, background.DOFade(0, 1f))
            .Insert(0.6f, poseidonBackground.DOAnchorPosY(godPositionY, 1f, true))
            .Insert(0.6f, anubisBackground.DOAnchorPosY(godPositionY, 1f, true))
            .Insert(0.6f, kaliBackground.DOAnchorPosY(godPositionY, 1f, true))
@@ -290,6 +294,7 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
        thorButton.anchoredPosition = new Vector2(0,buttonPositionY);
        infoPanel.anchoredPosition = new Vector2(panelPositionX, 0);
        characterSelectionTitlePanel.anchoredPosition = new Vector2(-panelPositionX, 0);
+       background.color = new Vector4(0, 0, 0, 0);
    }
 
    private void ResetConfirCharacterSelectionLights()

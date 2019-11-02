@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RacingCamera : MonoBehaviour, IControllable
+public class RacingCamera : MonoBehaviour
 {
     private Transform rootNode;
     private Camera carCam;
@@ -43,29 +43,7 @@ public class RacingCamera : MonoBehaviour, IControllable
         carCam.transform.localPosition = new Vector3(0f, 4f, -10f);
     }
 
-    private void OnEnable()
-    {
-        ConnectDisconnectManager.ConnectCarControllerDelegate += ConnectCamera;
-        ConnectDisconnectManager.DisconnectCarControllerDelegate += DisconnectCamera;
-    }
-
-    private void OnDisable()
-    {
-        ConnectDisconnectManager.ConnectCarControllerDelegate -= ConnectCamera;
-        ConnectDisconnectManager.DisconnectCarControllerDelegate -= DisconnectCamera;
-    }
-
     #endregion
-
-    public void ConnectCamera()
-    {
-        Core.Input.AssignControllable(GetComponent<IncontrolProvider>(), this);
-    }
-
-    public void DisconnectCamera()
-    {
-        Core.Input.UnassignControllable(GetComponent<IncontrolProvider>(), this);
-    }
 
     private Vector3 posRefVelocity;
     private void FixedUpdate()
@@ -125,8 +103,9 @@ public class RacingCamera : MonoBehaviour, IControllable
         //    }
     }
 
-    public void Control(IDevice controller)
+    public void GoThroughPortal()
     {
-
+        rootNode.position = new Vector3(carReference.position.x,carReference.position.y, carReference.position.z);
     }
+
 }

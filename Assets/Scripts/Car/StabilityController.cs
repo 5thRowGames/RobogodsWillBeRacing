@@ -129,11 +129,10 @@ public class StabilityController : MonoBehaviour
         {
             var normal = hitInfo.normal;
             var collisionAngle = (Vector3.Angle(carHelper.up, -normal));
-            Debug.Log($"Ángulo sobre el suelo = {collisionAngle}");
+            //Debug.Log($"Ángulo sobre el suelo = {collisionAngle}");
             if (collisionAngle < angle || collisionAngle > -angle)
                 rb.AddForce(-rb.transform.up * pushToTheGroundForce, ForceMode.Acceleration);
-    }
-        else
-            Debug.Log($"<StabilityController> No collision!");
+        }
+
     }
 }

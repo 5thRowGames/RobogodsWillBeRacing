@@ -21,6 +21,9 @@ public class HUDInfo
     public Sprite secondarySkillDisabledSprite;
     public Image currentItem;
     public TextMeshProUGUI timeTrial;
+    public Image flash;
+    public ParticleSystem flashParticles;
+    public Camera mainCamera;
 
     private float time;
 
@@ -33,6 +36,8 @@ public class HUDInfo
 
 public class HUDManager : Singleton<HUDManager>
 {
+    [SerializeField] private float flashIncrement;
+    [SerializeField] private float flashTime;
     public List<Sprite> numbers;
     public List<Sprite> positionImage;
     public List<HUDInfo> hudInfo;
@@ -231,5 +236,46 @@ public class HUDManager : Singleton<HUDManager>
     private void UpdateThorPosition()
     {
         hudDictionary[God.Type.Thor].racePositionImage.sprite = positionImage[LapsManager.Instance.racePosition[(int) God.Type.Thor]];
+    }
+
+    public void FlashScreen(God.Type god, Color color)
+    {
+        StartCoroutine(FlashScreenCoroutine(hudDictionary[god].flash, hudDictionary[god].flashParticles,color, hudDictionary[god].mainCamera));
+    }
+
+    IEnumerator FlashScreenCoroutine(Image image, ParticleSystem particleSystem,Color color, Camera camera)
+    {
+        image.color = color;
+
+        int oldMask = camera.cullingMask;
+        
+        camera.cullingMask ^= 1 << LayerMask.NameToLayer("PortalParticles");
+        
+        Color particleSystemColor = color;
+        particleSystemColor.a = 0f
+        particleSystem.startColor = particleSystemColor;
+        
+        while (image.color.a < 0.5f)
+        {
+            color.a += flashIncrement;
+            image.color = color;
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(flashTime);
+        
+        while (image.color.a > 0)
+        {
+            color.a -= flashIncrement;
+            image.color = color;
+            yield return null;
+        }
+        
+        yield return new WaitForSeconds(4);
+
+        particleSystemColor.a = 0.5f;
+        particleSystem.startColor = particleSystemColor;
+
+        camera.cullingMask = oldMask;
     }
 }

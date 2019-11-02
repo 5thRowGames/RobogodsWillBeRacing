@@ -20,7 +20,7 @@ public class MyCarController : MonoBehaviour, IControllable
         set => turbo = Mathf.Clamp(value, 0, 1);
     }
 
-    public float lateralTranslation = 5f;
+    public RacingCamera ownCamera;
 
     #region Members
 
@@ -469,7 +469,6 @@ public class MyCarController : MonoBehaviour, IControllable
         else // Cuando está en el aire el giro se convierte en movimiento lateral
         {
             rb.MovePosition(transform.position + (steeringInput * velocityMagnitude * airLateralShiftFactor * transform.right));
-            Debug.Log("Desplazamiento en el aire");
         }
         rb.angularVelocity *= angularVelocityReductionFactor;
     }

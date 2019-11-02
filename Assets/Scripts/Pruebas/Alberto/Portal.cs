@@ -19,6 +19,8 @@ public class Portal : MonoBehaviour
     private bool isFirstCar = true;
     public God.Type godReligion;
 
+    private Color portalColor;
+
     #region Unity EventsT
     private void OnTriggerEnter(Collider other)
     {
@@ -29,32 +31,40 @@ public class Portal : MonoBehaviour
             switch (godReligion)
             {
                 case God.Type.Anubis:
+                    portalColor = new Color(0, 0.03584905f, 0.2169811f, 0.5f);
                     SoundManager.Instance.PlayLoop(SoundManager.Music.Egipto);
                     break;
                 
                 case God.Type.Poseidon:
+                    portalColor = new Color(0, 0.03584905f, 0.2169811f, 0.5f);
                     SoundManager.Instance.PlayLoop(SoundManager.Music.Griega);
                     break;
                 
                 case God.Type.Kali:
+                    portalColor = new Color(0, 0.03584905f, 0.2169811f, 0.5f);
                     SoundManager.Instance.PlayLoop(SoundManager.Music.India);
                     break;
                 
                 case God.Type.Thor:
+                    portalColor = new Color(0, 0.03584905f, 0.2169811f, 0.5f);
                     SoundManager.Instance.PlayLoop(SoundManager.Music.Nordica);
                     break;
                 
                 case God.Type.None:
+                    portalColor = new Color(0, 0.03584905f, 0.2169811f, 0.5f);
                     SoundManager.Instance.PlayLoop(SoundManager.Music.Limbo);
                     break;
             }
             
             SoundManager.Instance.DelayPortalOutSound();
         }
+        
 
         Debug.Log("Portal trigger"); 
         myCarController = other.GetComponentInParent<MyCarController>();
         stabilityController = other.GetComponentInParent<StabilityController>();
+        
+        HUDManager.Instance.FlashScreen(myCarController.god, portalColor);
 
         if (myCarController != null)
         {
@@ -136,6 +146,8 @@ public class Portal : MonoBehaviour
 
         rb.position = teleportPoint;
 
+        StartCoroutine(GoThroughPortalCameraCoroutine(rb.GetComponent<MyCarController>().ownCamera));
+
         carColliders.Peek().transform.parent.transform.forward = targetPortal.forward;
 
         //rb.useGravity = true;
@@ -145,5 +157,11 @@ public class Portal : MonoBehaviour
         rb.velocity = targetPortal.forward.normalized * speed;
 
         //rb.WakeUp();
+    }
+
+    IEnumerator GoThroughPortalCameraCoroutine(RacingCamera racingCamera)
+    {
+        yield return null;
+        racingCamera.GoThroughPortal();
     }
 }

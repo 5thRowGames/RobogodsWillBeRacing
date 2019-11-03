@@ -75,6 +75,8 @@ public class StartRace : MonoBehaviour
                     anubisCanvas.SetActive(true);
                     anubisCanvas.GetComponent<CameraCanvasScaler>().enabled = false;
                     anubisCanvas.GetComponent<CameraCanvasScaler>().enabled = true;
+                    
+                    HUDManager.Instance.SetCamera(God.Type.Anubis,cameras[0].GetComponent<Camera>());
 
                     break;
                 
@@ -87,6 +89,8 @@ public class StartRace : MonoBehaviour
                     poseidonCanvas.GetComponent<CameraCanvasScaler>().enabled = false;
                     poseidonCanvas.GetComponent<CameraCanvasScaler>().enabled = true;
                     cameras[1].transform.parent.gameObject.SetActive(true);
+                    
+                    HUDManager.Instance.SetCamera(God.Type.Poseidon,cameras[1].GetComponent<Camera>());
 
                     break;
 
@@ -98,6 +102,8 @@ public class StartRace : MonoBehaviour
                     kaliCanvas.GetComponent<CameraCanvasScaler>().enabled = false;
                     kaliCanvas.GetComponent<CameraCanvasScaler>().enabled = true;
                     cameras[2].transform.parent.gameObject.SetActive(true);
+                    
+                    HUDManager.Instance.SetCamera(God.Type.Kali,cameras[2].GetComponent<Camera>());
 
                     break;
                 
@@ -109,6 +115,8 @@ public class StartRace : MonoBehaviour
                     thorCanvas.GetComponent<CameraCanvasScaler>().enabled = false;
                     thorCanvas.GetComponent<CameraCanvasScaler>().enabled = true;
                     cameras[3].transform.parent.gameObject.SetActive(true);
+                    
+                    HUDManager.Instance.SetCamera(God.Type.Thor,cameras[3].GetComponent<Camera>());
 
                     break;
             }

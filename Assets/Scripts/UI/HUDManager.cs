@@ -13,6 +13,8 @@ public class HUDInfo
     public Image lapText;
     public Image manaBar;
     public Image mainSkillIcon;
+    public Image turboBar;
+    public GameObject turbo;
     public Sprite mainSkillEnabledSprite;
     public Sprite mainSkillDisabledSprite;
     public TextMeshProUGUI secondarySkillTime;
@@ -21,6 +23,8 @@ public class HUDInfo
     public Sprite secondarySkillDisabledSprite;
     public Image currentItem;
     public TextMeshProUGUI timeTrial;
+    public GameObject minimap;
+    public GameObject laps;
     public Image flash;
     public ParticleSystem flashParticles;
     public Camera mainCamera;
@@ -240,19 +244,21 @@ public class HUDManager : Singleton<HUDManager>
 
     public void FlashScreen(God.Type god, Color color)
     {
-        StartCoroutine(FlashScreenCoroutine(hudDictionary[god].flash, hudDictionary[god].flashParticles,color, hudDictionary[god].mainCamera));
+        StartCoroutine(FlashScreenCoroutine(god,hudDictionary[god].flash, hudDictionary[god].flashParticles,color, hudDictionary[god].mainCamera));
     }
 
-    IEnumerator FlashScreenCoroutine(Image image, ParticleSystem particleSystem,Color color, Camera camera)
+    IEnumerator FlashScreenCoroutine(God.Type god,Image image, ParticleSystem particleSystem,Color color, Camera camera)
     {
         image.color = color;
 
         int oldMask = camera.cullingMask;
         
-        camera.cullingMask ^= 1 << LayerMask.NameToLayer("PortalParticles");
+        DisableOrEnableUI(god,false);
         
+        camera.cullingMask |= 1 << LayerMask.NameToLayer("PortalParticles");
+
         Color particleSystemColor = color;
-        particleSystemColor.a = 0f
+        particleSystemColor.a = 0f;
         particleSystem.startColor = particleSystemColor;
         
         while (image.color.a < 0.5f)
@@ -271,11 +277,37 @@ public class HUDManager : Singleton<HUDManager>
             yield return null;
         }
         
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(6f);
 
         particleSystemColor.a = 0.5f;
         particleSystem.startColor = particleSystemColor;
 
         camera.cullingMask = oldMask;
+        
+        DisableOrEnableUI(god,true);
+    }
+
+    private void DisableOrEnableUI(God.Type god, bool enabled)
+    {
+        hudDictionary[god].racePositionImage.enabled = enabled;
+        hudDictionary[god].manaBar.enabled = enabled;
+        hudDictionary[god].mainSkillIcon.enabled = enabled;
+        hudDictionary[god].secondarySkillTime.enabled = enabled;
+        hudDictionary[god].secondarySkillIcon.enabled = enabled;
+        hudDictionary[god].turbo.SetActive(enabled);
+        hudDictionary[god].laps.SetActive(enabled);
+
+        if(StoreGodInfo.Instance.players == 1)
+            hudDictionary[god].timeTrial.enabled = enabled;
+        else
+        {
+            hudDictionary[god].racePositionImage.enabled = enabled;
+            hudDictionary[god].minimap.SetActive(enabled);
+        }
+    }
+
+    public void SetCamera(God.Type god, Camera camera)
+    {
+        hudDictionary[god].mainCamera = camera;
     }
 }

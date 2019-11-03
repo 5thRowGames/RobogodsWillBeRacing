@@ -24,6 +24,7 @@ public class Portal : MonoBehaviour
     #region Unity EventsT
     private void OnTriggerEnter(Collider other)
     {
+
         if (isFirstCar)
         {
             isFirstCar = false;
@@ -59,16 +60,13 @@ public class Portal : MonoBehaviour
             SoundManager.Instance.DelayPortalOutSound();
         }
         
-
-        Debug.Log("Portal trigger"); 
         myCarController = other.GetComponentInParent<MyCarController>();
         stabilityController = other.GetComponentInParent<StabilityController>();
-        
-        HUDManager.Instance.FlashScreen(myCarController.god, portalColor);
 
         if (myCarController != null)
         {
-            Debug.Log($"{other.gameObject.name} entered the portal trigger");
+            HUDManager.Instance.FlashScreen(myCarController.god, portalColor);
+            
             carColliders.Enqueue(other);
             
             if(myCarController != null)
@@ -147,8 +145,8 @@ public class Portal : MonoBehaviour
         rb.position = teleportPoint;
 
         StartCoroutine(GoThroughPortalCameraCoroutine(rb.GetComponent<MyCarController>().ownCamera));
-
-        carColliders.Peek().transform.parent.transform.forward = targetPortal.forward;
+        
+        rb.transform.forward = targetPortal.forward;
 
         //rb.useGravity = true;
         //rb.isKinematic = false;

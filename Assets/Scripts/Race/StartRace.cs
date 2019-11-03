@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
+using InControl;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,6 +27,8 @@ public class StartRace : MonoBehaviour
 
     public float rotateCameraTime;
     public float intervalTimeBetweenRotateAndCountdown;
+    
+    public List<ParticleSystem> portalFlash;
 
     private List<God.Type> cameraIndex;
 
@@ -132,6 +135,19 @@ public class StartRace : MonoBehaviour
         if (playersNumber > 2)
             globalMinimapCanvas.enabled = true;
 
+        for (int i = 0; i < portalFlash.Count; i++)
+        {
+            portalFlash[i].Play();
+        }
+
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            portalFlash[0].Play();
+        }
     }
 
     private void SetCameraAndControl()

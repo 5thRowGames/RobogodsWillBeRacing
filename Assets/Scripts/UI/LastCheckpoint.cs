@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class LastCheckpoint : Checkpoint
 {
@@ -7,23 +9,19 @@ public class LastCheckpoint : Checkpoint
         switch (other.tag)
         {
             case "Anubis":
-                MinimapControl.Instance.Reset(0);
-                LapsManager.Instance.godRaceInfoList[0].UpdateCurrentLap();
+                LapsManager.Instance.godRaceInfoList[0].CanAddLap = true;
                 break;
             
             case "Poseidon":
-                MinimapControl.Instance.Reset(1);
-                LapsManager.Instance.godRaceInfoList[1].UpdateCurrentLap();
+                LapsManager.Instance.godRaceInfoList[1].CanAddLap = true;
                 break;
             
             case "Kali":
-                MinimapControl.Instance.Reset(2);
-                LapsManager.Instance.godRaceInfoList[2].UpdateCurrentLap();
+                LapsManager.Instance.godRaceInfoList[2].CanAddLap = true;
                 break;
             
             case "Thor":
-                MinimapControl.Instance.Reset(3);
-                LapsManager.Instance.godRaceInfoList[3].UpdateCurrentLap();
+                LapsManager.Instance.godRaceInfoList[3].CanAddLap = true;
                 break;
         }
     }

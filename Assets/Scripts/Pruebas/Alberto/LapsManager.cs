@@ -15,23 +15,37 @@ public class LapsManager : Singleton<LapsManager>
         public int currentCheckPoint;
         public float distanceToNextCheckPoint;
 
+        private bool canAddLap;
+
+        public bool CanAddLap
+        {
+            set => canAddLap = value;
+        }
+
         public GodRaceInfo(GameObject god)
         {
             this.god = god;
+            canAddLap = false;
         }
+        
 
         public void UpdateCurrentLap()
         {
-            currentLap++;
+            if (canAddLap)
+            {
+                canAddLap = false;
+                
+                currentLap++;
 
-            TimeTrial.Instance.ResetAndSaveTime(godType);
-            if (currentLap == 1)
-            {
-                Instance.UpdatePlayersFinished();
-            }
-            else
-            {
-                HUDManager.Instance.UpdateLapText(godType,currentLap);
+                TimeTrial.Instance.ResetAndSaveTime(godType);
+                if (currentLap == 1)
+                {
+                    Instance.UpdatePlayersFinished();
+                }
+                else
+                {
+                    HUDManager.Instance.UpdateLapText(godType,currentLap);
+                }
             }
         }
 

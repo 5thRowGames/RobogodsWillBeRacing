@@ -8,9 +8,9 @@ using UnityEngine.UI;
 
 public class AwakeRace : MonoBehaviour
 {
-    public PositionUIManager positionUIManager;
     public StartRace startRace;
     public Image fade;
+    
 
     public List<Transform> path1List;
     public List<Transform> path2List;
@@ -35,7 +35,6 @@ public class AwakeRace : MonoBehaviour
 
     private void Start()
     {
-
         startRace.SetCameraParent();
         mainCamera.transform.position = path1[0];
         ShowMap();

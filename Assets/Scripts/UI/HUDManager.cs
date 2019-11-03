@@ -290,24 +290,31 @@ public class HUDManager : Singleton<HUDManager>
     private void DisableOrEnableUI(God.Type god, bool enabled)
     {
         hudDictionary[god].racePositionImage.enabled = enabled;
-        hudDictionary[god].manaBar.enabled = enabled;
-        hudDictionary[god].mainSkillIcon.enabled = enabled;
-        hudDictionary[god].secondarySkillTime.enabled = enabled;
-        hudDictionary[god].secondarySkillIcon.enabled = enabled;
         hudDictionary[god].turbo.SetActive(enabled);
         hudDictionary[god].laps.SetActive(enabled);
 
-        if(StoreGodInfo.Instance.players == 1)
+        if (StoreGodInfo.Instance.players == 1)
+        {
             hudDictionary[god].timeTrial.enabled = enabled;
+            hudDictionary[god].minimap.SetActive(enabled);
+        }
         else
         {
-            hudDictionary[god].racePositionImage.enabled = enabled;
-            hudDictionary[god].minimap.SetActive(enabled);
+            if (StoreGodInfo.Instance.players == 2)
+            {
+                hudDictionary[god].racePositionImage.enabled = enabled;
+            }
+
         }
     }
 
     public void SetCamera(God.Type god, Camera camera)
     {
         hudDictionary[god].mainCamera = camera;
+    }
+
+    public void UpdateTurboUI(God.Type god, float turbo)
+    {
+        hudDictionary[god].turboBar.fillAmount = turbo;
     }
 }

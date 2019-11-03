@@ -279,7 +279,9 @@ public class MyCarController : MonoBehaviour, IControllable
 
         CameraPostProcessManager.Instance.speed[(int) god] = rb.velocity.magnitude; //Borrar, solo era para pruebas
 
-        speedUnderThreshold = rb.velocity.magnitude < speedThreshold ? true : false;
+        speedUnderThreshold = rb.velocity.magnitude < speedThreshold;
+        
+        HUDManager.Instance.UpdateTurboUI(god,turbo);
     }
 
     public void Move()

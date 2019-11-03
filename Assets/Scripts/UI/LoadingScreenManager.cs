@@ -35,7 +35,6 @@ public class LoadingScreenManager : MonoBehaviour
         sequence.Append(fade.DOFade(1, fadeDuration)).OnComplete(() =>
         {
             asyncLoadNextScene.allowSceneActivation = true;
-            gameObject.SetActive(false);
 
         });
 

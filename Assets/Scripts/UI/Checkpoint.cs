@@ -14,16 +14,8 @@ public class Checkpoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     { 
-        /*MinimapControl.Instance.UpdateMinimapControl(other.tag, index);
+        MinimapControl.Instance.UpdateMinimapControl(other.tag, index);
         LapsManager.Instance.UpdateCheckPoint(other.tag, index);
-        
-        if(
-
-        if (exitPortal && other.CompareTag("Dagger"))
-        {
-            other.GetComponent<DaggerBehaviourAlone>().SetClosestCheckpointIndex(index);
-            other.transform.position = LapsManager.Instance.checkPoints[index + 1].transform.position;
-        }*/
     }
     
     

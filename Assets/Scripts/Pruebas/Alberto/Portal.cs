@@ -17,7 +17,7 @@ public class Portal : MonoBehaviour
     public Queue<Collider> carColliders; // Colliders de los coches que están esperando para ser teletransportados
 
     private bool isFirstCar = true;
-    public God.Type godReligion;
+    public God.Type fromAreaReligion;
 
     private Color portalColor;
 
@@ -29,30 +29,30 @@ public class Portal : MonoBehaviour
         {
             isFirstCar = false;
             
-            switch (godReligion)
+            switch (fromAreaReligion)
             {
                 case God.Type.Anubis:
-                    portalColor = new Color(0, 0.03584905f, 0.2169811f, 0.5f);
+                    portalColor = new Color(0, 0.03584905f, 0.2169811f, 0.35f);
                     SoundManager.Instance.PlayLoop(SoundManager.Music.Egipto);
                     break;
                 
                 case God.Type.Poseidon:
-                    portalColor = new Color(0, 0.03584905f, 0.2169811f, 0.5f);
+                    portalColor = new Color(0, 0.03584905f, 0.2169811f, 0.35f);
                     SoundManager.Instance.PlayLoop(SoundManager.Music.Griega);
                     break;
                 
                 case God.Type.Kali:
-                    portalColor = new Color(0, 0.03584905f, 0.2169811f, 0.5f);
+                    portalColor = new Color(0, 0.03584905f, 0.2169811f, 0.35f);
                     SoundManager.Instance.PlayLoop(SoundManager.Music.India);
                     break;
                 
                 case God.Type.Thor:
-                    portalColor = new Color(0, 0.03584905f, 0.2169811f, 0.5f);
+                    portalColor = new Color(0, 0.03584905f, 0.2169811f, 0.35f);
                     SoundManager.Instance.PlayLoop(SoundManager.Music.Nordica);
                     break;
                 
                 case God.Type.None:
-                    portalColor = new Color(0, 0.03584905f, 0.2169811f, 0.5f);
+                    portalColor = new Color(0, 0.1629f, 1, 0.35f);
                     SoundManager.Instance.PlayLoop(SoundManager.Music.Limbo);
                     break;
             }

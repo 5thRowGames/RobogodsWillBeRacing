@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1000333687
+--- !u!1 &105775872
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1000333686}
-  - component: {fileID: 1000333689}
-  - component: {fileID: 1101449587}
+  - component: {fileID: 105775873}
+  - component: {fileID: 105775875}
+  - component: {fileID: 105775874}
   m_Layer: 0
   m_Name: Checkpoint
   m_TagString: Untagged
@@ -18,40 +18,40 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1000333686
+--- !u!4 &105775873
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000333687}
+  m_GameObject: {fileID: 105775872}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: -21.3, z: -148.1}
+  m_LocalPosition: {x: -0, y: -21.3, z: -130}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7419882921492794808}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1000333689
+--- !u!65 &105775875
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000333687}
+  m_GameObject: {fileID: 105775872}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 250, y: 150, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1101449587
+--- !u!114 &105775874
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000333687}
+  m_GameObject: {fileID: 105775872}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 93cb6c5cdca055442a77225d398c6572, type: 3}
@@ -116,7 +116,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 53cc04f485dd437499dd9665bee056c4, type: 2}
+  - {fileID: 2100000, guid: af6bd20f71a8d4845b7757e6b2a760d1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -193,7 +193,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f78a761cf6915734b934e32fe2f3e470, type: 2}
+  - {fileID: 2100000, guid: ee53ba17c5446224a9081ce88470aba2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -270,7 +270,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31a1882f0a59cea42890f8ed2bf15f09, type: 2}
+  - {fileID: 2100000, guid: af6bd20f71a8d4845b7757e6b2a760d1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -376,7 +376,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7419882921492794808}
-  - component: {fileID: 4}
   m_Layer: 0
   m_Name: LimboRecta
   m_TagString: Untagged
@@ -402,24 +401,10 @@ Transform:
   - {fileID: 7419882921492794802}
   - {fileID: 7419882921492794812}
   - {fileID: 7419882921492794814}
-  - {fileID: 1000333686}
+  - {fileID: 105775873}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7419882921493221784}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93cb6c5cdca055442a77225d398c6572, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  index: 0
-  exitPortal: 0
 --- !u!1 &7419882921493221788
 GameObject:
   m_ObjectHideFlags: 0
@@ -477,7 +462,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5fb1c933e3824e249a1e270dcf04a54f, type: 2}
+  - {fileID: 2100000, guid: ee53ba17c5446224a9081ce88470aba2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -716,6 +716,7 @@
 						</RandomSequenceContainer>
 						<RandomSequenceContainer Name="Impactos" ID="{E8D4391A-EC70-4CCC-840F-CB55A9CD2F88}" ShortID="901091049">
 							<PropertyList>
+								<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
 								<Property Name="MaxReachedBehavior" Type="int16" Value="1"/>
 								<Property Name="MaxSoundPerInstance" Type="int16">
 									<ValueList>
@@ -1242,316 +1243,120 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<RandomSequenceContainer Name="Nave_2_Acelerar_shoots" ID="{D526F91C-8610-484B-AFCE-D16B3DAA68F5}" ShortID="459760130">
-									<PropertyList>
-										<Property Name="Volume" Type="Real64">
-											<ValueList>
-												<Value>-4</Value>
-											</ValueList>
-										</Property>
-									</PropertyList>
+								<Sound Name="Robo_Gods_Aceleracion_Shoot_SFX_Start_1" ID="{B62F1550-0B43-4C21-993F-8BE62617ED04}" ShortID="498203757">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
 										</Reference>
 										<Reference Name="OutputBus">
-											<ObjectRef Name="SFX_BUS" ID="{06504896-303E-4D3A-BC83-BAE0A55A7391}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<Sound Name="Robo_Gods_Coche_2_Aceleracion_SFX_Start_1" ID="{3F454213-0246-45D6-805E-1BCE1C2DC2C8}" ShortID="1032869043">
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="Robo_Gods_Coche_2_Aceleracion_SFX_Start_1" ID="{17DF60EA-B3F0-40FB-B148-972AAABA33FE}" ShortID="561325424">
-													<Language>SFX</Language>
-													<AudioFile>Robo_Gods_Coche_2_Aceleracion_SFX_Start_1.wav</AudioFile>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="Robo_Gods_Coche_2_Aceleracion_SFX_Start_1" ID="{17DF60EA-B3F0-40FB-B148-972AAABA33FE}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="Robo_Gods_Coche_2_Aceleracion_SFX_Start_2" ID="{69F0C01D-146A-44ED-A8CA-50A533F6AC45}" ShortID="97425221">
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="Robo_Gods_Coche_2_Aceleracion_SFX_Start_2" ID="{74141234-47F4-48D5-9524-69E1822E29A6}" ShortID="984928614">
-													<Language>SFX</Language>
-													<AudioFile>Robo_Gods_Coche_2_Aceleracion_SFX_Start_2.wav</AudioFile>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="Robo_Gods_Coche_2_Aceleracion_SFX_Start_2" ID="{74141234-47F4-48D5-9524-69E1822E29A6}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="Robo_Gods_Coche_2_Aceleracion_SFX_Start_3" ID="{B4D88700-A401-430B-8E99-4599B6F19D6E}" ShortID="873751594">
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="Robo_Gods_Coche_2_Aceleracion_SFX_Start_3" ID="{66937ADD-6F67-4C6F-A212-9CD9E82EBE96}" ShortID="1048187987">
-													<Language>SFX</Language>
-													<AudioFile>Robo_Gods_Coche_2_Aceleracion_SFX_Start_3.wav</AudioFile>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="Robo_Gods_Coche_2_Aceleracion_SFX_Start_3" ID="{66937ADD-6F67-4C6F-A212-9CD9E82EBE96}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
+										<AudioFileSource Name="Robo_Gods_Aceleracion_Shoot_SFX_Start_1" ID="{2877DE1B-77C5-4D24-93E4-ED0F425FB8B7}" ShortID="904732890">
+											<Language>SFX</Language>
+											<AudioFile>Robo_Gods_Aceleracion_Shoot_SFX_Start_1.wav</AudioFile>
+										</AudioFileSource>
 									</ChildrenList>
-								</RandomSequenceContainer>
-								<RandomSequenceContainer Name="Nave_3_Acelerar_Shoots" ID="{8A51CB1C-C41F-40D8-BA9A-019F2F30CFCE}" ShortID="1057212624">
-									<PropertyList>
-										<Property Name="Volume" Type="Real64">
-											<ValueList>
-												<Value>-2</Value>
-											</ValueList>
-										</Property>
-									</PropertyList>
+									<ActiveSourceList>
+										<ActiveSource Name="Robo_Gods_Aceleracion_Shoot_SFX_Start_1" ID="{2877DE1B-77C5-4D24-93E4-ED0F425FB8B7}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Robo_Gods_Aceleracion_Shoot_SFX_Start_2" ID="{3551E82D-F30F-407C-AF43-3C4AA20A603A}" ShortID="818225671">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
 										</Reference>
 										<Reference Name="OutputBus">
-											<ObjectRef Name="SFX_BUS" ID="{06504896-303E-4D3A-BC83-BAE0A55A7391}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<Sound Name="Robo_Gods_Coche_3_Aceleracion_SFX_Start_1" ID="{1788D8B0-FA44-42F6-930D-A4DBE177E6C1}" ShortID="643530261">
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="Robo_Gods_Coche_3_Aceleracion_SFX_Start_1" ID="{FA119D00-87E2-43FD-B561-D92C48B51C5C}" ShortID="930814480">
-													<Language>SFX</Language>
-													<AudioFile>Robo_Gods_Coche_3_Aceleracion_SFX_Start_1.wav</AudioFile>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="Robo_Gods_Coche_3_Aceleracion_SFX_Start_1" ID="{FA119D00-87E2-43FD-B561-D92C48B51C5C}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="Robo_Gods_Coche_3_Aceleracion_SFX_Start_2" ID="{EFB980E6-16A9-4874-AAFB-0767DA005E13}" ShortID="285126537">
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="Robo_Gods_Coche_3_Aceleracion_SFX_Start_2" ID="{B08C29D8-29C3-463A-B21B-F186F0CD96F4}" ShortID="126961041">
-													<Language>SFX</Language>
-													<AudioFile>Robo_Gods_Coche_3_Aceleracion_SFX_Start_2.wav</AudioFile>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="Robo_Gods_Coche_3_Aceleracion_SFX_Start_2" ID="{B08C29D8-29C3-463A-B21B-F186F0CD96F4}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="Robo_Gods_Coche_3_Aceleracion_SFX_Start_3" ID="{2BED2CB1-54B9-455D-A808-0AB518A97704}" ShortID="965305950">
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="Robo_Gods_Coche_3_Aceleracion_SFX_Start_3" ID="{FCB76E69-5104-4C44-8AAF-F132C058C58B}" ShortID="830798216">
-													<Language>SFX</Language>
-													<AudioFile>Robo_Gods_Coche_3_Aceleracion_SFX_Start_3.wav</AudioFile>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="Robo_Gods_Coche_3_Aceleracion_SFX_Start_3" ID="{FCB76E69-5104-4C44-8AAF-F132C058C58B}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
+										<AudioFileSource Name="Robo_Gods_Aceleracion_Shoot_SFX_Start_2" ID="{FFE9B143-18BC-46B2-B971-1F081DD20E96}" ShortID="785094209">
+											<Language>SFX</Language>
+											<AudioFile>Robo_Gods_Aceleracion_Shoot_SFX_Start_2.wav</AudioFile>
+										</AudioFileSource>
 									</ChildrenList>
-								</RandomSequenceContainer>
-								<RandomSequenceContainer Name="Nave_4_Acelerar_Shoots" ID="{09B99A9E-BEAA-4099-AA62-94F71E9889E6}" ShortID="684019882">
-									<PropertyList>
-										<Property Name="Volume" Type="Real64">
-											<ValueList>
-												<Value>-5</Value>
-											</ValueList>
-										</Property>
-									</PropertyList>
+									<ActiveSourceList>
+										<ActiveSource Name="Robo_Gods_Aceleracion_Shoot_SFX_Start_2" ID="{FFE9B143-18BC-46B2-B971-1F081DD20E96}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Robo_Gods_Aceleracion_Shoot_SFX_Start_3" ID="{79FF5489-FC26-4430-B8A5-487DA5BA3A5E}" ShortID="1041499534">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
 										</Reference>
 										<Reference Name="OutputBus">
-											<ObjectRef Name="SFX_BUS" ID="{06504896-303E-4D3A-BC83-BAE0A55A7391}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<Sound Name="Robo_Gods_Coche_4_Aceleracion_SFX_Start_1" ID="{B0A3CCB5-3D90-478A-AE84-3DFF39513DE5}" ShortID="720552000">
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="Robo_Gods_Coche_4_Aceleracion_SFX_Start_1" ID="{9329D96B-2E42-4952-83F9-C11759C3A70E}" ShortID="2491906">
-													<Language>SFX</Language>
-													<AudioFile>Robo_Gods_Coche_4_Aceleracion_SFX_Start_1.wav</AudioFile>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="Robo_Gods_Coche_4_Aceleracion_SFX_Start_1" ID="{9329D96B-2E42-4952-83F9-C11759C3A70E}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="Robo_Gods_Coche_4_Aceleracion_SFX_Start_2" ID="{3619F66D-2AB6-4B83-ABE7-059EF4061238}" ShortID="865804107">
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="Robo_Gods_Coche_4_Aceleracion_SFX_Start_2" ID="{B17A3578-D7FD-424F-820C-12F1A2592997}" ShortID="632240569">
-													<Language>SFX</Language>
-													<AudioFile>Robo_Gods_Coche_4_Aceleracion_SFX_Start_2.wav</AudioFile>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="Robo_Gods_Coche_4_Aceleracion_SFX_Start_2" ID="{B17A3578-D7FD-424F-820C-12F1A2592997}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="Robo_Gods_Coche_4_Aceleracion_SFX_Start_3" ID="{E0BCF7E6-593F-4BB2-915B-C6C2650E8B70}" ShortID="618995590">
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="Robo_Gods_Coche_4_Aceleracion_SFX_Start_3" ID="{B178E877-31B1-447B-8485-9E83AE0204C8}" ShortID="1063212279">
-													<Language>SFX</Language>
-													<AudioFile>Robo_Gods_Coche_4_Aceleracion_SFX_Start_3.wav</AudioFile>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="Robo_Gods_Coche_4_Aceleracion_SFX_Start_3" ID="{B178E877-31B1-447B-8485-9E83AE0204C8}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
+										<AudioFileSource Name="Robo_Gods_Aceleracion_Shoot_SFX_Start_3" ID="{115339ED-7D85-4774-9F8E-76CDF2D5A32B}" ShortID="544693230">
+											<Language>SFX</Language>
+											<AudioFile>Robo_Gods_Aceleracion_Shoot_SFX_Start_3.wav</AudioFile>
+										</AudioFileSource>
 									</ChildrenList>
-								</RandomSequenceContainer>
-								<RandomSequenceContainer Name="Nave_1_Acelerar_Shoots" ID="{597EF449-FC26-492F-A765-7CBA06BEF7CB}" ShortID="595253146">
-									<PropertyList>
-										<Property Name="GlobalOrPerObject" Type="int16" Value="0"/>
-										<Property Name="Inclusion" Type="bool">
-											<ValueList>
-												<Value>False</Value>
-											</ValueList>
-										</Property>
-										<Property Name="Volume" Type="Real64">
-											<ValueList>
-												<Value>-6</Value>
-											</ValueList>
-										</Property>
-									</PropertyList>
+									<ActiveSourceList>
+										<ActiveSource Name="Robo_Gods_Aceleracion_Shoot_SFX_Start_3" ID="{115339ED-7D85-4774-9F8E-76CDF2D5A32B}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Robo_Gods_Aceleracion_Shoot_SFX_Start_4" ID="{3B7EDDCA-190E-4EBC-9AE5-9348532E9478}" ShortID="726200639">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
 										</Reference>
 										<Reference Name="OutputBus">
-											<ObjectRef Name="SFX_BUS" ID="{06504896-303E-4D3A-BC83-BAE0A55A7391}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<Sound Name="Robo_Gods_Coche_1_Aceleracion_SFX_Start_1" ID="{4657265D-6E8B-4D2A-8DFB-C277DA161470}" ShortID="594934300">
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="Robo_Gods_Coche_1_Aceleracion_SFX_Start_1" ID="{31A5EF26-E668-41F6-A29A-2D7BA5BAE5C6}" ShortID="568231466">
-													<Language>SFX</Language>
-													<AudioFile>Robo_Gods_Coche_1_Aceleracion_SFX_Start_1.wav</AudioFile>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="Robo_Gods_Coche_1_Aceleracion_SFX_Start_1" ID="{31A5EF26-E668-41F6-A29A-2D7BA5BAE5C6}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="Robo_Gods_Coche_1_Aceleracion_SFX_Start_2" ID="{62862AB6-935B-4D5F-8157-A7DE115E9798}" ShortID="119573240">
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="Robo_Gods_Coche_1_Aceleracion_SFX_Start_2" ID="{C4DD76DB-DD66-4E40-9785-445A2A288D87}" ShortID="789879506">
-													<Language>SFX</Language>
-													<AudioFile>Robo_Gods_Coche_1_Aceleracion_SFX_Start_2.wav</AudioFile>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="Robo_Gods_Coche_1_Aceleracion_SFX_Start_2" ID="{C4DD76DB-DD66-4E40-9785-445A2A288D87}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="Robo_Gods_Coche_1_Aceleracion_SFX_Start_3" ID="{4E3A41AE-9496-4A6E-A7C6-10DF2EF62819}" ShortID="132628716">
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="Robo_Gods_Coche_1_Aceleracion_SFX_Start_3" ID="{0B948A70-6484-4D17-A02C-F24C2FF26BCD}" ShortID="975519489">
-													<Language>SFX</Language>
-													<AudioFile>Robo_Gods_Coche_1_Aceleracion_SFX_Start_3.wav</AudioFile>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="Robo_Gods_Coche_1_Aceleracion_SFX_Start_3" ID="{0B948A70-6484-4D17-A02C-F24C2FF26BCD}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
+										<AudioFileSource Name="Robo_Gods_Aceleracion_Shoot_SFX_Start_4" ID="{5A6D3617-6D3F-4AD0-B463-7AF26F58F0BB}" ShortID="917642688">
+											<Language>SFX</Language>
+											<AudioFile>Robo_Gods_Aceleracion_Shoot_SFX_Start_4.wav</AudioFile>
+										</AudioFileSource>
 									</ChildrenList>
-								</RandomSequenceContainer>
+									<ActiveSourceList>
+										<ActiveSource Name="Robo_Gods_Aceleracion_Shoot_SFX_Start_4" ID="{5A6D3617-6D3F-4AD0-B463-7AF26F58F0BB}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Robo_Gods_Aceleracion_Shoot_SFX_Start_5" ID="{337157E2-66FB-4BA1-BB25-1FFAEE25872D}" ShortID="391243742">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Robo_Gods_Aceleracion_Shoot_SFX_Start_5" ID="{7852065E-4EED-4442-B6B7-1AB7F8D7A7D6}" ShortID="780548940">
+											<Language>SFX</Language>
+											<AudioFile>Robo_Gods_Aceleracion_Shoot_SFX_Start_5.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Robo_Gods_Aceleracion_Shoot_SFX_Start_5" ID="{7852065E-4EED-4442-B6B7-1AB7F8D7A7D6}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Robo_Gods_Aceleracion_Shoot_SFX_Start_6" ID="{149D4E8B-7A67-4482-875F-B1825331D436}" ShortID="262587744">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Robo_Gods_Aceleracion_Shoot_SFX_Start_6" ID="{A189A512-DE9D-4EE4-844A-C2C349C5F303}" ShortID="676725737">
+											<Language>SFX</Language>
+											<AudioFile>Robo_Gods_Aceleracion_Shoot_SFX_Start_6.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Robo_Gods_Aceleracion_Shoot_SFX_Start_6" ID="{A189A512-DE9D-4EE4-844A-C2C349C5F303}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
 							</ChildrenList>
 						</RandomSequenceContainer>
 					</ChildrenList>

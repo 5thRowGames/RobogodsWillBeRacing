@@ -773,11 +773,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e02c871179d1f24fa7fbaf675f45db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  godsLayer:
+    serializedVersion: 2
+    m_Bits: 246272
   frontalForce: 10
   maxAngle: 15
   maxFrontalAngle: 35
   maxSpeed: 30
   reductionSpeedFactor: 0.8
+  myCarController: {fileID: 551719142430012554}
+  force: 50
+  distance: 0.3
 --- !u!114 &8584054329157395999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -797,10 +803,14 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 1024
-  maxHeightAllowed: 3
-  timeToMaxHeight: 1
+  inclinationLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  pushToTheGroundForce: 40
+  angle: 150
   myCarController: {fileID: 551719142430012554}
   rb: {fileID: 551719142430012553}
+  carHelper: {fileID: 8696988089105519588}
 --- !u!114 &551719142430012556
 MonoBehaviour:
   m_ObjectHideFlags: 0

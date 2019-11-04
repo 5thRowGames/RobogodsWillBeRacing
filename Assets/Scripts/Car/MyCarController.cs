@@ -43,7 +43,7 @@ public class MyCarController : MonoBehaviour, IControllable
     [SerializeField] [Tooltip("Velocidad angular máxima")] private float maxAngularSpeed = 20f;
     [SerializeField] [Tooltip("Fuerza del freno")] private float brakeForce = 20f;
     [SerializeField] [Tooltip("Tiempo necesario para pasar de frenar a ir marcha atrás")] private float brakeToReverseTime = 0.5f;
-    [Tooltip("Cronómetro para pasar de frenar a ir marcha atrás")] private float brakeToReverseTimer;
+    [SerializeField][Tooltip("Cronómetro para pasar de frenar a ir marcha atrás")] private float brakeToReverseTimer;
     [SerializeField] [Tooltip("El coche va marcha atrás")] private bool isGoingBackwards = false;
     public bool IsGoingBackwards { get { isGoingBackwards = velocity.z < 0f; return isGoingBackwards; } }
     [SerializeField] [Tooltip("Indica si la velocidad del coche está por debajo del umbral")] private bool speedUnderThreshold;
@@ -80,6 +80,7 @@ public class MyCarController : MonoBehaviour, IControllable
 
     [Header("*Input Info*")]
     [SerializeField] private float accelerationInput;
+    public float AccelerationInput{ get { return accelerationInput; } }
     [SerializeField] private float steeringInput;
     [SerializeField] private float brakeInput;
     [SerializeField] private float handBrakeInput;
@@ -287,7 +288,7 @@ public class MyCarController : MonoBehaviour, IControllable
             rb.drag = groundDrag;
             rb.angularDrag = groundAngularDrag;
             Accelerate();
-            Brake();
+            //Brake();
             HandBrake();
             Jump();
         }
@@ -298,8 +299,8 @@ public class MyCarController : MonoBehaviour, IControllable
             //Brake();
             if (helper != null)
                 rb.AddForce(-helper.transform.up * (downForce + additiveDownForce), ForceMode.Impulse);
-            //if (jumpInput)
-            //    Accelerate();
+            Debug.Log($"Not grounded: y = {transform.position.y}");
+            Accelerate();
         }
 
         Steering(); // Según el coche esté en el suelo o en el aire, el giro será normal o lateral

@@ -6,6 +6,7 @@ public class MyCarCollisionsController : MonoBehaviour
 {
     private Rigidbody rb; // Rigidbody de este coche
     private int portalLayer; // Layer de los portales
+    public LayerMask godsLayer; // Layers de los dioses
     private RigidbodyConstraints priorConstraints; // Restricciones del rigidbody antes de chocar con otro coche
     private Vector3 myVelocity;
     private float collisionAngle;
@@ -49,9 +50,9 @@ public class MyCarCollisionsController : MonoBehaviour
         //for(int i = 0; i < numberOfCorners; i++)
         //{
         //    if (i % 2 == 0) // par - izquierda
-        //        Suspension(corners[i], -transform.right, hitList[i]);
+        //        LateralSuspension(corners[i], -transform.right, hitList[i]);
         //    else // impar - derecha
-        //        Suspension(corners[i], transform.right, hitList[i]);
+        //        LateralSuspension(corners[i], transform.right, hitList[i]);
         //}
     }
 
@@ -66,7 +67,8 @@ public class MyCarCollisionsController : MonoBehaviour
         {
             //Debug.Log(collision.gameObject.name);
             priorConstraints = rb.constraints; // Guardo las restricciones previas al choque
-            //rb.constraints = RigidbodyConstraints.FreezeRotation; // Congelo la rotación para evitar que el coche cambie su dirección
+            if(otherLayer == godsLayer)
+                rb.constraints = RigidbodyConstraints.FreezeRotation; // Congelo la rotación para evitar que el coche cambie su dirección
             //Debug.Log($"Restricciones al colisionar: {rb.constraints.ToString()}");
             CheckFrontCollision(collision);
         }
@@ -108,7 +110,7 @@ public class MyCarCollisionsController : MonoBehaviour
         }
     }
 
-    private void Suspension(Transform corner, Vector3 direction, RaycastHit hit) //, int index)
+    private void LateralSuspension(Transform corner, Vector3 direction, RaycastHit hit) //, int index)
     {
         if (Physics.Raycast(corner.position, direction, out hit, distance, myCarController.layerMask))
         {

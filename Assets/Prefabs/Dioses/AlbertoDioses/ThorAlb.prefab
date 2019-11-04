@@ -197,7 +197,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1861443327679592615}
   m_Material: {fileID: 13400000, guid: 6667dca808adca94eb261550203ba334, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.19
   m_Height: 1.28
   m_Direction: 0
@@ -224,7 +224,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1861443327679592615}
   m_Material: {fileID: 13400000, guid: 6667dca808adca94eb261550203ba334, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.19
   m_Height: 1.28
   m_Direction: 0
@@ -344,11 +344,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e02c871179d1f24fa7fbaf675f45db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  godsLayer:
+    serializedVersion: 2
+    m_Bits: 246272
   frontalForce: 10
   maxAngle: 15
   maxFrontalAngle: 35
   maxSpeed: 30
   reductionSpeedFactor: 0.8
+  myCarController: {fileID: 1861443327679592608}
+  force: 50
+  distance: 0.3
 --- !u!114 &5801939578819351298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,10 +374,14 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 1024
-  maxHeightAllowed: 3
-  timeToMaxHeight: 1
+  inclinationLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  pushToTheGroundForce: 40
+  angle: 150
   myCarController: {fileID: 1861443327679592608}
   rb: {fileID: 1861443327679592611}
+  carHelper: {fileID: 7407539500139552718}
 --- !u!114 &1861443327679592614
 MonoBehaviour:
   m_ObjectHideFlags: 0

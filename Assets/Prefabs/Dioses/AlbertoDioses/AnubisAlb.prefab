@@ -638,7 +638,7 @@ BoxCollider:
   m_GameObject: {fileID: 5260619960850091002}
   m_Material: {fileID: 13400000, guid: 6667dca808adca94eb261550203ba334, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -689,6 +689,7 @@ MonoBehaviour:
   turboRechargeMultiplier: 0.04
   turboConsumeMultiplier: 0.07
   turbo: 0
+  ownCamera: {fileID: 0}
   speedForce: 200
   instantSpeedForce: 10
   alwaysAccelerate: 0
@@ -699,6 +700,8 @@ MonoBehaviour:
   carUnderControl: 0
   deaccelerationTime: 2
   turnSpeed: 40
+  originalTurnSpeed: 35
+  boostTurnSpeed: 50
   speedThreshold: 15
   steeringThreshold: 0.2
   steeringReductionFactor: 0.9
@@ -707,6 +710,7 @@ MonoBehaviour:
   maxAngularSpeed: 35
   brakeForce: 50
   brakeToReverseTime: 0.5
+  brakeToReverseTimer: 0
   isGoingBackwards: 0
   speedUnderThreshold: 0
   handBrakeForce: 50
@@ -757,7 +761,6 @@ MonoBehaviour:
   neededCornersToBeGrounded: 0
   IsBeingTeleported: 0
   helper: {fileID: 3898015896612793491}
-  pruebaSonido: 0
   startingPositions: []
 --- !u!114 &678410904188480926
 MonoBehaviour:
@@ -1409,14 +1412,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5260619960850090994}
     m_Modifications:
-    - target: {fileID: 100000, guid: 9447ce042706efc469d24b3e7771ec4f, type: 3}
-      propertyPath: m_Name
-      value: Chariot
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 9447ce042706efc469d24b3e7771ec4f, type: 3}
-      propertyPath: m_Layer
-      value: 14
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9447ce042706efc469d24b3e7771ec4f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1473,14 +1468,22 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.4600015
       objectReference: {fileID: 0}
-    - target: {fileID: 9500000, guid: 9447ce042706efc469d24b3e7771ec4f, type: 3}
-      propertyPath: m_Enabled
-      value: 0
+    - target: {fileID: 100000, guid: 9447ce042706efc469d24b3e7771ec4f, type: 3}
+      propertyPath: m_Name
+      value: Chariot
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 9447ce042706efc469d24b3e7771ec4f, type: 3}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 9447ce042706efc469d24b3e7771ec4f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: c755766124c4ba74daf446816bda5022, type: 2}
+    - target: {fileID: 9500000, guid: 9447ce042706efc469d24b3e7771ec4f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9447ce042706efc469d24b3e7771ec4f, type: 3}
 --- !u!4 &6299741738391875788 stripped
@@ -1566,15 +1569,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6740845567252182291, guid: 09a25234303692f468e81cfb9799bc24,
-        type: 3}
-      propertyPath: maxDistance
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 3329758394546415846, guid: 09a25234303692f468e81cfb9799bc24,
         type: 3}
       propertyPath: m_Layer
       value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 6740845567252182291, guid: 09a25234303692f468e81cfb9799bc24,
+        type: 3}
+      propertyPath: maxDistance
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09a25234303692f468e81cfb9799bc24, type: 3}

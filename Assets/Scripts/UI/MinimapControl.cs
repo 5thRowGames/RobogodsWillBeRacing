@@ -136,7 +136,7 @@ public class MinimapControl : Singleton<MinimapControl>
         }
         else
         {
-            if(!LapsManager.Instance.checkPoints[lastCheckpointList[id]].exitPortal)
+            if(!LapsManager.Instance.checkPoints[lastCheckpointList[id]].exitPortal && id != 0)
                 currentAmountList[id] += (LapsManager.Instance.checkPoints[lastCheckpointList[id]].transform.position - LapsManager.Instance.checkPoints[lastCheckpointList[id] - 1].transform.position).magnitude;
         }
     }

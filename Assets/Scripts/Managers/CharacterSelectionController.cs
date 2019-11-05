@@ -26,7 +26,12 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
         confirmed = false;
         canChooseGod = false;
     }
-    
+
+    private void OnDisable()
+    {
+        DisconnectCharacterSelection();
+    }
+
     public void Control(IDevice controller)
     {
         if (confirm)
@@ -235,11 +240,6 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
     {
         yield return new WaitForSeconds(0.2f);
         canChooseGod = true;
-    }
-
-    public void ConnectCharacterSelection()
-    {
-        Core.Input.AssignControllable(GetComponent<IncontrolProvider>(),this);
     }
 
     public void DisconnectCharacterSelection()

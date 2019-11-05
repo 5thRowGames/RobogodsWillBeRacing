@@ -40,7 +40,7 @@ public class MinimapControl : Singleton<MinimapControl>
 
     private List<int> godsPlayingIndex;
 
-    private void Awake()
+    private void Start()
     {
         godsPlayingIndex = new List<int>();
         
@@ -87,7 +87,7 @@ public class MinimapControl : Singleton<MinimapControl>
     }
 
     /// <summary>
-    /// Calcula la distancia actual que lleva ell jugador y su porcentaje de pista recorrido
+    /// Calcula la distancia actual que lleva el jugador y su porcentaje de pista recorrido
     /// </summary>
     /// <param name="id"></param>
     private void CalculateDistance(int id)
@@ -131,8 +131,7 @@ public class MinimapControl : Singleton<MinimapControl>
                     amount += (LapsManager.Instance.checkPoints[i].transform.position - LapsManager.Instance.checkPoints[i + 1].transform.position).magnitude;
                 }
             }
-
-            Debug.Log(amount);
+            
             currentAmountList[id] = amount;
         }
         else

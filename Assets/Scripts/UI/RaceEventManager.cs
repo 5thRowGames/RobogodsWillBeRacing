@@ -8,7 +8,7 @@ public class RaceEventManager : SingletonDontDestroy<RaceEventManager>
 {
     public GameObject positionUIManager;
     public InControlInputModule inControlInputModule;
-    
+
     [Header("Carrera")]
     public OpenPauseMenu openPauseMenu;
     public GameObject pauseMenu;
@@ -57,6 +57,17 @@ public class RaceEventManager : SingletonDontDestroy<RaceEventManager>
 
                 if (!countdown)
                 {
+                    if (StoreGodInfo.Instance.players > 1)
+                    {
+                        positionUIManager.GetComponent<PositionUIManager>().enabled = true;
+                        positionUIManager.GetComponent<TimeTrial>().enabled = false;
+                    }
+                    else
+                    {
+                        positionUIManager.GetComponent<PositionUIManager>().enabled = false;
+                        positionUIManager.GetComponent<TimeTrial>().enabled = true;
+                    }
+                    
                     positionUIManager.SetActive(true);
                     ConnectDisconnectManager.ConnectCarControllerDelegate();
                     ConnectDisconnectManager.ConnectItemManagerDelegate();

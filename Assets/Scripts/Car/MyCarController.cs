@@ -20,6 +20,8 @@ public class MyCarController : MonoBehaviour, IControllable
         set => turbo = Mathf.Clamp(value, 0, 1);
     }
 
+    public RacingCamera ownCamera;
+
     #region Members
 
     [Header("*Car Specs*")]
@@ -34,6 +36,8 @@ public class MyCarController : MonoBehaviour, IControllable
     [SerializeField] [Tooltip("Tiempo desde que se suelta el acelerador hasta que deja de acelerar el coche")] private float deaccelerationTime = 2f;
     [Tooltip("Contador del tiempo desde que se suelta el acelerador")] private float deaccelerationTimer;
     [SerializeField] [Tooltip("Velocidad de giro")] private float turnSpeed = 10f;
+    [SerializeField] private float originalTurnSpeed;
+    [SerializeField] private float boostTurnSpeed;
     [SerializeField] [Tooltip("Velocidad umbral. Si la velocidad del coche es menor se aplica el impulso de instantSpeedForce")] private float speedThreshold = 10f;
     //[SerializeField] [Tooltip("Fuerza impulso para girar")] private float turnImpulse = 2f;
     [SerializeField] [Tooltip("Umbral de giro. Se considera que no se está girando si el valor de giro es menor a este")] [Range(0f, 1f)] private float steeringThreshold = 0.1f;
@@ -122,8 +126,6 @@ public class MyCarController : MonoBehaviour, IControllable
     private bool isBoosting;
     private bool isBraking;
     private bool isHorizontal;
-
-    public int pruebaSonido;
 
     //Posiciones de parrilla de salida
     [SerializeField] private List<Transform> startingPositions;
@@ -263,20 +265,24 @@ public class MyCarController : MonoBehaviour, IControllable
         {
             Turbo -= turboConsumeMultiplier * Time.deltaTime;
             accelerationInput *= boostMultiplier;
+            turnSpeed = boostTurnSpeed;
  
             isBoosting = true;
         }
         else
         {
             Turbo += turboRechargeMultiplier * Time.deltaTime;
+            turnSpeed = originalTurnSpeed;
             isBoosting = false;
-        } 
+        }
 
         //if (rb.velocity.magnitude < speedThreshold) accelerationInput *= instantSpeedForce;
 
         CameraPostProcessManager.Instance.speed[(int) god] = rb.velocity.magnitude; //Borrar, solo era para pruebas
 
-        speedUnderThreshold = rb.velocity.magnitude < speedThreshold ? true : false;
+        speedUnderThreshold = rb.velocity.magnitude < speedThreshold;
+        
+        HUDManager.Instance.UpdateTurboUI(god,turbo);
     }
 
     public void Move()
@@ -432,7 +438,7 @@ public class MyCarController : MonoBehaviour, IControllable
     {
         yield return new WaitForSeconds(seconds); // Espera para que al jugador le dé tiempo de orientar el vehículo a su conveniencia antes del turbo
 
-        AkSoundEngine.PostEvent("Turbo_In", gameObject);
+        //AkSoundEngine.PostEvent("Turbo_In", gameObject);
 
         float timer = handBrakeBoostTime;
         while (timer >= 0f)
@@ -460,10 +466,12 @@ public class MyCarController : MonoBehaviour, IControllable
                 else
                     rb.AddRelativeTorque(0f, -steeringInput * turnSpeed, 0f);
             }
+
+            //rb.AddForceAtPosition(new Vector3(steeringInput * lateralTranslation, 0, 0), transform.position);
         }
         else // Cuando está en el aire el giro se convierte en movimiento lateral
         {
-            rb.MovePosition(transform.position + (transform.right * steeringInput * velocityMagnitude * airLateralShiftFactor));
+            rb.MovePosition(transform.position + (steeringInput * velocityMagnitude * airLateralShiftFactor * transform.right));
         }
         rb.angularVelocity *= angularVelocityReductionFactor;
     }

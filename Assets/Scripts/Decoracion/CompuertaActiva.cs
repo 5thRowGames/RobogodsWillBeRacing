@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class CompuertaActiva : MonoBehaviour
@@ -18,13 +19,13 @@ public class CompuertaActiva : MonoBehaviour
     {
         if (other.CompareTag("Anubis") || other.CompareTag("Poseidon") || other.CompareTag("Kali") || other.CompareTag("Thor"))
         {
-            if (players == 0)
+            players++;
+
+            if (players == 1)
             {
                 OpenDoor();
                 speedLines.Play();
             }
-
-            players++;
         }
     }
 
@@ -32,13 +33,21 @@ public class CompuertaActiva : MonoBehaviour
     {
         if (other.CompareTag("Anubis") || other.CompareTag("Poseidon") || other.CompareTag("Kali") || other.CompareTag("Thor"))
         {
-            if (players == 1)
-            {
-                CloseDoor();
-                speedLines.Stop();
-            }
-
             players--;
+
+            if (players == 0)
+                StartCoroutine(DelayClose());
+        }
+    }
+
+    IEnumerator DelayClose()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        if (players == 0)
+        {
+            CloseDoor();
+            speedLines.Stop();
         }
     }
 }

@@ -15,23 +15,37 @@ public class LapsManager : Singleton<LapsManager>
         public int currentCheckPoint;
         public float distanceToNextCheckPoint;
 
+        private bool canAddLap;
+
+        public bool CanAddLap
+        {
+            set => canAddLap = value;
+        }
+
         public GodRaceInfo(GameObject god)
         {
             this.god = god;
+            canAddLap = false;
         }
+        
 
         public void UpdateCurrentLap()
         {
-            currentLap++;
+            if (canAddLap)
+            {
+                canAddLap = false;
+                
+                currentLap++;
 
-            TimeTrial.Instance.ResetAndSaveTime(godType);
-            if (currentLap == 1)
-            {
-                Instance.UpdatePlayersFinished();
-            }
-            else
-            {
-                HUDManager.Instance.UpdateLapText(godType,currentLap);
+                TimeTrial.Instance.ResetAndSaveTime(godType);
+                if (currentLap == 1)
+                {
+                    Instance.UpdatePlayersFinished();
+                }
+                else
+                {
+                    HUDManager.Instance.UpdateLapText(godType,currentLap);
+                }
             }
         }
 
@@ -45,6 +59,8 @@ public class LapsManager : Singleton<LapsManager>
     public List<Portal> portals;
     public List<Transform> portalsExits;
     public List<int> racePosition;
+
+    public List<Transform> Maps;
     
     [Header("Anubis = 0, Poseidon = 1, Kali = 2, Thor = 3")]
     public List<GodRaceInfo> godRaceInfoList; //Posiciones en la lista: Anubis = 0, Poseidon = 1, Kali = 2, Thor = 3
@@ -52,12 +68,37 @@ public class LapsManager : Singleton<LapsManager>
     //Apoyo para actualizar las posiciones
     private int godAmount;
     
-    private void Awake()
+    private void Start()
     {
+        AddAllCheckpoints();
         playersFinished = 0;
         FirstUpdate();
         godAmount = godRaceInfoList.Count;
-        UpdateGodPosition();
+        
+        if(StoreGodInfo.Instance.players > 1)
+            UpdateGodPosition();
+    }
+    
+    private void AddAllCheckpoints()
+    {
+        int contador = 0;
+        
+        for (int z = 0; z < Maps.Count; z++)
+        {
+            for (int i = 0; i < Maps[z].childCount; i++)
+            {
+                for (int j = 0; j < Maps[z].GetChild(i).GetComponent<Transform>().childCount; j++)
+                {
+                    if (Maps[z].GetChild(i).GetComponent<Transform>().GetChild(j).name == "Checkpoint")
+                    {
+                        Maps[z].GetChild(i).GetComponent<Transform>().GetChild(j).GetComponent<Checkpoint>().index = contador;
+                        checkPoints.Add(Maps[z].GetChild(i).GetComponent<Transform>().GetChild(j).GetComponent<Checkpoint>());
+                        contador++;
+
+                    }
+                }
+            }
+        }
     }
 
     private void OnDisable()

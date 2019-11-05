@@ -16,12 +16,6 @@ public class Checkpoint : MonoBehaviour
     { 
         MinimapControl.Instance.UpdateMinimapControl(other.tag, index);
         LapsManager.Instance.UpdateCheckPoint(other.tag, index);
-
-        if (exitPortal && other.CompareTag("Dagger"))
-        {
-            other.GetComponent<DaggerBehaviourAlone>().SetClosestCheckpointIndex(index);
-            other.transform.position = LapsManager.Instance.checkPoints[index + 1].transform.position;
-        }
     }
     
     

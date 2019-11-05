@@ -17,48 +17,56 @@ public class Portal : MonoBehaviour
     public Queue<Collider> carColliders; // Colliders de los coches que están esperando para ser teletransportados
 
     private bool isFirstCar = true;
-    public God.Type godReligion;
+    public God.Type fromAreaReligion;
+
+    private Color portalColor;
 
     #region Unity EventsT
     private void OnTriggerEnter(Collider other)
     {
+
         if (isFirstCar)
         {
             isFirstCar = false;
             
-            switch (godReligion)
+            switch (fromAreaReligion)
             {
                 case God.Type.Anubis:
+                    portalColor = new Color(0, 0.03584905f, 0.2169811f, 0.35f);
                     SoundManager.Instance.PlayLoop(SoundManager.Music.Egipto);
                     break;
                 
                 case God.Type.Poseidon:
+                    portalColor = new Color(0, 0.03584905f, 0.2169811f, 0.35f);
                     SoundManager.Instance.PlayLoop(SoundManager.Music.Griega);
                     break;
                 
                 case God.Type.Kali:
+                    portalColor = new Color(0, 0.03584905f, 0.2169811f, 0.35f);
                     SoundManager.Instance.PlayLoop(SoundManager.Music.India);
                     break;
                 
                 case God.Type.Thor:
+                    portalColor = new Color(0, 0.03584905f, 0.2169811f, 0.35f);
                     SoundManager.Instance.PlayLoop(SoundManager.Music.Nordica);
                     break;
                 
                 case God.Type.None:
+                    portalColor = new Color(0, 0.1629f, 1, 0.35f);
                     SoundManager.Instance.PlayLoop(SoundManager.Music.Limbo);
                     break;
             }
             
             SoundManager.Instance.DelayPortalOutSound();
         }
-
-        Debug.Log("Portal trigger"); 
+        
         myCarController = other.GetComponentInParent<MyCarController>();
         stabilityController = other.GetComponentInParent<StabilityController>();
 
         if (myCarController != null)
         {
-            Debug.Log($"{other.gameObject.name} entered the portal trigger");
+            HUDManager.Instance.FlashScreen(myCarController.god, portalColor);
+            
             carColliders.Enqueue(other);
             
             if(myCarController != null)
@@ -136,6 +144,10 @@ public class Portal : MonoBehaviour
 
         rb.position = teleportPoint;
 
+        StartCoroutine(GoThroughPortalCameraCoroutine(rb.GetComponent<MyCarController>().ownCamera));
+        
+        rb.transform.forward = targetPortal.forward;
+
         //rb.useGravity = true;
         //rb.isKinematic = false;
         var speed = portalEnterSpeedMagnitude < exitPortalSpeedMagnitude ? exitPortalSpeedMagnitude : portalEnterSpeedMagnitude;
@@ -143,5 +155,11 @@ public class Portal : MonoBehaviour
         rb.velocity = targetPortal.forward.normalized * speed;
 
         //rb.WakeUp();
+    }
+
+    IEnumerator GoThroughPortalCameraCoroutine(RacingCamera racingCamera)
+    {
+        yield return null;
+        racingCamera.GoThroughPortal();
     }
 }

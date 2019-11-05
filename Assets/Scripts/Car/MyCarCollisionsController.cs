@@ -88,7 +88,6 @@ public class MyCarCollisionsController : MonoBehaviour
     {
         Vector3 normal = collision.contacts[0].normal;
         collisionAngle = (Vector3.Angle(myVelocity, -normal));
-        Debug.Log("Collision Angle:" + collisionAngle);
         if (collisionAngle > -maxFrontalAngle && collisionAngle < maxFrontalAngle) // Choque frontal
         {
             //    //if (collisionAngle > -maxAngle && collisionAngle < maxAngle && rb.velocity.magnitude > maxSpeed)

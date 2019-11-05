@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
+using InControl;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,6 +27,8 @@ public class StartRace : MonoBehaviour
 
     public float rotateCameraTime;
     public float intervalTimeBetweenRotateAndCountdown;
+    
+    public List<ParticleSystem> portalFlash;
 
     private List<God.Type> cameraIndex;
 
@@ -53,7 +56,7 @@ public class StartRace : MonoBehaviour
             cinematicCameras[i].SetActive(true);
                 
             Sequence seq = DOTween.Sequence();
-            seq.Append(cinematicCameras[i].transform.parent.transform.DOLocalRotate(new Vector3(0, 180, 0), rotateCameraTime))
+            seq.Append(cinematicCameras[i].transform.parent.transform.DORotate(new Vector3(0, -360, 0), rotateCameraTime))
                 .Append(cinematicCameras[i].transform.DOMove(cameras[(int)cameraIndex[i]].transform.position, 1.5f));
         }
 
@@ -75,6 +78,8 @@ public class StartRace : MonoBehaviour
                     anubisCanvas.SetActive(true);
                     anubisCanvas.GetComponent<CameraCanvasScaler>().enabled = false;
                     anubisCanvas.GetComponent<CameraCanvasScaler>().enabled = true;
+                    
+                    HUDManager.Instance.SetCamera(God.Type.Anubis,cameras[0].GetComponent<Camera>());
 
                     break;
                 
@@ -87,6 +92,8 @@ public class StartRace : MonoBehaviour
                     poseidonCanvas.GetComponent<CameraCanvasScaler>().enabled = false;
                     poseidonCanvas.GetComponent<CameraCanvasScaler>().enabled = true;
                     cameras[1].transform.parent.gameObject.SetActive(true);
+                    
+                    HUDManager.Instance.SetCamera(God.Type.Poseidon,cameras[1].GetComponent<Camera>());
 
                     break;
 
@@ -98,6 +105,8 @@ public class StartRace : MonoBehaviour
                     kaliCanvas.GetComponent<CameraCanvasScaler>().enabled = false;
                     kaliCanvas.GetComponent<CameraCanvasScaler>().enabled = true;
                     cameras[2].transform.parent.gameObject.SetActive(true);
+                    
+                    HUDManager.Instance.SetCamera(God.Type.Kali,cameras[2].GetComponent<Camera>());
 
                     break;
                 
@@ -109,6 +118,8 @@ public class StartRace : MonoBehaviour
                     thorCanvas.GetComponent<CameraCanvasScaler>().enabled = false;
                     thorCanvas.GetComponent<CameraCanvasScaler>().enabled = true;
                     cameras[3].transform.parent.gameObject.SetActive(true);
+                    
+                    HUDManager.Instance.SetCamera(God.Type.Thor,cameras[3].GetComponent<Camera>());
 
                     break;
             }
@@ -124,6 +135,19 @@ public class StartRace : MonoBehaviour
         if (playersNumber > 2)
             globalMinimapCanvas.enabled = true;
 
+        for (int i = 0; i < portalFlash.Count; i++)
+        {
+            portalFlash[i].Play();
+        }
+
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            portalFlash[0].Play();
+        }
     }
 
     private void SetCameraAndControl()

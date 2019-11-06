@@ -2,6 +2,7 @@
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class MainMenuManager : MonoBehaviour
     public List<RectTransform> industrialArmSettings; //0: Brazo padre, 1 pinza superior, 2 pinza inferior
     public List<RectTransform> industrialArmCredits; //0: Brazo padre, 1 pinza superior, 2 pinza inferior
     public List<RectTransform> industrialArmExit; //0: Brazo padre, 1 pinza superior, 2 pinza inferior
+    public Image titleScreenFade;
 
     [Header("Tween positions")]
     //Se van a utilizar los valores de "X" e "Y" por separado según convenga.
@@ -99,9 +101,9 @@ public class MainMenuManager : MonoBehaviour
         UIEventManager.Instance.inControlInputModule.enabled = false;
         
         SoundManager.Instance.PlayFx((int) SoundManager.Fx.UI_Panel_In);
-        
+
         Sequence sequence = DOTween.Sequence();
-        sequence.Insert((movementDuration/2f), raceButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
+            sequence.Insert((movementDuration/2f), raceButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
             .Insert((movementDuration/2f),settingsButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
             .Insert((movementDuration/2f), creditsButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
             .Insert((movementDuration/2f), exitButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))

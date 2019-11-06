@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1117311090}
   - component: {fileID: 1117311091}
+  - component: {fileID: 4823020872043463345}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Checkpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,6 +45,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 150, y: 1, z: 150}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4823020872043463345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117311089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93cb6c5cdca055442a77225d398c6572, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  exitPortal: 0
 --- !u!114 &1594908101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -602,11 +617,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -61
-      objectReference: {fileID: 0}
-    - target: {fileID: 7577311206408685976, guid: 1381f60079411ae458d656727ba90973,
-        type: 3}
-      propertyPath: m_Name
-      value: TetrahedroParent
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1381f60079411ae458d656727ba90973, type: 3}

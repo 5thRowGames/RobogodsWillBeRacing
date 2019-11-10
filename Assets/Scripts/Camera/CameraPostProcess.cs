@@ -5,17 +5,12 @@ using UnityEngine;
 public class CameraPostProcess : MonoBehaviour
 {
     public Material material;
-    private int index;
+    public int index;
 
     // Postprocess the image
     void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
-        material.SetFloat("_EffectAmount", CameraPostProcessManager.Instance.speed[index] / 200f);
+        material.SetFloat("_EffectAmount", CameraPostProcessManager.Instance.speed[index]/200f);
         Graphics.Blit(source, destination, material);
-    }
-
-    public void AssignIndex(int _index)
-    {
-        index = _index;
     }
 }

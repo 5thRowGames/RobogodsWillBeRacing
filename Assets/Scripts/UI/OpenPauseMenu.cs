@@ -7,7 +7,7 @@ public class OpenPauseMenu : MonoBehaviour
     void Update()
     {
         
-        if (actions.Start.IsPressed)
+        if (actions.Start.IsPressed && RaceEventManager.Instance.Countdown)
         {
            RaceEventManager.Instance.ChangeRaceEvent(RaceEvents.Race.Pause);
            enabled = false;

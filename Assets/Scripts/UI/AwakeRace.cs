@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class AwakeRace : MonoBehaviour
 {
+    public CompuertaActiva compuertaActivaCinematic;
     public StartRace startRace;
     public Image fade;
     
@@ -43,22 +44,23 @@ public class AwakeRace : MonoBehaviour
 
     private void ShowMap()
     {
+
         mainCamera.transform.position = path1[0];
         mainCamera.transform.rotation = path1List[0].rotation;
-        
+
         //Sonido: Recorrido del circuito mostrándolos con la cámara
         SoundManager.Instance.PlayFx(SoundManager.Fx.Inicio_Carrera);
         
         Sequence sequence = DOTween.Sequence();
         sequence.Append(fade.DOFade(0, fadeDuration));
-        sequence.Insert(fadeDuration-0.1f, mainCamera.transform.DOLocalPath(path1, 3.6f, PathType.CatmullRom, PathMode.Full3D, 5, Color.red)
+        sequence.Insert(fadeDuration-0.1f, mainCamera.transform.DOPath(path1, 3.6f, PathType.CatmullRom, PathMode.Full3D, 5, Color.red)
             .OnWaypointChange(x => WayPointChanged(x, path1List)).OnComplete(() =>
                 {
                     startRace.ChangeCameraPosition();
                     mainCamera.transform.position = path2[0];
                     mainCamera.transform.rotation = path2List[0].rotation;
-                }));
-        sequence.Append(mainCamera.transform.DOLocalPath(path2, 4f, PathType.CatmullRom, PathMode.Full3D, 5, Color.red)
+                })); 
+        sequence.Append(mainCamera.transform.DOPath(path2, 4f, PathType.CatmullRom, PathMode.Full3D, 5, Color.red)
             .OnWaypointChange(x => WayPointChanged(x, path2List)).OnComplete(() =>
             {
                 mainCamera.transform.position = path3[0];
@@ -79,6 +81,11 @@ public class AwakeRace : MonoBehaviour
     {
         if (wayPoint + 1 < list.Count)
             mainCamera.transform.DORotate(list[wayPoint + 1].rotation.eulerAngles, 1f);
+    }
+
+    private void CloseDoor()
+    {
+        compuertaActivaCinematic.CloseDoor();
     }
 
 }    

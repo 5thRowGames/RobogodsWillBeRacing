@@ -1,26 +1,51 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Prueba : MonoBehaviour
 {
-    void Start()
+    public ParticleSystem interiorTrailLeft;
+    public ParticleSystem interiorTrailRight;
+
+    public Camera camera;
+
+    private int oldMask;
+
+    private void Awake()
     {
-        AkSoundEngine.PostEvent("Musica_Inicio", gameObject);
+        oldMask = camera.cullingMask;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        if(Input.GetKey(KeyCode.W))
-            transform.Translate(Vector3.forward * 10f * Time.deltaTime);
+        if (Input.GetKey(KeyCode.W))
+        {
+            transform.Translate(60f * Time.deltaTime * Vector3.forward);
+
+            interiorTrailLeft.startSpeed = 8f;
+            interiorTrailRight.startSpeed = 8f;
+        }
+        else
+        {
+            interiorTrailLeft.startSpeed = 0;
+            interiorTrailRight.startSpeed = 0;
+        }
+            
         
         if(Input.GetKey(KeyCode.A))
-            transform.Translate(Vector3.left * 10f * Time.deltaTime);
+            transform.Rotate(-60f * Time.deltaTime * Vector3.up);
         
         if(Input.GetKey(KeyCode.D))
-            transform.Translate(Vector3.right * 10f * Time.deltaTime);
-        
-        if(Input.GetKey(KeyCode.S))
-            transform.Translate(Vector3.back * 10f * Time.deltaTime);
-        
+            transform.Rotate(60f * Time.deltaTime * Vector3.up);
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            camera.cullingMask |= 1 << LayerMask.NameToLayer("TurboAnubis");
+        }
+        else
+        {
+            camera.cullingMask = oldMask;
+        }
+
     }
 }

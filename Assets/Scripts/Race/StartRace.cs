@@ -57,10 +57,10 @@ public class StartRace : MonoBehaviour
                 
             Sequence seq = DOTween.Sequence();
             seq.Append(cinematicCameras[i].transform.parent.transform.DORotate(new Vector3(0, -360, 0), rotateCameraTime))
-                .Append(cinematicCameras[i].transform.DOMove(cameras[(int)cameraIndex[i]].transform.position, 1.5f));
+                .Append(cinematicCameras[i].transform.DOMove(cameras[(int)cameraIndex[i]].transform.position, 1.2f));
         }
 
-        yield return new WaitForSeconds(intervalTimeBetweenRotateAndCountdown + 1.5f + rotateCameraTime);
+        yield return new WaitForSeconds(intervalTimeBetweenRotateAndCountdown + rotateCameraTime + 1f);
 
         for (int i = 0; i < playersNumber; i++)
         {
@@ -140,6 +140,7 @@ public class StartRace : MonoBehaviour
             portalFlash[i].Play();
         }
 
+        Invoke(nameof(ActiveRacingCameraBehaviour), 5.9f);
     }
 
     private void Update()
@@ -147,6 +148,32 @@ public class StartRace : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.M))
         {
             portalFlash[0].Play();
+        }
+    }
+
+    private void ActiveRacingCameraBehaviour()
+    {
+        foreach (var playerInfo in StoreGodInfo.Instance.playerInfo)
+        {
+            switch (playerInfo.godType)
+            {
+                case God.Type.Anubis:
+                    cameras[0].transform.parent.GetComponent<RacingCamera>().enabled = true;
+
+                    break;
+                
+                case God.Type.Poseidon:
+                    cameras[1].transform.parent.GetComponent<RacingCamera>().enabled = true;
+                    break;
+
+                case God.Type.Kali:
+                    cameras[2].transform.parent.GetComponent<RacingCamera>().enabled = true;
+                    break;
+                
+                case God.Type.Thor:
+                    cameras[3].transform.parent.GetComponent<RacingCamera>().enabled = true;
+                    break;
+            }
         }
     }
 

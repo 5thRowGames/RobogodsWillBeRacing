@@ -142,7 +142,10 @@ public class HUDManager : Singleton<HUDManager>
     {
         if (StoreGodInfo.Instance.players == 1)
         {
-            hudDictionary[godTimeTrial].timeTrial.text = String.Format("{0:00}",TimeTrial.Instance.seconds);
+            int minutes = Mathf.FloorToInt(TimeTrial.Instance.seconds / 60F);
+            int seconds = Mathf.FloorToInt(TimeTrial.Instance.seconds- minutes * 60);
+
+            hudDictionary[godTimeTrial].timeTrial.text = String.Format("{0:00}:{1:00}", minutes, seconds);
         }
     }
 

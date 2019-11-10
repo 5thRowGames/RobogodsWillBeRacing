@@ -10,6 +10,7 @@ public class HUDInfo
 {
     public God.Type god;
     public Image racePositionImage;
+    public Image lapName;
     public Image lapText;
     public Image manaBar;
     public Image mainSkillIcon;
@@ -222,7 +223,7 @@ public class HUDManager : Singleton<HUDManager>
 
     public void UpdateLapText(God.Type god, int lap)
     {
-        hudDictionary[god].lapText.sprite = numbers[lap - 1];
+        hudDictionary[god].lapText.sprite = numbers[lap];
     }
 
     private void UpdateAnubisPosition()
@@ -260,10 +261,6 @@ public class HUDManager : Singleton<HUDManager>
         
         camera.cullingMask |= 1 << LayerMask.NameToLayer("PortalParticles");
 
-        Color particleSystemColor = color;
-        particleSystemColor.a = 0f;
-        particleSystem.startColor = particleSystemColor;
-        
         while (image.color.a < 0.5f)
         {
             color.a += flashIncrement;
@@ -282,10 +279,11 @@ public class HUDManager : Singleton<HUDManager>
         
         yield return new WaitForSeconds(6f);
 
+        camera.cullingMask = oldMask;
+        
+        Color particleSystemColor = color;
         particleSystemColor.a = 0.5f;
         particleSystem.startColor = particleSystemColor;
-
-        camera.cullingMask = oldMask;
         
         DisableOrEnableUI(god,true);
     }
@@ -293,6 +291,7 @@ public class HUDManager : Singleton<HUDManager>
     private void DisableOrEnableUI(God.Type god, bool enabled)
     {
         hudDictionary[god].racePositionImage.enabled = enabled;
+        hudDictionary[god].lapName.enabled = enabled;
         hudDictionary[god].turbo.SetActive(enabled);
         hudDictionary[god].laps.SetActive(enabled);
 

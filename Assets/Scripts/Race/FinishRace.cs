@@ -18,6 +18,7 @@ public class FinishPositionLabels
 
 public class FinishRace : MonoBehaviour
 {
+    public List<Sprite> icons;
     public List<FinishPositionLabels> finishPositionLabels;
     public Image fade;
     public RectTransform anyKey;
@@ -62,9 +63,12 @@ public class FinishRace : MonoBehaviour
         for (int i = 0; i < StoreGodInfo.Instance.players; i++)
         {
             finishPositionLabels[i].name.text = FillName(LapsManager.Instance.GetIndexPosition(i));
+            finishPositionLabels[i].icon.sprite = icons[(int)GetGod(i)];
             finishPositionLabels[i].position.text = i + 1 + " º";
             finishPositionLabels[i].time.text = TransformStringToTime(TimeTrial.Instance.GetTotalTime(GetGod(i)));
             finishPositionLabels[i].finishPositionLabelGameObject.gameObject.SetActive(true);
+
+            int kk = (int)GetGod(i);
         }
     }
 
@@ -122,7 +126,10 @@ public class FinishRace : MonoBehaviour
 
     private string TransformStringToTime(float time)
     {
-        return String.Format("{00:00}",time);
+        int minutes = Mathf.FloorToInt(time / 60F);
+        int seconds = Mathf.FloorToInt(time- minutes * 60);
+
+        return String.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
     private void FinishRaceTween()
@@ -143,6 +150,8 @@ public class FinishRace : MonoBehaviour
 
     private void FadeTransition()
     {
+        fade.transform.gameObject.SetActive(true);    
+            
         fade.DOFade(1, 0.5f).OnComplete(() =>
         {
             RaceEventManager.Instance.ChangeRaceEvent(RaceEvents.Race.LoadingScreen);

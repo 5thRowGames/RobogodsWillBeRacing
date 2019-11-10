@@ -26,6 +26,7 @@ public class LapsManager : Singleton<LapsManager>
         {
             this.god = god;
             canAddLap = false;
+            currentLap = 0;
         }
         
 
@@ -38,7 +39,7 @@ public class LapsManager : Singleton<LapsManager>
                 currentLap++;
 
                 TimeTrial.Instance.ResetAndSaveTime(godType);
-                if (currentLap == 1)
+                if (currentLap == Instance.totalLaps)
                 {
                     Instance.UpdatePlayersFinished();
                 }
@@ -52,7 +53,8 @@ public class LapsManager : Singleton<LapsManager>
     }
 
     private int playersFinished;
-    
+
+    public int totalLaps = 2;
     public List<GameObject> road;
     public List<CircuitSection> circuitSections;
     public List<Checkpoint> checkPoints;

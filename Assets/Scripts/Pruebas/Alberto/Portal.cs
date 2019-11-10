@@ -17,7 +17,7 @@ public class Portal : MonoBehaviour
     public Queue<Collider> carColliders; // Colliders de los coches que están esperando para ser teletransportados
 
     private bool isFirstCar = true;
-    public God.Type fromAreaReligion;
+    public God.Type nextAreaReligion;
 
     private Color portalColor;
 
@@ -29,7 +29,7 @@ public class Portal : MonoBehaviour
         {
             isFirstCar = false;
             
-            switch (fromAreaReligion)
+            switch (nextAreaReligion)
             {
                 case God.Type.Anubis:
                     portalColor = new Color(0, 0.03584905f, 0.2169811f, 0.35f);
@@ -37,7 +37,7 @@ public class Portal : MonoBehaviour
                     break;
                 
                 case God.Type.Poseidon:
-                    portalColor = new Color(0, 0.03584905f, 0.2169811f, 0.35f);
+                    portalColor = new Color(0, 0.4941176f, 0.3372549f, 0.35f);
                     SoundManager.Instance.PlayLoop(SoundManager.Music.Griega);
                     break;
                 

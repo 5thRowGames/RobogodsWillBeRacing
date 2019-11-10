@@ -6,9 +6,10 @@ using UnityEngine;
 public class LocalizationManager : SingletonDontDestroy<LocalizationManager>
 {
     public Action UpdateLanguage;
+    public Action UpdateIcon;
     
     private Dictionary<GameLanguage.Language, Dictionary<string, string>> languageDictionary;
-    private GameLanguage.Language currentLanguage;
+    public GameLanguage.Language currentLanguage;
     private int languagesNumber;
 
     private void Awake()
@@ -58,8 +59,6 @@ public class LocalizationManager : SingletonDontDestroy<LocalizationManager>
             {
                 currentLanguage++;
             }
-
-            UpdateLanguage();
         }
         else
         {
@@ -71,9 +70,11 @@ public class LocalizationManager : SingletonDontDestroy<LocalizationManager>
             {
                 currentLanguage--;
             }
-
-            UpdateLanguage();
+            
         }
+        
+        UpdateLanguage();
+        UpdateIcon();
     }
 
     public string GetWord(string id)

@@ -16,7 +16,6 @@ public class Booster : MonoBehaviour
             if (turboBooster)
             {
                 myCarController.StartTurbo(0.2f);
-                SoundManager.Instance.PlayFx(SoundManager.Fx.Banda_Aceleracion);
             }
             else
             {

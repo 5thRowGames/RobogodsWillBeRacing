@@ -155,6 +155,7 @@ public class StabilityController : MonoBehaviour
 
     private void PushToTheGround()
     {
+
         //if (Physics.Raycast(carHelper.position, -carHelper.up, out RaycastHit hitInfo, distanceToApplyPushForce, inclinationLayer))
         //{
         //    var normal = hitInfo.normal;
@@ -164,6 +165,7 @@ public class StabilityController : MonoBehaviour
         //    {
         //        var force = Mathf.Lerp(0f, pushToTheGroundForce, myCarController.AccelerationInput);
         //        Debug.Log($"force = {force}");
+
                 rb.AddForce(-rb.transform.up * pushToTheGroundForce, ForceMode.Acceleration);
 
         //    }

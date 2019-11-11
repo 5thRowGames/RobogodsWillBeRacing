@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class RaceEventManager : SingletonDontDestroy<RaceEventManager>
 {
+    public List<RacingCamera> racingCameraList;
     public GameObject positionUIManager;
     public InControlInputModule inControlInputModule;
 
@@ -19,6 +20,11 @@ public class RaceEventManager : SingletonDontDestroy<RaceEventManager>
     public GameObject loadingScreen;
 
     private bool countdown;
+
+    public bool Countdown
+    {
+        get => countdown;
+    }
 
     public void ChangeRaceEvent(RaceEvents.Race raceEvent)
     {

@@ -5,10 +5,12 @@ using DG.Tweening;
 using InControl;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class TitleScreenManager : MonoBehaviour
 {
     public RectTransform pressToPlay;
+    public Image fade;
 
     private Tween firstTween;
     private bool controlSubmit;
@@ -26,8 +28,9 @@ public class TitleScreenManager : MonoBehaviour
         controlSubmit = false;
         initialTweenComplete = false;
         TitleTween();
+        fade.DOFade(1f, 1f);
         
-        //Sonido de la entrada de "Pulsa A"
+        //Sonido de la entrada de "Pulsa cualquier tecla"
         SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Cortinilla_In);
     }
 
@@ -56,7 +59,8 @@ public class TitleScreenManager : MonoBehaviour
         {
             firstTween.Kill();
         }
-        
+
+        fade.DOFade(0, 1f);
         pressToPlay.DOScale(Vector3.zero, 0.3f);
         SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Select);
         yield return new WaitForSeconds(0.3f);

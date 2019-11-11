@@ -30,14 +30,20 @@ public class MyCarController : MonoBehaviour, IControllable
     [SerializeField] [Tooltip("¿Siempre aplicar la aceleración mínima?")] private bool alwaysAccelerate = true;
     [SerializeField] [Tooltip("Aceleración mínima aplicada en cada momento")] [Range(0f, 1f)] private float minAcceleration = 0.2f;
     [SerializeField] [Tooltip("Incremento de la fuerza de aceleración cuando se usa el turbo")] private float boostMultiplier = 3f;
-    [SerializeField] [Tooltip("Decremento de la fuerza de aceleración cuando se usa el turbo")] private float slowDownMultiplier = 0.5f;
     [SerializeField] [Tooltip("Divisor de la aceleración cuando el coche está en el aire")] private float accelerationDividerOnAir = 4f;
     [SerializeField] [Tooltip("")] private bool carUnderControl = false;
     [SerializeField] [Tooltip("Tiempo desde que se suelta el acelerador hasta que deja de acelerar el coche")] private float deaccelerationTime = 2f;
     [Tooltip("Contador del tiempo desde que se suelta el acelerador")] private float deaccelerationTimer;
     [SerializeField] [Tooltip("Velocidad de giro")] private float turnSpeed = 10f;
+    [SerializeField] [Tooltip("Tiempo de turbo tras activarlo con derrape")] private float turboTime = 1f;
     [SerializeField] private float originalTurnSpeed;
     [SerializeField] private float boostTurnSpeed;
+    [SerializeField] private float turboMultiplier;
+    [SerializeField] private float addTurbo;
+    [SerializeField] private float addSlow;
+    [SerializeField] private float recoverSpeedFromTurbo;
+    [SerializeField] private float recoverSpeedFromSlow;
+    [SerializeField] [Tooltip("Decremento de la fuerza de aceleración cuando se usa el turbo")] private float slowDownMultiplier = 0.5f;
     [SerializeField] [Tooltip("Velocidad umbral. Si la velocidad del coche es menor se aplica el impulso de instantSpeedForce")] private float speedThreshold = 10f;
     //[SerializeField] [Tooltip("Fuerza impulso para girar")] private float turnImpulse = 2f;
     [SerializeField] [Tooltip("Umbral de giro. Se considera que no se está girando si el valor de giro es menor a este")] [Range(0f, 1f)] private float steeringThreshold = 0.1f;
@@ -57,7 +63,6 @@ public class MyCarController : MonoBehaviour, IControllable
     [SerializeField] [Tooltip("Segundos que hay que mantener el freno de mano pulsado para recibir un turbo tras soltarlo")] private float handBrakeTurboTime = 4f;
     [SerializeField] [Tooltip("Contador de los segundos que estamos pulsando el freno de mano")] private float handBrakeTimer;
     [SerializeField] [Tooltip("Tiempo de espera desde que se suelta el freno de mano y se activa el turbo")] private float handBrakeBoostWait = 0.2f;
-    [SerializeField] [Tooltip("Tiempo de turbo tras activarlo con derrape")] private float handBrakeBoostTime = 1f;
     [SerializeField] [Tooltip("Distancia extra sobre wheelHeight para permitir el movimiento del coche")] private float extraHeightToAllowMovement = 0.5f;
     public float ExtraHeightToAllowMovement { get { return extraHeightToAllowMovement; } }
     [SerializeField] [Tooltip("Distancia extra sobre wheelHeight para considerar que el coche está en el aire")] private float extraHeightToNoGrounded = 1f;
@@ -124,6 +129,9 @@ public class MyCarController : MonoBehaviour, IControllable
 
     private List<RaycastHit> hitList;
 
+    private Coroutine startTurboCoroutine;
+    private Coroutine startSlowCoroutine;
+
     //Para sonidos
     private bool isBoosting;
     private bool isBraking;
@@ -140,6 +148,9 @@ public class MyCarController : MonoBehaviour, IControllable
 
     private void Awake()
     {
+        startSlowCoroutine = null;
+        startTurboCoroutine = null;
+        
         Name = gameObject.name;
         turbo = 0;
 
@@ -411,46 +422,71 @@ public class MyCarController : MonoBehaviour, IControllable
     
     public void StartSlowDown()
     {
-        StartCoroutine(SlowDownCoroutine());
+        if(startSlowCoroutine == null)
+            startSlowCoroutine = StartCoroutine(SlowDownCoroutine());
     }
 
     private IEnumerator SlowDownCoroutine()
     {
 
-        //AkSoundEngine.PostEvent("Turbo_In", gameObject);
+        var originalSpeed = speedForce;
 
-        float timer = handBrakeBoostTime;
+        speedForce -= addSlow;
+        
+        float timer = turboTime;
         while (timer >= 0f)
         {
             timer -= Time.deltaTime;
-            if(velocity.magnitude > speedThreshold)
-                rb.AddForce(-groundForward * slowDownMultiplier * speedForce, ForceMode.Acceleration);
+
+            speedForce += recoverSpeedFromSlow;
+
+            if (speedForce > originalSpeed)
+                break;
+            
             yield return null;
         }
 
-        //AkSoundEngine.PostEvent("Turbo_Out", gameObject);
+        speedForce = originalSpeed;
+
+        startSlowCoroutine = null;
     }
 
     public void StartTurbo(float waitBeforeBoost)
     {
-        StartCoroutine(TurboCoroutine(waitBeforeBoost));
+
+        if (startTurboCoroutine == null)
+            startTurboCoroutine = StartCoroutine(TurboCoroutine(waitBeforeBoost));
     }
 
     private IEnumerator TurboCoroutine(float seconds)
     {
+
         yield return new WaitForSeconds(seconds); // Espera para que al jugador le dé tiempo de orientar el vehículo a su conveniencia antes del turbo
 
-        //AkSoundEngine.PostEvent("Turbo_In", gameObject);
+        //SoundManager.Instance.PlayFx(SoundManager.Fx.Banda_Aceleracion);
 
-        float timer = handBrakeBoostTime;
+        var originalSpeedForce = speedForce;
+        
+        speedForce += addTurbo;
+
+        rb.AddForceAtPosition(turboMultiplier * speedForce * groundForward, accelPoint.position, ForceMode.Acceleration);
+
+        float timer = turboTime;
+
         while (timer >= 0f)
         {
             timer -= Time.deltaTime;
-            rb.AddForceAtPosition(groundForward * boostMultiplier * speedForce, accelPoint.position, ForceMode.Acceleration);
+            speedForce -= recoverSpeedFromTurbo;
+
+            if (speedForce < originalSpeedForce)
+                break;
+
             yield return null;
         }
 
-        AkSoundEngine.PostEvent("Turbo_Out", gameObject);
+        speedForce = originalSpeedForce;
+
+        startTurboCoroutine = null;
     }
 
     private void Steering()

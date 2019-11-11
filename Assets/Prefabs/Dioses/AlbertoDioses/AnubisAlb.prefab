@@ -700,8 +700,8 @@ MonoBehaviour:
   carUnderControl: 0
   deaccelerationTime: 2
   turnSpeed: 40
-  originalTurnSpeed: 35
-  boostTurnSpeed: 50
+  originalTurnSpeed: 40
+  boostTurnSpeed: 70
   speedThreshold: 15
   steeringThreshold: 0.2
   steeringReductionFactor: 0.9
@@ -720,12 +720,12 @@ MonoBehaviour:
   handBrakeBoostWait: 0.3
   handBrakeBoostTime: 1
   extraHeightToAllowMovement: 0.5
-  exraHeightToNoGrounded: 1
+  extraHeightToNoGrounded: 1
   airLateralShiftFactor: 0.001
   wheelHeight: 1
   downForce: 5
   additiveDownForce: 1
-  upForce: 10
+  upForce: 30
   jumpForce: 20
   useSimpleSuspension: 0
   groundDrag: 2
@@ -774,7 +774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e02c871179d1f24fa7fbaf675f45db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  godsLayer:
+  godsLayerMask:
     serializedVersion: 2
     m_Bits: 246272
   frontalForce: 10
@@ -783,7 +783,7 @@ MonoBehaviour:
   maxSpeed: 30
   reductionSpeedFactor: 0.8
   myCarController: {fileID: 5260619960850091005}
-  force: 50
+  force: 150
   distance: 0.3
 --- !u!114 &8473246653801415278
 MonoBehaviour:
@@ -807,8 +807,9 @@ MonoBehaviour:
   inclinationLayer:
     serializedVersion: 2
     m_Bits: 1
-  pushToTheGroundForce: 40
+  pushToTheGroundForce: 50
   angle: 150
+  distanceToApplyPushForce: 0
   myCarController: {fileID: 5260619960850091005}
   rb: {fileID: 5260619960850091006}
   carHelper: {fileID: 3898015896612793491}
@@ -1412,6 +1413,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5260619960850090994}
     m_Modifications:
+    - target: {fileID: 100000, guid: 9447ce042706efc469d24b3e7771ec4f, type: 3}
+      propertyPath: m_Name
+      value: Chariot
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 9447ce042706efc469d24b3e7771ec4f, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9447ce042706efc469d24b3e7771ec4f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1468,21 +1477,17 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.4600015
       objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 9447ce042706efc469d24b3e7771ec4f, type: 3}
-      propertyPath: m_Name
-      value: Chariot
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 9447ce042706efc469d24b3e7771ec4f, type: 3}
-      propertyPath: m_Layer
-      value: 14
+    - target: {fileID: 9500000, guid: 9447ce042706efc469d24b3e7771ec4f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 9447ce042706efc469d24b3e7771ec4f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: c755766124c4ba74daf446816bda5022, type: 2}
-    - target: {fileID: 9500000, guid: 9447ce042706efc469d24b3e7771ec4f, type: 3}
+    - target: {fileID: 2300000, guid: 9447ce042706efc469d24b3e7771ec4f, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9447ce042706efc469d24b3e7771ec4f, type: 3}
@@ -1569,15 +1574,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3329758394546415846, guid: 09a25234303692f468e81cfb9799bc24,
-        type: 3}
-      propertyPath: m_Layer
-      value: 14
-      objectReference: {fileID: 0}
     - target: {fileID: 6740845567252182291, guid: 09a25234303692f468e81cfb9799bc24,
         type: 3}
       propertyPath: maxDistance
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3329758394546415846, guid: 09a25234303692f468e81cfb9799bc24,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09a25234303692f468e81cfb9799bc24, type: 3}

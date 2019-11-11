@@ -14,6 +14,9 @@ public class StabilityController : MonoBehaviour
     [Tooltip("Layer para comprobar el ángulo de inclinación del coche con respecto del suelo")] public LayerMask inclinationLayer;
     public float pushToTheGroundForce;
     public float angle;
+    private const string wallLayerName = "Wall";
+    public int OnTheWall { get; set; } // true cuando el coche está en contacto con el trigger una pared
+    [SerializeField]private float distanceToApplyPushForce; // Distancia máxima del coche a la pared para empujar al primero hacia la segunda
     #endregion
 
     #region Properties
@@ -32,11 +35,38 @@ public class StabilityController : MonoBehaviour
 
     #region Unity Events
 
+    private void Start()
+    {
+        var mCC = GetComponent<MyCarController>();
+        if (mCC != null)
+            distanceToApplyPushForce = mCC.ExtraHeightToAllowMovement + mCC.ExtraHeightToNoGrounded + carHelper.GetComponent<CarHelper>().Height;
+        else distanceToApplyPushForce = 4.5f;
+    }
+
     private void FixedUpdate()
     {
         ClampRotation();
         CheckUpsideDown();
-        PushToTheGround();
+        if(OnTheWall > 0)
+            PushToTheGround();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.layer == LayerMask.NameToLayer(wallLayerName))
+        {
+            Debug.Log("Me subo a la pared");
+            OnTheWall += 1;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer(wallLayerName))
+        {
+            Debug.Log("Me bajo de la pared");
+            OnTheWall -= 1;
+        }
     }
 
     #endregion
@@ -125,18 +155,19 @@ public class StabilityController : MonoBehaviour
 
     private void PushToTheGround()
     {
-        if (Physics.Raycast(carHelper.position, -carHelper.up, out RaycastHit hitInfo, Mathf.Infinity, inclinationLayer))
-        {
-            var normal = hitInfo.normal;
-            var collisionAngle = (Vector3.Angle(carHelper.up, -normal));
-            //Debug.Log($"Ángulo sobre el suelo = {collisionAngle}");
-            if (collisionAngle < angle || collisionAngle > -angle)
-            {
-                var force = Mathf.Lerp(0f, pushToTheGroundForce, myCarController.AccelerationInput);
-                Debug.Log($"force = {force}");
+        //if (Physics.Raycast(carHelper.position, -carHelper.up, out RaycastHit hitInfo, distanceToApplyPushForce, inclinationLayer))
+        //{
+        //    var normal = hitInfo.normal;
+        //    var collisionAngle = (Vector3.Angle(carHelper.up, -normal));
+        //    //Debug.Log($"Ángulo sobre el suelo = {collisionAngle}");
+        //    if (collisionAngle < angle || collisionAngle > -angle)
+        //    {
+        //        var force = Mathf.Lerp(0f, pushToTheGroundForce, myCarController.AccelerationInput);
+        //        Debug.Log($"force = {force}");
                 rb.AddForce(-rb.transform.up * pushToTheGroundForce, ForceMode.Acceleration);
 
-		    }
-		}
+        //    }
+        //}
+        //else Debug.Log("Estoy volando?");
 	}
 }

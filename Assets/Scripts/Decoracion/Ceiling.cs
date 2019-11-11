@@ -6,9 +6,10 @@ public class Ceiling : MonoBehaviour
 {
     public float pushToTheGroundForce;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerStay(Collider other)
     {
-        Debug.Log($"{LayerMask.LayerToName(collision.gameObject.layer)}");
-        collision.rigidbody.AddForce(transform.up * pushToTheGroundForce, ForceMode.Acceleration);
+        Debug.Log($"{LayerMask.LayerToName(other.gameObject.layer)}");
+        var velo = other.attachedRigidbody.velocity;
+        other.attachedRigidbody.AddForce(-transform.up * pushToTheGroundForce, ForceMode.Acceleration);
     }
 }

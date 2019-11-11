@@ -59,7 +59,9 @@ public class MyCarController : MonoBehaviour, IControllable
     [SerializeField] [Tooltip("Tiempo de espera desde que se suelta el freno de mano y se activa el turbo")] private float handBrakeBoostWait = 0.2f;
     [SerializeField] [Tooltip("Tiempo de turbo tras activarlo con derrape")] private float handBrakeBoostTime = 1f;
     [SerializeField] [Tooltip("Distancia extra sobre wheelHeight para permitir el movimiento del coche")] private float extraHeightToAllowMovement = 0.5f;
-    [SerializeField] [Tooltip("Distancia extra sobre wheelHeight para considerar que el coche está en el aire")] private float exraHeightToNoGrounded = 1f;
+    public float ExtraHeightToAllowMovement { get { return extraHeightToAllowMovement; } }
+    [SerializeField] [Tooltip("Distancia extra sobre wheelHeight para considerar que el coche está en el aire")] private float extraHeightToNoGrounded = 1f;
+    public float ExtraHeightToNoGrounded { get { return extraHeightToNoGrounded; } }
     [SerializeField] [Tooltip("Factor por el que multiplicar el giro y la velocidad cuando el coche está en el aire")] private float airLateralShiftFactor = 0.01f;
     [SerializeField] [Tooltip("Longitud de los rayos desde las esquinas del coche al suelo")] private float wheelHeight = 1f;
     [SerializeField] [Tooltip("Fuerza hacia el suelo a aplicar al vehículo cuando está en el aire")] private float downForce = 6f;
@@ -305,7 +307,7 @@ public class MyCarController : MonoBehaviour, IControllable
             //Brake();
             if (helper != null)
                 rb.AddForce(-helper.transform.up * (downForce + additiveDownForce), ForceMode.Impulse);
-            Debug.Log($"Not grounded: y = {transform.position.y}");
+            //Debug.Log($"Not grounded: y = {transform.position.y}");
             Accelerate();
         }
 
@@ -509,7 +511,7 @@ public class MyCarController : MonoBehaviour, IControllable
 
     private void CheckGrounded()
     {
-        IsGrounded = Physics.Raycast(transform.position, -transform.up, wheelHeight + exraHeightToNoGrounded, layerMask);
+        IsGrounded = Physics.Raycast(transform.position, -transform.up, wheelHeight + extraHeightToNoGrounded, layerMask);
         //IsGrounded = cornerIsGrounded.FindAll(corner => corner == true).Count >= neededCornersToBeGrounded;
     }
 

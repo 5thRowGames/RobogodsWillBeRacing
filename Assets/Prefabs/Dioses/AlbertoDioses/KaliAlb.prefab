@@ -764,6 +764,7 @@ MonoBehaviour:
   turboRechargeMultiplier: 0.04
   turboConsumeMultiplier: 0.07
   turbo: 0
+  ownCamera: {fileID: 0}
   speedForce: 350
   instantSpeedForce: 20
   alwaysAccelerate: 0
@@ -774,6 +775,8 @@ MonoBehaviour:
   carUnderControl: 0
   deaccelerationTime: 2
   turnSpeed: 50
+  originalTurnSpeed: 40
+  boostTurnSpeed: 70
   speedThreshold: 15
   steeringThreshold: 0.2
   steeringReductionFactor: 0.9
@@ -782,6 +785,7 @@ MonoBehaviour:
   maxAngularSpeed: 30
   brakeForce: 30
   brakeToReverseTime: 0.5
+  brakeToReverseTimer: 0
   isGoingBackwards: 0
   speedUnderThreshold: 0
   handBrakeForce: 40
@@ -791,7 +795,7 @@ MonoBehaviour:
   handBrakeBoostWait: 0.3
   handBrakeBoostTime: 1
   extraHeightToAllowMovement: 0.5
-  exraHeightToNoGrounded: 1
+  extraHeightToNoGrounded: 1
   airLateralShiftFactor: 0.002
   wheelHeight: 1
   downForce: 5
@@ -832,7 +836,6 @@ MonoBehaviour:
   neededCornersToBeGrounded: 2
   IsBeingTeleported: 0
   helper: {fileID: 8696988089105519588}
-  pruebaSonido: 0
   startingPositions: []
 --- !u!114 &3463158760392872671
 MonoBehaviour:
@@ -846,7 +849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e02c871179d1f24fa7fbaf675f45db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  godsLayer:
+  godsLayerMask:
     serializedVersion: 2
     m_Bits: 246272
   frontalForce: 10
@@ -879,8 +882,9 @@ MonoBehaviour:
   inclinationLayer:
     serializedVersion: 2
     m_Bits: 1
-  pushToTheGroundForce: 40
+  pushToTheGroundForce: 50
   angle: 150
+  distanceToApplyPushForce: 0
   myCarController: {fileID: 551719142430012554}
   rb: {fileID: 551719142430012553}
   carHelper: {fileID: 8696988089105519588}

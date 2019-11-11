@@ -6,7 +6,7 @@ public class MyCarCollisionsController : MonoBehaviour
 {
     private Rigidbody rb; // Rigidbody de este coche
     private int portalLayer; // Layer de los portales
-    public LayerMask godsLayer; // Layers de los dioses
+    public LayerMask godsLayerMask; // Layers de los dioses
     private RigidbodyConstraints priorConstraints; // Restricciones del rigidbody antes de chocar con otro coche
     private Vector3 myVelocity;
     private float collisionAngle;
@@ -43,18 +43,10 @@ public class MyCarCollisionsController : MonoBehaviour
 
     }
 
-    private void FixedUpdate()
-    {
-        myVelocity = rb.velocity;
-
-        //for(int i = 0; i < numberOfCorners; i++)
-        //{
-        //    if (i % 2 == 0) // par - izquierda
-        //        LateralSuspension(corners[i], -transform.right, hitList[i]);
-        //    else // impar - derecha
-        //        LateralSuspension(corners[i], transform.right, hitList[i]);
-        //}
-    }
+    //private void FixedUpdate()
+    //{
+    //    myVelocity = rb.velocity;
+    //}
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -65,21 +57,23 @@ public class MyCarCollisionsController : MonoBehaviour
 
         if (otherLayer != portalLayer) // Si no choco contra un portal
         {
-            //Debug.Log(collision.gameObject.name);
             priorConstraints = rb.constraints; // Guardo las restricciones previas al choque
-            if(otherLayer == godsLayer)
+            if (IsLayerIncluded(otherLayer, godsLayerMask))
+            {
+                Debug.Log($"{gameObject.name} choca contra {LayerMask.LayerToName(otherLayer)}");
                 rb.constraints = RigidbodyConstraints.FreezeRotation; // Congelo la rotación para evitar que el coche cambie su dirección
-            //Debug.Log($"Restricciones al colisionar: {rb.constraints.ToString()}");
+            }
+
             CheckFrontCollision(collision);
         }
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.layer != portalLayer)
-        {
+        //if (collision.gameObject.layer != portalLayer)
+        //{
             rb.constraints = priorConstraints;
-        }
+        //}
     }
 
     #endregion
@@ -87,7 +81,7 @@ public class MyCarCollisionsController : MonoBehaviour
     private void CheckFrontCollision(Collision collision)
     {
         Vector3 normal = collision.contacts[0].normal;
-        collisionAngle = (Vector3.Angle(myVelocity, -normal));
+        collisionAngle = (Vector3.Angle(rb.velocity, -normal));
         if (collisionAngle > -maxFrontalAngle && collisionAngle < maxFrontalAngle) // Choque frontal
         {
             //    //if (collisionAngle > -maxAngle && collisionAngle < maxAngle && rb.velocity.magnitude > maxSpeed)
@@ -98,10 +92,10 @@ public class MyCarCollisionsController : MonoBehaviour
             //    //}
 
             //    Debug.Log("¡Fuerza hacia abajo!");
-            //var speedForce = rb.velocity.magnitude > minSpeedForce ? rb.velocity.magnitude : minSpeedForce;      
+            //var speedForce = rb.velocity.magnitude > minSpeedForce ? rb.velocity.magnitude : minSpeedForce;   
             var speedForce = Mathf.Clamp(rb.velocity.magnitude, minSpeedForce, maxSpeedForce);
             rb.AddForce(rb.transform.InverseTransformDirection(normal) * frontalForce * speedForce, ForceMode.Force);
-            rb.AddForce(-rb.transform.up * frontalForce * speedForce, ForceMode.Force); // Fuerza hacia abajo para contener al coche en el suelo
+            //rb.AddForce(-rb.transform.up * frontalForce * speedForce, ForceMode.Force); // Fuerza hacia abajo para contener al coche en el suelo
         }
         else
         {
@@ -117,7 +111,11 @@ public class MyCarCollisionsController : MonoBehaviour
             rb.AddForceAtPosition(force * -direction * (1.0f - (hit.distance / distance)), corner.position);
             Debug.Log($"Obstacle detected at {hit.distance} units.");
         }
-
-        //hitList[index] = hit; // Guardo la información del impacto
     }
+
+    private static bool IsLayerIncluded(int layer, LayerMask layerMask)
+    {
+        return (layerMask & (1 << layer)) != 0;
+    }
+
 }

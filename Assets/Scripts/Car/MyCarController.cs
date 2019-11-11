@@ -35,7 +35,7 @@ public class MyCarController : MonoBehaviour, IControllable
     [SerializeField] [Tooltip("Tiempo desde que se suelta el acelerador hasta que deja de acelerar el coche")] private float deaccelerationTime = 2f;
     [Tooltip("Contador del tiempo desde que se suelta el acelerador")] private float deaccelerationTimer;
     [SerializeField] [Tooltip("Velocidad de giro")] private float turnSpeed = 10f;
-    [SerializeField] [Tooltip("Tiempo de turbo tras activarlo con derrape")] private float handBrakeBoostTime = 1f;
+    [SerializeField] [Tooltip("Tiempo de turbo tras activarlo con derrape")] private float turboTime = 1f;
     [SerializeField] private float originalTurnSpeed;
     [SerializeField] private float boostTurnSpeed;
     [SerializeField] private float turboMultiplier;
@@ -431,7 +431,7 @@ public class MyCarController : MonoBehaviour, IControllable
 
         speedForce -= addSlow;
         
-        float timer = handBrakeBoostTime;
+        float timer = turboTime;
         while (timer >= 0f)
         {
             timer -= Time.deltaTime;
@@ -464,12 +464,12 @@ public class MyCarController : MonoBehaviour, IControllable
         //SoundManager.Instance.PlayFx(SoundManager.Fx.Banda_Aceleracion);
 
         var originalSpeedForce = speedForce;
-
-        rb.AddForceAtPosition(turboMultiplier * speedForce * groundForward, accelPoint.position, ForceMode.Acceleration);
         
         speedForce += addTurbo;
-        
-        float timer = handBrakeBoostTime;
+
+        rb.AddForceAtPosition(turboMultiplier * speedForce * groundForward, accelPoint.position, ForceMode.Acceleration);
+
+        float timer = turboTime;
 
         while (timer >= 0f)
         {

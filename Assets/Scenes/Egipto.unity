@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -177,12 +177,12 @@ PrefabInstance:
     - target: {fileID: 5260619960850091005, guid: f21fea2e4a7d6a941bb7b90b6f96201d,
         type: 3}
       propertyPath: turboMultiplier
-      value: 0.5
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5260619960850091005, guid: f21fea2e4a7d6a941bb7b90b6f96201d,
         type: 3}
       propertyPath: addTurbo
-      value: 30
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5260619960850091005, guid: f21fea2e4a7d6a941bb7b90b6f96201d,
         type: 3}
@@ -192,17 +192,22 @@ PrefabInstance:
     - target: {fileID: 5260619960850091005, guid: f21fea2e4a7d6a941bb7b90b6f96201d,
         type: 3}
       propertyPath: recoverSpeedFromTurbo
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5260619960850091005, guid: f21fea2e4a7d6a941bb7b90b6f96201d,
         type: 3}
       propertyPath: recoverSpeedFromSlow
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5260619960850091005, guid: f21fea2e4a7d6a941bb7b90b6f96201d,
         type: 3}
       propertyPath: handBrakeBoostTime
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5260619960850091005, guid: f21fea2e4a7d6a941bb7b90b6f96201d,
+        type: 3}
+      propertyPath: turboTime
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1635797052, guid: f21fea2e4a7d6a941bb7b90b6f96201d, type: 3}
       propertyPath: m_Layer
@@ -469,6 +474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: b5be8f8ebe41b6747af32d712277855f, type: 2}
+  index: 0
 --- !u!1 &523531457
 GameObject:
   m_ObjectHideFlags: 0

@@ -58,13 +58,13 @@ public class MyCarCollisionsController : MonoBehaviour
         if (otherLayer != portalLayer) // Si no choco contra un portal
         {
             priorConstraints = rb.constraints; // Guardo las restricciones previas al choque
-            if (IsLayerIncluded(otherLayer, godsLayerMask))
+            if (LayerMaskUtils.IsLayerIncluded(otherLayer, godsLayerMask))
             {
                 Debug.Log($"{gameObject.name} choca contra {LayerMask.LayerToName(otherLayer)}");
                 rb.constraints = RigidbodyConstraints.FreezeRotation; // Congelo la rotación para evitar que el coche cambie su dirección
             }
 
-            CheckFrontCollision(collision);
+            //CheckFrontCollision(collision);
         }
     }
 
@@ -111,11 +111,6 @@ public class MyCarCollisionsController : MonoBehaviour
             rb.AddForceAtPosition(force * -direction * (1.0f - (hit.distance / distance)), corner.position);
             Debug.Log($"Obstacle detected at {hit.distance} units.");
         }
-    }
-
-    private static bool IsLayerIncluded(int layer, LayerMask layerMask)
-    {
-        return (layerMask & (1 << layer)) != 0;
     }
 
 }

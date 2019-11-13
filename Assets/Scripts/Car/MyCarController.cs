@@ -72,6 +72,8 @@ public class MyCarController : MonoBehaviour, IControllable
     [SerializeField] [Tooltip("Fuerza hacia el suelo a aplicar al vehículo cuando está en el aire")] private float downForce = 6f;
     [Tooltip("Fuerza hacia abajo añadida cuando se supera la altura máxima")] public float additiveDownForce = 1f;
     [SerializeField] [Tooltip("Fuerza vertical que se aplica desde las esquinas del coche hacia arriba. Sirve para mantenerlo flotando en el aire")] private float upForce = 20f;
+    [SerializeField] private float originalUpForce;
+    [SerializeField] private float upForceOnTheWall;
     [SerializeField] [Tooltip("Fuerza de salto vertical")] private float jumpForce = 20f;
     [SerializeField] [Tooltip("Tipo de suspension: Verdadero = usar una fuerza desde el centro del coche; Falso = usar una fuerza desde cada esquina del coche")] private bool useSimpleSuspension = false;
     [SerializeField] [Tooltip("Drag a usar cuando el coche está en el suelo")] private float groundDrag = 2f;
@@ -98,6 +100,10 @@ public class MyCarController : MonoBehaviour, IControllable
     [SerializeField] private bool boostInput;
     [SerializeField] private bool resetInput;
     [SerializeField] private bool jumpInput;
+    /// <summary>
+    /// Indica si el coche está sobre la pared
+    /// </summary>
+    public bool OnTheWall { get; set; }
 
     [Header("*More Info*")]
     [SerializeField] [Tooltip("Velocidad angular del coche")] private Vector3 rbAngularVelocity;
@@ -287,6 +293,10 @@ public class MyCarController : MonoBehaviour, IControllable
             Turbo += turboRechargeMultiplier * Time.deltaTime;
             turnSpeed = originalTurnSpeed;
             isBoosting = false;
+            if(OnTheWall)
+            {
+                turnSpeed = boostTurnSpeed;
+            }
         }
 
         //if (rb.velocity.magnitude < speedThreshold) accelerationInput *= instantSpeedForce;
@@ -571,6 +581,16 @@ public class MyCarController : MonoBehaviour, IControllable
         rb.rotation = Quaternion.Euler(0, rb.rotation.eulerAngles.y, 0f);
         rb.Sleep();
         rb.WakeUp();
+    }
+
+    public void SetUpForceOnTheWall()
+    {
+        upForce = upForceOnTheWall;
+    }
+
+    public void SetUpForceOnTheGround()
+    {
+        upForce = originalUpForce;
     }
 
     #region Control Events

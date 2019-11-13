@@ -37,9 +37,8 @@ public class StabilityController : MonoBehaviour
 
     private void Start()
     {
-        var mCC = GetComponent<MyCarController>();
-        if (mCC != null)
-            distanceToApplyPushForce = mCC.ExtraHeightToAllowMovement + mCC.ExtraHeightToNoGrounded + carHelper.GetComponent<CarHelper>().Height;
+        if (myCarController != null)
+            distanceToApplyPushForce = myCarController.ExtraHeightToAllowMovement + myCarController.ExtraHeightToNoGrounded + carHelper.GetComponent<CarHelper>().Height;
         else distanceToApplyPushForce = 4.5f;
     }
 
@@ -48,7 +47,16 @@ public class StabilityController : MonoBehaviour
         ClampRotation();
         CheckUpsideDown();
         if(OnTheWall > 0)
+        {
+            myCarController.OnTheWall = true;
+            myCarController.SetUpForceOnTheWall(); 
             PushToTheGround();
+        }
+        else
+        {
+            myCarController.OnTheWall = false;
+            myCarController.SetUpForceOnTheGround();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -165,8 +173,8 @@ public class StabilityController : MonoBehaviour
         //    {
         //        var force = Mathf.Lerp(0f, pushToTheGroundForce, myCarController.AccelerationInput);
         //        Debug.Log($"force = {force}");
-
-                rb.AddForce(-rb.transform.up * pushToTheGroundForce, ForceMode.Acceleration);
+                var force = Mathf.Clamp01(2f * rb.velocity.magnitude / myCarController.speedForce);
+                rb.AddForce(-rb.transform.up * pushToTheGroundForce * force, ForceMode.Acceleration);
 
         //    }
         //}

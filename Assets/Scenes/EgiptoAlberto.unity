@@ -222,7 +222,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &48784260
 Transform:
   m_ObjectHideFlags: 0
@@ -754,7 +754,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 5260619960850091007, guid: f21fea2e4a7d6a941bb7b90b6f96201d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5260619960850091005, guid: f21fea2e4a7d6a941bb7b90b6f96201d,
+        type: 3}
+      propertyPath: upForce
+      value: 30
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2131433078573266024, guid: f21fea2e4a7d6a941bb7b90b6f96201d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f21fea2e4a7d6a941bb7b90b6f96201d, type: 3}
 --- !u!1001 &371152998
 PrefabInstance:
@@ -4932,7 +4943,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19c6e279d3249b4419e0eb114a3acaab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushToTheGroundForce: 150
+  pushForce: 50
+  godsLayerMask:
+    serializedVersion: 2
+    m_Bits: 246272
 --- !u!65 &2114724489
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4953,7 +4967,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2114724487}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

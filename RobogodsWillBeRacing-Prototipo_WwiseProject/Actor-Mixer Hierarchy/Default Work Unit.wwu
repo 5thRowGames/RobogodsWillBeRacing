@@ -2383,6 +2383,67 @@
 								</Sound>
 							</ChildrenList>
 						</RandomSequenceContainer>
+						<RandomSequenceContainer Name="Musica_Poseidon" ID="{2CC8917B-1454-42DC-83FD-1308A0BCC9F7}" ShortID="98064901">
+							<PropertyList>
+								<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+								<Property Name="RandomOrSequence" Type="int16" Value="0"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="MUSICA_BUS" ID="{6C684514-A741-4BF9-B1F1-2BE3F140C499}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="Robo_Gods_Musica_Poseidon" ID="{B22221C4-B308-4984-A825-B0566C6CC078}" ShortID="238744385">
+									<PropertyList>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Robo_Gods_Musica_Poseidon" ID="{A16C103B-69ED-4DA5-AC08-D4E17D8223EF}" ShortID="305272715">
+											<Language>SFX</Language>
+											<AudioFile>Robo_Gods_Musica_Poseidon.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Robo_Gods_Musica_Poseidon" ID="{A16C103B-69ED-4DA5-AC08-D4E17D8223EF}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Robo_Gods_Portal_Roboseidon_INTRO_Start" ID="{BB9E22A1-9365-4A96-8164-39CD89C6592E}" ShortID="14623666">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{59ED9638-6773-4AA5-9CDF-E518FE4625D6}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{69357234-EE46-455E-9837-90BE8AFB9FDD}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Robo_Gods_Portal_Roboseidon_INTRO_Start" ID="{69B8234E-C673-474B-A3EE-D349393BF778}" ShortID="951506862">
+											<Language>SFX</Language>
+											<AudioFile>Robo_Gods_Portal_Roboseidon_INTRO_Start.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Robo_Gods_Portal_Roboseidon_INTRO_Start" ID="{69B8234E-C673-474B-A3EE-D349393BF778}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+							<Playlist>
+								<ItemRef Name="Robo_Gods_Portal_Roboseidon_INTRO_Start" ID="{BB9E22A1-9365-4A96-8164-39CD89C6592E}"/>
+								<ItemRef Name="Robo_Gods_Musica_Poseidon" ID="{B22221C4-B308-4984-A825-B0566C6CC078}"/>
+							</Playlist>
+						</RandomSequenceContainer>
 					</ChildrenList>
 				</Folder>
 			</ChildrenList>

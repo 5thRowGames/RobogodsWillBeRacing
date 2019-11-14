@@ -63,7 +63,7 @@ public class RaceEventManager : SingletonDontDestroy<RaceEventManager>
 
                 if (!countdown)
                 {
-                    if (StoreGodInfo.Instance.players > 1)
+                    /*if (StoreGodInfo.Instance.players > 1)
                     {
                         positionUIManager.GetComponent<PositionUIManager>().enabled = true;
                         positionUIManager.GetComponent<TimeTrial>().enabled = false;
@@ -72,7 +72,9 @@ public class RaceEventManager : SingletonDontDestroy<RaceEventManager>
                     {
                         positionUIManager.GetComponent<PositionUIManager>().enabled = false;
                         positionUIManager.GetComponent<TimeTrial>().enabled = true;
-                    }
+                    }*/
+
+                    positionUIManager.GetComponent<TimeTrial>().enabled = true;
                     
                     positionUIManager.SetActive(true);
                     ConnectDisconnectManager.ConnectCarControllerDelegate();

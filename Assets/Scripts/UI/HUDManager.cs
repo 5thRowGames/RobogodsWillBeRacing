@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Vector3 = UnityEngine.Vector3;
 
 [Serializable]
 public class HUDInfo
 {
     public God.Type god;
     public Image racePositionImage;
-    public Image lapName;
-    public Image lapText;
+    public Image lapTitle;
+    public Image lapNumber;
     public Image manaBar;
     public Image mainSkillIcon;
     public Image turboBar;
@@ -28,7 +31,10 @@ public class HUDInfo
     public GameObject laps;
     public Image flash;
     public ParticleSystem flashParticles;
+    public Image localFade;
+    public RectTransform waitingPlayers;
     public Camera mainCamera;
+    
 
     private float time;
 
@@ -223,7 +229,7 @@ public class HUDManager : Singleton<HUDManager>
 
     public void UpdateLapText(God.Type god, int lap)
     {
-        hudDictionary[god].lapText.sprite = numbers[lap];
+        hudDictionary[god].lapNumber.sprite = numbers[lap];
     }
 
     private void UpdateAnubisPosition()
@@ -259,7 +265,7 @@ public class HUDManager : Singleton<HUDManager>
         
         DisableOrEnableUI(god,false);
         
-        camera.cullingMask |= 1 << LayerMask.NameToLayer("PortalParticles");
+        camera.cullingMask |= 1 << LayerMask.NameToLayer("PortalParticles"+god);
 
         while (image.color.a < 0.5f)
         {
@@ -291,7 +297,7 @@ public class HUDManager : Singleton<HUDManager>
     private void DisableOrEnableUI(God.Type god, bool enabled)
     {
         hudDictionary[god].racePositionImage.enabled = enabled;
-        hudDictionary[god].lapName.enabled = enabled;
+        hudDictionary[god].lapTitle.enabled = enabled;
         hudDictionary[god].turbo.SetActive(enabled);
         hudDictionary[god].laps.SetActive(enabled);
 
@@ -318,5 +324,13 @@ public class HUDManager : Singleton<HUDManager>
     public void UpdateTurboUI(God.Type god, float turbo)
     {
         hudDictionary[god].turboBar.fillAmount = turbo;
+    }
+
+    public void HideWaitPlayers()
+    {
+        hudDictionary[God.Type.Anubis].waitingPlayers.DOScale(Vector3.zero, 0.3f);
+        hudDictionary[God.Type.Poseidon].waitingPlayers.DOScale(Vector3.zero, 0.3f);
+        hudDictionary[God.Type.Kali].waitingPlayers.DOScale(Vector3.zero, 0.3f);
+        hudDictionary[God.Type.Thor].waitingPlayers.DOScale(Vector3.zero, 0.3f);
     }
 }

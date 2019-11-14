@@ -8,10 +8,11 @@ using UnityEngine.UI;
 
 public class LoadingScreenManager : MonoBehaviour
 {
+    public RectTransform loadingIcon;
     public Image fade;
     public float fadeDuration;
     public float loadingScreenDuration;
-
+    
     public int newScene;
     
     private AsyncOperation asyncLoadNextScene;
@@ -19,6 +20,7 @@ public class LoadingScreenManager : MonoBehaviour
     private void OnEnable()
     {
         StartCoroutine(LoadingScreen());
+        loadingIcon.DOLocalRotate(new Vector3(0, 0, -360), 1f, RotateMode.FastBeyond360).SetEase(Ease.Linear).SetUpdate(true).SetLoops(-1);
     }
 
     #region Tweens

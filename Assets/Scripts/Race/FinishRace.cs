@@ -59,15 +59,26 @@ public class FinishRace : MonoBehaviour
 
     private void FillPanel()
     {
-        for (int i = 0; i < StoreGodInfo.Instance.players; i++)
+        if (StoreGodInfo.Instance.players == 1)
         {
-            finishPositionLabels[i].name.text = FillName(LapsManager.Instance.GetIndexPosition(i));
-            finishPositionLabels[i].icon.sprite = icons[(int)GetGod(i)];
-            finishPositionLabels[i].position.text = i + 1 + "º";
-            finishPositionLabels[i].time.text = TransformStringToTime(TimeTrial.Instance.GetTotalTime(GetGod(i)));
-            finishPositionLabels[i].finishPositionLabelGameObject.gameObject.SetActive(true);
-
-            int kk = (int)GetGod(i);
+            int indexPosition = LapsManager.Instance.GetIndexPosition(0);
+            finishPositionLabels[0].name.text = FillName(indexPosition);
+            finishPositionLabels[0].icon.sprite = icons[(int)GetGod(indexPosition)];
+            finishPositionLabels[0].position.text = "1º";
+            finishPositionLabels[0].time.text = TransformStringToTime(TimeTrial.Instance.GetTotalTime(GetGod(indexPosition)));
+            finishPositionLabels[0].finishPositionLabelGameObject.gameObject.SetActive(true);
+        }
+        else
+        {
+            for (int i = 0; i < StoreGodInfo.Instance.players; i++)
+            {
+                int indexPosition = LapsManager.Instance.GetIndexPosition(i);
+                finishPositionLabels[i].name.text = FillName(indexPosition);
+                finishPositionLabels[i].icon.sprite = icons[(int)GetGod(indexPosition)];
+                finishPositionLabels[i].position.text = i + 1 + "º";
+                finishPositionLabels[i].time.text = TransformStringToTime(TimeTrial.Instance.GetTotalTime(GetGod(indexPosition)));
+                finishPositionLabels[i].finishPositionLabelGameObject.gameObject.SetActive(true);
+            }
         }
     }
 

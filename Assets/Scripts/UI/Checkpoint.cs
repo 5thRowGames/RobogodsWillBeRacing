@@ -13,9 +13,12 @@ public class Checkpoint : MonoBehaviour
     public bool exitPortal;
 
     private void OnTriggerEnter(Collider other)
-    { 
-        MinimapControl.Instance.UpdateMinimapControl(other.tag, index);
-        LapsManager.Instance.UpdateCheckPoint(other.tag, index);
+    {
+        if (other.GetComponent<MyCarController>() != null)
+        {
+            MinimapControl.Instance.UpdateMinimapControl(other.tag, index);
+            LapsManager.Instance.UpdateCheckPoint(other.tag, index);
+        }
     }
     
     

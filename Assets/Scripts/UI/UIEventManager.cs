@@ -9,6 +9,7 @@ public class UIEventManager : Singleton<UIEventManager>
     [Header("Menu principal")]
     public GameObject titleScreen;
     public GameObject mainMenu;
+    public GameObject controls;
     public GameObject settings;
     public GameObject credits;
     public GameObject characterSelection;
@@ -40,6 +41,10 @@ public class UIEventManager : Singleton<UIEventManager>
 
             case MenuType.Menu.LoadingScreen:
                 loadingScreen.SetActive(true);
+                break;
+            
+            case MenuType.Menu.Controls:
+                controls.SetActive(true);
                 break;
         }
     }

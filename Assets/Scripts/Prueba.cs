@@ -18,7 +18,7 @@ public class Prueba : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.W))
+        /*if (Input.GetKey(KeyCode.W))
         {
             transform.Translate(60f * Time.deltaTime * Vector3.forward);
 
@@ -29,7 +29,7 @@ public class Prueba : MonoBehaviour
         {
             interiorTrailLeft.startSpeed = 0;
             interiorTrailRight.startSpeed = 0;
-        }
+        }*/
             
         
         if(Input.GetKey(KeyCode.A))

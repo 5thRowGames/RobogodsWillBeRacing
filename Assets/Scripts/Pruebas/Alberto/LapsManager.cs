@@ -76,9 +76,16 @@ public class LapsManager : Singleton<LapsManager>
         playersFinished = 0;
         FirstUpdate();
         godAmount = godRaceInfoList.Count;
-        
-        if(StoreGodInfo.Instance.players > 1)
+
+        if (StoreGodInfo.Instance.players > 1)
             UpdateGodPosition();
+        else
+        {
+            if (StoreGodInfo.Instance.anubisIA) racePosition[0] = 99; else racePosition[0] = 0;
+            if (StoreGodInfo.Instance.poseidonIA) racePosition[1] = 99; else racePosition[1] = 0;
+            if (StoreGodInfo.Instance.kaliIA) racePosition[2] = 99; else racePosition[2] = 0;
+            if (StoreGodInfo.Instance.thorIA) racePosition[3] = 99; else racePosition[3] = 0;
+        }
     }
     
     private void AddAllCheckpoints()
@@ -136,9 +143,9 @@ public class LapsManager : Singleton<LapsManager>
     
     private void UpdateRacePosition()
     {
-        for (int i = 0; i < godAmount; i++)
-        {
-            for (int j = i + 1; j < godAmount; j++)
+        for (int i = 0; i < 4; i++)
+        {    
+            for (int j = i + 1; j < 4; j++)
             {
                 int aux;
                 if (godRaceInfoList[i].currentLap == godRaceInfoList[j].currentLap)
@@ -267,7 +274,11 @@ public class LapsManager : Singleton<LapsManager>
 
     public void UpdatePlayersFinished(God.Type god)
     {
+        Debug.Log("Primero "+playersFinished);
+        
         playersFinished++;
+
+        Debug.Log("Segundo: "+playersFinished);
 
         if (playersFinished == StoreGodInfo.Instance.players)
         {

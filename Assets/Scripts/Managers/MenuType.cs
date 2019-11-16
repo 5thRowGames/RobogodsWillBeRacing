@@ -12,6 +12,7 @@ public class MenuType
         Credits = 3,
         CharacterSelection = 4,
         Pause = 5,
-        LoadingScreen = 6
+        LoadingScreen = 6,
+        Controls = 7
     }
 }

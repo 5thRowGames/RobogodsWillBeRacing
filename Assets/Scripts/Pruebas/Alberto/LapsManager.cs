@@ -274,11 +274,7 @@ public class LapsManager : Singleton<LapsManager>
 
     public void UpdatePlayersFinished(God.Type god)
     {
-        Debug.Log("Primero "+playersFinished);
-        
         playersFinished++;
-
-        Debug.Log("Segundo: "+playersFinished);
 
         if (playersFinished == StoreGodInfo.Instance.players)
         {

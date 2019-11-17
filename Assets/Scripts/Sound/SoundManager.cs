@@ -29,6 +29,7 @@ public class SoundManager : SingletonDontDestroy<SoundManager>
 
     public enum Music
     {
+        None,
         UI,
         Portal_Out,
         Inicio,
@@ -45,14 +46,18 @@ public class SoundManager : SingletonDontDestroy<SoundManager>
 
     private Coroutine portal_out = null;
 
+    private Music currentMusic;
+    public Music CurrentMusic => currentMusic;
+
     [Header("Orden: UI - Limbo - Egipto - Nordica")]
     public List<GameObject> gameObjectEvents;
-
     public List<GameObject> gameObjectHologramLoop;
 
     //TODO esto habrá que hacerlo mediante csv pero por ahora hacerlo a mano
     private void Awake()
     {
+        currentMusic = Music.None;
+        
         base.Awake();
         fxDictionary = new Dictionary<Fx, string>();
         fxDictionary.Add(Fx.UI_MetallicButtonFocus,"UI_Cursor_In");
@@ -111,11 +116,15 @@ public class SoundManager : SingletonDontDestroy<SoundManager>
 
     public void PlayLoop(Music music)
     {
+        if (!musicDictionary.ContainsKey(music)) return;
+        currentMusic = music;
         AkSoundEngine.PostEvent(musicDictionary[music], musicGameObjects[0]);
     } 
 
     public void StopLoop(Music music)
     {
+        if (!musicDictionary.ContainsKey(music)) return;
+        currentMusic = Music.None;
         musicGameObjects[music].GetComponent<AkEvent>().Stop(0);
     }
 

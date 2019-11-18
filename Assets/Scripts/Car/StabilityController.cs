@@ -12,7 +12,7 @@ public class StabilityController : MonoBehaviour
     [SerializeField] [Tooltip("Tiempo para poner a 0 las rotaciones en X y Z cuando se llega a sus máximos")] private readonly float timeToIdentityRotation = 1f;
     [Tooltip("Layer para ignorar todo lo que no sea el suelo")] public LayerMask groundLayer;
     [Tooltip("Layer para comprobar el ángulo de inclinación del coche con respecto del suelo")] public LayerMask inclinationLayer;
-    public float pushToTheGroundForce;
+    [Tooltip("Fuerza que se aplica sobre el coche cuando está sobre la pared")]public float pushToTheGroundForce;
     public float angle;
     private const string wallLayerName = "Wall";
     public int OnTheWall { get; set; } // true cuando el coche está en contacto con el trigger una pared
@@ -46,6 +46,7 @@ public class StabilityController : MonoBehaviour
     {
         ClampRotation();
         CheckUpsideDown();
+        GetOnOrOffTheWall();
         if(OnTheWall > 0)
         {
             myCarController.OnTheWall = true;
@@ -121,7 +122,7 @@ public class StabilityController : MonoBehaviour
     private IEnumerator RotationToIdentity()
     {
         IsRotatingToIdentity = true;
-        Debug.Log("Started rotating to identity");
+        //Debug.Log("Started rotating to identity");
         float timeCount = 0f;
         Quaternion fromRotation = new Quaternion(rb.rotation.x, rb.rotation.y, rb.rotation.z, rb.rotation.w);
         Quaternion toRotation = new Quaternion();
@@ -134,7 +135,7 @@ public class StabilityController : MonoBehaviour
             yield return null;
         }
         IsRotatingToIdentity = false;
-        Debug.Log("Finished rotating to identity");
+        //Debug.Log("Finished rotating to identity");
     }
 
     //private void ClampHeight()
@@ -180,4 +181,22 @@ public class StabilityController : MonoBehaviour
         //}
         //else Debug.Log("Estoy volando?");
 	}
+
+    private void GetOnOrOffTheWall()
+    {
+        RaycastHit hitInfo;
+        if(OnTheWall > 0)
+        {
+            if(Physics.Raycast(myCarController.carCorners[0].position, transform.forward, out hitInfo, 0.5f, inclinationLayer, QueryTriggerInteraction.Collide))
+            {
+                rb.AddForceAtPosition(transform.up * pushToTheGroundForce, myCarController.accelPoint.position);
+                //rb.AddForceAtPosition(-transform.up * pushToTheGroundForce, myCarController.handBrakePoint.position);
+            }
+            else if(Physics.Raycast(myCarController.carCorners[1].position, transform.forward, out hitInfo, 0.5f, inclinationLayer, QueryTriggerInteraction.Collide))
+            {
+                rb.AddForceAtPosition(transform.up * pushToTheGroundForce, myCarController.accelPoint.position);
+                //rb.AddForceAtPosition(-transform.up * pushToTheGroundForce, myCarController.handBrakePoint.position);
+            }
+        }
+    }
 }

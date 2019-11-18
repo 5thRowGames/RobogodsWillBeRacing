@@ -22,7 +22,7 @@ public class MyCarCollisionsController : MonoBehaviour
     public float distance;
     private int numberOfCorners;
     private List<Transform> corners;
-    private List<RaycastHit> hitList;
+    //private List<RaycastHit> hitList;
 
     #region UnityEvents
 
@@ -31,40 +31,38 @@ public class MyCarCollisionsController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         portalLayer = LayerMask.NameToLayer("Portal");
         maxSpeedForce = GetComponent<MyCarController>().speedForce;
-        hitList = new List<RaycastHit>();
+        //hitList = new List<RaycastHit>();
 
         if (myCarController != null)
         {
             numberOfCorners = myCarController.carCorners.Count;
             corners = myCarController.carCorners;
-            for (int i = 0; i < numberOfCorners; i++)
-                hitList.Add(new RaycastHit());
+            //for (int i = 0; i < numberOfCorners; i++)
+            //    hitList.Add(new RaycastHit());
         }
 
     }
-
-    //private void FixedUpdate()
-    //{
-    //    myVelocity = rb.velocity;
-    //}
 
     private void OnCollisionEnter(Collision collision)
     {
         //Debug.Log("MyCarCollisionsController Collision");
         int otherLayer = collision.gameObject.layer;
 
-        //AkSoundEngine.PostEvent("Impactos_In", gameObject);
+        //if(!Physics.Raycast(myCarController.centerOfMass.position, -transform.up, 0.2f, LayerMask.NameToLayer("Default")))
+        //{
+            AkSoundEngine.PostEvent("Impactos_In", gameObject);
+        //}
 
         if (otherLayer != portalLayer) // Si no choco contra un portal
         {
             priorConstraints = rb.constraints; // Guardo las restricciones previas al choque
             if (LayerMaskUtils.IsLayerIncluded(otherLayer, godsLayerMask))
             {
-                Debug.Log($"{gameObject.name} choca contra {LayerMask.LayerToName(otherLayer)}");
+                //Debug.Log($"{gameObject.name} choca contra {LayerMask.LayerToName(otherLayer)}");
                 rb.constraints = RigidbodyConstraints.FreezeRotation; // Congelo la rotación para evitar que el coche cambie su dirección
             }
 
-            //CheckFrontCollision(collision);
+            CheckFrontCollision(collision);
         }
     }
 
@@ -82,14 +80,15 @@ public class MyCarCollisionsController : MonoBehaviour
     {
         Vector3 normal = collision.contacts[0].normal;
         collisionAngle = (Vector3.Angle(rb.velocity, -normal));
+        //Debug.Log($"Ángulo de choque = {collisionAngle}");
         if (collisionAngle > -maxFrontalAngle && collisionAngle < maxFrontalAngle) // Choque frontal
         {
-            //    //if (collisionAngle > -maxAngle && collisionAngle < maxAngle && rb.velocity.magnitude > maxSpeed)
-            //    //{
-            //        Debug.Log("¡Reducción de velocidad!");
-            //        rb.angularVelocity *= reductionSpeedFactor * (1.0f - (collisionAngle / maxAngle));
-            //        rb.velocity *= reductionSpeedFactor;
-            //    //}
+            //if (collisionAngle > -maxAngle && collisionAngle < maxAngle && rb.velocity.magnitude > maxSpeed)
+            //{
+            //    //Debug.Log("¡Reducción de velocidad!");
+            //    rb.angularVelocity *= reductionSpeedFactor * (1.0f - (collisionAngle / maxAngle));
+            //    rb.velocity *= reductionSpeedFactor;
+            //}
 
             //    Debug.Log("¡Fuerza hacia abajo!");
             //var speedForce = rb.velocity.magnitude > minSpeedForce ? rb.velocity.magnitude : minSpeedForce;   

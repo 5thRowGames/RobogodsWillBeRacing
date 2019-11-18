@@ -1217,13 +1217,19 @@ MonoBehaviour:
   alwaysAccelerate: 0
   minAcceleration: 0.2
   boostMultiplier: 2
-  slowDownMultiplier: 0.5
   accelerationDividerOnAir: 4
   carUnderControl: 0
   deaccelerationTime: 2
   turnSpeed: 50
+  turboTime: 1
   originalTurnSpeed: 0
   boostTurnSpeed: 0
+  turboMultiplier: 0
+  addTurbo: 0
+  addSlow: 0
+  recoverSpeedFromTurbo: 0
+  recoverSpeedFromSlow: 0
+  slowDownMultiplier: 0.5
   speedThreshold: 15
   steeringThreshold: 0.2
   steeringReductionFactor: 0.8
@@ -1240,14 +1246,15 @@ MonoBehaviour:
   handBrakeTurboTime: 3
   handBrakeTimer: 0
   handBrakeBoostWait: 0.3
-  handBrakeBoostTime: 1
   extraHeightToAllowMovement: 0.5
-  exraHeightToNoGrounded: 1
+  extraHeightToNoGrounded: 1
   airLateralShiftFactor: 0.008
   wheelHeight: 1
   downForce: 6
   additiveDownForce: 1
   upForce: 40
+  originalUpForce: 40
+  upForceOnTheWall: 60
   jumpForce: 20
   useSimpleSuspension: 0
   groundDrag: 2
@@ -1296,9 +1303,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e02c871179d1f24fa7fbaf675f45db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  godsLayer:
+  godsLayerMask:
     serializedVersion: 2
-    m_Bits: 246272
+    m_Bits: 0
   frontalForce: 10
   maxAngle: 8
   maxFrontalAngle: 30
@@ -1331,6 +1338,7 @@ MonoBehaviour:
     m_Bits: 0
   pushToTheGroundForce: 0
   angle: 0
+  distanceToApplyPushForce: 0
   myCarController: {fileID: 7779139695855820996}
   rb: {fileID: 1874732012914679465}
   carHelper: {fileID: 0}

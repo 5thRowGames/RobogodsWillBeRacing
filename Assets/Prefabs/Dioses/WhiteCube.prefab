@@ -223,13 +223,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeDevice: 1
+  god: 0
+  turboRechargeMultiplier: 0
+  turboConsumeMultiplier: 0
+  turbo: 0
+  ownCamera: {fileID: 0}
   speedForce: 80
   instantSpeedForce: 3
   alwaysAccelerate: 0
   minAcceleration: 0.2
   boostMultiplier: 3
+  accelerationDividerOnAir: 4
+  carUnderControl: 0
   deaccelerationTime: 2
   turnSpeed: 30
+  turboTime: 1
+  originalTurnSpeed: 0
+  boostTurnSpeed: 0
+  turboMultiplier: 0
+  addTurbo: 0
+  addSlow: 0
+  recoverSpeedFromTurbo: 0
+  recoverSpeedFromSlow: 0
+  slowDownMultiplier: 0.5
   speedThreshold: 10
   steeringThreshold: 0.1
   steeringReductionFactor: 0.9
@@ -238,6 +254,7 @@ MonoBehaviour:
   maxAngularSpeed: 20
   brakeForce: 20
   brakeToReverseTime: 0.5
+  brakeToReverseTimer: 0
   isGoingBackwards: 0
   speedUnderThreshold: 0
   handBrakeForce: 30
@@ -245,13 +262,15 @@ MonoBehaviour:
   handBrakeTurboTime: 4
   handBrakeTimer: 0
   handBrakeBoostWait: 0.2
-  handBrakeBoostTime: 1
   extraHeightToAllowMovement: 0.5
-  exraHeightToNoGrounded: 1
+  extraHeightToNoGrounded: 1
   airLateralShiftFactor: 0.01
   wheelHeight: 1
   downForce: 6
+  additiveDownForce: 1
   upForce: 20
+  originalUpForce: 30
+  upForceOnTheWall: 60
   jumpForce: 20
   useSimpleSuspension: 0
   groundDrag: 2
@@ -284,9 +303,9 @@ MonoBehaviour:
   rbAngularVelocity: {x: 0, y: 0, z: 0}
   velocityMagnitude: 0
   velocity: {x: 0, y: 0, z: 0}
+  neededCornersToBeGrounded: 2
   IsBeingTeleported: 0
   helper: {fileID: 0}
-  pruebaSonido: 0
   startingPositions: []
 --- !u!114 &583009721830542261
 MonoBehaviour:
@@ -300,6 +319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187f32bbefc710a43b434016dfc4d0b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerID: -1
   controlType: 0
 --- !u!1 &3679464688842729531
 GameObject:

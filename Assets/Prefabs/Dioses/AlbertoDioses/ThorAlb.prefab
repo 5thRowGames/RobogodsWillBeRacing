@@ -675,13 +675,19 @@ MonoBehaviour:
   alwaysAccelerate: 0
   minAcceleration: 0.2
   boostMultiplier: 2
-  slowDownMultiplier: 0.5
   accelerationDividerOnAir: 4
   carUnderControl: 0
   deaccelerationTime: 2
   turnSpeed: 50
+  turboTime: 1
   originalTurnSpeed: 40
   boostTurnSpeed: 70
+  turboMultiplier: 0
+  addTurbo: 0
+  addSlow: 0
+  recoverSpeedFromTurbo: 0
+  recoverSpeedFromSlow: 0
+  slowDownMultiplier: 0.5
   speedThreshold: 15
   steeringThreshold: 0.2
   steeringReductionFactor: 0.9
@@ -698,7 +704,6 @@ MonoBehaviour:
   handBrakeTurboTime: 3
   handBrakeTimer: 0
   handBrakeBoostWait: 0.3
-  handBrakeBoostTime: 1
   extraHeightToAllowMovement: 0.5
   extraHeightToNoGrounded: 1
   airLateralShiftFactor: 0.002
@@ -706,6 +711,8 @@ MonoBehaviour:
   downForce: 5
   additiveDownForce: 1
   upForce: 30
+  originalUpForce: 30
+  upForceOnTheWall: 60
   jumpForce: 20
   useSimpleSuspension: 0
   groundDrag: 2

@@ -780,14 +780,25 @@ MonoBehaviour:
   turboRechargeMultiplier: 0
   turboConsumeMultiplier: 0
   turbo: 0
+  ownCamera: {fileID: 0}
   speedForce: 140
   instantSpeedForce: 10
   alwaysAccelerate: 0
   minAcceleration: 0.2
   boostMultiplier: 2
+  accelerationDividerOnAir: 4
   carUnderControl: 0
   deaccelerationTime: 2
   turnSpeed: 50
+  turboTime: 1
+  originalTurnSpeed: 0
+  boostTurnSpeed: 0
+  turboMultiplier: 0
+  addTurbo: 0
+  addSlow: 0
+  recoverSpeedFromTurbo: 0
+  recoverSpeedFromSlow: 0
+  slowDownMultiplier: 0.5
   speedThreshold: 15
   steeringThreshold: 0.2
   steeringReductionFactor: 0.8
@@ -796,6 +807,7 @@ MonoBehaviour:
   maxAngularSpeed: 20
   brakeForce: 40
   brakeToReverseTime: 0.5
+  brakeToReverseTimer: 0
   isGoingBackwards: 0
   speedUnderThreshold: 0
   handBrakeForce: 30
@@ -803,14 +815,15 @@ MonoBehaviour:
   handBrakeTurboTime: 3
   handBrakeTimer: 0
   handBrakeBoostWait: 0.3
-  handBrakeBoostTime: 1
   extraHeightToAllowMovement: 0.5
-  exraHeightToNoGrounded: 1
+  extraHeightToNoGrounded: 1
   airLateralShiftFactor: 0.008
   wheelHeight: 1
   downForce: 6
   additiveDownForce: 1
   upForce: 40
+  originalUpForce: 40
+  upForceOnTheWall: 60
   jumpForce: 20
   useSimpleSuspension: 0
   groundDrag: 2
@@ -843,9 +856,9 @@ MonoBehaviour:
   rbAngularVelocity: {x: 0, y: 0, z: 0}
   velocityMagnitude: 0
   velocity: {x: 0, y: 0, z: 0}
+  neededCornersToBeGrounded: 2
   IsBeingTeleported: 0
   helper: {fileID: 3313344535617684434}
-  pruebaSonido: 0
   startingPositions: []
 --- !u!114 &6643546060550102277
 MonoBehaviour:
@@ -859,11 +872,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e02c871179d1f24fa7fbaf675f45db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  godsLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
   frontalForce: 10
   maxAngle: 8
   maxFrontalAngle: 30
   maxSpeed: 30
   reductionSpeedFactor: 0.4
+  myCarController: {fileID: 0}
+  force: 0
+  distance: 0
 --- !u!114 &702772857911646721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -883,10 +902,15 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 1024
-  maxHeightAllowed: 3
-  timeToMaxHeight: 0
+  inclinationLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  pushToTheGroundForce: 0
+  angle: 0
+  distanceToApplyPushForce: 0
   myCarController: {fileID: 8884517709100184768}
   rb: {fileID: 773855299745352365}
+  carHelper: {fileID: 0}
 --- !u!114 &7942624402728049221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -916,6 +940,7 @@ MonoBehaviour:
   incontrolProvider: {fileID: 7942624402728049221}
   unsharedSoundStart: Nave_1
   carRigidbody: {fileID: 773855299745352365}
+  Eduardo: 0
 --- !u!114 &3313344535617684435
 MonoBehaviour:
   m_ObjectHideFlags: 0

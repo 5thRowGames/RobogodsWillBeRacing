@@ -1427,14 +1427,25 @@ MonoBehaviour:
   turboRechargeMultiplier: 0
   turboConsumeMultiplier: 0
   turbo: 0
+  ownCamera: {fileID: 0}
   speedForce: 140
   instantSpeedForce: 10
   alwaysAccelerate: 0
   minAcceleration: 0.2
   boostMultiplier: 2
+  accelerationDividerOnAir: 4
   carUnderControl: 0
   deaccelerationTime: 2
   turnSpeed: 50
+  turboTime: 1
+  originalTurnSpeed: 0
+  boostTurnSpeed: 0
+  turboMultiplier: 0
+  addTurbo: 0
+  addSlow: 0
+  recoverSpeedFromTurbo: 0
+  recoverSpeedFromSlow: 0
+  slowDownMultiplier: 0.5
   speedThreshold: 15
   steeringThreshold: 0.2
   steeringReductionFactor: 0.8
@@ -1443,6 +1454,7 @@ MonoBehaviour:
   maxAngularSpeed: 20
   brakeForce: 40
   brakeToReverseTime: 0.5
+  brakeToReverseTimer: 0
   isGoingBackwards: 0
   speedUnderThreshold: 0
   handBrakeForce: 30
@@ -1450,14 +1462,15 @@ MonoBehaviour:
   handBrakeTurboTime: 3
   handBrakeTimer: 0
   handBrakeBoostWait: 0.3
-  handBrakeBoostTime: 1
   extraHeightToAllowMovement: 0.5
-  exraHeightToNoGrounded: 1
+  extraHeightToNoGrounded: 1
   airLateralShiftFactor: 0.008
   wheelHeight: 1
   downForce: 6
   additiveDownForce: 1
   upForce: 40
+  originalUpForce: 40
+  upForceOnTheWall: 60
   jumpForce: 20
   useSimpleSuspension: 0
   groundDrag: 2
@@ -1490,9 +1503,9 @@ MonoBehaviour:
   rbAngularVelocity: {x: 0, y: 0, z: 0}
   velocityMagnitude: 0
   velocity: {x: 0, y: 0, z: 0}
+  neededCornersToBeGrounded: 2
   IsBeingTeleported: 0
   helper: {fileID: 6121713865260682355}
-  pruebaSonido: 0
   startingPositions: []
 --- !u!114 &2683427320324412068
 MonoBehaviour:
@@ -1506,11 +1519,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e02c871179d1f24fa7fbaf675f45db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  godsLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
   frontalForce: 10
   maxAngle: 8
   maxFrontalAngle: 30
   maxSpeed: 30
   reductionSpeedFactor: 0.4
+  myCarController: {fileID: 0}
+  force: 0
+  distance: 0
 --- !u!114 &8128767733569885600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1530,10 +1549,15 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 1024
-  maxHeightAllowed: 3
-  timeToMaxHeight: 0
+  inclinationLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  pushToTheGroundForce: 0
+  angle: 0
+  distanceToApplyPushForce: 0
   myCarController: {fileID: 163197038951824225}
   rb: {fileID: 8336908743487456524}
+  carHelper: {fileID: 0}
 --- !u!114 &1672579083730376164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1563,6 +1587,7 @@ MonoBehaviour:
   incontrolProvider: {fileID: 1672579083730376164}
   unsharedSoundStart: Nave_1
   carRigidbody: {fileID: 8336908743487456524}
+  Eduardo: 0
 --- !u!114 &6121713865260682354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2311,7 +2336,7 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
-    - target: {fileID: 5427189533346071890, guid: 0bfde621d3fe76f4484eec791fdeccf9,
+    - target: {fileID: 5427189533881132475, guid: 0bfde621d3fe76f4484eec791fdeccf9,
         type: 3}
       propertyPath: m_Layer
       value: 15
@@ -2321,7 +2346,7 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
-    - target: {fileID: 5427189533881132475, guid: 0bfde621d3fe76f4484eec791fdeccf9,
+    - target: {fileID: 5427189533346071890, guid: 0bfde621d3fe76f4484eec791fdeccf9,
         type: 3}
       propertyPath: m_Layer
       value: 15
@@ -2421,7 +2446,7 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
-    - target: {fileID: 5427189533346071890, guid: 0bfde621d3fe76f4484eec791fdeccf9,
+    - target: {fileID: 5427189533881132475, guid: 0bfde621d3fe76f4484eec791fdeccf9,
         type: 3}
       propertyPath: m_Layer
       value: 15
@@ -2431,7 +2456,7 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
-    - target: {fileID: 5427189533881132475, guid: 0bfde621d3fe76f4484eec791fdeccf9,
+    - target: {fileID: 5427189533346071890, guid: 0bfde621d3fe76f4484eec791fdeccf9,
         type: 3}
       propertyPath: m_Layer
       value: 15
@@ -2531,7 +2556,7 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
-    - target: {fileID: 5427189533346071890, guid: 0bfde621d3fe76f4484eec791fdeccf9,
+    - target: {fileID: 5427189533881132475, guid: 0bfde621d3fe76f4484eec791fdeccf9,
         type: 3}
       propertyPath: m_Layer
       value: 15
@@ -2541,7 +2566,7 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
-    - target: {fileID: 5427189533881132475, guid: 0bfde621d3fe76f4484eec791fdeccf9,
+    - target: {fileID: 5427189533346071890, guid: 0bfde621d3fe76f4484eec791fdeccf9,
         type: 3}
       propertyPath: m_Layer
       value: 15
@@ -2647,12 +2672,7 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.33333334
       objectReference: {fileID: 0}
-    - target: {fileID: 8555214956926856152, guid: 54d434ade8e6ac44abac35effdc5f3be,
-        type: 3}
-      propertyPath: m_Layer
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 8555214957094376552, guid: 54d434ade8e6ac44abac35effdc5f3be,
+    - target: {fileID: 8555214957887337579, guid: 54d434ade8e6ac44abac35effdc5f3be,
         type: 3}
       propertyPath: m_Layer
       value: 15
@@ -2662,17 +2682,22 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
-    - target: {fileID: 8555214957887337579, guid: 54d434ade8e6ac44abac35effdc5f3be,
+    - target: {fileID: 8555214957094376552, guid: 54d434ade8e6ac44abac35effdc5f3be,
         type: 3}
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
-    - target: {fileID: 8555214958165194877, guid: 54d434ade8e6ac44abac35effdc5f3be,
+    - target: {fileID: 8555214956926856152, guid: 54d434ade8e6ac44abac35effdc5f3be,
         type: 3}
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8555214958501354799, guid: 54d434ade8e6ac44abac35effdc5f3be,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8555214958165194877, guid: 54d434ade8e6ac44abac35effdc5f3be,
         type: 3}
       propertyPath: m_Layer
       value: 15
@@ -2766,7 +2791,7 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
-    - target: {fileID: 5427189533346071890, guid: 0bfde621d3fe76f4484eec791fdeccf9,
+    - target: {fileID: 5427189533881132475, guid: 0bfde621d3fe76f4484eec791fdeccf9,
         type: 3}
       propertyPath: m_Layer
       value: 15
@@ -2776,7 +2801,7 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
-    - target: {fileID: 5427189533881132475, guid: 0bfde621d3fe76f4484eec791fdeccf9,
+    - target: {fileID: 5427189533346071890, guid: 0bfde621d3fe76f4484eec791fdeccf9,
         type: 3}
       propertyPath: m_Layer
       value: 15

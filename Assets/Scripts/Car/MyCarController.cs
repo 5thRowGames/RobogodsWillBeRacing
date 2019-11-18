@@ -354,6 +354,7 @@ public class MyCarController : MonoBehaviour, IControllable
             //rb.AddForceAtPosition(groundForward * accelerationInput * speedForce, accelPoint.position, ForceMode.Acceleration);
             var force = IsGrounded ? accelerationInput : accelerationInput / accelerationDividerOnAir;
             rb.AddForce(groundForward * force * speedForce, ForceMode.Acceleration);
+            //rb.AddForceAtPosition(groundForward * force * speedForce, accelPoint.position, ForceMode.Acceleration);
             deaccelerationTimer = deaccelerationTime;
         }
         else

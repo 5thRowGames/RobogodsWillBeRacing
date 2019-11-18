@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class MainMenuManager : MonoBehaviour
 {
     public RectTransform raceButton;
+    public RectTransform controlButton;
     public RectTransform settingsButton;
     public RectTransform creditsButton;
     public RectTransform exitButton;
@@ -14,6 +15,7 @@ public class MainMenuManager : MonoBehaviour
     public RectTransform infoPanel;
     public RectTransform metalSheet;
     public List<RectTransform> industrialArmRace; //0: Brazo padre, 1 pinza superior, 2 pinza inferior
+    public List<RectTransform> industrialArmControl; //0: Brazo padre, 1 pinza superior, 2 pinza inferior
     public List<RectTransform> industrialArmSettings; //0: Brazo padre, 1 pinza superior, 2 pinza inferior
     public List<RectTransform> industrialArmCredits; //0: Brazo padre, 1 pinza superior, 2 pinza inferior
     public List<RectTransform> industrialArmExit; //0: Brazo padre, 1 pinza superior, 2 pinza inferior
@@ -62,6 +64,7 @@ public class MainMenuManager : MonoBehaviour
     private void ResetMenu()
     {
         raceButton.anchoredPosition = new Vector2(buttonPosition.x, 0);
+        controlButton.anchoredPosition = new Vector2(buttonPosition.x, 0);
         settingsButton.anchoredPosition = new Vector2(buttonPosition.x, 0);
         creditsButton.anchoredPosition = new Vector2(buttonPosition.x, 0);
         exitButton.anchoredPosition = new Vector2(buttonPosition.x, 0);
@@ -79,6 +82,7 @@ public class MainMenuManager : MonoBehaviour
 
         Sequence sequence = DOTween.Sequence();
             sequence.Insert(0f, raceButton.DOAnchorPosX(0, movementDuration, true))
+            .Insert(0f, controlButton.DOAnchorPosX(0, movementDuration, true))
             .Insert(0f, creditsButton.DOAnchorPosX(0, movementDuration, true))
             .Insert(0f, exitButton.DOAnchorPosX(0, movementDuration, true))
             .Insert(0f, settingsButton.DOAnchorPosX(0, movementDuration, true))
@@ -104,6 +108,7 @@ public class MainMenuManager : MonoBehaviour
 
         Sequence sequence = DOTween.Sequence();
             sequence.Insert((movementDuration/2f), raceButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
+            .Insert((movementDuration/2f), controlButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
             .Insert((movementDuration/2f),settingsButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
             .Insert((movementDuration/2f), creditsButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
             .Insert((movementDuration/2f), exitButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
@@ -130,6 +135,21 @@ public class MainMenuManager : MonoBehaviour
             .Insert(0.5f, industrialArmRace[2].DORotate(new Vector3(0, 0, -112), 0.3f).OnComplete(HideMenuNoRace))
             .Insert(0.8f,raceButton.DOAnchorPosX(-1000,0.8f))
             .Insert(0.8f, industrialArmRace[0].DOAnchorPosX(-1000, 0.8f));
+    }
+    
+    public void HideMenuWithoutControlButton()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        UIEventManager.Instance.inControlInputModule.enabled = false;
+        
+        SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Servos_In);
+
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(industrialArmControl[0].DOAnchorPosX(0, 0.5f))
+            .Insert(0.5f, industrialArmControl[1].DORotate(new Vector3(0, 0, -60), 0.3f))
+            .Insert(0.5f, industrialArmControl[2].DORotate(new Vector3(0, 0, -112), 0.3f).OnComplete(HideMenuNoControl))
+            .Insert(0.8f,controlButton.DOAnchorPosX(-1000,0.8f))
+            .Insert(0.8f, industrialArmControl[0].DOAnchorPosX(-1000, 0.8f));
     }
     
     public void HideMenuWithoutSettingsButton()
@@ -183,6 +203,7 @@ public class MainMenuManager : MonoBehaviour
         
         Sequence sequence = DOTween.Sequence();
          sequence.Insert((movementDuration/2f),settingsButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
+             .Insert((movementDuration/2f),controlButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
             .Insert((movementDuration/2f), creditsButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
             .Insert(0f,mainMenuTitle.DOAnchorPosX(infoTitlePosition.x,movementDuration,true))
             .Insert(0f,infoPanel.DOAnchorPosX(-infoTitlePosition.x,movementDuration,true))
@@ -195,12 +216,32 @@ public class MainMenuManager : MonoBehaviour
                 });
     }
     
+    private void HideMenuNoControl()
+    {
+        SoundManager.Instance.PlayFx((int) SoundManager.Fx.UI_Panel_In);
+        
+        Sequence sequence = DOTween.Sequence();
+        sequence.Insert((movementDuration/2f),settingsButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
+            .Insert((movementDuration/2f),raceButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
+            .Insert((movementDuration/2f), creditsButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
+            .Insert(0f,mainMenuTitle.DOAnchorPosX(infoTitlePosition.x,movementDuration,true))
+            .Insert(0f,infoPanel.DOAnchorPosX(-infoTitlePosition.x,movementDuration,true))
+            .Insert((movementDuration/2f),metalSheet.DOAnchorPosY(metalSheetPosition.y,movementDuration,true))
+            .Insert((movementDuration/2f), exitButton.DOAnchorPosY(buttonPosition.y, movementDuration, true)).OnComplete(() =>
+            {
+                isInfoPanelHidden = true;
+                UIEventManager.Instance.ChangeScreen(MenuType.Menu.Controls);
+                gameObject.SetActive(false);
+            });
+    }
+    
     private void HideMenuNoSettings()
     {
         SoundManager.Instance.PlayFx((int) SoundManager.Fx.UI_Panel_In);
         
         Sequence sequence = DOTween.Sequence();
             sequence.Insert((movementDuration/2f), raceButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
+                .Insert((movementDuration/2f),controlButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
                 .Insert((movementDuration/2f), creditsButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
                 .Insert(0f,mainMenuTitle.DOAnchorPosX(infoTitlePosition.x,movementDuration,true))
                 .Insert(0f,infoPanel.DOAnchorPosX(-infoTitlePosition.x,movementDuration,true))
@@ -220,6 +261,7 @@ public class MainMenuManager : MonoBehaviour
         Sequence sequence = DOTween.Sequence();
         sequence.Insert((movementDuration/2f),raceButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
             .Insert((movementDuration/2f), settingsButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
+            .Insert((movementDuration/2f),controlButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
             .Insert(0f,mainMenuTitle.DOAnchorPosX(infoTitlePosition.x,movementDuration,true))
             .Insert(0f,infoPanel.DOAnchorPosX(-infoTitlePosition.x,movementDuration,true))
             .Insert((movementDuration/2f),metalSheet.DOAnchorPosY(metalSheetPosition.y,movementDuration,true))
@@ -238,6 +280,7 @@ public class MainMenuManager : MonoBehaviour
         Sequence sequence = DOTween.Sequence();
         sequence.Insert((movementDuration/2f),raceButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
             .Insert((movementDuration/2f),settingsButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
+            .Insert((movementDuration/2f),controlButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
             .Insert((movementDuration/2f), creditsButton.DOAnchorPosY(buttonPosition.y, movementDuration, true))
             .Insert(0f,mainMenuTitle.DOAnchorPosX(infoTitlePosition.x,movementDuration,true))
             .Insert(0f,infoPanel.DOAnchorPosX(-infoTitlePosition.x,movementDuration,true))

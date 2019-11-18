@@ -474,7 +474,7 @@ public class MyCarController : MonoBehaviour, IControllable
 
         yield return new WaitForSeconds(seconds); // Espera para que al jugador le dé tiempo de orientar el vehículo a su conveniencia antes del turbo
 
-        //SoundManager.Instance.PlayFx(SoundManager.Fx.Banda_Aceleracion);
+        SoundManager.Instance.PlayFx(SoundManager.Fx.Banda_Aceleracion);
 
         var originalSpeedForce = speedForce;
         

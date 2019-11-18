@@ -194,6 +194,8 @@ public class StartRace : MonoBehaviour
                     anubisPlayer.GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
                     anubisPlayer.GetComponent<IncontrolProvider>().controlType = playerInfo.controlType;
                     anubisPlayer.GetComponent<IncontrolProvider>().playerID = playerInfo.playerID;
+                    
+                    
 
                     /*//Sigue el mismo orden que la UI
                     cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().AssignIndex(0);
@@ -298,9 +300,13 @@ public class StartRace : MonoBehaviour
                 cameras[(int)cameraIndex[0]].SetActive(true);
                 
                 UICameras[(int)cameraIndex[0]].GetComponent<Camera>().rect = new Rect(0, 0, 1, 1);
+                
+                //No sigue el mismo criterio que las anteriores cámaras
+                cinematicCameras[0].GetComponent<Camera>().rect = new Rect(0, 0, 1, 1);
                 break;
 
             case 2:
+
                 cameras[(int)cameraIndex[0]].GetComponent<Camera>().rect = new Rect(0, 0, 0.5f, 1);
                 cameras[(int)cameraIndex[0]].SetActive(true);
 
@@ -309,6 +315,10 @@ public class StartRace : MonoBehaviour
                 
                 UICameras[(int)cameraIndex[0]].GetComponent<Camera>().rect = new Rect(0, 0, 0.5f, 1f);
                 UICameras[(int)cameraIndex[1]].GetComponent<Camera>().rect = new Rect(0.5f, 0, 0.5f, 1f);
+                
+                //No sigue el mismo criterio que las anteriores cámaras
+                cinematicCameras[0].GetComponent<Camera>().rect = new Rect(0, 0, 0.5f, 1f);
+                cinematicCameras[1].GetComponent<Camera>().rect = new Rect(0.5f, 0, 0.5f, 1f);
                 break;
 
             case 3:
@@ -324,6 +334,11 @@ public class StartRace : MonoBehaviour
                 UICameras[(int)cameraIndex[0]].GetComponent<Camera>().rect = new Rect(0, 0.5f, 0.5f, 0.5f);
                 UICameras[(int)cameraIndex[1]].GetComponent<Camera>().rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
                 UICameras[(int) cameraIndex[2]].GetComponent<Camera>().rect = new Rect(0, 0, 1f, 0.5f);
+                
+                //No sigue el mismo criterio que las anteriores cámaras
+                cinematicCameras[0].GetComponent<Camera>().rect = new Rect(0, 0.5f, 0.5f, 0.5f);
+                cinematicCameras[1].GetComponent<Camera>().rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
+                cinematicCameras[2].GetComponent<Camera>().rect = new Rect(0, 0, 1f, 0.5f);
                 break;
 
             case 4:
@@ -343,6 +358,12 @@ public class StartRace : MonoBehaviour
                 UICameras[(int)cameraIndex[1]].GetComponent<Camera>().rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
                 UICameras[(int)cameraIndex[2]].GetComponent<Camera>().rect = new Rect(0, 0, 0.5f, 0.5f);
                 UICameras[(int)cameraIndex[3]].GetComponent<Camera>().rect = new Rect(0.5f, 0, 0.5f, 0.5f);
+                
+                //No sigue el mismo criterio que las anteriores cámaras
+                cinematicCameras[0].GetComponent<Camera>().rect = new Rect(0, 0.5f, 0.5f, 0.5f);
+                cinematicCameras[1].GetComponent<Camera>().rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
+                cinematicCameras[2].GetComponent<Camera>().rect = new Rect(0, 0, 0.5f, 0.5f);
+                cinematicCameras[3].GetComponent<Camera>().rect = new Rect(0.5f, 0, 0.5f, 0.5f);
                 break;
         }
     }

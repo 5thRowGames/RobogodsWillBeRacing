@@ -53,7 +53,6 @@ public class MyCarCollisionsController : MonoBehaviour
             AkSoundEngine.PostEvent("Impactos_In", gameObject);
         //}
 
-
         if (otherLayer != portalLayer) // Si no choco contra un portal
         {
             priorConstraints = rb.constraints; // Guardo las restricciones previas al choque

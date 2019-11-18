@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -41,7 +42,7 @@ public class LapsManager : Singleton<LapsManager>
                 TimeTrial.Instance.ResetAndSaveTime(godType);
                 if (currentLap == Instance.totalLaps)
                 {
-                    Instance.UpdatePlayersFinished();
+                    Instance.UpdatePlayersFinished(godType);
                 }
                 else
                 {
@@ -54,9 +55,8 @@ public class LapsManager : Singleton<LapsManager>
 
     private int playersFinished;
 
-    public int totalLaps = 2;
+    [SerializeField] private int totalLaps = 2;
     public List<GameObject> road;
-    public List<CircuitSection> circuitSections;
     public List<Checkpoint> checkPoints;
     public List<Portal> portals;
     public List<Transform> portalsExits;
@@ -76,9 +76,16 @@ public class LapsManager : Singleton<LapsManager>
         playersFinished = 0;
         FirstUpdate();
         godAmount = godRaceInfoList.Count;
-        
-        if(StoreGodInfo.Instance.players > 1)
+
+        if (StoreGodInfo.Instance.players > 1)
             UpdateGodPosition();
+        else
+        {
+            if (StoreGodInfo.Instance.anubisIA) racePosition[0] = 99; else racePosition[0] = 0;
+            if (StoreGodInfo.Instance.poseidonIA) racePosition[1] = 99; else racePosition[1] = 0;
+            if (StoreGodInfo.Instance.kaliIA) racePosition[2] = 99; else racePosition[2] = 0;
+            if (StoreGodInfo.Instance.thorIA) racePosition[3] = 99; else racePosition[3] = 0;
+        }
     }
     
     private void AddAllCheckpoints()
@@ -136,9 +143,9 @@ public class LapsManager : Singleton<LapsManager>
     
     private void UpdateRacePosition()
     {
-        for (int i = 0; i < godAmount; i++)
-        {
-            for (int j = i + 1; j < godAmount; j++)
+        for (int i = 0; i < 4; i++)
+        {    
+            for (int j = i + 1; j < 4; j++)
             {
                 int aux;
                 if (godRaceInfoList[i].currentLap == godRaceInfoList[j].currentLap)
@@ -265,64 +272,27 @@ public class LapsManager : Singleton<LapsManager>
         return -1;
     }
 
-    public void UpdatePlayersFinished()
+    public void UpdatePlayersFinished(God.Type god)
     {
         playersFinished++;
 
         if (playersFinished == StoreGodInfo.Instance.players)
         {
-            RaceEventManager.Instance.ChangeRaceEvent(RaceEvents.Race.Finish);
+
+            HUDManager.Instance.hudDictionary[god].localFade.DOFade(1f, 0.5f).OnComplete(() =>
+            {
+                HUDManager.Instance.HideWaitPlayers();
+                godRaceInfoList[(int) god].god.SetActive(false);
+                RaceEventManager.Instance.ChangeRaceEvent(RaceEvents.Race.Finish);
+            });
+        }
+        else
+        {
+            HUDManager.Instance.hudDictionary[god].localFade.DOFade(1f, 0.5f).OnComplete(() =>
+            {
+                godRaceInfoList[(int) god].god.SetActive(false);
+                HUDManager.Instance.hudDictionary[god].waitingPlayers.DOScale(new Vector3(1f,1f,1f), 0.3f);
+            });
         }
     }
-
-    /*private void AddCheckpoints()
-    {
-        Checkpoint lastCheckpoint = null;
-        if (circuitSections != null)
-        {
-            foreach (CircuitSection cs in circuitSections)
-            {
-                for (int i = 0; i < cs.checkpoints.Count; i++)
-                {
-                    if (!cs.checkpoints[i].lastCheckpoint)
-                        checkPoints.Add(cs.checkpoints[i]);
-                    else
-                    {
-                        lastCheckpoint = cs.checkpoints[i];
-                        Debug.Log($"{lastCheckpoint.transform.parent.name}.{lastCheckpoint.name}");
-                    }
-                }
-            }
-        }
-        if (lastCheckpoint != null)
-            checkPoints.Add(lastCheckpoint);
-    }
-
-    private void AddPortals()
-    {
-        if (circuitSections != null)
-        {
-            foreach (CircuitSection cs in circuitSections)
-            {
-                for (int i = 0; i < cs.portalsEntrances.Count; i++)
-                {
-                    portals.Add(cs.portalsEntrances[i]);
-                }
-            }
-        }
-    }
-
-    private void AddPortalsExits()
-    {
-        if(circuitSections != null)
-        {
-            foreach(CircuitSection cs in circuitSections)
-            {
-                for(int i = 0; i < cs.portalsExits.Count; i++)
-                {
-                    portalsExits.Add(cs.portalsExits[i]);
-                }
-            }
-        }
-    }*/
 }

@@ -285,8 +285,8 @@ public class HUDManager : Singleton<HUDManager>
         
         yield return new WaitForSeconds(6f);
 
-        camera.cullingMask = oldMask;
-        
+        camera.cullingMask = camera.cullingMask & ~(1 << LayerMask.NameToLayer("PortalParticles"+god));
+
         Color particleSystemColor = color;
         particleSystemColor.a = 0.5f;
         particleSystem.startColor = particleSystemColor;

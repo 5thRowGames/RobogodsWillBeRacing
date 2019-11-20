@@ -15,13 +15,15 @@ public class Booster : MonoBehaviour
         {
             if (turboBooster)
             {
-                //myCarController.StartTurbo(0.2f);
-                myCarController.SimpleTurbo(0.2f);
+                Debug.Log("Turbo!");
+                myCarController.StartTurbo(0.2f);
+                //myCarController.SimpleTurbo(0.2f);
             }
             else
             {
-                //myCarController.StartSlowDown();
-                myCarController.SimpleSlowDown();
+                Debug.Log("Slowdown!");
+                myCarController.StartSlowDown();
+                //myCarController.SimpleSlowDown();
             }
         }
     }

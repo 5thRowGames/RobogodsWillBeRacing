@@ -351,11 +351,12 @@ public class MyCarController : MonoBehaviour, IControllable
 
         if (accelerationInput > 0f)
         {
-            //rb.AddForceAtPosition(groundForward * accelerationInput * speedForce, accelPoint.position, ForceMode.Acceleration);
-            var force = IsGrounded ? accelerationInput : accelerationInput / accelerationDividerOnAir;
-            rb.AddForce(groundForward * force * speedForce, ForceMode.Acceleration);
-            //rb.AddForceAtPosition(groundForward * force * speedForce, accelPoint.position, ForceMode.Acceleration);
-            deaccelerationTimer = deaccelerationTime;
+            //if (startTurboCoroutine == null && startSlowCoroutine == null)
+            //{
+                var force = IsGrounded ? accelerationInput : accelerationInput / accelerationDividerOnAir;
+                rb.AddForce(groundForward * force * speedForce, ForceMode.Acceleration);
+                deaccelerationTimer = deaccelerationTime;
+            //}
         }
         else
         {
@@ -466,6 +467,7 @@ public class MyCarController : MonoBehaviour, IControllable
     {
         if (startSlowCoroutine == null && startTurboCoroutine == null)
             startSlowCoroutine = StartCoroutine(SimpleSlowDownCoroutine());
+        else Debug.Log($"{startSlowCoroutine}");
     }
 
     private IEnumerator SimpleSlowDownCoroutine()
@@ -479,14 +481,7 @@ public class MyCarController : MonoBehaviour, IControllable
             yield return new WaitForEndOfFrame();
             Debug.Log($"Slowing down: {timer}");
         }
-        startTurboCoroutine = null;
-    }
-
-    public void StartTurbo(float waitBeforeBoost)
-    {
-
-        if (startTurboCoroutine == null)
-            startTurboCoroutine = StartCoroutine(TurboCoroutine(waitBeforeBoost));
+        startSlowCoroutine = null;
     }
 
     public void SimpleTurbo(float waitBeforeBoost)
@@ -502,7 +497,7 @@ public class MyCarController : MonoBehaviour, IControllable
         SoundManager.Instance.PlayFx(SoundManager.Fx.Banda_Aceleracion);
 
         var timer = 0f;
-        while(timer < 2f)
+        while (timer < 2f)
         {
             accelerationInput *= boostMultiplier;
             Mathf.Clamp(accelerationInput, 0.2f, boostMultiplier);
@@ -513,22 +508,30 @@ public class MyCarController : MonoBehaviour, IControllable
         startTurboCoroutine = null;
     }
 
+    public void StartTurbo(float waitBeforeBoost)
+    {
+
+        if (startTurboCoroutine == null)
+            startTurboCoroutine = StartCoroutine(TurboCoroutine(waitBeforeBoost));
+        else Debug.Log($"{startTurboCoroutine}");
+    }
+
     private IEnumerator TurboCoroutine(float seconds)
     {
 
         yield return new WaitForSeconds(seconds); // Espera para que al jugador le dé tiempo de orientar el vehículo a su conveniencia antes del turbo
 
-        SoundManager.Instance.PlayFx(SoundManager.Fx.Banda_Aceleracion);
+        //SoundManager.Instance.PlayFx(SoundManager.Fx.Banda_Aceleracion);
 
         var originalSpeedForce = speedForce;
         
         speedForce += addTurbo;
 
-        rb.AddForceAtPosition(turboMultiplier * speedForce * groundForward, accelPoint.position, ForceMode.Acceleration);
+        rb.AddForce(turboMultiplier * speedForce * groundForward, ForceMode.Acceleration);
 
         float timer = turboTime;
 
-        while (timer >= 0f)
+        while (timer >= 0f) // && speedForce >= originalSpeedForce)
         {
             timer -= Time.deltaTime;
             speedForce -= recoverSpeedFromTurbo;
@@ -538,7 +541,7 @@ public class MyCarController : MonoBehaviour, IControllable
 
             yield return null;
         }
-
+        
         speedForce = originalSpeedForce;
 
         startTurboCoroutine = null;

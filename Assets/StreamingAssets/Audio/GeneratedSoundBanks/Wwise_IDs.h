@@ -56,6 +56,8 @@ namespace AK
     namespace GAME_PARAMETERS
     {
         static const AkUniqueID PLAYER_VELOCIDAD = 2235079496U;
+        static const AkUniqueID VOLUMEN_MUSICA = 2975884740U;
+        static const AkUniqueID VOLUMEN_SFX = 2916995675U;
     } // namespace GAME_PARAMETERS
 
     namespace BANKS

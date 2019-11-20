@@ -180,6 +180,32 @@
 									<ValueList>
 										<Value>-17</Value>
 									</ValueList>
+									<RTPCList>
+										<RTPC Name="" ID="{DAB86622-0C36-48A1-B116-E76F3AA74864}" ShortID="784924400">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<ObjectRef Name="Volumen_Musica" ID="{6E8CCC62-934D-4454-8A18-965C1E7954C4}" WorkUnitID="{90A236A2-9029-4BFD-8983-FBFF09638A74}"/>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{C87F3796-31C2-43F7-AD21-C3364EC3BFED}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="3"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>0</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>100</XPos>
+														<YPos>-200</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
 								</Property>
 							</PropertyList>
 							<ReferenceList>
@@ -200,6 +226,34 @@
 						</Bus>
 						<Bus Name="SFX_BUS" ID="{06504896-303E-4D3A-BC83-BAE0A55A7391}">
 							<PropertyList>
+								<Property Name="BusVolume" Type="Real64">
+									<RTPCList>
+										<RTPC Name="" ID="{1771EB84-42B6-4D53-B5B5-94FF5EDA3520}" ShortID="251194318">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<ObjectRef Name="Volumen_SFX" ID="{2CF0E96C-72B9-4248-9929-CA22B20BE5C8}" WorkUnitID="{90A236A2-9029-4BFD-8983-FBFF09638A74}"/>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{E34122FA-3BBD-4B36-B5C1-0F2607F86028}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="3"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>-0</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>100</XPos>
+														<YPos>-200</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
 								<Property Name="RecoveryTime" Type="Real64" Value="0"/>
 							</PropertyList>
 							<ReferenceList>

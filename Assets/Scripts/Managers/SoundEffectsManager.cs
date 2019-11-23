@@ -58,8 +58,11 @@ public class SoundEffectsManager : SettingsBase
         }
         else
             SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Cambio_Volumen_In);
+        
+        AkSoundEngine.SetRTPCValue("Volumen_SFX", fillImage.fillAmount * 100f);
 
         PlayerPrefs.SetFloat(PlayerPrefsEnum.PlayerPrefs.SFX.ToString(),fillImage.fillAmount);
+        PlayerPrefs.Save();
     }
 
     private void DecreaseVolume()
@@ -75,6 +78,9 @@ public class SoundEffectsManager : SettingsBase
         else
             SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Cambio_Volumen_In);
         
+        AkSoundEngine.SetRTPCValue("Volumen_SFX", fillImage.fillAmount * 100f);
+        
         PlayerPrefs.SetFloat(PlayerPrefsEnum.PlayerPrefs.SFX.ToString(),fillImage.fillAmount);
+        PlayerPrefs.Save();
     }
 }

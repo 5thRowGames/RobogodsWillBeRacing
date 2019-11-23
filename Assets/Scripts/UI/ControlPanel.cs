@@ -8,12 +8,9 @@ using UnityEngine.UI;
 
 public class ControlPanel : MonoBehaviour
 {
-    public Sprite keyboardControl;
-    public Sprite gamepadControl;
-    public GameObject leftArrow;
-    public GameObject rightArrow;
-    public Image controlBackground;
-    
+    public GameObject gamepadContainer;
+    public GameObject keyboardContainer;
+
     public RectTransform title;
     public RectTransform infoPanel;
     public RectTransform control;
@@ -41,12 +38,12 @@ public class ControlPanel : MonoBehaviour
             controlSubmit = true;
             HideControl();
         }
-        else if (!controlSubmit && UIEventManager.Instance.inControlInputModule.MoveAction.Left.WasPressed && leftArrow.activeInHierarchy)
+        else if (!controlSubmit && UIEventManager.Instance.inControlInputModule.MoveAction.Left.WasPressed && keyboardContainer.activeInHierarchy)
         {
             controlSubmit = true;
             ChangeControlBackground(false);
         }
-        else if(!controlSubmit && UIEventManager.Instance.inControlInputModule.MoveAction.Right.WasPressed && rightArrow.activeInHierarchy)
+        else if(!controlSubmit && UIEventManager.Instance.inControlInputModule.MoveAction.Right.WasPressed && gamepadContainer.activeInHierarchy)
         {
             controlSubmit = true;
             ChangeControlBackground(true);
@@ -55,9 +52,7 @@ public class ControlPanel : MonoBehaviour
 
     private void ResetControl()
     {
-        leftArrow.SetActive(false);
-        rightArrow.SetActive(true);
-        controlBackground.sprite = gamepadControl;
+        gamepadContainer.SetActive(true);
         title.anchoredPosition = new Vector2(-topBotInitialX, 0);
         infoPanel.anchoredPosition = new Vector2(topBotInitialX, 0);
         control.anchoredPosition = new Vector2(controlPosition.x, 0);
@@ -102,15 +97,13 @@ public class ControlPanel : MonoBehaviour
     {
         if (right)
         {
-            leftArrow.SetActive(true);
-            rightArrow.SetActive(false);
-            controlBackground.sprite = keyboardControl;
+            keyboardContainer.SetActive(true);
+            gamepadContainer.SetActive(false);
         }
         else
         {
-            leftArrow.SetActive(false);
-            rightArrow.SetActive(true);
-            controlBackground.sprite = gamepadControl;
+            gamepadContainer.SetActive(true);
+            keyboardContainer.SetActive(false);
         }
 
         controlSubmit = false;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -209,6 +209,21 @@ PrefabInstance:
       propertyPath: turboTime
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5260619960850091005, guid: f21fea2e4a7d6a941bb7b90b6f96201d,
+        type: 3}
+      propertyPath: powerLeftTrail
+      value: 
+      objectReference: {fileID: 328227863}
+    - target: {fileID: 5260619960850091005, guid: f21fea2e4a7d6a941bb7b90b6f96201d,
+        type: 3}
+      propertyPath: powerRightTrail
+      value: 
+      objectReference: {fileID: 328227862}
+    - target: {fileID: 5260619960850091005, guid: f21fea2e4a7d6a941bb7b90b6f96201d,
+        type: 3}
+      propertyPath: activeDevice
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1635797052, guid: f21fea2e4a7d6a941bb7b90b6f96201d, type: 3}
       propertyPath: m_Layer
       value: 14
@@ -268,10 +283,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4056262387291655628, guid: f21fea2e4a7d6a941bb7b90b6f96201d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 367474866408507497, guid: f21fea2e4a7d6a941bb7b90b6f96201d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2668366015243230867, guid: f21fea2e4a7d6a941bb7b90b6f96201d,
         type: 3}
       propertyPath: far clip plane
       value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668366015243230867, guid: f21fea2e4a7d6a941bb7b90b6f96201d,
+        type: 3}
+      propertyPath: m_ForceIntoRT
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 392217026, guid: f21fea2e4a7d6a941bb7b90b6f96201d, type: 3}
       propertyPath: m_Layer
@@ -453,6 +483,61 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 7271805054080985649, guid: f21fea2e4a7d6a941bb7b90b6f96201d,
+        type: 3}
+      propertyPath: m_Name
+      value: LeftPower
+      objectReference: {fileID: 0}
+    - target: {fileID: 7271805054080985651, guid: f21fea2e4a7d6a941bb7b90b6f96201d,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7271805054080985651, guid: f21fea2e4a7d6a941bb7b90b6f96201d,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7271805053478287571, guid: f21fea2e4a7d6a941bb7b90b6f96201d,
+        type: 3}
+      propertyPath: m_Name
+      value: RightPower
+      objectReference: {fileID: 0}
+    - target: {fileID: 7271805053478287569, guid: f21fea2e4a7d6a941bb7b90b6f96201d,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3113515436920696743, guid: f21fea2e4a7d6a941bb7b90b6f96201d,
+        type: 3}
+      propertyPath: maxSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3113515437389774149, guid: f21fea2e4a7d6a941bb7b90b6f96201d,
+        type: 3}
+      propertyPath: maxSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3113515437389774149, guid: f21fea2e4a7d6a941bb7b90b6f96201d,
+        type: 3}
+      propertyPath: decreaseSpeedAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3113515437389774149, guid: f21fea2e4a7d6a941bb7b90b6f96201d,
+        type: 3}
+      propertyPath: increaseSpeedAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3113515437389774149, guid: f21fea2e4a7d6a941bb7b90b6f96201d,
+        type: 3}
+      propertyPath: NormalSpeedColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3113515437389774149, guid: f21fea2e4a7d6a941bb7b90b6f96201d,
+        type: 3}
+      propertyPath: TurboColor.a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f21fea2e4a7d6a941bb7b90b6f96201d, type: 3}
 --- !u!1 &328227860 stripped
@@ -475,6 +560,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: b5be8f8ebe41b6747af32d712277855f, type: 2}
   index: 0
+--- !u!114 &328227862 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3113515436920696743, guid: f21fea2e4a7d6a941bb7b90b6f96201d,
+    type: 3}
+  m_PrefabInstance: {fileID: 328227859}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8ba27b5264dc614c90ce68680664f43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &328227863 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3113515437389774149, guid: f21fea2e4a7d6a941bb7b90b6f96201d,
+    type: 3}
+  m_PrefabInstance: {fileID: 328227859}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8ba27b5264dc614c90ce68680664f43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &523531457
 GameObject:
   m_ObjectHideFlags: 0

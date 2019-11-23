@@ -13,6 +13,8 @@ public class MyCarController : MonoBehaviour, IControllable
     public float turboRechargeMultiplier;
     public float turboConsumeMultiplier;
     [SerializeField]private float turbo;
+
+    private bool isSpeedingUp;
      
     public float Turbo
     {
@@ -21,6 +23,8 @@ public class MyCarController : MonoBehaviour, IControllable
     }
 
     public RacingCamera ownCamera;
+    public PowerTrail powerLeftTrail;
+    public PowerTrail powerRightTrail;
 
     #region Members
 
@@ -280,11 +284,27 @@ public class MyCarController : MonoBehaviour, IControllable
 
         if (alwaysAccelerate && accelerationInput < minAcceleration) accelerationInput = minAcceleration;
 
+        if (!isSpeedingUp && accelerationInput > 0)
+        {
+            isSpeedingUp = true;
+            powerLeftTrail.IncreasePowerSpeed();
+            powerRightTrail.IncreasePowerSpeed();
+        }
+        else if(isSpeedingUp && accelerationInput < 0.1f)
+        {
+            isSpeedingUp = false;
+            powerLeftTrail.DecreasePowerSpeed();
+            powerRightTrail.DecreasePowerSpeed();
+        }
+        
+
         if (boostInput)
         {
             Turbo -= turboConsumeMultiplier * Time.deltaTime;
             accelerationInput *= boostMultiplier;
             turnSpeed = boostTurnSpeed;
+            powerLeftTrail.IncreasePowerColor();
+            powerRightTrail.IncreasePowerColor();
  
             isBoosting = true;
         }
@@ -293,6 +313,9 @@ public class MyCarController : MonoBehaviour, IControllable
             Turbo += turboRechargeMultiplier * Time.deltaTime;
             turnSpeed = originalTurnSpeed;
             isBoosting = false;
+            powerLeftTrail.DecreasePowerColor();
+            powerRightTrail.DecreasePowerColor();
+            
             if(OnTheWall)
             {
                 turnSpeed = boostTurnSpeed;
@@ -440,7 +463,6 @@ public class MyCarController : MonoBehaviour, IControllable
 
     private IEnumerator SlowDownCoroutine()
     {
-
         var originalSpeed = speedForce;
 
         speedForce -= addSlow;
@@ -528,6 +550,9 @@ public class MyCarController : MonoBehaviour, IControllable
         speedForce += addTurbo;
 
         rb.AddForce(turboMultiplier * speedForce * groundForward, ForceMode.Acceleration);
+        
+        powerLeftTrail.IncreasePowerColor();
+        powerRightTrail.IncreasePowerColor();
 
         float timer = turboTime;
 
@@ -541,6 +566,13 @@ public class MyCarController : MonoBehaviour, IControllable
 
             yield return null;
         }
+
+        if (!isBoosting)
+        {
+            powerLeftTrail.DecreasePowerColor();
+            powerRightTrail.DecreasePowerColor();
+        }
+            
         
         speedForce = originalSpeedForce;
 

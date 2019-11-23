@@ -18,6 +18,8 @@ public class StartRace : MonoBehaviour
     public List<Transform> parentCameras;
     public List<GameObject> cameras;
     public List<Camera> UICameras;
+    public List<PowerTrail> powerLeftTrails;
+    public List<PowerTrail> powerRightTrails;
 
     public Canvas globalMinimapCanvas;
     public GameObject anubisCanvas;
@@ -194,8 +196,9 @@ public class StartRace : MonoBehaviour
                     anubisPlayer.GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
                     anubisPlayer.GetComponent<IncontrolProvider>().controlType = playerInfo.controlType;
                     anubisPlayer.GetComponent<IncontrolProvider>().playerID = playerInfo.playerID;
-                    
-                    
+
+                    anubisPlayer.GetComponent<MyCarController>().powerLeftTrail = powerLeftTrails[0];
+                    anubisPlayer.GetComponent<MyCarController>().powerRightTrail = powerRightTrails[0];
 
                     /*//Sigue el mismo orden que la UI
                     cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().AssignIndex(0);
@@ -223,6 +226,9 @@ public class StartRace : MonoBehaviour
                     poseidonPlayer.GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
                     poseidonPlayer.GetComponent<IncontrolProvider>().controlType = playerInfo.controlType;
                     poseidonPlayer.GetComponent<IncontrolProvider>().playerID = playerInfo.playerID;
+                    
+                    poseidonPlayer.GetComponent<MyCarController>().powerLeftTrail = powerLeftTrails[1];
+                    poseidonPlayer.GetComponent<MyCarController>().powerRightTrail = powerRightTrails[1];
 
                     /*//Sigue el mismo orden que la UI
                     cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().AssignIndex(1);
@@ -248,6 +254,9 @@ public class StartRace : MonoBehaviour
                     kaliPlayer.GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice; 
                     kaliPlayer.GetComponent<IncontrolProvider>().controlType = playerInfo.controlType;
                     kaliPlayer.GetComponent<IncontrolProvider>().playerID = playerInfo.playerID;
+                    
+                    kaliPlayer.GetComponent<MyCarController>().powerLeftTrail = powerLeftTrails[2];
+                    kaliPlayer.GetComponent<MyCarController>().powerRightTrail = powerRightTrails[2];
 
                     /*//Sigue el mismo orden que la UI
                     cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().AssignIndex(2);
@@ -273,6 +282,9 @@ public class StartRace : MonoBehaviour
                     thorPlayer.GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
                     thorPlayer.GetComponent<IncontrolProvider>().controlType = playerInfo.controlType;
                     thorPlayer.GetComponent<IncontrolProvider>().playerID = playerInfo.playerID;
+                    
+                    thorPlayer.GetComponent<MyCarController>().powerLeftTrail = powerLeftTrails[3];
+                    thorPlayer.GetComponent<MyCarController>().powerRightTrail = powerRightTrails[3];
 
                     /*//Sigue el mismo orden que la UI
                     cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().AssignIndex(3);

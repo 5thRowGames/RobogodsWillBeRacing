@@ -9,6 +9,11 @@ public class MusicVolumeManager : SettingsBase
     public Image fillImage;
     public float amountFilled;
 
+    private void OnEnable()
+    {
+        fillImage.fillAmount = PlayerPrefs.GetFloat(PlayerPrefsEnum.PlayerPrefs.Music.ToString());
+    }
+    
     public void Update()
     {
         if (canInput)
@@ -43,8 +48,7 @@ public class MusicVolumeManager : SettingsBase
     private void RaiseVolume()
     {
         //Meter llamada a evento de subir volumen
-        //Meter sonido de botón paradar feedback de input y de volumen
-        
+
         fillImage.fillAmount += amountFilled;
 
         if (fillImage.fillAmount > 1)
@@ -52,16 +56,16 @@ public class MusicVolumeManager : SettingsBase
             fillImage.fillAmount = 1;
         }
         else
-        {
             SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Cambio_Volumen_In);
-        }
+
+        PlayerPrefs.SetFloat(PlayerPrefsEnum.PlayerPrefs.Music.ToString(),fillImage.fillAmount);
 
     }
 
     private void DecreaseVolume()
     {
         //Meter llamada a evento de bajar volumen
-        //Meter sonido de botón para dar feedback de input y de volumen
+
         fillImage.fillAmount -= amountFilled;
 
         if (fillImage.fillAmount < 0)
@@ -69,8 +73,8 @@ public class MusicVolumeManager : SettingsBase
             fillImage.fillAmount = 0;
         }
         else
-        {
             SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Cambio_Volumen_In);
-        }
+
+        PlayerPrefs.SetFloat(PlayerPrefsEnum.PlayerPrefs.Music.ToString(),fillImage.fillAmount);
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,6 +8,11 @@ public class SoundEffectsManager : SettingsBase
 {
     public Image fillImage;
     public float amountFilled;
+
+    private void OnEnable()
+    {
+        fillImage.fillAmount = PlayerPrefs.GetFloat(PlayerPrefsEnum.PlayerPrefs.SFX.ToString());
+    }
 
     public void Update()
     {
@@ -51,11 +57,9 @@ public class SoundEffectsManager : SettingsBase
             fillImage.fillAmount = 1;
         }
         else
-        {
             SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Cambio_Volumen_In);
-        }
-            
-        
+
+        PlayerPrefs.SetFloat(PlayerPrefsEnum.PlayerPrefs.SFX.ToString(),fillImage.fillAmount);
     }
 
     private void DecreaseVolume()
@@ -69,8 +73,8 @@ public class SoundEffectsManager : SettingsBase
             fillImage.fillAmount = 0;
         }
         else
-        {
             SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Cambio_Volumen_In);
-        }
+        
+        PlayerPrefs.SetFloat(PlayerPrefsEnum.PlayerPrefs.SFX.ToString(),fillImage.fillAmount);
     }
 }

@@ -18,11 +18,16 @@ public class Plano1 : MonoBehaviour
         path1 = path1List.Select(transform => transform.position).ToArray();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+            Plano();
+    }
+
     private void Start()
     {
         camera.transform.position = path1[0];
         camera.transform.rotation = path1List[0].rotation;
-        Plano();
     }
 
     private void Plano()

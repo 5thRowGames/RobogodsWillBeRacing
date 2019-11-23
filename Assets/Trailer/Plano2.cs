@@ -17,17 +17,21 @@ public class Plano2 : MonoBehaviour
     {
         path1 = path1List.Select(transform => transform.position).ToArray();
     }
+    
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+            Plano();
+    }
 
     private void Start()
     {
-        Plano();
+        camera.transform.position = path1[0];
+        camera.transform.rotation = path1List[0].rotation;
     }
 
     private void Plano()
     {
-        camera.transform.position = path1[0];
-        camera.transform.rotation = path1List[0].rotation;
-        
         Sequence sequence = DOTween.Sequence();
         sequence.Insert(0f, camera.transform.DOPath(path1, travelTime, PathType.CatmullRom, PathMode.Full3D, 5, Color.red));
     }

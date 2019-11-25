@@ -13,8 +13,8 @@ public class InitSound : MonoBehaviour
             PlayerPrefs.SetFloat(PlayerPrefsEnum.PlayerPrefs.Music.ToString(), 1);
             PlayerPrefs.SetFloat(PlayerPrefsEnum.PlayerPrefs.SFX.ToString(), 1);
             
-            AkSoundEngine.SetRTPCValue("Volumen_SFX", 100);
-            AkSoundEngine.SetRTPCValue("Volumen_Musica", 100);
+            AkSoundEngine.SetRTPCValue("Volumen_SFX", 0);
+            AkSoundEngine.SetRTPCValue("Volumen_Musica", 0);
         }
         else
         {

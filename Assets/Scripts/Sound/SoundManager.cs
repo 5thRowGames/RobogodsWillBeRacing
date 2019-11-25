@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.PlayerLoop;
 
 public class SoundManager : SingletonDontDestroy<SoundManager>
 {
@@ -92,6 +93,14 @@ public class SoundManager : SingletonDontDestroy<SoundManager>
         musicDictionary.Add(Music.Nordica, "Musica_Nordica");
         musicDictionary.Add(Music.Griega, "Musica_Agua");
 
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            PlayLoop(Music.UI);
+        }
     }
 
     public void PlayFx(int index)

@@ -50,8 +50,14 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
    public int playersWithGodPicked;
    public int playersConfirmed;
 
+   private bool returnMainMenu;
+
    private void OnEnable()
    {
+       StoreGodInfo.Instance.anubisIA = true;
+       StoreGodInfo.Instance.poseidonIA = true;
+       StoreGodInfo.Instance.kaliIA = true;
+       StoreGodInfo.Instance.thorIA = true;
        poseidonChosen = false;
        kaliChosen = false;
        thorChosen = false;
@@ -61,6 +67,16 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
        StoreGodInfo.Instance.Reset();
        ResetCharacterSelectionUI();
        BuildCharacterSelection();
+   }
+
+   private void Update()
+   {
+       if (InputManager.ActiveDevice.Action4.WasPressed && !returnMainMenu)
+       {
+           returnMainMenu = true;
+           SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Cambio_Volumen_In);
+           ReturnMainMenuTween();
+       }
    }
 
    #region Functionality
@@ -152,10 +168,10 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
         if (playersWithGodPicked == StoreGodInfo.Instance.players) 
         {
             playersConfirmed = 0;
+            PlayerSelectionManager.Instance.canJoin = false;
 
             playersNumberConfirmedText.text = playersConfirmed + "/" + StoreGodInfo.Instance.players;
-
-            //REFACTORIZAR
+            
             for (int i = 0; i < StoreGodInfo.Instance.players; i++)
             {
                 confirmPlayerIcons[i].gameObject.SetActive(true);
@@ -205,6 +221,7 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
         EventSystem.current.SetSelectedGameObject(null);
 
         ResetConfirCharacterSelectionLights();
+        PlayerSelectionManager.Instance.canJoin = true;
 
         foreach (var player in players)
         {
@@ -228,7 +245,7 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
        SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Start_In);
        
        //Se para la música de la UI
-       SoundManager.Instance.StopLoop(SoundManager.Music.UI);
+       SoundManager.Instance.StopLoop();
        
        fade.DOFade(1, 0.5f).OnComplete(() =>
        {

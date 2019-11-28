@@ -45,7 +45,7 @@ public class FinishRace : MonoBehaviour
 
             if (Input.anyKey || device.AnyButton.WasPressed)
             {
-                SoundManager.Instance.StopLoop(SoundManager.Instance.CurrentMusic);
+                SoundManager.Instance.StopLoop();
                 FadeTransition();
                 changeScene = false;
             }

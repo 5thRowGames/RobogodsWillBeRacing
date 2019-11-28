@@ -64,7 +64,6 @@ public class StabilityController : MonoBehaviour
     {
         if(other.gameObject.layer == LayerMask.NameToLayer(wallLayerName))
         {
-            Debug.Log("Me subo a la pared");
             OnTheWall += 1;
         }
     }
@@ -73,7 +72,6 @@ public class StabilityController : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer(wallLayerName))
         {
-            Debug.Log("Me bajo de la pared");
             OnTheWall -= 1;
         }
     }
@@ -122,7 +120,6 @@ public class StabilityController : MonoBehaviour
     private IEnumerator RotationToIdentity()
     {
         IsRotatingToIdentity = true;
-        //Debug.Log("Started rotating to identity");
         float timeCount = 0f;
         Quaternion fromRotation = new Quaternion(rb.rotation.x, rb.rotation.y, rb.rotation.z, rb.rotation.w);
         Quaternion toRotation = new Quaternion();
@@ -135,7 +132,6 @@ public class StabilityController : MonoBehaviour
             yield return null;
         }
         IsRotatingToIdentity = false;
-        //Debug.Log("Finished rotating to identity");
     }
 
     //private void ClampHeight()

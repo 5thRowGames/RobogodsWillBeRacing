@@ -77,8 +77,11 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
                 break;
             
             case God.Type.Kali:
-                
-                kali.GetComponent<HologramToNormal>().TransformIntoNormal();
+
+                foreach (Transform child in kali.transform)
+                {
+                    child.GetComponent<HologramToNormal>().TransformIntoNormal();
+                }
                 kaliChosen = true;
                 StoreGodInfo.Instance.kaliIA = false;
                 break;
@@ -114,7 +117,10 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
             
             case God.Type.Kali:
                 
-                kali.GetComponent<HologramToNormal>().TransformIntoHologram();
+                foreach (Transform child in kali.transform)
+                {
+                    child.GetComponent<HologramToNormal>().TransformIntoHologram();
+                }
                 kaliChosen = false;
                 StoreGodInfo.Instance.anubisIA = true;
 

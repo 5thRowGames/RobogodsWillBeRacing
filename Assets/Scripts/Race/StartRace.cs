@@ -18,6 +18,8 @@ public class StartRace : MonoBehaviour
     public List<Transform> parentCameras;
     public List<GameObject> cameras;
     public List<Camera> UICameras;
+    public List<PowerTrail> powerLeftTrails;
+    public List<PowerTrail> powerRightTrails;
 
     public Canvas globalMinimapCanvas;
     public GameObject anubisCanvas;
@@ -86,7 +88,6 @@ public class StartRace : MonoBehaviour
                 case God.Type.Poseidon:
                     cameras[1].transform.parent.gameObject.SetActive(true);
                     poseidonCanvas.GetComponent<Canvas>().worldCamera = UICameras[(int)cameraIndex[playerInfo.playerID]];
-                    Debug.Log(playerInfo.playerID);
                     poseidonCanvas.GetComponent<Canvas>().planeDistance = 1;
                     poseidonCanvas.SetActive(true);
                     poseidonCanvas.GetComponent<CameraCanvasScaler>().enabled = false;
@@ -179,6 +180,7 @@ public class StartRace : MonoBehaviour
 
     private void SetCameraAndControl()
     {
+        int carSoundIndex = 1;
         
         foreach (var playerInfo in StoreGodInfo.Instance.playerInfo)
         {
@@ -190,12 +192,16 @@ public class StartRace : MonoBehaviour
                         anubisPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
                     else
                         anubisPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
+
+                    anubisPlayer.GetComponent<PlayerCarSoundManager>().unsharedSoundStart = "Nave_" + carSoundIndex;
+                    carSoundIndex++;
                     
                     anubisPlayer.GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
                     anubisPlayer.GetComponent<IncontrolProvider>().controlType = playerInfo.controlType;
                     anubisPlayer.GetComponent<IncontrolProvider>().playerID = playerInfo.playerID;
-                    
-                    
+
+                    anubisPlayer.GetComponent<MyCarController>().powerLeftTrail = powerLeftTrails[0];
+                    anubisPlayer.GetComponent<MyCarController>().powerRightTrail = powerRightTrails[0];
 
                     /*//Sigue el mismo orden que la UI
                     cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().AssignIndex(0);
@@ -203,9 +209,7 @@ public class StartRace : MonoBehaviour
                     cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().enabled = true;*/
 
                     anubisPlayer.GetComponent<MyCarController>().enabled = true;
-                    anubisPlayer.GetComponent<PlayerSkillManager>().enabled = true;
                     anubisPlayer.GetComponent<PlayerCarSoundManager>().enabled = true;
-                    anubisPlayer.GetComponent<ItemManager>().enabled = true;
 
                     //Sirve para dividir la pantalla de las cámaras, así se el orden en el que se han seleccionado los personajes
                     //0 es porque es Anubis (mirar orden de los dioses)
@@ -220,9 +224,15 @@ public class StartRace : MonoBehaviour
                     else
                         poseidonPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
                     
+                    poseidonPlayer.GetComponent<PlayerCarSoundManager>().unsharedSoundStart = "Nave_" + carSoundIndex;
+                    carSoundIndex++;
+                    
                     poseidonPlayer.GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
                     poseidonPlayer.GetComponent<IncontrolProvider>().controlType = playerInfo.controlType;
                     poseidonPlayer.GetComponent<IncontrolProvider>().playerID = playerInfo.playerID;
+                    
+                    poseidonPlayer.GetComponent<MyCarController>().powerLeftTrail = powerLeftTrails[1];
+                    poseidonPlayer.GetComponent<MyCarController>().powerRightTrail = powerRightTrails[1];
 
                     /*//Sigue el mismo orden que la UI
                     cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().AssignIndex(1);
@@ -230,10 +240,8 @@ public class StartRace : MonoBehaviour
                     cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().enabled = true;*/
 
                     poseidonPlayer.GetComponent<MyCarController>().enabled = true;
-                    poseidonPlayer.GetComponent<PlayerSkillManager>().enabled = true;
                     poseidonPlayer.GetComponent<PlayerCarSoundManager>().enabled = true;
-                    poseidonPlayer.GetComponent<ItemManager>().enabled = true;
-                    
+
                     cameraIndex.Add(God.Type.Poseidon);
 
                     break;
@@ -245,9 +253,15 @@ public class StartRace : MonoBehaviour
                     else
                         kaliPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
                     
+                    kaliPlayer.GetComponent<PlayerCarSoundManager>().unsharedSoundStart = "Nave_" + carSoundIndex;
+                    carSoundIndex++;
+                    
                     kaliPlayer.GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice; 
                     kaliPlayer.GetComponent<IncontrolProvider>().controlType = playerInfo.controlType;
                     kaliPlayer.GetComponent<IncontrolProvider>().playerID = playerInfo.playerID;
+                    
+                    kaliPlayer.GetComponent<MyCarController>().powerLeftTrail = powerLeftTrails[2];
+                    kaliPlayer.GetComponent<MyCarController>().powerRightTrail = powerRightTrails[2];
 
                     /*//Sigue el mismo orden que la UI
                     cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().AssignIndex(2);
@@ -256,10 +270,8 @@ public class StartRace : MonoBehaviour
 
 
                     kaliPlayer.GetComponent<MyCarController>().enabled = true;
-                    kaliPlayer.GetComponent<PlayerSkillManager>().enabled = true;
                     kaliPlayer.GetComponent<PlayerCarSoundManager>().enabled = true;
-                    kaliPlayer.GetComponent<ItemManager>().enabled = true;
-                    
+
                     cameraIndex.Add(God.Type.Kali);
                     break;
                 
@@ -270,9 +282,15 @@ public class StartRace : MonoBehaviour
                     else
                         thorPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
                     
+                    thorPlayer.GetComponent<PlayerCarSoundManager>().unsharedSoundStart = "Nave_" + carSoundIndex;
+                    carSoundIndex++;
+                    
                     thorPlayer.GetComponent<IncontrolProvider>().InputDevice = playerInfo.inputDevice;
                     thorPlayer.GetComponent<IncontrolProvider>().controlType = playerInfo.controlType;
                     thorPlayer.GetComponent<IncontrolProvider>().playerID = playerInfo.playerID;
+                    
+                    thorPlayer.GetComponent<MyCarController>().powerLeftTrail = powerLeftTrails[3];
+                    thorPlayer.GetComponent<MyCarController>().powerRightTrail = powerRightTrails[3];
 
                     /*//Sigue el mismo orden que la UI
                     cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().AssignIndex(3);
@@ -280,10 +298,8 @@ public class StartRace : MonoBehaviour
                     cameras[playerInfo.playerID].GetComponent<CameraPostProcess>().enabled = true;*/
 
                     thorPlayer.GetComponent<MyCarController>().enabled = true;
-                    thorPlayer.GetComponent<PlayerSkillManager>().enabled = true;
                     thorPlayer.GetComponent<PlayerCarSoundManager>().enabled = true;
-                    thorPlayer.GetComponent<ItemManager>().enabled = true;
-                    
+
                     cameraIndex.Add(God.Type.Thor);
                     break;
             }   

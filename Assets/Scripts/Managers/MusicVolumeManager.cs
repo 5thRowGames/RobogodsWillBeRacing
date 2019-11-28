@@ -57,8 +57,12 @@ public class MusicVolumeManager : SettingsBase
         }
         else
             SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Cambio_Volumen_In);
+        
+        AkSoundEngine.SetRTPCValue("Volumen_Musica", (1 - fillImage.fillAmount) * 100f);
+        
 
-        PlayerPrefs.SetFloat(PlayerPrefsEnum.PlayerPrefs.Music.ToString(),fillImage.fillAmount);
+        PlayerPrefs.SetFloat(PlayerPrefsEnum.PlayerPrefs.Music.ToString(),(1 - fillImage.fillAmount));
+        PlayerPrefs.Save();
 
     }
 
@@ -74,7 +78,10 @@ public class MusicVolumeManager : SettingsBase
         }
         else
             SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Cambio_Volumen_In);
+        
+        AkSoundEngine.SetRTPCValue("Volumen_Musica", (1 - fillImage.fillAmount) * 100f);
 
-        PlayerPrefs.SetFloat(PlayerPrefsEnum.PlayerPrefs.Music.ToString(),fillImage.fillAmount);
+        PlayerPrefs.SetFloat(PlayerPrefsEnum.PlayerPrefs.Music.ToString(),(1 - fillImage.fillAmount));
+        PlayerPrefs.Save();
     }
 }

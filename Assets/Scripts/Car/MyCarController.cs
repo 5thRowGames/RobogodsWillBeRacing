@@ -13,6 +13,8 @@ public class MyCarController : MonoBehaviour, IControllable
     public float turboRechargeMultiplier;
     public float turboConsumeMultiplier;
     [SerializeField]private float turbo;
+
+    private bool isSpeedingUp;
      
     public float Turbo
     {
@@ -21,6 +23,8 @@ public class MyCarController : MonoBehaviour, IControllable
     }
 
     public RacingCamera ownCamera;
+    public PowerTrail powerLeftTrail;
+    public PowerTrail powerRightTrail;
 
     #region Members
 
@@ -268,8 +272,8 @@ public class MyCarController : MonoBehaviour, IControllable
 
     public void Control(IDevice device)
     {
-        Debug.Log("Base Control");
-        boostInput = device.State.Jump.IsHeld;
+        boostInput = device.State.Jump.IsHeld && Turbo > 0;
+
         accelerationInput = device.State.RightTrigger.Value;
         steeringInput = device.State.Horizontal.Value;
         //brakeInput = deviceController.device.State.Fire.Value;
@@ -281,11 +285,27 @@ public class MyCarController : MonoBehaviour, IControllable
 
         if (alwaysAccelerate && accelerationInput < minAcceleration) accelerationInput = minAcceleration;
 
+        if (!isSpeedingUp && accelerationInput > 0)
+        {
+            isSpeedingUp = true;
+            powerLeftTrail.IncreasePowerSpeed();
+            powerRightTrail.IncreasePowerSpeed();
+        }
+        else if(isSpeedingUp && accelerationInput < 0.1f)
+        {
+            isSpeedingUp = false;
+            powerLeftTrail.DecreasePowerSpeed();
+            powerRightTrail.DecreasePowerSpeed();
+        }
+        
+
         if (boostInput)
         {
             Turbo -= turboConsumeMultiplier * Time.deltaTime;
             accelerationInput *= boostMultiplier;
             turnSpeed = boostTurnSpeed;
+            powerLeftTrail.IncreasePowerColor();
+            powerRightTrail.IncreasePowerColor();
  
             isBoosting = true;
         }
@@ -294,6 +314,9 @@ public class MyCarController : MonoBehaviour, IControllable
             Turbo += turboRechargeMultiplier * Time.deltaTime;
             turnSpeed = originalTurnSpeed;
             isBoosting = false;
+            powerLeftTrail.DecreasePowerColor();
+            powerRightTrail.DecreasePowerColor();
+            
             if(OnTheWall)
             {
                 turnSpeed = boostTurnSpeed;
@@ -435,13 +458,12 @@ public class MyCarController : MonoBehaviour, IControllable
     
     public void StartSlowDown()
     {
-        if(startSlowCoroutine == null)
+        if(startSlowCoroutine == null && startTurboCoroutine == null)
             startSlowCoroutine = StartCoroutine(SlowDownCoroutine());
     }
 
     private IEnumerator SlowDownCoroutine()
     {
-
         var originalSpeed = speedForce;
 
         speedForce -= addSlow;
@@ -464,57 +486,10 @@ public class MyCarController : MonoBehaviour, IControllable
         startSlowCoroutine = null;
     }
 
-    public void SimpleSlowDown()
-    {
-        if (startSlowCoroutine == null && startTurboCoroutine == null)
-            startSlowCoroutine = StartCoroutine(SimpleSlowDownCoroutine());
-        else Debug.Log($"{startSlowCoroutine}");
-    }
-
-    private IEnumerator SimpleSlowDownCoroutine()
-    {
-        var timer = 0f;
-        while (timer < 2f)
-        {
-            accelerationInput *= slowDownMultiplier;
-            Mathf.Clamp(accelerationInput, 0f, slowDownMultiplier);
-            timer += Time.deltaTime;
-            yield return new WaitForEndOfFrame();
-            Debug.Log($"Slowing down: {timer}");
-        }
-        startSlowCoroutine = null;
-    }
-
-    public void SimpleTurbo(float waitBeforeBoost)
-    {
-        if (startTurboCoroutine == null && startSlowCoroutine == null)
-            startTurboCoroutine = StartCoroutine(SimpleTurboCoroutine(waitBeforeBoost));
-    }
-
-    private IEnumerator SimpleTurboCoroutine(float waitBeforeBoost)
-    {
-        yield return new WaitForSeconds(waitBeforeBoost);
-
-        SoundManager.Instance.PlayFx(SoundManager.Fx.Banda_Aceleracion);
-
-        var timer = 0f;
-        while (timer < 2f)
-        {
-            accelerationInput *= boostMultiplier;
-            Mathf.Clamp(accelerationInput, 0.2f, boostMultiplier);
-            timer += Time.deltaTime;
-            yield return new WaitForEndOfFrame();
-            Debug.Log($"Boosting: {timer}");
-        }
-        startTurboCoroutine = null;
-    }
-
     public void StartTurbo(float waitBeforeBoost)
     {
-
-        if (startTurboCoroutine == null)
+        if (startTurboCoroutine == null && startSlowCoroutine == null)
             startTurboCoroutine = StartCoroutine(TurboCoroutine(waitBeforeBoost));
-        else Debug.Log($"{startTurboCoroutine}");
     }
 
     private IEnumerator TurboCoroutine(float seconds)
@@ -529,6 +504,9 @@ public class MyCarController : MonoBehaviour, IControllable
         speedForce += addTurbo;
 
         rb.AddForce(turboMultiplier * speedForce * groundForward, ForceMode.Acceleration);
+        
+        powerLeftTrail.IncreasePowerColor();
+        powerRightTrail.IncreasePowerColor();
 
         float timer = turboTime;
 
@@ -542,7 +520,13 @@ public class MyCarController : MonoBehaviour, IControllable
 
             yield return null;
         }
-        
+
+        if (!isBoosting)
+        {
+            powerLeftTrail.DecreasePowerColor();
+            powerRightTrail.DecreasePowerColor();
+        }
+
         speedForce = originalSpeedForce;
 
         startTurboCoroutine = null;

@@ -51,7 +51,7 @@ public class MyCarCollisionsController : MonoBehaviour
 
         //if(!Physics.Raycast(myCarController.centerOfMass.position, -transform.up, 0.2f, LayerMask.NameToLayer("Default")))
         //{
-            AkSoundEngine.PostEvent("Impactos_In", gameObject);
+            //AkSoundEngine.PostEvent("Impactos_In", gameObject);
         //}
 
         if (otherLayer != portalLayer) // Si no choco contra un portal

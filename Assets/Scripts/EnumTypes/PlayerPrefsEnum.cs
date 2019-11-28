@@ -7,6 +7,7 @@ public class PlayerPrefsEnum
     public enum PlayerPrefs
     {
         Music,
-        SFX
+        SFX,
+        FirstTime
     };
 }

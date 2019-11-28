@@ -23,6 +23,7 @@ public class MyCarCollisionsController : MonoBehaviour
     private int numberOfCorners;
     private List<Transform> corners;
     //private List<RaycastHit> hitList;
+    public CollisionsHelper collisionsHelper;
 
     #region UnityEvents
 
@@ -58,7 +59,7 @@ public class MyCarCollisionsController : MonoBehaviour
             priorConstraints = rb.constraints; // Guardo las restricciones previas al choque
             if (LayerMaskUtils.IsLayerIncluded(otherLayer, godsLayerMask))
             {
-                //Debug.Log($"{gameObject.name} choca contra {LayerMask.LayerToName(otherLayer)}");
+                Debug.Log($"{gameObject.name} choca contra {LayerMask.LayerToName(otherLayer)}");
                 rb.constraints = RigidbodyConstraints.FreezeRotation; // Congelo la rotación para evitar que el coche cambie su dirección
             }
 
@@ -83,18 +84,18 @@ public class MyCarCollisionsController : MonoBehaviour
         //Debug.Log($"Ángulo de choque = {collisionAngle}");
         if (collisionAngle > -maxFrontalAngle && collisionAngle < maxFrontalAngle) // Choque frontal
         {
-            //if (collisionAngle > -maxAngle && collisionAngle < maxAngle && rb.velocity.magnitude > maxSpeed)
-            //{
-            //    //Debug.Log("¡Reducción de velocidad!");
-            //    rb.angularVelocity *= reductionSpeedFactor * (1.0f - (collisionAngle / maxAngle));
-            //    rb.velocity *= reductionSpeedFactor;
-            //}
+            if (collisionAngle > -maxAngle && collisionAngle < maxAngle && rb.velocity.magnitude > maxSpeed)
+            {
+                //Debug.Log("¡Reducción de velocidad!");
+                rb.angularVelocity *= reductionSpeedFactor * (1.0f - (collisionAngle / maxAngle));
+                rb.velocity *= reductionSpeedFactor;
+            }
 
             //    Debug.Log("¡Fuerza hacia abajo!");
             //var speedForce = rb.velocity.magnitude > minSpeedForce ? rb.velocity.magnitude : minSpeedForce;   
             var speedForce = Mathf.Clamp(rb.velocity.magnitude, minSpeedForce, maxSpeedForce);
             rb.AddForce(rb.transform.InverseTransformDirection(normal) * frontalForce * speedForce, ForceMode.Force);
-            //rb.AddForce(-rb.transform.up * frontalForce * speedForce, ForceMode.Force); // Fuerza hacia abajo para contener al coche en el suelo
+            rb.AddForce(-rb.transform.up * frontalForce * speedForce, ForceMode.Force); // Fuerza hacia abajo para contener al coche en el suelo
         }
         else
         {

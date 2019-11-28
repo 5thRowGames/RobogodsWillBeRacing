@@ -64,7 +64,6 @@ public class StabilityController : MonoBehaviour
     {
         if(other.gameObject.layer == LayerMask.NameToLayer(wallLayerName))
         {
-            Debug.Log("Me subo a la pared");
             OnTheWall += 1;
         }
     }
@@ -73,7 +72,6 @@ public class StabilityController : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer(wallLayerName))
         {
-            Debug.Log("Me bajo de la pared");
             OnTheWall -= 1;
         }
     }
@@ -164,7 +162,7 @@ public class StabilityController : MonoBehaviour
 
     private void PushToTheGround()
     {
-
+        Debug.Log("PushToTheGround!");
         //if (Physics.Raycast(carHelper.position, -carHelper.up, out RaycastHit hitInfo, distanceToApplyPushForce, inclinationLayer))
         //{
         //    var normal = hitInfo.normal;

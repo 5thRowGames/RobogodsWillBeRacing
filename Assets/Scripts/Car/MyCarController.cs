@@ -93,7 +93,7 @@ public class MyCarController : MonoBehaviour, IControllable
 
     [Header("*Input Info*")]
     [SerializeField] private float accelerationInput;
-    public float AccelerationInput{ get { return accelerationInput; } }
+    public float AccelerationInput{ get { return accelerationInput; } set { accelerationInput = value; } }
     [SerializeField] private float steeringInput;
     [SerializeField] private float brakeInput;
     [SerializeField] private float handBrakeInput;
@@ -268,6 +268,7 @@ public class MyCarController : MonoBehaviour, IControllable
 
     public void Control(IDevice device)
     {
+        Debug.Log("Base Control");
         boostInput = device.State.Jump.IsHeld;
         accelerationInput = device.State.RightTrigger.Value;
         steeringInput = device.State.Horizontal.Value;

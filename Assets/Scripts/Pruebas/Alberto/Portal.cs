@@ -21,7 +21,7 @@ public class Portal : MonoBehaviour
 
     private Color portalColor;
 
-    #region Unity EventsT
+    #region Unity Events
     private void OnTriggerEnter(Collider other)
     {
 
@@ -77,7 +77,7 @@ public class Portal : MonoBehaviour
             }
             if (stabilityController != null)
                 stabilityController.StopRotationToIdentity();
-            //MyCollisions();
+
             StartCoroutine(Teleport());
         }
     }
@@ -94,7 +94,8 @@ public class Portal : MonoBehaviour
     {
         //Use this to ensure that the Gizmos are being drawn when in Play Mode.
         m_Started = true;
-        teleportPoint = targetPortal.TransformPoint(0f, 0f, zOffset);
+        if(targetPortal != null)
+            teleportPoint = targetPortal.TransformPoint(0f, 0f, zOffset);
         carColliders = new Queue<Collider>();
     }
 
@@ -111,11 +112,6 @@ public class Portal : MonoBehaviour
 
     #endregion
 
-    void MyCollisions()
-    {
-        StartCoroutine(Teleport());
-    }
-
     private IEnumerator Teleport()
     {
         // Se comprueba en un área el doble de grande que el collider del coche para que no choquen varios coches teletransportados
@@ -130,7 +126,7 @@ public class Portal : MonoBehaviour
         var myCC = carColliders.Peek().GetComponentInParent<MyCarController>();
         if (myCC != null)
             myCC.IsBeingTeleported = false;
-        //carColliders.Peek().GetComponent<MyCarController>().IsBeingTeleported = false;
+        
         carColliders.Dequeue();
     }
 
@@ -139,22 +135,15 @@ public class Portal : MonoBehaviour
         rb.velocity = targetPortal.TransformDirection(targetPortal.forward) * 0f;
         rb.angularVelocity = targetPortal.TransformDirection(targetPortal.forward) * 0f; // Vector3.zero;
 
-        //rb.usegravity = false;
-        //rb.iskinematic = true;
-
         rb.position = teleportPoint;
 
         StartCoroutine(GoThroughPortalCameraCoroutine(rb.GetComponent<MyCarController>().ownCamera));
         
         rb.transform.forward = targetPortal.forward;
 
-        //rb.useGravity = true;
-        //rb.isKinematic = false;
         var speed = portalEnterSpeedMagnitude < exitPortalSpeedMagnitude ? exitPortalSpeedMagnitude : portalEnterSpeedMagnitude;
         rb.rotation = targetPortal.rotation;
         rb.velocity = targetPortal.forward.normalized * speed;
-
-        //rb.WakeUp();
     }
 
     IEnumerator GoThroughPortalCameraCoroutine(RacingCamera racingCamera)

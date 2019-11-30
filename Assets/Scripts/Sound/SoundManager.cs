@@ -124,7 +124,7 @@ public class SoundManager : SingletonDontDestroy<SoundManager>
         if (!musicDictionary.ContainsKey(music)) return;
         currentMusic = music;
         AkSoundEngine.PostEvent(musicDictionary[music], gameObjectEvents[0]);
-    } 
+    }
 
     public void StopLoop()
     {

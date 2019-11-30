@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
 using DG.Tweening;
@@ -223,6 +224,7 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
                 StoreGodInfo.Instance.playerInfo.Add(playerInfo);
             }
 
+            StartCoroutine(StartRace());
             StartRaceTween();
 
         }
@@ -244,6 +246,12 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
         }
         
         confirmCharacterSelectionPanel.DOScale(Vector3.zero, 0.4f).SetUpdate(true);
+    }
+
+    IEnumerator StartRace()
+    {
+        yield return new WaitForSeconds(1.5f);
+        StartRaceTween();
     }
    
    #endregion

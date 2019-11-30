@@ -8,8 +8,12 @@ public class PlayerCarSoundManager : MonoBehaviour, IControllable
 
     public bool Eduardo;
 
+    private MyCarController myCarController;
+
     private void OnEnable()
     {
+        myCarController = GetComponent<MyCarController>();
+        
         if (Eduardo)
         {
             Core.Input.AssignControllable(incontrolProvider, this);
@@ -29,10 +33,10 @@ public class PlayerCarSoundManager : MonoBehaviour, IControllable
 
     public void Control(IDevice device)
     {
-        if (device.State.Jump.IsPressed)
+        if (device.State.Jump.IsPressed && myCarController.canTurbo)
             AkSoundEngine.PostEvent("Turbo_In", gameObject);
 
-        if (device.State.Jump.IsReleased)
+        if (device.State.Jump.IsReleased && myCarController.canTurbo)
             AkSoundEngine.PostEvent("Turbo_Out", gameObject);
 
         if (device.State.RightBumper.IsPressed)
@@ -53,7 +57,7 @@ public class PlayerCarSoundManager : MonoBehaviour, IControllable
         if (device.State.RightTrigger.IsReleased)
             AkSoundEngine.PostEvent(unsharedSoundStart + "_Acelerar_Out", gameObject);
 
-        AkSoundEngine.SetRTPCValue("Player_Velocidad", carRigidbody.velocity.magnitude);
+        AkSoundEngine.SetRTPCValue("Player_Velocidad", carRigidbody.velocity.magnitude * 1.5f);
 
     }
 

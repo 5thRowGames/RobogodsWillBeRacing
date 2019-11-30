@@ -74,6 +74,7 @@ public class Portal : MonoBehaviour
                 portalEnterSpeedMagnitude = other.attachedRigidbody.velocity.magnitude;
                 myCarController.IsBeingTeleported = true;
                 myCarController.StopAllCoroutines();
+                myCarController.ResetTurboCoroutines();
             }
             if (stabilityController != null)
                 stabilityController.StopRotationToIdentity();

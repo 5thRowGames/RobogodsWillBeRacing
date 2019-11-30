@@ -16,9 +16,9 @@ public class Checkpoint : MonoBehaviour
     {
         if (other.GetComponent<MyCarController>() != null)
         {
-            //MinimapControl.Instance.UpdateMinimapControl(other.tag, index); // Uncomment after tests
-            //LapsManager.Instance.UpdateCheckPoint(other.tag, index); // Uncomment after tests
-            // ERASE_ME
+            MinimapControl.Instance.UpdateMinimapControl(other.tag, index);
+            LapsManager.Instance.UpdateCheckPoint(other.tag, index); 
+            /*// ERASE_ME
             var collisionsHelper = other.GetComponent<CollisionsHelper>();
             if(collisionsHelper != null)
             {
@@ -27,7 +27,7 @@ public class Checkpoint : MonoBehaviour
                 else collisionsHelper.currentCheckpoint = index;
                 Debug.Log($"currentCheckpoint = {collisionsHelper.currentCheckpoint}");
             }
-            // ERASE_ME
+            // ERASE_ME*/
         }
 
     }

@@ -73,8 +73,9 @@ public class LocalizationManager : SingletonDontDestroy<LocalizationManager>
             
         }
         
-        UpdateLanguage();
-        UpdateIcon();
+        UpdateLanguage?.Invoke();
+
+        UpdateIcon?.Invoke();
     }
 
     public string GetWord(string id)

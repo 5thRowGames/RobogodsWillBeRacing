@@ -191,6 +191,7 @@ public class MyPlayerActions : PlayerActionSet
         myPlayerActions.RightTrigger.AddDefaultBinding(Key.W);
         myPlayerActions.Gas.AddDefaultBinding(Key.X);
         myPlayerActions.Submit.AddDefaultBinding(Key.X);
+        myPlayerActions.Cancel.AddDefaultBinding(Key.Z);
 
         return myPlayerActions;
     }
@@ -205,6 +206,7 @@ public class MyPlayerActions : PlayerActionSet
         myPlayerActions.RightTrigger.AddDefaultBinding(Key.U);
         myPlayerActions.Gas.AddDefaultBinding(Key.N);
         myPlayerActions.Submit.AddDefaultBinding(Key.N);
+        myPlayerActions.Cancel.AddDefaultBinding(Key.B);
 
         return myPlayerActions;
     }
@@ -218,6 +220,8 @@ public class MyPlayerActions : PlayerActionSet
         myPlayerActions.Fire.AddDefaultBinding(Key.DownArrow);
         myPlayerActions.RightTrigger.AddDefaultBinding(Key.UpArrow);
         myPlayerActions.Gas.AddDefaultBinding(Key.M);
+        myPlayerActions.Submit.AddDefaultBinding(Key.M);
+        myPlayerActions.Cancel.AddDefaultBinding(Key.L);
 
         return myPlayerActions;
     }
@@ -231,6 +235,8 @@ public class MyPlayerActions : PlayerActionSet
         myPlayerActions.Fire.AddDefaultBinding(Key.Pad2);
         myPlayerActions.RightTrigger.AddDefaultBinding(Key.Pad8);
         myPlayerActions.Gas.AddDefaultBinding(Key.Pad0);
+        myPlayerActions.Submit.AddDefaultBinding(Key.Pad0);
+        myPlayerActions.Cancel.AddDefaultBinding(Key.Pad9);
 
         return myPlayerActions;
     }

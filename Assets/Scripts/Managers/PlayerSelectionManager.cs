@@ -77,7 +77,7 @@ public class PlayerSelectionManager : Singleton<PlayerSelectionManager>
                         SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Select);
                         playerOrder++;
                     }
-                    else
+                    else if(playerOrder == 1)
                     {
                         keyboardSelected = true;
                         StoreGodInfo.Instance.players++;
@@ -90,8 +90,32 @@ public class PlayerSelectionManager : Singleton<PlayerSelectionManager>
                         SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Select);
                         playerOrder++;
                     }
-                    
-                    StoreGodInfo.Instance.eduardo = true;
+                    else if (playerOrder == 2)
+                    {
+                        keyboardSelected = true;
+                        StoreGodInfo.Instance.players++;
+                        playersInControl[playerOrder].playerID = playerOrder;
+                        playersInControl[playerOrder].controlType = IncontrolProvider.ControlType.Keyboard;
+                        playersInControl[playerOrder].InputDevice = null;
+                        playersInControl[playerOrder].myPlayerActions = MyPlayerActions.Eduardo3();
+                        Core.Input.AssignControllable(playersInControl[playerOrder],playerSelectionController[playerOrder]);
+                        playerSelectionController[playerOrder].JoinGamePressed();
+                        SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Select);
+                        playerOrder++;
+                    }
+                    else if (playerOrder == 3)
+                    {
+                        keyboardSelected = true;
+                        StoreGodInfo.Instance.players++;
+                        playersInControl[playerOrder].playerID = playerOrder;
+                        playersInControl[playerOrder].controlType = IncontrolProvider.ControlType.Keyboard;
+                        playersInControl[playerOrder].InputDevice = null;
+                        playersInControl[playerOrder].myPlayerActions = MyPlayerActions.Eduardo4();
+                        Core.Input.AssignControllable(playersInControl[playerOrder],playerSelectionController[playerOrder]);
+                        playerSelectionController[playerOrder].JoinGamePressed();
+                        SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Select);
+                        playerOrder++;
+                    }
                 }*/
             }
         }

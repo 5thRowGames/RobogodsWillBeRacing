@@ -13,19 +13,15 @@ public class Plano2 : MonoBehaviour
     
     private Vector3[] path1;
 
-    private void Awake()
-    {
-        path1 = path1List.Select(transform => transform.position).ToArray();
-    }
-    
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
             Plano();
     }
 
-    private void Start()
+    private void OnEnable()
     {
+        path1 = path1List.Select(transform => transform.position).ToArray();
         camera.transform.position = path1[0];
         camera.transform.rotation = path1List[0].rotation;
     }

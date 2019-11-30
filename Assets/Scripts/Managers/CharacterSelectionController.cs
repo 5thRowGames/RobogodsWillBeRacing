@@ -24,6 +24,7 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
         foreach (var image in images)
         {
             image.enabled = false;
+            image.sprite = lampOff;
         }
         
         robogodPicked = God.Type.None;
@@ -78,7 +79,6 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
                 if (controller.State.Submit.IsPressed)
                 {
                     SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Select_Holograma_In);
-                    images[position].sprite = lampOn;
                     ChooseGod();
                 }
             }
@@ -142,6 +142,7 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
                 {
                     CharacterSelectionManager.Instance.ChooseCharacter(God.Type.Anubis);
                     robogodPicked = God.Type.Anubis;
+                    images[position].sprite = lampOn;
                     canChooseGod = false;
                 }
                 break;
@@ -152,6 +153,7 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
                 {
                     CharacterSelectionManager.Instance.ChooseCharacter(God.Type.Poseidon);
                     robogodPicked = God.Type.Poseidon;
+                    images[position].sprite = lampOn;
                     canChooseGod = false;
                 }
                 
@@ -163,6 +165,7 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
                 {
                     CharacterSelectionManager.Instance.ChooseCharacter(God.Type.Kali);
                     robogodPicked = God.Type.Kali;
+                    images[position].sprite = lampOn;
                     canChooseGod = false;
                 }
                 break;
@@ -173,6 +176,7 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
                 {
                     CharacterSelectionManager.Instance.ChooseCharacter(God.Type.Thor);
                     robogodPicked = God.Type.Thor;
+                    images[position].sprite = lampOn;
                     canChooseGod = false;
                 }
                 break;
@@ -183,36 +187,27 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
     {
         if (robogodPicked != God.Type.None)
         {
-
-            robogodPicked = God.Type.None;
             canChooseGod = true;
             
-            switch (position)
+            switch (robogodPicked)
             {
-                case 0:
+                case God.Type.Poseidon:
                     CharacterSelectionManager.Instance.DeselectCharacter(God.Type.Poseidon);
                     break;
             
-                case 1:
+                case God.Type.Kali:
                     CharacterSelectionManager.Instance.DeselectCharacter(God.Type.Kali);
                     break;
             
-                case 2:
+                case God.Type.Thor:
                     CharacterSelectionManager.Instance.DeselectCharacter(God.Type.Thor);
                     break;
             
-                case 3:
+                case God.Type.Anubis:
                     CharacterSelectionManager.Instance.DeselectCharacter(God.Type.Anubis);
                     break;
             }
-        }
-    }
-
-    private void CancelCharacterSelection()
-    {
-        foreach (var img in images)
-        {
-            img.enabled = false;
+            robogodPicked = God.Type.None;
         }
     }
 

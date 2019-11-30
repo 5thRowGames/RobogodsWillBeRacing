@@ -25,6 +25,7 @@ public class UpdateUILocalizationIcon : MonoBehaviour
 
     public void UpdateIcon()
     {
+
         if (LocalizationManager.Instance.currentLanguage == GameLanguage.Language.Spanish)
             icon.sprite = spanishIcon;
         else

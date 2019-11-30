@@ -14,10 +14,12 @@ public class StartRace : MonoBehaviour
     public GameObject kaliPlayer;
     public GameObject thorPlayer;
 
+    public GameObject logoCanvas;
     public List<GameObject> cinematicCameras; //0 Anubis 1 Poseidon 2 Kali 3 Thor
     public List<Transform> parentCameras;
     public List<GameObject> cameras;
     public List<Camera> UICameras;
+    public GameObject logoCamera;
     public List<PowerTrail> powerLeftTrails;
     public List<PowerTrail> powerRightTrails;
 
@@ -188,10 +190,29 @@ public class StartRace : MonoBehaviour
             {
                 case God.Type.Anubis:
 
-                    if (playerInfo.controlType == IncontrolProvider.ControlType.Gamepad)
+                    /*if (playerInfo.controlType == IncontrolProvider.ControlType.Gamepad)
                         anubisPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
                     else
-                        anubisPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
+                        anubisPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();*/
+
+                    switch (carSoundIndex)
+                    {
+                        case 1:
+                            anubisPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo1();
+                            break;
+                        
+                        case 2:
+                            anubisPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo2();
+                            break;
+                        
+                        case 3:
+                            anubisPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo3();
+                            break;
+                        
+                        case 4:
+                            anubisPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo4();
+                            break;
+                    }
 
                     anubisPlayer.GetComponent<PlayerCarSoundManager>().unsharedSoundStart = "Nave_" + carSoundIndex;
                     carSoundIndex++;
@@ -219,10 +240,29 @@ public class StartRace : MonoBehaviour
                 
                 case God.Type.Poseidon:
                     
-                    if (playerInfo.controlType == IncontrolProvider.ControlType.Gamepad)
+                    /*if (playerInfo.controlType == IncontrolProvider.ControlType.Gamepad)
                         poseidonPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
                     else
-                        poseidonPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
+                        poseidonPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();*/
+                    
+                    switch (carSoundIndex)
+                    {
+                        case 1:
+                            poseidonPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo1();
+                            break;
+                        
+                        case 2:
+                            poseidonPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo2();
+                            break;
+                        
+                        case 3:
+                            poseidonPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo3();
+                            break;
+                        
+                        case 4:
+                            poseidonPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo4();
+                            break;
+                    }
                     
                     poseidonPlayer.GetComponent<PlayerCarSoundManager>().unsharedSoundStart = "Nave_" + carSoundIndex;
                     carSoundIndex++;
@@ -248,10 +288,29 @@ public class StartRace : MonoBehaviour
                 
                 case God.Type.Kali:
 
-                    if (playerInfo.controlType == IncontrolProvider.ControlType.Gamepad)
+                    /*if (playerInfo.controlType == IncontrolProvider.ControlType.Gamepad)
                         kaliPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
                     else
-                        kaliPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
+                        kaliPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();*/
+                    
+                    switch (carSoundIndex)
+                    {
+                        case 1:
+                            kaliPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo1();
+                            break;
+                        
+                        case 2:
+                            kaliPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo2();
+                            break;
+                        
+                        case 3:
+                            kaliPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo3();
+                            break;
+                        
+                        case 4:
+                            kaliPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo4();
+                            break;
+                    }
                     
                     kaliPlayer.GetComponent<PlayerCarSoundManager>().unsharedSoundStart = "Nave_" + carSoundIndex;
                     carSoundIndex++;
@@ -277,10 +336,29 @@ public class StartRace : MonoBehaviour
                 
                 case God.Type.Thor:
                     
-                    if (playerInfo.controlType == IncontrolProvider.ControlType.Gamepad)
+                    /*if (playerInfo.controlType == IncontrolProvider.ControlType.Gamepad)
                         thorPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
                     else
-                        thorPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
+                        thorPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();*/
+                    
+                    switch (carSoundIndex)
+                    {
+                        case 1:
+                            thorPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo1();
+                            break;
+                        
+                        case 2:
+                            thorPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo2();
+                            break;
+                        
+                        case 3:
+                            thorPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo3();
+                            break;
+                        
+                        case 4:
+                            thorPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo4();
+                            break;
+                    }
                     
                     thorPlayer.GetComponent<PlayerCarSoundManager>().unsharedSoundStart = "Nave_" + carSoundIndex;
                     carSoundIndex++;
@@ -344,17 +422,21 @@ public class StartRace : MonoBehaviour
                 cameras[(int)cameraIndex[1]].GetComponent<Camera>().rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
                 cameras[(int)cameraIndex[1]].SetActive(true);
 
-                cameras[(int)cameraIndex[2]].GetComponent<Camera>().rect = new Rect(0, 0, 1f, 0.5f);
+                cameras[(int)cameraIndex[2]].GetComponent<Camera>().rect = new Rect(0, 0, 0.5f, 0.5f);
                 cameras[(int)cameraIndex[2]].SetActive(true);
+
+                logoCamera.GetComponent<Camera>().rect = new Rect(0.5f, 0, 0.5f, 0.5f);
+                logoCamera.SetActive(true);
+                logoCanvas.SetActive(true);
                 
                 UICameras[(int)cameraIndex[0]].GetComponent<Camera>().rect = new Rect(0, 0.5f, 0.5f, 0.5f);
                 UICameras[(int)cameraIndex[1]].GetComponent<Camera>().rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
-                UICameras[(int) cameraIndex[2]].GetComponent<Camera>().rect = new Rect(0, 0, 1f, 0.5f);
+                UICameras[(int) cameraIndex[2]].GetComponent<Camera>().rect = new Rect(0, 0, 0.5f, 0.5f);
                 
                 //No sigue el mismo criterio que las anteriores cámaras
                 cinematicCameras[0].GetComponent<Camera>().rect = new Rect(0, 0.5f, 0.5f, 0.5f);
                 cinematicCameras[1].GetComponent<Camera>().rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
-                cinematicCameras[2].GetComponent<Camera>().rect = new Rect(0, 0, 1f, 0.5f);
+                cinematicCameras[2].GetComponent<Camera>().rect = new Rect(0, 0, 0.5f, 0.5f);
                 break;
 
             case 4:

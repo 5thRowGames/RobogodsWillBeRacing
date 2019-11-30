@@ -10,6 +10,8 @@ public class MenuButtonInfo : MonoBehaviour
     public Sprite acceptKeyboard;
     public Sprite returnKeyboard;
     public Sprite moveKeyboard;
+    public Sprite backKeyboard;
+    public Sprite backXbox;
     public Sprite acceptXbox;
     public Sprite returnXbox;
     public Sprite moveXbox;
@@ -17,7 +19,8 @@ public class MenuButtonInfo : MonoBehaviour
     public List<Image> acceptButton;
     public List<Image> returnButton;
     public List<Image> moveButton;
-
+    public List<Image> backButton;
+    
     private bool isKeyboard;
 
     private void Start()
@@ -57,6 +60,11 @@ public class MenuButtonInfo : MonoBehaviour
         {
             button.sprite = moveXbox;
         }
+
+        foreach (var button in backButton)
+        {
+            button.sprite = backXbox;
+        }
     }
     
     private void ChangeToKeyboard()
@@ -74,6 +82,11 @@ public class MenuButtonInfo : MonoBehaviour
         foreach (var button in moveButton)
         {
             button.sprite = moveKeyboard;
+        }
+        
+        foreach (var button in backButton)
+        {
+            button.sprite = backKeyboard;
         }
     }
     

@@ -6,11 +6,12 @@ public class MySuspensionController : MonoBehaviour
 {
     public float wheelHeight = 1f;
     public float upForce = 10f;
-    private Rigidbody rb;
+    public Transform[] carCorners;
+    public Rigidbody rb;
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        
     }
 
     private void FixedUpdate()

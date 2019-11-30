@@ -98,7 +98,7 @@ public class MyCarController : MonoBehaviour, IControllable
 
     [Header("*Input Info*")]
     [SerializeField] private float accelerationInput;
-    public float AccelerationInput{ get { return accelerationInput; } }
+    public float AccelerationInput{ get { return accelerationInput; } set { accelerationInput = value; } }
     [SerializeField] private float steeringInput;
     [SerializeField] private float brakeInput;
     [SerializeField] private float handBrakeInput;

@@ -160,7 +160,7 @@ public class StabilityController : MonoBehaviour
 
     private void PushToTheGround()
     {
-
+        Debug.Log("PushToTheGround!");
         //if (Physics.Raycast(carHelper.position, -carHelper.up, out RaycastHit hitInfo, distanceToApplyPushForce, inclinationLayer))
         //{
         //    var normal = hitInfo.normal;

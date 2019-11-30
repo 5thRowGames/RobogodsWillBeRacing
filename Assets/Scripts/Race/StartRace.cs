@@ -14,10 +14,12 @@ public class StartRace : MonoBehaviour
     public GameObject kaliPlayer;
     public GameObject thorPlayer;
 
+    public GameObject logoCanvas;
     public List<GameObject> cinematicCameras; //0 Anubis 1 Poseidon 2 Kali 3 Thor
     public List<Transform> parentCameras;
     public List<GameObject> cameras;
     public List<Camera> UICameras;
+    public GameObject logoCamera;
     public List<PowerTrail> powerLeftTrails;
     public List<PowerTrail> powerRightTrails;
 
@@ -192,7 +194,7 @@ public class StartRace : MonoBehaviour
                         anubisPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
                     else
                         anubisPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
-
+                        
                     anubisPlayer.GetComponent<PlayerCarSoundManager>().unsharedSoundStart = "Nave_" + carSoundIndex;
                     carSoundIndex++;
                     
@@ -223,7 +225,7 @@ public class StartRace : MonoBehaviour
                         poseidonPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
                     else
                         poseidonPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
-                    
+                        
                     poseidonPlayer.GetComponent<PlayerCarSoundManager>().unsharedSoundStart = "Nave_" + carSoundIndex;
                     carSoundIndex++;
                     
@@ -252,7 +254,7 @@ public class StartRace : MonoBehaviour
                         kaliPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
                     else
                         kaliPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
-                    
+
                     kaliPlayer.GetComponent<PlayerCarSoundManager>().unsharedSoundStart = "Nave_" + carSoundIndex;
                     carSoundIndex++;
                     
@@ -281,7 +283,7 @@ public class StartRace : MonoBehaviour
                         thorPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
                     else
                         thorPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
-                    
+
                     thorPlayer.GetComponent<PlayerCarSoundManager>().unsharedSoundStart = "Nave_" + carSoundIndex;
                     carSoundIndex++;
                     
@@ -344,17 +346,21 @@ public class StartRace : MonoBehaviour
                 cameras[(int)cameraIndex[1]].GetComponent<Camera>().rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
                 cameras[(int)cameraIndex[1]].SetActive(true);
 
-                cameras[(int)cameraIndex[2]].GetComponent<Camera>().rect = new Rect(0, 0, 1f, 0.5f);
+                cameras[(int)cameraIndex[2]].GetComponent<Camera>().rect = new Rect(0, 0, 0.5f, 0.5f);
                 cameras[(int)cameraIndex[2]].SetActive(true);
+
+                logoCamera.GetComponent<Camera>().rect = new Rect(0.5f, 0, 0.5f, 0.5f);
+                logoCamera.SetActive(true);
+                logoCanvas.SetActive(true);
                 
                 UICameras[(int)cameraIndex[0]].GetComponent<Camera>().rect = new Rect(0, 0.5f, 0.5f, 0.5f);
                 UICameras[(int)cameraIndex[1]].GetComponent<Camera>().rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
-                UICameras[(int) cameraIndex[2]].GetComponent<Camera>().rect = new Rect(0, 0, 1f, 0.5f);
+                UICameras[(int) cameraIndex[2]].GetComponent<Camera>().rect = new Rect(0, 0, 0.5f, 0.5f);
                 
                 //No sigue el mismo criterio que las anteriores cámaras
                 cinematicCameras[0].GetComponent<Camera>().rect = new Rect(0, 0.5f, 0.5f, 0.5f);
                 cinematicCameras[1].GetComponent<Camera>().rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
-                cinematicCameras[2].GetComponent<Camera>().rect = new Rect(0, 0, 1f, 0.5f);
+                cinematicCameras[2].GetComponent<Camera>().rect = new Rect(0, 0, 0.5f, 0.5f);
                 break;
 
             case 4:

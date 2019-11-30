@@ -201,7 +201,10 @@ public class LapsManager : Singleton<LapsManager>
             int currentCheckpoint = godRaceInfoList[i].currentCheckPoint;
 
             if (currentCheckpoint + 1 == checkPoints.Count)
+            {
                 currentCheckpoint = 0;
+            }
+                
 
             godRaceInfoList[i].distanceToNextCheckPoint = (checkPoints[currentCheckpoint + 1].transform.position - godRaceInfoList[i].god.transform.position).sqrMagnitude;
         }
@@ -209,6 +212,7 @@ public class LapsManager : Singleton<LapsManager>
 
     public void UpdateCheckPoint(string tag, int checkPoint)
     {
+
         switch (tag)
         {
             case "Anubis":
@@ -224,7 +228,7 @@ public class LapsManager : Singleton<LapsManager>
                 break;
             
             case "Thor":
-                godRaceInfoList[2].currentCheckPoint = checkPoint;
+                godRaceInfoList[3].currentCheckPoint = checkPoint;
                 break;
         }
     }

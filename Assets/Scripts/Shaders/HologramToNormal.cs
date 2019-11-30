@@ -23,6 +23,11 @@ public class HologramToNormal : MonoBehaviour
         progressionPerTick = (max - min) / transformationTime;
     }
 
+    public void Reset()
+    {
+        material.SetFloat("_LerpController", max);
+    }
+
     public void TransformIntoHologram()
     {
         StopAllCoroutines();

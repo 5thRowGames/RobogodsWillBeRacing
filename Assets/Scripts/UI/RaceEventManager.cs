@@ -63,26 +63,11 @@ public class RaceEventManager : SingletonDontDestroy<RaceEventManager>
 
                 if (!countdown)
                 {
-                    /*if (StoreGodInfo.Instance.players > 1)
-                    {
-                        positionUIManager.GetComponent<PositionUIManager>().enabled = true;
-                        positionUIManager.GetComponent<TimeTrial>().enabled = false;
-                    }
-                    else
-                    {
-                        positionUIManager.GetComponent<PositionUIManager>().enabled = false;
-                        positionUIManager.GetComponent<TimeTrial>().enabled = true;
-                    }*/
-
                     positionUIManager.GetComponent<TimeTrial>().enabled = true;
-                    
                     positionUIManager.SetActive(true);
-                    ConnectDisconnectManager.ConnectCarControllerDelegate();
-                    ConnectDisconnectManager.ConnectItemManagerDelegate();
-                    ConnectDisconnectManager.ConnectSkillManagerDelegate(); 
-                    ConnectDisconnectManager.ConnectCarSoundManager();
+                    ConnectDisconnectManager.ConnectCarControllerDelegate?.Invoke();
+                    ConnectDisconnectManager.ConnectCarSoundManager?.Invoke();
                     SoundManager.Instance.PlayLoop(SoundManager.Music.Inicio);
-
                     countdown = true;
                 }
                 break;

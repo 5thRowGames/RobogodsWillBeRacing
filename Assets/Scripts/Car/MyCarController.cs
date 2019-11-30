@@ -15,6 +15,7 @@ public class MyCarController : MonoBehaviour, IControllable
     [SerializeField]private float turbo;
 
     private bool isSpeedingUp;
+    [SerializeField] private bool canTurbo;
      
     public float Turbo
     {
@@ -272,7 +273,13 @@ public class MyCarController : MonoBehaviour, IControllable
 
     public void Control(IDevice device)
     {
-        boostInput = device.State.Jump.IsHeld && Turbo > 0;
+        boostInput = device.State.Jump.IsHeld && canTurbo;
+
+        if (Turbo > 0.15f)
+            canTurbo = true;
+
+        if (device.State.Jump.IsReleased && Turbo < 0.15f)
+            canTurbo = false;
 
         accelerationInput = device.State.RightTrigger.Value;
         steeringInput = device.State.Horizontal.Value;

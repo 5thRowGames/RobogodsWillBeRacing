@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Numerics;
 using DG.Tweening;
 using InControl;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
+using Vector4 = UnityEngine.Vector4;
 
 public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
 {
@@ -47,13 +51,23 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
    public GameObject thor;
 
    [Header ("Debug")]
-   public int playersWithGodPicked;
-   public int playersConfirmed;
+   [SerializeField] private int playersWithGodPicked;
+   [SerializeField] private int playersConfirmed;
 
    private bool returnMainMenu;
 
    private void OnEnable()
    {
+       confirmCharacterSelectionPanel.localScale = Vector3.zero;
+       anubis.GetComponent<HologramToNormal>().Reset();
+       poseidon.GetComponent<HologramToNormal>().Reset();
+       
+       foreach (Transform child in kali.transform)
+       {
+           child.GetComponent<HologramToNormal>().Reset();
+       }
+       
+       thor.GetComponent<HologramToNormal>().Reset();
        StoreGodInfo.Instance.anubisIA = true;
        StoreGodInfo.Instance.poseidonIA = true;
        StoreGodInfo.Instance.kaliIA = true;
@@ -64,6 +78,7 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
        anubisChosen = false;
        playersWithGodPicked = 0;
        playersConfirmed = 0;
+       returnMainMenu = false;
        StoreGodInfo.Instance.Reset();
        ResetCharacterSelectionUI();
        BuildCharacterSelection();
@@ -71,7 +86,7 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
 
    private void Update()
    {
-       if (InputManager.ActiveDevice.Action4.WasPressed && !returnMainMenu)
+       if ((InputManager.ActiveDevice.Action4.WasPressed || Input.GetKeyDown(KeyCode.Alpha0)) && !returnMainMenu)
        {
            returnMainMenu = true;
            SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Cambio_Volumen_In);
@@ -138,7 +153,7 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
                     child.GetComponent<HologramToNormal>().TransformIntoHologram();
                 }
                 kaliChosen = false;
-                StoreGodInfo.Instance.anubisIA = true;
+                StoreGodInfo.Instance.kaliIA = true;
 
                 break;
             
@@ -146,7 +161,7 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
                 
                 poseidon.GetComponent<HologramToNormal>().TransformIntoHologram();
                 poseidonChosen = false;
-                StoreGodInfo.Instance.anubisIA = true;
+                StoreGodInfo.Instance.poseidonIA= true;
 
                 break;
             
@@ -154,7 +169,7 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
                 
                 thor.GetComponent<HologramToNormal>().TransformIntoHologram();
                 thorChosen = false;
-                StoreGodInfo.Instance.anubisIA = true;
+                StoreGodInfo.Instance.thorIA = true;
                 
                 break;
         }
@@ -217,7 +232,7 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
     {
         playersNumberConfirmedText.text = "";
         playersConfirmed = 0;
-        
+
         EventSystem.current.SetSelectedGameObject(null);
 
         ResetConfirCharacterSelectionLights();
@@ -246,7 +261,7 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
        
        //Se para la música de la UI
        SoundManager.Instance.StopLoop();
-       
+
        fade.DOFade(1, 0.5f).OnComplete(() =>
        {
            UIEventManager.Instance.ChangeScreen(MenuType.Menu.LoadingScreen);
@@ -286,6 +301,8 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
        EventSystem.current.firstSelectedGameObject = null;
 
        SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Back);
+
+       confirmCharacterSelectionPanel.DOScale(Vector3.zero, 0.4f);
        
        Sequence tweenSequence = DOTween.Sequence();
        tweenSequence.Append(infoPanel.DOAnchorPosX(panelPositionX, 0.6f, true))

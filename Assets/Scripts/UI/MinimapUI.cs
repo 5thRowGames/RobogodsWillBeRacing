@@ -19,7 +19,7 @@ public class MinimapUI : Singleton<MinimapUI>
     private List<int> godsPlayingIndex;
     private List<RectTransform> godsPlayingRectTransform;
 
-    private void Awake()
+    private void Start()
     {
         godsPlayingIndex = new List<int>();
         godsPlayingRectTransform = new List<RectTransform>();

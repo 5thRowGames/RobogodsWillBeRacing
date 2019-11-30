@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using InControl;
 using UnityEngine;
 
+[Serializable]
 public class PlayerInfo
 {
 
@@ -18,9 +19,6 @@ public class StoreGodInfo : SingletonDontDestroy<StoreGodInfo>
     public bool anubisIA;
     public bool kaliIA;
     public bool thorIA;
-
-    //Borrar
-    public bool eduardo;
 
     public int players;
     public List<PlayerInfo> playerInfo = new List<PlayerInfo>();

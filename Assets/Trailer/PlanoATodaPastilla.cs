@@ -7,6 +7,7 @@ public class PlanoATodaPastilla : MonoBehaviour
 {
     public GameObject camera;
     public Vector3 rotateVector;
+    public float rotateTime;
 
     public List<GameObject> cars;
 
@@ -26,6 +27,6 @@ public class PlanoATodaPastilla : MonoBehaviour
 
         yield return new WaitForSeconds(1.2f);
 
-        camera.transform.DORotate(rotateVector, 2f);
+        camera.transform.DORotate(rotateVector, rotateTime);
     }
 }

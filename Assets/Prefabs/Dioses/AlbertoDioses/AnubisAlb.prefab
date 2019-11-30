@@ -603,6 +603,7 @@ MonoBehaviour:
   turboRechargeMultiplier: 0.04
   turboConsumeMultiplier: 0.07
   turbo: 0
+  canTurbo: 0
   ownCamera: {fileID: 367474866408507497}
   powerLeftTrail: {fileID: 0}
   powerRightTrail: {fileID: 0}
@@ -708,6 +709,7 @@ MonoBehaviour:
   myCarController: {fileID: 5260619960850091005}
   force: 150
   distance: 0.3
+  collisionsHelper: {fileID: 0}
 --- !u!114 &8473246653801415278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1001,7 +1003,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6626368928078338479}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.4, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5260619960850090994}
@@ -1356,12 +1358,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8555214957887337579, guid: 54d434ade8e6ac44abac35effdc5f3be,
-        type: 3}
-      propertyPath: m_Layer
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 8555214957216424852, guid: 54d434ade8e6ac44abac35effdc5f3be,
+    - target: {fileID: 8555214956926856152, guid: 54d434ade8e6ac44abac35effdc5f3be,
         type: 3}
       propertyPath: m_Layer
       value: 14
@@ -1371,17 +1368,22 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 14
       objectReference: {fileID: 0}
-    - target: {fileID: 8555214956926856152, guid: 54d434ade8e6ac44abac35effdc5f3be,
+    - target: {fileID: 8555214957216424852, guid: 54d434ade8e6ac44abac35effdc5f3be,
         type: 3}
       propertyPath: m_Layer
       value: 14
       objectReference: {fileID: 0}
-    - target: {fileID: 8555214958501354799, guid: 54d434ade8e6ac44abac35effdc5f3be,
+    - target: {fileID: 8555214957887337579, guid: 54d434ade8e6ac44abac35effdc5f3be,
         type: 3}
       propertyPath: m_Layer
       value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 8555214958165194877, guid: 54d434ade8e6ac44abac35effdc5f3be,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8555214958501354799, guid: 54d434ade8e6ac44abac35effdc5f3be,
         type: 3}
       propertyPath: m_Layer
       value: 14

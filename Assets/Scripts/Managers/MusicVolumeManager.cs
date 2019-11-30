@@ -9,6 +9,8 @@ public class MusicVolumeManager : SettingsBase
     public Image fillImage;
     public float amountFilled;
 
+    public float waitInputTime;
+
     private void OnEnable()
     {
         fillImage.fillAmount = PlayerPrefs.GetFloat(PlayerPrefsEnum.PlayerPrefs.Music.ToString());

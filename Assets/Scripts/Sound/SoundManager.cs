@@ -42,7 +42,6 @@ public class SoundManager : SingletonDontDestroy<SoundManager>
     }
 
     private Dictionary<Fx, string> fxDictionary;
-    private Dictionary<Music, GameObject> musicGameObjects;
     private Dictionary<Music, string> musicDictionary;
 
     private Coroutine portal_out = null;
@@ -79,9 +78,6 @@ public class SoundManager : SingletonDontDestroy<SoundManager>
         fxDictionary.Add(Fx.CajaRandom,"Caja_Random_In");
         fxDictionary.Add(Fx.Inicio_Carrera,"Inicio_Carrera_In");
         fxDictionary.Add(Fx.Banda_Aceleracion, "Aceleraciones_In");
-        
-        musicGameObjects = new Dictionary<Music, GameObject>();
-        musicGameObjects.Add(Music.UI,gameObjectEvents[0]);
 
         musicDictionary = new Dictionary<Music, string>();
         musicDictionary.Add(Music.UI, "Musica_UI");
@@ -127,14 +123,13 @@ public class SoundManager : SingletonDontDestroy<SoundManager>
     {
         if (!musicDictionary.ContainsKey(music)) return;
         currentMusic = music;
-        AkSoundEngine.PostEvent(musicDictionary[music], musicGameObjects[0]);
+        AkSoundEngine.PostEvent(musicDictionary[music], gameObjectEvents[0]);
     } 
 
-    public void StopLoop(Music music)
+    public void StopLoop()
     {
-        if (!musicDictionary.ContainsKey(music)) return;
         currentMusic = Music.None;
-        musicGameObjects[music].GetComponent<AkEvent>().Stop(0);
+        gameObjectEvents[0].GetComponent<AkEvent>().Stop(0);
     }
 
     //A petición de Eduardo hay que retrasar dos segundos la llamada

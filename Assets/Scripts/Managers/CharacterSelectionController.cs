@@ -20,6 +20,12 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
     
     private void OnEnable()
     {
+
+        foreach (var image in images)
+        {
+            image.enabled = false;
+        }
+        
         robogodPicked = God.Type.None;
         position = 0;
         confirm = false;
@@ -68,15 +74,7 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
                         SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Cursor_Holograma_In);
                     }
                 }
-
-                if (controller.State.Cancel.IsPressed)
-                { 
-                    SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Cambio_Volumen_In);
-                    CharacterSelectionManager.Instance.ReturnMainMenuTween();
-                    CancelCharacterSelection();
-                }
-
-
+                
                 if (controller.State.Submit.IsPressed)
                 {
                     SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Select_Holograma_In);
@@ -94,7 +92,7 @@ public class CharacterSelectionController : MonoBehaviour,IControllable
                     
             }
         }
-        
+
     }
 
     private void MoveMark(bool moveLeft)

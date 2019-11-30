@@ -109,7 +109,7 @@ public class MyPlayerActions : PlayerActionSet
         myPlayerActions.Gas.AddDefaultBinding(Key.Space);
         myPlayerActions.Fire.AddDefaultBinding(Key.Key1);
         myPlayerActions.Action.AddDefaultBinding(Key.Key3);
-        myPlayerActions.Special.AddDefaultBinding(Key.Key2);
+        myPlayerActions.Special.AddDefaultBinding(Key.Key0);
 
         myPlayerActions.LeftBumper.AddDefaultBinding(Key.S);
         myPlayerActions.RightBumper.AddDefaultBinding(Key.F);

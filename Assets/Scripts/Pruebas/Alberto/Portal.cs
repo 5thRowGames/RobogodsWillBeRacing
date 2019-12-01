@@ -29,10 +29,12 @@ public class Portal : MonoBehaviour
     void Start()
     {
         playerLayer = LayerMask.NameToLayer("Player");
+        //Debug.Log($"playerLayer = {playerLayer.value}");
         //Use this to ensure that the Gizmos are being drawn when in Play Mode.
         m_Started = true;
         if (targetPortal != null)
         {
+            //Debug.Log($"{Time.time}: targetPortal is not null");
             teleportPoint = targetPortal.TransformPoint(0f, 0f, zOffset);
         }
         carColliders = new Queue<Collider>();
@@ -40,6 +42,7 @@ public class Portal : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //Debug.Log($"{Time.time}: OnTriggerEnter: other.gameObject.layer = {other.gameObject.layer}");
         if (other.gameObject.layer != playerLayer) return;
 
         if (isFirstCar)
@@ -102,6 +105,7 @@ public class Portal : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        //Debug.Log($"{Time.time}: OnTriggerExit: other.gameObject.layer = {other.gameObject.layer}");
         if (other.gameObject.layer != playerLayer) return;
 
         myCarController = null;
@@ -128,33 +132,37 @@ public class Portal : MonoBehaviour
         while (carColliders.Count > 0 && 
             Physics.OverlapBox(teleportPoint, carColliders.Peek().transform.localScale, targetPortal.rotation, godLayer).Length > 0)
         {
+            //Debug.Log($"{Time.time}: esperando la teletransportación");
             yield return null;
         }
+        //Debug.Log($"{Time.time}: Teletransportación disponible");
         SetCar(carColliders.Peek().attachedRigidbody);
         var myCC = carColliders.Peek().GetComponentInParent<MyCarController>();
         if (myCC != null)
         {
+            //Debug.Log($"{Time.time}: coche teletransportado -> {myCC.gameObject.name}");
             myCC.IsBeingTeleported = false;
         }
         carColliders.Dequeue();
+        //Debug.Log($"{Time.time}: {myCC.gameObject.name} sacado de la cola del portal");
     }
 
     private void SetCar(Rigidbody rb)
     {
-        Debug.Log($"{Time.time}: {rb.gameObject.name}, velocidad a 0");
+        //Debug.Log($"{Time.time}: {rb.gameObject.name}, velocidad a 0");
         rb.velocity = targetPortal.TransformDirection(targetPortal.forward) * 0f;
         rb.angularVelocity = targetPortal.TransformDirection(targetPortal.forward) * 0f; // Vector3.zero;
-        Debug.Log($"{Time.time}: justo antes de la teletransportación de {rb.gameObject.name}");
+        //Debug.Log($"{Time.time}: justo antes de la teletransportación de {rb.gameObject.name}");
         rb.position = teleportPoint;
-        Debug.Log($"{Time.time}: teletransportación de {rb.gameObject.name} realizada");
+        //Debug.Log($"{Time.time}: teletransportación de {rb.gameObject.name} realizada");
         StartCoroutine(GoThroughPortalCameraCoroutine(rb.GetComponent<MyCarController>().ownCamera));
-        Debug.Log($"{Time.time}: colocación de {rb.gameObject.name} mirando al forward del portal de salida");
+        //Debug.Log($"{Time.time}: colocación de {rb.gameObject.name} mirando al forward del portal de salida");
         rb.transform.forward = targetPortal.forward;
 
         var speed = portalEnterSpeedMagnitude < exitPortalSpeedMagnitude ? exitPortalSpeedMagnitude : portalEnterSpeedMagnitude;
-        Debug.Log($"{Time.time}: rotando {rb.gameObject.name} como el portal de salida");
+        //Debug.Log($"{Time.time}: rotando {rb.gameObject.name} como el portal de salida");
         rb.rotation = targetPortal.rotation;
-        Debug.Log($"{Time.time}: dando velocidad a {rb.gameObject.name}");
+        //Debug.Log($"{Time.time}: dando velocidad a {rb.gameObject.name}");
         rb.velocity = targetPortal.forward.normalized * speed;
     }
 

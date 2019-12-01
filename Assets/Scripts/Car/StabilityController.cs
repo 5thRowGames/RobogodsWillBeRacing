@@ -134,33 +134,9 @@ public class StabilityController : MonoBehaviour
         IsRotatingToIdentity = false;
     }
 
-    //private void ClampHeight()
-    //{
-    //    var distance = myCarController.DistanceToGround;
-    //    if (distance > maxHeightAllowed)
-    //    {
-    //        myCarController.additiveDownForce = distance / maxHeightAllowed;
-    //    }
-    //    else
-    //        myCarController.additiveDownForce = 1f;
-    //}
-
-    //private IEnumerator HeightToMaxAllowed()
-    //{
-    //    float timeCount = 0;
-    //    float yVelocity = rb.velocity.y;
-    //    while (timeCount < timeToMaxHeight)
-    //    {
-    //        var y = Mathf.Lerp(yVelocity, 0f, timeCount);
-    //        rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
-    //        timeCount += Time.deltaTime;
-    //        yield return null;
-    //    }
-    //}
-
     private void PushToTheGround()
     {
-        Debug.Log("PushToTheGround!");
+        //Debug.Log("PushToTheGround!");
         //if (Physics.Raycast(carHelper.position, -carHelper.up, out RaycastHit hitInfo, distanceToApplyPushForce, inclinationLayer))
         //{
         //    var normal = hitInfo.normal;

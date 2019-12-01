@@ -9,13 +9,14 @@ public class MyCarController : MonoBehaviour, IControllable
     public bool activeDevice; //Para prueba solo
 
     public God.Type god;
-    
+
+    private float originalSpeed;
     public float turboRechargeMultiplier;
     public float turboConsumeMultiplier;
     [SerializeField]private float turbo;
 
     private bool isSpeedingUp;
-    [SerializeField] private bool canTurbo;
+    [SerializeField] public bool canTurbo;
      
     public float Turbo
     {
@@ -159,6 +160,7 @@ public class MyCarController : MonoBehaviour, IControllable
 
     private void Awake()
     {
+        originalSpeed = speedForce;
         startSlowCoroutine = null;
         startTurboCoroutine = null;
         
@@ -339,6 +341,13 @@ public class MyCarController : MonoBehaviour, IControllable
         HUDManager.Instance.UpdateTurboUI(god,turbo);
     }
 
+    public void ResetTurboCoroutines()
+    {
+        speedForce = originalSpeed + 25f;
+        startTurboCoroutine = null;
+        startSlowCoroutine = null;
+    }
+
     public void Move()
     {
         CheckGrounded();
@@ -471,8 +480,6 @@ public class MyCarController : MonoBehaviour, IControllable
 
     private IEnumerator SlowDownCoroutine()
     {
-        var originalSpeed = speedForce;
-
         speedForce -= addSlow;
         
         float timer = turboTime;
@@ -504,10 +511,8 @@ public class MyCarController : MonoBehaviour, IControllable
 
         yield return new WaitForSeconds(seconds); // Espera para que al jugador le dé tiempo de orientar el vehículo a su conveniencia antes del turbo
 
-        //SoundManager.Instance.PlayFx(SoundManager.Fx.Banda_Aceleracion);
+        SoundManager.Instance.PlayFx(SoundManager.Fx.Banda_Aceleracion);
 
-        var originalSpeedForce = speedForce;
-        
         speedForce += addTurbo;
 
         rb.AddForce(turboMultiplier * speedForce * groundForward, ForceMode.Acceleration);
@@ -522,7 +527,7 @@ public class MyCarController : MonoBehaviour, IControllable
             timer -= Time.deltaTime;
             speedForce -= recoverSpeedFromTurbo;
 
-            if (speedForce < originalSpeedForce)
+            if (speedForce < originalSpeed)
                 break;
 
             yield return null;
@@ -534,7 +539,7 @@ public class MyCarController : MonoBehaviour, IControllable
             powerRightTrail.DecreasePowerColor();
         }
 
-        speedForce = originalSpeedForce;
+        speedForce = originalSpeed;
 
         startTurboCoroutine = null;
     }

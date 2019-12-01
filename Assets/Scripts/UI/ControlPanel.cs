@@ -42,11 +42,13 @@ public class ControlPanel : MonoBehaviour
         {
             controlSubmit = true;
             ChangeControlBackground(false);
+            SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Cursor_Holograma_In);
         }
         else if(!controlSubmit && UIEventManager.Instance.inControlInputModule.MoveAction.Right.WasPressed && gamepadContainer.activeInHierarchy)
         {
             controlSubmit = true;
             ChangeControlBackground(true);
+            SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Cursor_Holograma_In);
         }
     }
 

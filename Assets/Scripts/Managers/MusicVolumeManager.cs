@@ -49,8 +49,6 @@ public class MusicVolumeManager : SettingsBase
 
     private void RaiseVolume()
     {
-        //Meter llamada a evento de subir volumen
-
         fillImage.fillAmount += amountFilled;
 
         if (fillImage.fillAmount > 1)
@@ -70,8 +68,6 @@ public class MusicVolumeManager : SettingsBase
 
     private void DecreaseVolume()
     {
-        //Meter llamada a evento de bajar volumen
-
         fillImage.fillAmount -= amountFilled;
 
         if (fillImage.fillAmount < 0)

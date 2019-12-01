@@ -19,9 +19,11 @@ public class CompuertaPasiva : MonoBehaviour
             other.CompareTag("Thor"))
         {
             players++;
-            
-            if(players == 1)
+
+            if (players == 1)
+            {
                 OpenDoor();
+            }
         }
     }
 
@@ -31,9 +33,11 @@ public class CompuertaPasiva : MonoBehaviour
             other.CompareTag("Thor"))
         {
             players--;
-            
-            if(players == 0)
+
+            if (players == 0)
+            {
                 CloseDoor();
+            }
         }
     }
 

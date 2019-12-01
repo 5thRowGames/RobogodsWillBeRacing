@@ -20,15 +20,15 @@ public class PlayerCarSoundManager : MonoBehaviour, IControllable
         }
         else
         {
-            ConnectDisconnectManager.ConnectCarSoundManager += ConnectSound;
-            ConnectDisconnectManager.DisconnectCarSoundManagerDelegate += DisconnectSound;
+            /*ConnectDisconnectManager.ConnectCarSoundManager += ConnectSound;
+            ConnectDisconnectManager.DisconnectCarSoundManagerDelegate += DisconnectSound;*/
         }
     }
 
     private void OnDisable()
     {
-        ConnectDisconnectManager.ConnectCarSoundManager -= ConnectSound;
-        ConnectDisconnectManager.DisconnectCarSoundManagerDelegate -= DisconnectSound;
+        /*ConnectDisconnectManager.ConnectCarSoundManager -= ConnectSound;
+        ConnectDisconnectManager.DisconnectCarSoundManagerDelegate -= DisconnectSound;*/
     }
 
     public void Control(IDevice device)
@@ -57,7 +57,7 @@ public class PlayerCarSoundManager : MonoBehaviour, IControllable
         if (device.State.RightTrigger.IsReleased)
             AkSoundEngine.PostEvent(unsharedSoundStart + "_Acelerar_Out", gameObject);
 
-        AkSoundEngine.SetRTPCValue("Player_Velocidad", carRigidbody.velocity.magnitude * 1.5f);
+        AkSoundEngine.SetRTPCValue("Player_Velocidad", carRigidbody.velocity.magnitude * 1.25f);
 
     }
 

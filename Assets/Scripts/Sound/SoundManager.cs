@@ -25,7 +25,8 @@ public class SoundManager : SingletonDontDestroy<SoundManager>
         UI_Conversion_Out = 14,
         CajaRandom = 15,
         Inicio_Carrera = 16,
-        Banda_Aceleracion = 17
+        Banda_Aceleracion = 17,
+        Puerta_Portal_In = 18
     }
 
     public enum Music
@@ -78,6 +79,7 @@ public class SoundManager : SingletonDontDestroy<SoundManager>
         fxDictionary.Add(Fx.CajaRandom,"Caja_Random_In");
         fxDictionary.Add(Fx.Inicio_Carrera,"Inicio_Carrera_In");
         fxDictionary.Add(Fx.Banda_Aceleracion, "Aceleraciones_In");
+        fxDictionary.Add(Fx.Puerta_Portal_In, "Puerta_Portal_In");
 
         musicDictionary = new Dictionary<Music, string>();
         musicDictionary.Add(Music.UI, "Musica_UI");
@@ -124,6 +126,11 @@ public class SoundManager : SingletonDontDestroy<SoundManager>
         if (!musicDictionary.ContainsKey(music)) return;
         currentMusic = music;
         AkSoundEngine.PostEvent(musicDictionary[music], gameObjectEvents[0]);
+    }
+
+    public void StopAll()
+    {
+        AkSoundEngine.StopAll();
     }
 
     public void StopLoop()

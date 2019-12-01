@@ -9,7 +9,7 @@ public class SoundEffectsManager : SettingsBase
     public Image fillImage;
     public float amountFilled;
 
-    private void OnEnable()
+    public void UpdateFillAmount()
     {
         fillImage.fillAmount = PlayerPrefs.GetFloat(PlayerPrefsEnum.PlayerPrefs.SFX.ToString());
     }
@@ -59,9 +59,9 @@ public class SoundEffectsManager : SettingsBase
         else
             SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Cambio_Volumen_In);
         
-        AkSoundEngine.SetRTPCValue("Volumen_SFX", (1 - fillImage.fillAmount) * 100f);
+        AkSoundEngine.SetRTPCValue("Volumen_SFX", fillImage.fillAmount * 100f);
 
-        PlayerPrefs.SetFloat(PlayerPrefsEnum.PlayerPrefs.SFX.ToString(),(1 - fillImage.fillAmount));
+        PlayerPrefs.SetFloat(PlayerPrefsEnum.PlayerPrefs.SFX.ToString(),fillImage.fillAmount);
         PlayerPrefs.Save();
     }
 
@@ -78,9 +78,9 @@ public class SoundEffectsManager : SettingsBase
         else
             SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Cambio_Volumen_In);
         
-        AkSoundEngine.SetRTPCValue("Volumen_SFX", (1 - fillImage.fillAmount) * 100f);
+        AkSoundEngine.SetRTPCValue("Volumen_SFX", fillImage.fillAmount* 100f);
         
-        PlayerPrefs.SetFloat(PlayerPrefsEnum.PlayerPrefs.SFX.ToString(),(1 - fillImage.fillAmount));
+        PlayerPrefs.SetFloat(PlayerPrefsEnum.PlayerPrefs.SFX.ToString(),fillImage.fillAmount);
         PlayerPrefs.Save();
     }
 }

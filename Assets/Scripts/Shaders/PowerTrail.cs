@@ -24,6 +24,11 @@ public class PowerTrail : MonoBehaviour
         controlPower = null;
     }
 
+    public void Activate()
+    {
+        powerParticles.Play();
+    }
+
     public void IncreasePowerColor()
     {
         powerParticles.startColor = TurboColor;

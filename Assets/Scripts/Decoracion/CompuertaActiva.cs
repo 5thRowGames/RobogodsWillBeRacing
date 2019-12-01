@@ -25,6 +25,7 @@ public class CompuertaActiva : MonoBehaviour
             {
                 OpenDoor();
                 speedLines.Play();
+                SoundManager.Instance.PlayFx(SoundManager.Fx.Puerta_Portal_In);
             }
         }
     }
@@ -46,6 +47,7 @@ public class CompuertaActiva : MonoBehaviour
 
         if (players == 0)
         {
+            SoundManager.Instance.PlayFx(SoundManager.Fx.Puerta_Portal_In);
             CloseDoor();
             speedLines.Stop();
         }

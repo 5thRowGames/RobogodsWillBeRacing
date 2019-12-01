@@ -359,7 +359,7 @@ public class MyCarController : MonoBehaviour, IControllable
             Accelerate();
             //Brake();
             HandBrake();
-            Jump();
+            //Jump(); // El salto es innecesario
         }
         else // El coche está en el aire
         {

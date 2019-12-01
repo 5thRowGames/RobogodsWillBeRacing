@@ -34,6 +34,7 @@ namespace AK
         static const AkUniqueID NAVE_4_ACELERAR_IN = 2760755186U;
         static const AkUniqueID NAVE_4_ACELERAR_OUT = 3895169229U;
         static const AkUniqueID PORTAL_OUT = 4292740166U;
+        static const AkUniqueID PUERTA_PORTAL_IN = 3629006937U;
         static const AkUniqueID SELECT_HOLOGRAMA_IN = 2561828332U;
         static const AkUniqueID SONIC_LOGO_IN = 3032635407U;
         static const AkUniqueID TURBO_IN = 706776875U;

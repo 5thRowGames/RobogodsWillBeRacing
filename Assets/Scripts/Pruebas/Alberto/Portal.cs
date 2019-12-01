@@ -9,7 +9,8 @@ public class Portal : MonoBehaviour
 
     private MyCarController myCarController;
     private StabilityController stabilityController;
-    public LayerMask playerLayer; // la layer de los coches
+    public LayerMask godLayer; // la layer de los coches: {Anubis, Kali, Poseidon, Thor}
+    private LayerMask playerLayer; // {Player}, para activar el trigger del portal
     private Vector3 teleportPoint; // punto donde teletransportar a los coches
     public float zOffset = 8f; // desplazamiento hacia delante respecto del punto de teletransporte
     private readonly float exitPortalSpeedMagnitude = 80f;
@@ -22,8 +23,27 @@ public class Portal : MonoBehaviour
     private Color portalColor;
 
     #region Unity Events
+
+    bool m_Started;
+
+    void Start()
+    {
+        playerLayer = LayerMask.NameToLayer("Player");
+        Debug.Log($"playerLayer = {playerLayer.value}");
+        //Use this to ensure that the Gizmos are being drawn when in Play Mode.
+        m_Started = true;
+        if (targetPortal != null)
+        {
+            Debug.Log($"{Time.time}: targetPortal is not null");
+            teleportPoint = targetPortal.TransformPoint(0f, 0f, zOffset);
+        }
+        carColliders = new Queue<Collider>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log($"{Time.time}: OnTriggerEnter: other.gameObject.layer = {other.gameObject.layer}");
+        if (other.gameObject.layer != playerLayer) return;
 
         if (isFirstCar)
         {
@@ -85,22 +105,11 @@ public class Portal : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        Debug.Log($"{Time.time}: OnTriggerExit: other.gameObject.layer = {other.gameObject.layer}");
+        if (other.gameObject.layer != playerLayer) return;
+
         myCarController = null;
         stabilityController = null;
-    }
-
-    bool m_Started;
-
-    void Start()
-    {
-        //Use this to ensure that the Gizmos are being drawn when in Play Mode.
-        m_Started = true;
-        if(targetPortal != null)
-        {
-            Debug.Log($"{Time.time}: targetPortal is not null");
-            teleportPoint = targetPortal.TransformPoint(0f, 0f, zOffset);
-        }
-        carColliders = new Queue<Collider>();
     }
 
     //Draw the Box Overlap as a gizmo to show where it currently is testing. Click the Gizmos button to see this
@@ -121,7 +130,7 @@ public class Portal : MonoBehaviour
         // Se comprueba en un área el doble de grande que el collider del coche para que no choquen varios coches teletransportados
         // de forma seguida.
         while (carColliders.Count > 0 && 
-            Physics.OverlapBox(teleportPoint, carColliders.Peek().transform.localScale, targetPortal.rotation, playerLayer).Length > 0)
+            Physics.OverlapBox(teleportPoint, carColliders.Peek().transform.localScale, targetPortal.rotation, godLayer).Length > 0)
         {
             Debug.Log($"{Time.time}: esperando la teletransportación");
             yield return null;

@@ -36,7 +36,7 @@ public class CarMenuSpawn : MonoBehaviour
 
         for (int i = 0; i < randomAmount; i++)
         {
-            int randomCar = Random.Range(0, cars.Count);
+            int randomCar = Random.Range(0, 1);
             Instantiate(cars[randomCar], spawnPositions[randomPosition].position, spawnPositions[randomPosition].rotation);
             
             randomPosition++;

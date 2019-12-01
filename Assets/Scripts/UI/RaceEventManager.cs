@@ -22,6 +22,7 @@ public class RaceEventManager : SingletonDontDestroy<RaceEventManager>
     public List<PowerTrail> powerTrail;
     public List<MyCarController> myCarControllers;
     public List<PlayerCarSoundManager> playerCarSoundManagers;
+    public List<Animator> animators;
 
     private bool countdown;
 
@@ -86,6 +87,12 @@ public class RaceEventManager : SingletonDontDestroy<RaceEventManager>
                     {
                         if(car.gameObject.activeInHierarchy)
                             car.ConnectSound();
+                    }
+
+                    foreach (var anim in animators)
+                    {
+                        if(anim.gameObject.activeInHierarchy)
+                            anim.SetBool("Drive", true);
                     }
                     
                     ConnectDisconnectManager.ConnectCarSoundManager?.Invoke();

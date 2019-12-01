@@ -65,7 +65,7 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
        
        foreach (Transform child in kali.transform)
        {
-           child.GetComponent<HologramToNormal>().Reset();
+           child.GetComponent<HologramToNormal>()?.Reset();
        }
        
        thor.GetComponent<HologramToNormal>().Reset();
@@ -112,7 +112,7 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
 
                 foreach (Transform child in kali.transform)
                 {
-                    child.GetComponent<HologramToNormal>().TransformIntoNormal();
+                    child.GetComponent<HologramToNormal>()?.TransformIntoNormal();
                 }
                 kaliChosen = true;
                 StoreGodInfo.Instance.kaliIA = false;
@@ -151,7 +151,7 @@ public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
                 
                 foreach (Transform child in kali.transform)
                 {
-                    child.GetComponent<HologramToNormal>().TransformIntoHologram();
+                    child.GetComponent<HologramToNormal>()?.TransformIntoHologram();
                 }
                 kaliChosen = false;
                 StoreGodInfo.Instance.kaliIA = true;

@@ -19,6 +19,10 @@ public class RaceEventManager : SingletonDontDestroy<RaceEventManager>
     public GameObject pauseSettingsMenu;
     public GameObject loadingScreen;
 
+    public List<PowerTrail> powerTrail;
+    public List<MyCarController> myCarControllers;
+    public List<PlayerCarSoundManager> playerCarSoundManagers;
+
     private bool countdown;
 
     public bool Countdown
@@ -65,7 +69,25 @@ public class RaceEventManager : SingletonDontDestroy<RaceEventManager>
                 {
                     positionUIManager.GetComponent<TimeTrial>().enabled = true;
                     positionUIManager.SetActive(true);
-                    ConnectDisconnectManager.ConnectCarControllerDelegate?.Invoke();
+
+                    foreach (var power in powerTrail)
+                    {
+                        if(power.gameObject.activeInHierarchy)
+                            power.Activate();
+                    }
+
+                    foreach (var car in myCarControllers)
+                    {
+                        if(car.gameObject.activeInHierarchy)
+                            car.ConnectCar();
+                    }
+
+                    foreach (var car in playerCarSoundManagers)
+                    {
+                        if(car.gameObject.activeInHierarchy)
+                            car.ConnectSound();
+                    }
+                    
                     ConnectDisconnectManager.ConnectCarSoundManager?.Invoke();
                     SoundManager.Instance.PlayLoop(SoundManager.Music.Inicio);
                     countdown = true;

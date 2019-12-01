@@ -19,8 +19,13 @@ public class SettingsManager : MonoBehaviour
     public Vector2 settingsTitlePosition;
     public float movementDuration;
 
+    public MusicVolumeManager musicVolumeManager;
+    public SoundEffectsManager soundEffectsManager;
+
     private void OnEnable()
     {
+        musicVolumeManager.UpdateFillAmount();
+        soundEffectsManager.UpdateFillAmount();
         ResetSettingsMenu();
         BuildSettings();
     }

@@ -193,14 +193,14 @@ public class MyCarController : MonoBehaviour, IControllable
 
     private void OnEnable()
     {
-        ConnectDisconnectManager.ConnectCarControllerDelegate += ConnectCar;
-        ConnectDisconnectManager.DisconnectCarControllerDelegate += DisconnectCar;
+        /*ConnectDisconnectManager.ConnectCarControllerDelegate += ConnectCar;
+        ConnectDisconnectManager.DisconnectCarControllerDelegate += DisconnectCar;*/
     }
 
     private void OnDisable()
     {
-        ConnectDisconnectManager.ConnectCarControllerDelegate -= ConnectCar;
-        ConnectDisconnectManager.DisconnectCarControllerDelegate -= DisconnectCar;
+       /* ConnectDisconnectManager.ConnectCarControllerDelegate -= ConnectCar;
+        ConnectDisconnectManager.DisconnectCarControllerDelegate -= DisconnectCar;*/
     }
 
     private void FixedUpdate()

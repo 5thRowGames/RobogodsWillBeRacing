@@ -29,7 +29,6 @@ public class CarMenuSpawn : MonoBehaviour
     IEnumerator SpawnCars()
     {
         int randomTime = Random.Range(min, max);
-        int randomCar = Random.Range(0, cars.Count);
         int randomPosition = Random.Range(0, spawnPositions.Count);
         int randomAmount = Random.Range(1, 4);
         
@@ -37,6 +36,7 @@ public class CarMenuSpawn : MonoBehaviour
 
         for (int i = 0; i < randomAmount; i++)
         {
+            int randomCar = Random.Range(0, cars.Count);
             Instantiate(cars[randomCar], spawnPositions[randomPosition].position, spawnPositions[randomPosition].rotation);
             
             randomPosition++;

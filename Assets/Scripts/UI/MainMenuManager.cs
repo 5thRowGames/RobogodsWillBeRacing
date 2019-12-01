@@ -193,7 +193,7 @@ public class MainMenuManager : MonoBehaviour
         sequence.Append(industrialArmExit[0].DOAnchorPosX(0, 0.5f))
             .Insert(0.5f, industrialArmExit[1].DORotate(new Vector3(0, 0, -60), 0.3f))
             .Insert(0.5f, industrialArmExit[2].DORotate(new Vector3(0, 0, -112), 0.3f).OnComplete(HideMenuNoExit))
-            .Insert(0.8f,exitButton.DOAnchorPosX(-1000,0.8f))
+            .Insert(0.8f, exitButton.DOAnchorPosX(-1000, 0.8f))
             .Insert(0.8f, industrialArmExit[0].DOAnchorPosX(-1000, 0.8f));
     }
 

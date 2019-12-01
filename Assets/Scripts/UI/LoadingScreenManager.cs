@@ -32,6 +32,7 @@ public class LoadingScreenManager : MonoBehaviour
         asyncLoadNextScene.allowSceneActivation = false;
         
         yield return new WaitForSeconds(loadingScreenDuration);
+        SoundManager.Instance.StopAll();
 
         Sequence sequence = DOTween.Sequence();
         sequence.Append(fade.DOFade(1, fadeDuration)).OnComplete(() =>

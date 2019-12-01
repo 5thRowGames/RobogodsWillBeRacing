@@ -18,16 +18,6 @@ public class Checkpoint : MonoBehaviour
         {
             MinimapControl.Instance.UpdateMinimapControl(other.tag, index);
             LapsManager.Instance.UpdateCheckPoint(other.tag, index); 
-            /*// ERASE_ME
-            var collisionsHelper = other.GetComponent<CollisionsHelper>();
-            if(collisionsHelper != null)
-            {
-                if (collisionsHelper.currentCheckpoint == index)
-                    collisionsHelper.currentCheckpoint++;
-                else collisionsHelper.currentCheckpoint = index;
-                Debug.Log($"currentCheckpoint = {collisionsHelper.currentCheckpoint}");
-            }
-            // ERASE_ME*/
         }
 
     }

@@ -577,7 +577,7 @@ public class MyCarController : MonoBehaviour, IControllable
         if (Physics.Raycast(ray, out hit, wheelHeight, layerMask))
         {
             float proportionalHeight = (wheelHeight - hit.distance) / wheelHeight;
-            Vector3 appliedHoverForce = Vector3.up * proportionalHeight * upForce;
+            Vector3 appliedHoverForce = upForce * proportionalHeight * Vector3.up;
             rb.AddForce(appliedHoverForce, ForceMode.Acceleration);
         }
     }
@@ -585,7 +585,7 @@ public class MyCarController : MonoBehaviour, IControllable
     private void Suspension(Transform corner, RaycastHit hit, int index)
     {
         if (Physics.Raycast(corner.position, -Vector3.up, out hit, wheelHeight, layerMask))
-            rb.AddForceAtPosition(Vector3.up * upForce * (1.0f - (hit.distance / wheelHeight)), corner.position);
+            rb.AddForceAtPosition((1.0f - (hit.distance / wheelHeight)) * upForce * Vector3.up, corner.position);
 
         hitList[index] = hit; // Guardo la información del impacto
     }

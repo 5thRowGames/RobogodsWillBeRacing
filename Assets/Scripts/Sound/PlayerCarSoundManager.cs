@@ -44,10 +44,7 @@ public class PlayerCarSoundManager : MonoBehaviour, IControllable
 
         if (device.State.RightBumper.IsReleased)
             AkSoundEngine.PostEvent("Freno_Out", gameObject);
-        
-        if (device.State.Horizontal.IsPressed)
-            //AkSoundEngine.PostEvent("Bascula_Compresor_In", gameObject);
-        
+
         if(device.State.Horizontal.IsReleased)
             AkSoundEngine.PostEvent("Bascula_Compresor_Out", gameObject);
 
@@ -57,7 +54,7 @@ public class PlayerCarSoundManager : MonoBehaviour, IControllable
         if (device.State.RightTrigger.IsReleased)
             AkSoundEngine.PostEvent(unsharedSoundStart + "_Acelerar_Out", gameObject);
 
-        AkSoundEngine.SetRTPCValue("Player_Velocidad", carRigidbody.velocity.magnitude * 1.25f);
+        AkSoundEngine.SetRTPCValue("Player_Velocidad", carRigidbody.velocity.magnitude * 1f);
 
     }
 

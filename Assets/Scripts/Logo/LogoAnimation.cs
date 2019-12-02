@@ -36,7 +36,8 @@ public class LogoAnimation : MonoBehaviour
 
     private void Animation()
     {
-        AkSoundEngine.PostEvent("Sonic_Logo_In", gameObject);
+
+        StartCoroutine(NumberLogoAnimation());
         
         Sequence seq = DOTween.Sequence();
         seq.Insert(0,baseLogo.transform.DOLocalMoveY(0,baseAnimationTime).SetEase(Ease.Linear));
@@ -45,18 +46,19 @@ public class LogoAnimation : MonoBehaviour
         seq.Insert(0.1f + baseAnimationTime, botLeftScrew.transform.DOMoveY(0, screwAnimationTime).SetEase(Ease.Linear));
         seq.Insert(0.1f + baseAnimationTime, botRightScrew.transform.DOMoveY(0, screwAnimationTime).SetEase(Ease.Linear));
         seq.Insert(0.1f + baseAnimationTime, midScrew.transform.DOMoveY(0, screwAnimationTime)
-            .SetEase(Ease.Linear).OnComplete(() =>
-            {
-                StartCoroutine(NumberLogoAnimation());
-            }));
+            .SetEase(Ease.Linear));
+        
+        
     }
 
     IEnumerator NumberLogoAnimation()
     {
         asyncLoadNextScene = SceneManager.LoadSceneAsync(1);
         asyncLoadNextScene.allowSceneActivation = false;
-        
+
         yield return new WaitForSeconds(0.1f);
+        AkSoundEngine.PostEvent("Sonic_Logo_In", gameObject);
+        yield return new WaitForSeconds(0.7f);
         float time = numberAnimationTime;
         float amount = maxDissolve;
         float stepAmount = Mathf.Abs(maxDissolve - minDissolve) / numberAnimationTime;

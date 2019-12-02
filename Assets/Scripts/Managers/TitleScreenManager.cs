@@ -11,8 +11,10 @@ public class TitleScreenManager : MonoBehaviour
 {
     public RectTransform pressToPlay;
     public Image fade;
+    public Image logo;
 
     private Tween firstTween;
+    private Tween logoTween;
     private bool controlSubmit;
     private bool initialTweenComplete;
 
@@ -44,6 +46,7 @@ public class TitleScreenManager : MonoBehaviour
         controlSubmit = false;
         initialTweenComplete = false;
         TitleTween();
+        StartCoroutine(DelayLogoFade());
         fade.DOFade(1f, 1f);
         
         //Sonido de la entrada de "Pulsa cualquier tecla"
@@ -56,6 +59,12 @@ public class TitleScreenManager : MonoBehaviour
         pressToPlay.anchoredPosition = new Vector2(pressToPlay.anchoredPosition.x, -150);
         initialTweenComplete = false;
         controlSubmit = false;
+    }
+
+    IEnumerator DelayLogoFade()
+    {
+        yield return new WaitForSeconds(0.2f);
+        logoTween = logo.DOFade(1f, 0.8f);
     }
     
     void Update()
@@ -73,13 +82,16 @@ public class TitleScreenManager : MonoBehaviour
     {
         if (!initialTweenComplete)
         {
+            logoTween.Kill();
             firstTween.Kill();
         }
 
         fade.DOFade(0, 1f);
+        logo.DOFade(0, 0.3f);
         pressToPlay.DOScale(Vector3.zero, 0.3f);
         SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Select);
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.5f);
+        logo.color = new Color(1,1,1,0f);
         UIEventManager.Instance.ChangeScreen(MenuType.Menu.MainMenu);
         gameObject.SetActive(false);
         //EventSystem.current.firstSelectedGameObject = raceButton;

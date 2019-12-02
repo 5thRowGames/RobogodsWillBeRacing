@@ -17,6 +17,7 @@ public class StabilityController : MonoBehaviour
     private const string wallLayerName = "Wall";
     public int OnTheWall { get; set; } // true cuando el coche está en contacto con el trigger una pared
     [SerializeField]private float distanceToApplyPushForce; // Distancia máxima del coche a la pared para empujar al primero hacia la segunda
+    private float timeToRotate = 0.3f;
     #endregion
 
     #region Properties
@@ -124,7 +125,7 @@ public class StabilityController : MonoBehaviour
         Quaternion fromRotation = new Quaternion(rb.rotation.x, rb.rotation.y, rb.rotation.z, rb.rotation.w);
         Quaternion toRotation = new Quaternion();
 
-        while (timeCount <= 0.3f)
+        while (timeCount <= timeToRotate)
         {
             toRotation = Quaternion.Euler(0f, rb.rotation.eulerAngles.y, 0f);
             rb.MoveRotation(Quaternion.Slerp(fromRotation, toRotation, timeCount));
@@ -136,22 +137,8 @@ public class StabilityController : MonoBehaviour
 
     private void PushToTheGround()
     {
-        //Debug.Log("PushToTheGround!");
-        //if (Physics.Raycast(carHelper.position, -carHelper.up, out RaycastHit hitInfo, distanceToApplyPushForce, inclinationLayer))
-        //{
-        //    var normal = hitInfo.normal;
-        //    var collisionAngle = (Vector3.Angle(carHelper.up, -normal));
-        //    //Debug.Log($"Ángulo sobre el suelo = {collisionAngle}");
-        //    if (collisionAngle < angle || collisionAngle > -angle)
-        //    {
-        //        var force = Mathf.Lerp(0f, pushToTheGroundForce, myCarController.AccelerationInput);
-        //        Debug.Log($"force = {force}");
-                var force = Mathf.Clamp01(2f * rb.velocity.magnitude / myCarController.speedForce);
-                rb.AddForce(-rb.transform.up * pushToTheGroundForce * force, ForceMode.Acceleration);
-
-        //    }
-        //}
-        //else Debug.Log("Estoy volando?");
+        var force = Mathf.Clamp01(2f * rb.velocity.magnitude / myCarController.speedForce);
+        rb.AddForce(-rb.transform.up * pushToTheGroundForce * force, ForceMode.Acceleration);
 	}
 
     private void GetOnOrOffTheWall()
@@ -161,13 +148,13 @@ public class StabilityController : MonoBehaviour
         {
             if(Physics.Raycast(myCarController.carCorners[0].position, transform.forward, out hitInfo, 0.5f, inclinationLayer, QueryTriggerInteraction.Collide))
             {
-                rb.AddForceAtPosition(transform.up * pushToTheGroundForce, myCarController.accelPoint.position);
-                //rb.AddForceAtPosition(-transform.up * pushToTheGroundForce, myCarController.handBrakePoint.position);
+                //rb.AddForceAtPosition(transform.up * pushToTheGroundForce, myCarController.accelPoint.position);
+                rb.AddForce(transform.up * pushToTheGroundForce);
             }
             else if(Physics.Raycast(myCarController.carCorners[1].position, transform.forward, out hitInfo, 0.5f, inclinationLayer, QueryTriggerInteraction.Collide))
             {
-                rb.AddForceAtPosition(transform.up * pushToTheGroundForce, myCarController.accelPoint.position);
-                //rb.AddForceAtPosition(-transform.up * pushToTheGroundForce, myCarController.handBrakePoint.position);
+                //rb.AddForceAtPosition(transform.up * pushToTheGroundForce, myCarController.accelPoint.position);
+                rb.AddForce(transform.up * pushToTheGroundForce);
             }
         }
     }

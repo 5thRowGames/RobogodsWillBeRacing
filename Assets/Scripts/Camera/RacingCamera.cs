@@ -9,7 +9,6 @@ public class RacingCamera : MonoBehaviour
     private Transform car;
     private Rigidbody rb;
     private Transform carReference;
-    //private Vector3 offset = new Vector3(0f, 1.4f, 1f);
 
     [Tooltip("Umbral mínimo de velocidad para que la cámara siga al coche")]
     public float speedThreshold = 15f;
@@ -30,9 +29,6 @@ public class RacingCamera : MonoBehaviour
         car = rootNode.parent.GetComponent<Transform>();
         rb = car.GetComponent<Rigidbody>();
         carReference = car.GetComponentInChildren<CameraReference>().transform;
-        //carReference.position = car.transform.position + offset;
-        //if (carReference == null)
-        //    carReference = car;
     }
 
     void Start()
@@ -54,7 +50,6 @@ public class RacingCamera : MonoBehaviour
         if (rb.velocity.magnitude > speedThreshold)
         {
             // La cámara sigue la posición del coche
-            //rootNode.position = Vector3.Lerp(rootNode.position, car.position, cameraStickiness * Time.fixedDeltaTime);
             rootNode.position = Vector3.SmoothDamp(rootNode.position, carReference.position, ref posRefVelocity, .1f);
 
             look = Quaternion.LookRotation(Vector3.Lerp(car.forward, rb.velocity.normalized, Mathf.Clamp01(rb.velocity.magnitude / 10f)));
@@ -64,43 +59,12 @@ public class RacingCamera : MonoBehaviour
         else
         {
             // La cámara sigue la posición del coche
-            //rootNode.position = Vector3.Lerp(rootNode.position, car.position, cameraStickiness * Time.fixedDeltaTime);
             rootNode.position = Vector3.SmoothDamp(rootNode.position, carReference.position, ref posRefVelocity, .5f);
 
             look = Quaternion.LookRotation(Vector3.Lerp(car.forward, rb.velocity.normalized, Mathf.Clamp01(rb.velocity.magnitude / 10f)));
             look = Quaternion.Lerp(rootNode.rotation, look, cameraRotationSpeed * Time.fixedDeltaTime);
             rootNode.rotation = look;
         }
-
-        //private void FixedUpdate()
-        //{
-        //    // Se rota la cámara hacia el vector de velocidad
-        //    Quaternion look = Quaternion.LookRotation(rb.velocity.normalized);
-
-        //    if (rb.velocity.magnitude > speedThreshold)
-        //    {
-        //        // Moves the camera to match the car's position.
-        //        rootNode.position = Vector3.Lerp(rootNode.position, car.position, cameraStickiness * Time.fixedDeltaTime);
-
-        //        look = Quaternion.LookRotation(rb.velocity.normalized);
-        //        look = Quaternion.Lerp(rootNode.rotation, look, cameraRotationSpeed * Time.fixedDeltaTime);
-        //        rootNode.rotation = look;
-        //    }
-        //    else
-        //    {
-        //        Vector3 pos = carCam.WorldToViewportPoint(car.position);
-
-        //        // El coche se sale de la pantalla
-        //        if(pos.x < 0.1f || pos.x > 0.9f || pos.y < 0.1f || pos.y > 0.9f)
-        //        {                
-        //            look = Quaternion.Lerp(rootNode.rotation, look, cameraRotationSpeed * Time.fixedDeltaTime);
-        //            rootNode.rotation = look;
-        //        }
-        //        if(Vector3.Distance(rootNode.position, car.position) > maxDistance)
-        //        {
-
-        //        }
-        //    }
     }
 
     public void GoThroughPortal()

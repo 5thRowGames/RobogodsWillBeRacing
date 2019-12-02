@@ -1111,18 +1111,18 @@ MonoBehaviour:
   ownCamera: {fileID: 4898229356441805053}
   powerLeftTrail: {fileID: 0}
   powerRightTrail: {fileID: 0}
-  speedForce: 200
+  speedForce: 185
   instantSpeedForce: 10
   alwaysAccelerate: 0
   minAcceleration: 0.2
   boostMultiplier: 1.7
-  accelerationDividerOnAir: 4
+  accelerationDividerOnAir: 3
   carUnderControl: 0
   deaccelerationTime: 2
   turnSpeed: 40
   turboTime: 4
-  originalTurnSpeed: 60
-  boostTurnSpeed: 85
+  originalTurnSpeed: 80
+  boostTurnSpeed: 100
   turboMultiplier: 20
   addTurbo: 100
   addSlow: 30
@@ -1134,7 +1134,7 @@ MonoBehaviour:
   steeringReductionFactor: 0.9
   minZVelocityToReverseSteering: -0.8
   angularVelocityReductionFactor: 0.95
-  maxAngularSpeed: 35
+  maxAngularSpeed: 50
   brakeForce: 50
   brakeToReverseTime: 0.5
   brakeToReverseTimer: 0
@@ -1152,8 +1152,8 @@ MonoBehaviour:
   downForce: 5
   additiveDownForce: 1
   upForce: 40
-  originalUpForce: 40
-  upForceOnTheWall: 60
+  originalUpForce: 60
+  upForceOnTheWall: 80
   jumpForce: 20
   useSimpleSuspension: 0
   groundDrag: 2
@@ -1863,11 +1863,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7356784100876358361}
     m_Modifications:
-    - target: {fileID: 2620955677790684192, guid: 4db5c5227eaf9b0458d4d53b18c8fabe,
-        type: 3}
-      propertyPath: m_Name
-      value: Anim_Roboseidon_02
-      objectReference: {fileID: 0}
     - target: {fileID: 2620955677790984192, guid: 4db5c5227eaf9b0458d4d53b18c8fabe,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1937,6 +1932,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.473645
+      objectReference: {fileID: 0}
+    - target: {fileID: 2620955677790684192, guid: 4db5c5227eaf9b0458d4d53b18c8fabe,
+        type: 3}
+      propertyPath: m_Name
+      value: Anim_Roboseidon_02
       objectReference: {fileID: 0}
     - target: {fileID: 2620955677783275488, guid: 4db5c5227eaf9b0458d4d53b18c8fabe,
         type: 3}

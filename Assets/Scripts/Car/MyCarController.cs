@@ -45,8 +45,8 @@ public class MyCarController : MonoBehaviour, IControllable
     [SerializeField] private float originalTurnSpeed;
     [SerializeField] private float boostTurnSpeed;
     [SerializeField] private float turboMultiplier;
-    [SerializeField] private float addTurbo;
-    [SerializeField] private float addSlow;
+    [SerializeField][Tooltip("Force added to the speed when boosting")] private float addTurbo;
+    [SerializeField] [Tooltip("Force removed to the speed when slowing down")] private float addSlow;
     [SerializeField] private float recoverSpeedFromTurbo;
     [SerializeField] private float recoverSpeedFromSlow;
     [SerializeField] [Tooltip("Decremento de la fuerza de aceleración cuando se usa el turbo")] private float slowDownMultiplier = 0.5f;

@@ -22,8 +22,6 @@ public class MyCarCollisionsController : MonoBehaviour
     public float distance;
     private int numberOfCorners;
     private List<Transform> corners;
-    //private List<RaycastHit> hitList;
-    public CollisionsHelper collisionsHelper;
 
     #region UnityEvents
 

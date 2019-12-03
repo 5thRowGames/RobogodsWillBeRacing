@@ -40,7 +40,7 @@ public class SoundEffectsManager : SettingsBase
     IEnumerator TimeBetweenInputs()
     {
         canInput = false;
-        yield return new WaitForSeconds(timeBetweenInput);
+        yield return new WaitForSecondsRealtime(timeBetweenInput);
         canInput = true;
 
     }
@@ -59,7 +59,7 @@ public class SoundEffectsManager : SettingsBase
         else
             SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Cambio_Volumen_In);
         
-        AkSoundEngine.SetRTPCValue("Volumen_SFX", fillImage.fillAmount * 100f);
+        AkSoundEngine.SetRTPCValue("Volumen_SFX", (1 - fillImage.fillAmount) * 100f);
 
         PlayerPrefs.SetFloat(PlayerPrefsEnum.PlayerPrefs.SFX.ToString(),fillImage.fillAmount);
         PlayerPrefs.Save();
@@ -78,8 +78,8 @@ public class SoundEffectsManager : SettingsBase
         else
             SoundManager.Instance.PlayFx(SoundManager.Fx.UI_Cambio_Volumen_In);
         
-        AkSoundEngine.SetRTPCValue("Volumen_SFX", fillImage.fillAmount* 100f);
-        
+        AkSoundEngine.SetRTPCValue("Volumen_SFX", fillImage.fillAmount * 100f);
+
         PlayerPrefs.SetFloat(PlayerPrefsEnum.PlayerPrefs.SFX.ToString(),fillImage.fillAmount);
         PlayerPrefs.Save();
     }

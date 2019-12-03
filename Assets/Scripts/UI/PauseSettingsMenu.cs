@@ -17,6 +17,7 @@ public class PauseSettingsMenu : MonoBehaviour
 
     private void OnEnable()
     {
+        Time.timeScale = 0;
         OpenSettingsMenu();
     }
 

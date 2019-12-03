@@ -31,7 +31,6 @@ public class AwakeRace : MonoBehaviour
         path1 = path1List.Select(transform => transform.position).ToArray();
         path2 = path2List.Select(transform => transform.position).ToArray();
         path3 = path3List.Select(transform => transform.position).ToArray();
-        compuertaActivaCinematic.OpenDoor();
 
     }
 
@@ -62,7 +61,7 @@ public class AwakeRace : MonoBehaviour
                     mainCamera.transform.rotation = path2List[0].rotation;
                 })); 
         sequence.Append(mainCamera.transform.DOPath(path2, 4f, PathType.CatmullRom, PathMode.Full3D, 5, Color.red)
-            .OnWaypointChange(x => WayPointChangedEgypt(x, path2List)).OnComplete(() =>
+            .OnWaypointChange(x => WayPointChanged(x, path2List)).OnComplete(() =>
             {
                 mainCamera.transform.position = path3[0];
                 mainCamera.transform.rotation = path3List[0].rotation;

@@ -13,6 +13,8 @@ public class PauseMenu : Singleton<PauseMenu>
 {
     public GameObject continueButton;
     public RectTransform pauseMenuPanel;
+    public MusicVolumeManager musicVolumeManager;
+    public SoundEffectsManager soundEffectsManager;
     public Image fade;
     public float scaleDuration;
     public float fadeDuration;
@@ -27,7 +29,15 @@ public class PauseMenu : Singleton<PauseMenu>
     private void OnEnable()
     {
         Time.timeScale = 0f;
+        soundEffectsManager.UpdateFillAmount();
+        musicVolumeManager.UpdateFillAmount();
         OpenPauseMenu();
+        ConnectDisconnectManager.DisconnectCarSoundManagerDelegate();
+    }
+
+    private void OnDisable()
+    {
+        ConnectDisconnectManager.ConnectCarSoundManager();
     }
 
     private void OpenPauseMenu()
@@ -80,6 +90,7 @@ public class PauseMenu : Singleton<PauseMenu>
         sequence.Append(pauseMenuPanel.DOScale(new Vector3(0, 0, 0), scaleDuration).SetUpdate(true))
             .Append(fade.DOFade(1, fadeDuration)).SetUpdate(true).OnComplete(() =>
         {
+            SoundManager.Instance.StopAll();
             asyncLoadNextScene.allowSceneActivation = true;
             Time.timeScale = 1f;
             gameObject.SetActive(false);

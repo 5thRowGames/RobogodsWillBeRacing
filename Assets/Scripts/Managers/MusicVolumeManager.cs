@@ -40,7 +40,7 @@ public class MusicVolumeManager : SettingsBase
     IEnumerator TimeBetweenInputs()
     {
         canInput = false;
-        yield return new WaitForSeconds(timeBetweenInput);
+        yield return new WaitForSecondsRealtime(timeBetweenInput);
         canInput = true;
 
     }

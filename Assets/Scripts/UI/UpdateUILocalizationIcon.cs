@@ -23,6 +23,11 @@ public class UpdateUILocalizationIcon : MonoBehaviour
         UpdateIcon();
     }
 
+    private void OnDisable()
+    {
+        LocalizationManager.Instance.UpdateIcon -= UpdateIcon;
+    }
+
     public void UpdateIcon()
     {
 

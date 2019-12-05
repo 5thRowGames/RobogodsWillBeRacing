@@ -36,9 +36,6 @@ public class TitleScreenManager : MonoBehaviour
             AkSoundEngine.SetRTPCValue("Volumen_Musica", PlayerPrefs.GetFloat(PlayerPrefsEnum.PlayerPrefs.Music.ToString()) * 100f);
         }
         
-        AkSoundEngine.SetRTPCValue("Volumen_SFX", 0);
-        AkSoundEngine.SetRTPCValue("Volumen_Musica", 0);
-        
         SoundManager.Instance.PlayLoop(SoundManager.Music.UI);
     }
 

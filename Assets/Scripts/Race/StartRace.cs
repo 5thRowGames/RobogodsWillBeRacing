@@ -194,25 +194,9 @@ public class StartRace : MonoBehaviour
                         anubisPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindControls();
                     else
                         anubisPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
-                    
-                    /*switch (carSoundIndex)
-                    {
-                        case 1:
-                            anubisPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo1();
-                            break;
 
-                        case 2:
-                            anubisPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo2();
-                            break;
-
-                        case 3:
-                            anubisPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo3();
-                            break;
-
-                        case 4:
-                            anubisPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo4();
-                            break;
-                    }*/
+                    if (carSoundIndex == 1)
+                        cameras[0].AddComponent<AkAudioListener>();
                         
                     anubisPlayer.GetComponent<PlayerCarSoundManager>().unsharedSoundStart = "Nave_" + carSoundIndex;
                     carSoundIndex++;
@@ -245,25 +229,9 @@ public class StartRace : MonoBehaviour
                     else
                         poseidonPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
                     
-                    /*switch (carSoundIndex)
-                    {
-                        case 1:
-                            poseidonPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo1();
-                            break;
-
-                        case 2:
-                            poseidonPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo2();
-                            break;
-
-                        case 3:
-                            poseidonPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo3();
-                            break;
-
-                        case 4:
-                            poseidonPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo4();
-                            break;
-                    }*/
-                        
+                    if (carSoundIndex == 1)
+                        cameras[1].AddComponent<AkAudioListener>();
+                    
                     poseidonPlayer.GetComponent<PlayerCarSoundManager>().unsharedSoundStart = "Nave_" + carSoundIndex;
                     carSoundIndex++;
                     
@@ -293,24 +261,8 @@ public class StartRace : MonoBehaviour
                     else
                         kaliPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
                     
-                    /*switch (carSoundIndex)
-                    {
-                        case 1:
-                            kaliPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo1();
-                            break;
-
-                        case 2:
-                            kaliPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo2();
-                            break;
-
-                        case 3:
-                            kaliPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo3();
-                            break;
-
-                        case 4:
-                            kaliPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo4();
-                            break;
-                    }*/
+                    if (carSoundIndex == 1)
+                        cameras[2].AddComponent<AkAudioListener>();
 
                     kaliPlayer.GetComponent<PlayerCarSoundManager>().unsharedSoundStart = "Nave_" + carSoundIndex;
                     carSoundIndex++;
@@ -341,24 +293,8 @@ public class StartRace : MonoBehaviour
                     else
                         thorPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.BindKeyboard();
                     
-                    /*switch (carSoundIndex)
-                    {
-                        case 1:
-                            thorPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo1();
-                            break;
-
-                        case 2:
-                            thorPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo2();
-                            break;
-
-                        case 3:
-                            thorPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo3();
-                            break;
-
-                        case 4:
-                            thorPlayer.GetComponent<IncontrolProvider>().myPlayerActions = MyPlayerActions.Eduardo4();
-                            break;
-                    }*/
+                    if (carSoundIndex == 1)
+                        cameras[3].AddComponent<AkAudioListener>();
 
                     thorPlayer.GetComponent<PlayerCarSoundManager>().unsharedSoundStart = "Nave_" + carSoundIndex;
                     carSoundIndex++;

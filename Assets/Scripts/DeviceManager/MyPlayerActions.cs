@@ -113,7 +113,7 @@ public class MyPlayerActions : PlayerActionSet
 
         myPlayerActions.LeftBumper.AddDefaultBinding(Key.S);
         myPlayerActions.RightBumper.AddDefaultBinding(Key.F);
-        myPlayerActions.LeftTrigger.AddDefaultBinding(Key.G);
+        myPlayerActions.LeftTrigger.AddDefaultBinding(Key.K);
         myPlayerActions.RightTrigger.AddDefaultBinding(Key.W);
 
         myPlayerActions.Submit.AddDefaultBinding(Key.Return);

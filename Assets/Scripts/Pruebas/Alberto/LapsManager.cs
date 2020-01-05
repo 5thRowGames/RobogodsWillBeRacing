@@ -138,7 +138,6 @@ public class LapsManager : Singleton<LapsManager>
             UpdateRacePosition();
             HUDManager.Instance.UpdatePositionUI();
         }
-        
     }
     
     private void UpdateRacePosition()
@@ -276,15 +275,18 @@ public class LapsManager : Singleton<LapsManager>
         return -1;
     }
 
-    public void UpdatePlayersFinished(God.Type god)
+    private void UpdatePlayersFinished(God.Type god)
     {
         playersFinished++;
 
         if (playersFinished == StoreGodInfo.Instance.players)
         {
-
-            HUDManager.Instance.hudDictionary[god].localFade.DOFade(1f, 0.5f).OnComplete(() =>
+            HUDManager.Instance.finishRaceFade.DOFade(1f, 0.5f).OnComplete(() =>
             {
+                foreach (var canvasObject in HUDManager.Instance.playerCanvas)
+                    canvasObject.SetActive(false);
+
+                HUDManager.Instance.logoCamera.SetActive(false);
                 HUDManager.Instance.HideWaitPlayers();
                 godRaceInfoList[(int) god].god.SetActive(false);
                 RaceEventManager.Instance.ChangeRaceEvent(RaceEvents.Race.Finish);
@@ -294,6 +296,7 @@ public class LapsManager : Singleton<LapsManager>
         {
             HUDManager.Instance.hudDictionary[god].localFade.DOFade(1f, 0.5f).OnComplete(() =>
             {
+                godRaceInfoList[(int) god].currentLap = 99 - playersFinished;
                 godRaceInfoList[(int) god].god.SetActive(false);
                 HUDManager.Instance.hudDictionary[god].waitingPlayers.DOScale(new Vector3(1f,1f,1f), 0.3f);
             });

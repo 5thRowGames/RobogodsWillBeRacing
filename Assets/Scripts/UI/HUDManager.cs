@@ -34,7 +34,7 @@ public class HUDInfo
     public Image localFade;
     public RectTransform waitingPlayers;
     public Camera mainCamera;
-    
+
 
     private float time;
 
@@ -52,8 +52,10 @@ public class HUDManager : Singleton<HUDManager>
     public List<Sprite> numbers;
     public List<Sprite> positionImage;
     public List<HUDInfo> hudInfo;
-    public Action ActivateFlames;
     public Dictionary<God.Type, HUDInfo> hudDictionary; //0 anubis, 1 poseidon 2 kali 3 thor
+    public GameObject logoCamera;
+    public List<GameObject> playerCanvas;
+    public Image finishRaceFade;
 
     public Action UpdatePositionUI;
 

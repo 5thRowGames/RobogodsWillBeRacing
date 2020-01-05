@@ -116,11 +116,11 @@ public class FinishRace : MonoBehaviour
         switch (indexPosition)
         {
             case 0:
-                name = "Anubis";
+                name = "Anubits";
                 break;
             
             case 1:
-                name = "Poseidon";
+                name = "Roboseidon";
                 break;
             
             case 2:
@@ -128,7 +128,7 @@ public class FinishRace : MonoBehaviour
                 break;
             
             case 3:
-                name = "Thor";
+                name = "Thordisc";
                 break;
         }
 
